@@ -1,0 +1,54 @@
+.location-modal {
+  border-radius: 20px;
+  background: var(--gradient, radial-gradient(251.38% 116.24% at 94.46% 100.00%, #EA3057 0%, rgba(234, 48, 87, 0.00) 100%), linear-gradient(170deg, #8B52F6 16.15%, #3A66FF 73.96%));
+  text-align: center;
+  padding: 36px 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  max-width: 350px;
+  position: absolute;
+  box-sizing: border-box;
+  top: 66px;
+  left: 14.2%;
+  width: 100%;
+  min-height: 220px;
+  box-shadow: 1px 4px 7px 0px rgba(0, 0, 0, 0.18);
+}
+
+.location-modal::before {
+  content: '';
+  width: 0;
+  height: 0;
+  border-right: 14px solid transparent;
+  border-left: 14px solid transparent;
+  border-bottom: 16px solid #A549BF;
+  position: absolute;
+  top: -16px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.location-modal__text {
+  color: #000;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 22px;
+  margin: 0;
+}
+
+.location-modal__title {
+  color: #000;
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 31.8px;
+  letter-spacing: 0.15px;
+  margin: 16px 0 32px;
+}
+
+.location-modal__buttons {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
