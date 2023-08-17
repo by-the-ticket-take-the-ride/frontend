@@ -1,9 +1,10 @@
-import './EventCard.css';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import './EventCard.css';
 import { eventCardsData } from './test-data/eventCardsData'
-import ButtonLike from '../Buttons/ButtonLike';
+import ButtonLike from '../Buttons/ButtonLike/ButtonLike';
 
-function EventCard() {
+function EventCard({ route, id }) {
   const [isActive, setIsActive] = useState(false)
   const { name, image, date, location } = eventCardsData[0];
 
@@ -13,7 +14,7 @@ function EventCard() {
 
   return ( 
       <article className="event-card">
-        <a href="#" target='_blank' rel="noreferrer">
+        <Link to={`${route}/${id}`}>
           <div className='event-card__img-wrapper'>
             <img className='event-card__image' src={image} alt={name} />
           </div>
@@ -30,8 +31,8 @@ function EventCard() {
               </div>
             </div>
           </div>
-        </a>
-        <ButtonLike extraClass='event-card__button-like' handleLike={handleLike} isActive={isActive}/>
+          <ButtonLike extraClass='event-card__button-like' handleLike={handleLike} isActive={isActive}/>
+        </Link>
       </article>
    );
 }
