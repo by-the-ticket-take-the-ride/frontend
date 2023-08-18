@@ -6,6 +6,7 @@
 }
 
 .calendar__month {
+  font-family: 'Nunito Sans';
   font-weight: 400;
   line-height: 24px;
   font-size: 16px;
@@ -43,6 +44,7 @@
 }
 
 .date__day {
+  font-family: 'Nunito Sans';
   font-weight: 700;
   line-height: 24px;
   font-size: 16px;
@@ -50,7 +52,8 @@
 }
 
 .date__weekday {
-  font-family: 500;
+  font-family: 'Nunito Sans';
+  font-weight: 400;
   line-height: 24px;
   font-size: 12px;
 }
