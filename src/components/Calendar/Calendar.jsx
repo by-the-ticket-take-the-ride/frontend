@@ -3,10 +3,10 @@ import './Calendar.css';
 function Calendar() {
   const defaultProps = {
     weekDays: ['пн', 'вт', 'ср', 'чт', 'пт', 'сб', 'вс'],
-    // months: ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'],
+    months: ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'],
   }
 
-  const {weekDays} = defaultProps;
+  const {weekDays, months} = defaultProps;
 
   //получаем данные по текущему году, месяцу и дню
   const currentDate = new Date();
@@ -24,6 +24,9 @@ function Calendar() {
   //ищем индекс текущего дня в массиве days
   const currentDayIndex = days.indexOf(currentDay);
 
+  //получаем название текущего месяца из массива
+  const currentMonthName = months[currentMonth];
+
   //создаем новый массив с днями месяца, начиная с текущей даты и следующими днями
   const daysToShow = [
     ...days.slice(currentDayIndex, currentDayIndex + 21),
@@ -32,7 +35,7 @@ function Calendar() {
 
   return (
     <div className='calendar'>
-      <p className='calendar__month'>Месяц</p>
+      <p className='calendar__month'>{currentMonthName}</p>
       <div className='dates'>
         {
           daysToShow.map((day, index) => (
