@@ -1,4 +1,5 @@
 import './Calendar.css';
+import React from 'react';
 
 function Calendar() {
   const defaultProps = {
@@ -13,6 +14,9 @@ function Calendar() {
   const currentYear = currentDate.getFullYear();
   const currentMonth = currentDate.getMonth();
   const currentDay = currentDate.getDate();
+
+  //состояние для отслеживания выбранной даты
+  const [selectedDay, setSelectedDay] = React.useState(currentDay);
 
   //вычисляем количество дней в текущем месяце
   const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
@@ -33,15 +37,20 @@ function Calendar() {
     ...days.slice(0, 21 - (days.length - currentDayIndex)),
   ];
 
+  //обновляем состояние выбранной даты при клике
+  function handleDayClick(day) {
+    setSelectedDay(day);
+  };
+
   return (
     <div className='calendar'>
       <p className='calendar__month'>{currentMonthName}</p>
       <div className='dates'>
         {
           daysToShow.map((day, index) => (
-            <div key={index} className='date'>
-              <span className='date__day'>{day}</span>
-              <span className={`date__weekday ${weekDays[((currentDayIndex + 1) + index) % 7] === 'сб' 
+            <div key={index} className='date' onClick={() => handleDayClick(day)}>
+              <span className={`date__day ${day === selectedDay ? 'date__selected' : ''}`}>{day}</span>
+              <span className={`date__weekday ${weekDays[((currentDayIndex + 1) + index) % 7] === 'сб'
               || weekDays[((currentDayIndex + 1) + index) % 7] === 'вс' ? 'date__weekend' : ''}`}>
                 {weekDays[((currentDayIndex + 1) + index) % 7]}
               </span>
