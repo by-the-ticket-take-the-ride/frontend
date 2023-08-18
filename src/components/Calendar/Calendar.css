@@ -1,0 +1,56 @@
+.calendar {
+  max-width: 1110px;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+}
+
+.calendar__month {
+  font-weight: 400;
+  line-height: 24px;
+  font-size: 16px;
+  margin-bottom: 17px;
+  cursor: pointer;
+  max-width: 80px;
+}
+
+.dates {
+  display: flex;
+}
+
+.date {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin-right: 21px;
+  cursor: pointer;
+  width: 33px;
+  height: 30px;
+  padding-top: 5px;
+}
+
+.date:last-of-type {
+  margin-right: 0px;
+}
+
+.date__selected {
+  background: #D9D9D9;
+  border-radius: 50%;
+}
+
+.date__weekend {
+  color: #EA3057;
+}
+
+.date__day {
+  font-weight: 700;
+  line-height: 24px;
+  font-size: 16px;
+  margin-bottom: 2px;
+}
+
+.date__weekday {
+  font-family: 500;
+  line-height: 24px;
+  font-size: 12px;
+}
