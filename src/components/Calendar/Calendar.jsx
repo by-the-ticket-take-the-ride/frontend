@@ -38,7 +38,8 @@ function Calendar() {
           daysToShow.map((day, index) => (
             <div key={index} className='date'>
               <span className='date__day'>{day}</span>
-              <span className='date__weekday'>
+              <span className={`date__weekday ${weekDays[((currentDayIndex + 1) + index) % 7] === 'сб' 
+              || weekDays[((currentDayIndex + 1) + index) % 7] === 'вс' ? 'date__weekend' : ''}`}>
                 {weekDays[((currentDayIndex + 1) + index) % 7]}
               </span>
             </div>
