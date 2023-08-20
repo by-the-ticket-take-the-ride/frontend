@@ -1,5 +1,6 @@
 import './Calendar.css';
 import React from 'react';
+import Month from './Month/Month';
 
 function Calendar() {
   const defaultProps = {
@@ -31,6 +32,10 @@ function Calendar() {
   //получаем название текущего месяца из массива
   const currentMonthName = months[currentMonth];
 
+  //получаем название следующего месяца из массива
+  // const nextMonth = (currentMonth + 1) % 12;
+  // const nextMonthName = months[nextMonth];
+
   //создаем новый массив с днями месяца, начиная с текущей даты и следующими днями
   const daysToShow = [
     ...days.slice(currentDayIndex, currentDayIndex + 21),
@@ -44,20 +49,14 @@ function Calendar() {
 
   return (
     <div className='calendar'>
-      <p className='calendar__month'>{currentMonthName}</p>
-      <div className='dates'>
-        {
-          daysToShow.map((day, index) => (
-            <div key={index} className='date' onClick={() => handleDayClick(day)}>
-              <span className={`date__day ${day === selectedDay ? 'date__selected' : ''}`}>{day}</span>
-              <span className={`date__weekday ${weekDays[((currentDayIndex + 1) + index) % 7] === 'сб'
-              || weekDays[((currentDayIndex + 1) + index) % 7] === 'вс' ? 'date__weekend' : ''}`}>
-                {weekDays[((currentDayIndex + 1) + index) % 7]}
-              </span>
-            </div>
-          ))
-        }
-      </div>
+      <Month
+        monthName={currentMonthName}
+        daysToShow={daysToShow}
+        selectedDay={selectedDay}
+        handleDayClick={handleDayClick}
+        weekDays={weekDays}
+        currentDayIndex={currentDayIndex}
+      />
     </div>
   )
 }
