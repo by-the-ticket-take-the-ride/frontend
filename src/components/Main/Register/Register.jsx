@@ -5,11 +5,15 @@ import AuthBottom from "../AuthBottom/AuthBottom";
 
 function Register() {
   return (
-    <div className="popup-auth">
-      <AuthTop/>
-      <AuthForm/>
-      <AuthBottom/>
-    </div>
+    <>
+      <div className="cover-blackout">
+        <div className="popup-auth">
+          <AuthTop/>
+          <AuthForm/>
+          <AuthBottom/>
+        </div>
+      </div>
+    </>
   );
 }
 
