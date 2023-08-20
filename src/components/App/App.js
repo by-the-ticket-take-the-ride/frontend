@@ -1,9 +1,10 @@
-import './App.css';
+import "./App.css";
+import EventPage from "../EventPage/EventPage";
 
 function App() {
   return (
-    <div className="App">
-      
+    <div className="page">
+      <EventPage />
     </div>
   );
 }
