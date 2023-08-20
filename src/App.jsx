@@ -4,7 +4,7 @@ import { Routes, Route } from "react-router-dom";
 import EventCard from "./components/EventCard/EventCard";
 
 function App() {
-  return ( 
+  return (
     <div className="App">
       <Routes>
         <Route
