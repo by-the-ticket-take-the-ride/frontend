@@ -1,6 +1,44 @@
 .calendar {
   max-width: 1120px;
   display: flex;
-  flex-direction: column;
   margin: 0 auto;
+  position: relative;
+}
+
+.calendar__container {
+  display: flex;
+  max-width: 1200px;
+  position: relative;
+  overflow: hidden;
+  width: calc(39 * 33px);
+}
+
+.dates-visible {
+  display: flex;
+  transition: transform 0.5s ease;
+  width: calc(22 * 54px);
+  /* overflow: hidden; */
+}
+
+.arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  font-size: 20px;
+  cursor: pointer;
+  color: #9A9A9A;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+}
+
+.left-arrow {
+  left: 0;
+}
+
+.right-arrow {
+  right: 0;
 }

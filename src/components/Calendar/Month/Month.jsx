@@ -1,16 +1,19 @@
 import React from 'react';
-import './Month.css'
+import './Month.css';
+import moment from 'moment';
 
-function Month({ monthName, daysToShow, selectedDay, handleDayClick, weekDays, currentDayIndex }) {
+function Month({ monthIndex, daysToShow, selectedDay, handleDayClick, weekDays, currentDayIndex, visibleDays }) {
+  const monthInfo = moment().add(monthIndex, 'months');
+  const monthName = monthInfo.format('MMMM');
+
   return (
-    <div className='month'>
-      <p className='month__name'>{monthName}</p>
+    <div className='month__container'>
+      <p className="month__name">{monthName}</p>
       <div className='dates'>
         {daysToShow.map((day, index) => (
-          <div key={index} className='date' onClick={() => handleDayClick(day)}>
+          <div key={index} className='date' onClick={() => handleDayClick(monthIndex, day)}>
             <span className={`date__day ${day === selectedDay ? 'date__selected' : ''}`}>{day}</span>
-            <span className={`date__weekday ${weekDays[((currentDayIndex + 1) + index) % 7] === 'сб'
-            || weekDays[((currentDayIndex + 1) + index) % 7] === 'вс' ? 'date__weekend' : ''}`}>
+            <span className={`date__weekday ${weekDays[((currentDayIndex + 1) + index) % 7] === 'сб' || weekDays[((currentDayIndex + 1) + index) % 7] === 'вс' ? 'date__weekend' : ''}`}>
               {weekDays[((currentDayIndex + 1) + index) % 7]}
             </span>
           </div>

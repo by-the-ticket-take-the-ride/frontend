@@ -1,6 +1,8 @@
 import './Calendar.css';
-import React from 'react';
+import React, {useState} from 'react';
 import Month from './Month/Month';
+import moment from 'moment';
+import 'moment/locale/ru';
 
 function Calendar() {
   const defaultProps = {
@@ -10,55 +12,72 @@ function Calendar() {
 
   const {weekDays, months} = defaultProps;
 
-  //получаем данные по текущему году, месяцу и дню
-  const currentDate = new Date();
-  const currentYear = currentDate.getFullYear();
-  const currentMonth = currentDate.getMonth();
-  const currentDay = currentDate.getDate();
+    const [currentMonthIndex, setCurrentMonthIndex] = useState(0);
 
-  //состояние для отслеживания выбранной даты
-  const [selectedDay, setSelectedDay] = React.useState(currentDay);
+  const currentDate = moment();
+  const currentYear = currentDate.year();
+  const currentMonth = currentDate.month();
+  const currentDay = currentDate.date();
 
-  //вычисляем количество дней в текущем месяце
-  const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+  const currentDayIndex = currentDate.day();
 
-  const days = [
-    ...Array.from({ length: daysInMonth}, (_, i) => i + 1)
-  ]
+  const monthsToShow = 15; // Количество месяцев для отображения
 
-  //ищем индекс текущего дня в массиве days
-  const currentDayIndex = days.indexOf(currentDay);
+  const [selectedDay, setSelectedDay] = useState({});
 
-  //получаем название текущего месяца из массива
-  const currentMonthName = months[currentMonth];
-
-  //получаем название следующего месяца из массива
-  // const nextMonth = (currentMonth + 1) % 12;
-  // const nextMonthName = months[nextMonth];
-
-  //создаем новый массив с днями месяца, начиная с текущей даты и следующими днями
-  const daysToShow = [
-    ...days.slice(currentDayIndex, currentDayIndex + 21),
-    ...days.slice(0, 21 - (days.length - currentDayIndex)),
-  ];
-
-  //обновляем состояние выбранной даты при клике
-  function handleDayClick(day) {
-    setSelectedDay(day);
+  const handleDayClick = (monthIndex, day) => {
+    setSelectedDay(() => ({
+      // ...prevSelectedDays,
+      [monthIndex]: day, // Обновляем выбранную дату для конкретного месяца
+    }));
   };
 
-  return (
-    <div className='calendar'>
-      <Month
-        monthName={currentMonthName}
+  const [visibleDays, setVisibleDays] = useState(10);
+
+  const handleNextClick = () => {
+    setVisibleDays(prev => prev + 10); // Limit to the total number of days
+  };
+
+  const handlePrevClick = () => {
+    setVisibleDays(prev => Math.max(prev - 10, 10)); // Minimum of 10 visible days
+  };
+
+  const calendar = [];
+
+  for (let i = 0; i < monthsToShow; i++) {
+    const monthInfo = currentDate.clone().add(i, 'months');
+    const isCurrentMonth = i === 0;
+    const daysToShow = isCurrentMonth
+      ? Array.from({ length: monthInfo.daysInMonth() - (currentDay - 1) }, (_, index) => index + currentDay)
+      : Array.from({ length: monthInfo.daysInMonth() }, (_, index) => index + 1);
+
+    calendar.push(
+        <Month
+        key={i}
+        monthIndex={i} // Передаем индекс месяца
+        monthName={months[i]}
         daysToShow={daysToShow}
-        selectedDay={selectedDay}
-        handleDayClick={handleDayClick}
+        selectedDay={selectedDay[i]} // Передаем выбранную дату для месяца
+        handleDayClick={handleDayClick} // Передаем функцию для обновления выбранной даты
         weekDays={weekDays}
         currentDayIndex={currentDayIndex}
       />
+    );
+  }
+
+  return (
+    <div className="calendar">
+      <div className="calendar__container">
+        <div className="arrow left-arrow" onClick={handlePrevClick}>⬅</div>
+        <div className="dates-visible" style={{ transform: `translateX(-${(visibleDays - 10) * 54}px)` }}>          
+        {calendar}
+        </div>
+        <div className="arrow right-arrow" onClick={handleNextClick}>➡</div>
+      </div>
     </div>
-  )
+  );
+  
+  
 }
 
 export default Calendar;

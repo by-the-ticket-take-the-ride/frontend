@@ -8,11 +8,22 @@
   max-width: 80px;
   color: #9A9A9A;
   text-decoration: underline;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+
+.month__name::first-letter {
+  text-transform: uppercase;
 }
 
 .dates {
   display: flex;
+  transition: transform 0.5s ease;
+  /* width: calc(22 * 54px); */
 }
+
 
 .date {
   display: flex;
