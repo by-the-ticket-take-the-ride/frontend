@@ -1,7 +1,7 @@
 import React from "react";
 // import BreadCrumbs from "../BreadCrumbs/BreadCrumbs";
 import MainFrame from "../MainFrame/MainFrame";
-// import WhouldYouLike from "../WhouldYouLike/WhouldYouLike";
+import AboutEvent from "../AboutEvent/AboutEvent";
 
 function EventPage() {
     return(
@@ -9,8 +9,9 @@ function EventPage() {
             {/* <Header /> */}
             <section className="event-page">
                 {/* <BreadCrumbs /> */}
+                {/* {<Сalendar />} */}
                 <MainFrame />
-                {/* <WhouldYouLike /> */}
+                <AboutEvent />
             </section>
             {/* <Footer /> */}
         </>
