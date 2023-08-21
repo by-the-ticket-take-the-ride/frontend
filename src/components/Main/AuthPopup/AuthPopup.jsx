@@ -1,10 +1,10 @@
-import "./Auth.css";
+import "./AuthPopup.css";
 import AuthTop from "../AuthTop/AuthTop";
 import AuthForm from "../AuthForm/AuthForm";
 import AuthBottom from "../AuthBottom/AuthBottom";
 
 
-function Auth() {
+function AuthPopup() {
   return (
     <div className="popup-auth">
       <AuthTop/>
@@ -14,4 +14,4 @@ function Auth() {
   );
 }
 
-export default Auth;
+export default AuthPopup;

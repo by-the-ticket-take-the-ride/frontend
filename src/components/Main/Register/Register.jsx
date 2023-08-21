@@ -1,8 +1,8 @@
-import Auth from "../Auth/Auth";
+import AuthPopup from "../AuthPopup/AuthPopup";
 
 function Register() {
   return (
-    <Auth/>
+    <AuthPopup/>
   );
 }
 
