@@ -3,6 +3,8 @@ import React, {useState} from 'react';
 import Month from './Month/Month';
 import moment from 'moment';
 import 'moment/locale/ru';
+import arrow_left from '../../assets/images/icon-arrow-left.svg';
+import arrow_right from '../../assets/images/icon-arrow-right.svg';
 
 function Calendar() {
   const defaultProps = {
@@ -67,13 +69,13 @@ function Calendar() {
 
   return (
     <div className="calendar">
+      <img className="arrow arrow-left" src={arrow_left} alt='Стрелка влево' onClick={handlePrevClick}/>
       <div className="calendar__container">
-        <div className="arrow left-arrow" onClick={handlePrevClick}>⬅</div>
         <div className="dates-visible" style={{ transform: `translateX(-${(visibleDays - 10) * 54}px)` }}>          
         {calendar}
         </div>
-        <div className="arrow right-arrow" onClick={handleNextClick}>➡</div>
       </div>
+      <img className="arrow arrow-right" src={arrow_right} alt='Стрелка вправо' onClick={handleNextClick}/>
     </div>
   );
   

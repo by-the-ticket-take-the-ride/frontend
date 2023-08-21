@@ -7,7 +7,7 @@ function Month({ monthIndex, daysToShow, selectedDay, handleDayClick, weekDays, 
   const monthName = monthInfo.format('MMMM');
 
   return (
-    <div className='month__container'>
+    <div className='month'>
       <p className="month__name">{monthName}</p>
       <div className='dates'>
         {daysToShow.map((day, index) => (

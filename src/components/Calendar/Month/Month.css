@@ -1,3 +1,7 @@
+.month {
+  margin-right: 25px;
+}
+
 .month__name {
   font-family: 'Nunito Sans';
   font-weight: 400;
@@ -24,12 +28,11 @@
   /* width: calc(22 * 54px); */
 }
 
-
 .date {
   display: flex;
   flex-direction: column;
   text-align: center;
-  margin-right: 21px;
+  margin-right: 13px;
   cursor: pointer;
   width: 33px;
   height: 30px;

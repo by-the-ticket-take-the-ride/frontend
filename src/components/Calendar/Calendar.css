@@ -7,10 +7,11 @@
 
 .calendar__container {
   display: flex;
-  max-width: 1200px;
+  max-width: 1017px;
   position: relative;
   overflow: hidden;
-  width: calc(39 * 33px);
+  margin: auto;
+  /* width: calc(39 * 33px); */
 }
 
 .dates-visible {
@@ -21,24 +22,23 @@
 }
 
 .arrow {
-  display: flex;
+  /* display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: center; */
   width: 30px;
   height: 30px;
-  font-size: 20px;
   cursor: pointer;
   color: #9A9A9A;
   position: absolute;
-  top: 50%;
+  top: 83%;
   transform: translateY(-50%);
   z-index: 1;
 }
 
-.left-arrow {
+.arrow-left {
   left: 0;
 }
 
-.right-arrow {
+.arrow-right {
   right: 0;
 }
