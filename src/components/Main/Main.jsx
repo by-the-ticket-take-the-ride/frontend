@@ -5,7 +5,9 @@ import Register from './Register/Register';
 function Main() {
   return (
     <main className="content">
-      <Register/>
+      <div className="cover-blackout">
+        <Register/>
+      </div>
     </main>
   )
 }
