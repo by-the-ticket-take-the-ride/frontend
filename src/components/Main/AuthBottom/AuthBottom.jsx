@@ -3,6 +3,8 @@ import "./AuthBottom.css";
 function AuthBottom() {
   return (
     <div className="popup-auth__footer">
+      {/* элементы пока не используются */}
+      {/*
       <div className="popup-auth__border">
         <div className="popup-auth__stroke-line"></div>
         <p className="popup-auth__border-text text-reset">или</p>
@@ -17,6 +19,7 @@ function AuthBottom() {
         <div className="popup-auth__icon-vk"></div>
         <p className="popup-auth__text-cocial-network text-reset">Войти с ВКонтакте</p>
       </button>
+      */}
 
       <p className="popup-auth__to-login text-reset">
         Уже зарегистрированы? <a href="#" className="popup-auth__to-login-link text-reset">Войти в профиль</a>
