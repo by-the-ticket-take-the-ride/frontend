@@ -1,22 +1,52 @@
 import "./AuthForm.css";
 
 function AuthForm(props) {
-  let formContent;
+  let actionTextButton;
+  const className = 'popup-auth__input';
+  let inputAtributes;
 
   if (props.type === 'register') {
-    formContent = (
-      <>
-        <input></input>
-        <input></input>
-        <input></input>
-        <input></input>
-        <button>Зарегистрироваться</button>
-      </>
-    );
+    inputAtributes = [
+      {
+        className: `${className}`,
+        name: 'name',
+        type: 'text',
+        value: '',
+      },
+      {
+        className: `${className}`,
+        name: 'name',
+        type: 'text',
+        value: '',
+      },
+      {
+        className: `${className}`,
+        name: 'name',
+        type: 'text',
+        value: '',
+      },
+      {
+        className: `${className}`,
+        name: 'name',
+        type: 'text',
+        value: '',
+      },
+    ];
+
+    actionTextButton = 'Зарегистрироваться';
+
   }
   return (
     <form className="popup-auth__form">
-      {formContent}
+      {inputAtributes ? inputAtributes.map((inputAtr) => (
+        <input
+          className={inputAtr.className}
+          name={inputAtr.name}
+          type={inputAtr.type}
+          value={inputAtr.value}
+        ></input>
+      )) : ''}
+      <button>{actionTextButton}</button>
     </form>
   );
 }
