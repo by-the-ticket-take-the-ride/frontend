@@ -1,4 +1,5 @@
 import React from "react";
+import './EventsCardList.css'
 import EventCard from "../EventCard/EventCard";
 
 function EventsCardList() {
