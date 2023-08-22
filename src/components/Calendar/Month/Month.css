@@ -1,5 +1,9 @@
 .month {
-  margin-right: 25px;
+  margin-right: 26px;
+}
+
+.month:last-of-type {
+  margin-right: 0;
 }
 
 .month__name {
@@ -10,7 +14,6 @@
   margin-bottom: 20px;
   cursor: pointer;
   max-width: 80px;
-  color: #9A9A9A;
   text-decoration: underline;
   position: sticky;
   top: 0;
@@ -32,10 +35,10 @@
   display: flex;
   flex-direction: column;
   text-align: center;
-  margin-right: 13px;
+  margin-right: 13.6px;
   cursor: pointer;
   width: 33px;
-  height: 30px;
+  /* height: 30px; */
 }
 
 .date:last-of-type {

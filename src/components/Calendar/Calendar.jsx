@@ -8,7 +8,7 @@ import arrow_right from '../../assets/images/icon-arrow-right.svg';
 
 function Calendar() {
   const defaultProps = {
-    weekDays: ['пн', 'вт', 'ср', 'чт', 'пт', 'сб', 'вс'],
+    weekDays: ['вс', 'пн', 'вт', 'ср', 'чт', 'пт', 'сб'],
     months: ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'],
   }
 
@@ -23,7 +23,7 @@ function Calendar() {
 
   const currentDayIndex = currentDate.day();
 
-  const monthsToShow = 15; // Количество месяцев для отображения
+  const monthsToShow = 12; // Количество месяцев для отображения
 
   const [selectedDay, setSelectedDay] = useState({});
 
@@ -34,14 +34,23 @@ function Calendar() {
     }));
   };
 
-  const [visibleDays, setVisibleDays] = useState(10);
+  const [visibleDays, setVisibleDays] = useState(11);
+
+  const [canScrollPrev, setCanScrollPrev] = useState(false);
+  const [canScrollNext, setCanScrollNext] = useState(true); // Начальное значение true, так как начинаем с первого месяца
 
   const handleNextClick = () => {
-    setVisibleDays(prev => prev + 10); // Limit to the total number of days
+    const newVisibleDays = visibleDays + 11;
+    setVisibleDays(newVisibleDays);
+    setCanScrollPrev(true); // Можно листать назад
+    setCanScrollNext(currentMonthIndex + (newVisibleDays / 30) < monthsToShow - 1); // Можно листать вперёд, если есть ещё месяцы для отображения
   };
-
+  
   const handlePrevClick = () => {
-    setVisibleDays(prev => Math.max(prev - 10, 10)); // Minimum of 10 visible days
+    const newVisibleDays = Math.max(visibleDays - 11, 11);
+    setVisibleDays(newVisibleDays);
+    setCanScrollNext(true); // Можно листать вперёд
+    setCanScrollPrev(newVisibleDays > 11); // Можно листать назад, если остались месяцы для отображения
   };
 
   const calendar = [];
@@ -69,17 +78,15 @@ function Calendar() {
 
   return (
     <div className="calendar">
-      <img className="arrow arrow-left" src={arrow_left} alt='Стрелка влево' onClick={handlePrevClick}/>
+      <img className={`arrow arrow-left ${canScrollPrev ? "" : "disabled"}`} src={arrow_left} alt='Стрелка влево' onClick={canScrollPrev ? handlePrevClick : null}/>
       <div className="calendar__container">
-        <div className="dates-visible" style={{ transform: `translateX(-${(visibleDays - 10) * 54}px)` }}>          
+        <div className="dates-visible" style={{ transform: `translateX(-${(visibleDays - 11) * 47.6}px)` }}>          
         {calendar}
         </div>
       </div>
-      <img className="arrow arrow-right" src={arrow_right} alt='Стрелка вправо' onClick={handleNextClick}/>
+      <img className={`arrow arrow-right ${canScrollNext ? "" : "disabled"}`} src={arrow_right} alt='Стрелка вправо' onClick={canScrollNext ? handleNextClick : null}/>
     </div>
   );
-  
-  
 }
 
 export default Calendar;

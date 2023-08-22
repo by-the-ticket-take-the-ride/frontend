@@ -7,32 +7,61 @@
 
 .calendar__container {
   display: flex;
-  max-width: 1017px;
+  max-width: 1020px;
   position: relative;
   overflow: hidden;
   margin: auto;
-  /* width: calc(39 * 33px); */
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  /* width: calc(22 * 54px); */
 }
+
+.calendar__container::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  right: -10px;
+  bottom: -10px;
+  background-color: rgba(255, 255, 255, 0.2);
+  filter: blur(10px);
+  z-index: -1;
+  border-radius: 20px; /* Радиус в два раза больше, чтобы учесть размытие и наложение */
+}
+
+/* .calendar__container::before {
+  left: 0;
+}
+
+.calendar__container::after {
+  right: 0;
+} */
 
 .dates-visible {
   display: flex;
   transition: transform 0.5s ease;
-  width: calc(22 * 54px);
+  width: 100%;
+  /* width: calc(22 * 54px); */
   /* overflow: hidden; */
 }
 
 .arrow {
-  /* display: flex;
-  align-items: center;
-  justify-content: center; */
   width: 30px;
   height: 30px;
   cursor: pointer;
   color: #9A9A9A;
   position: absolute;
-  top: 83%;
+  top: 68%;
   transform: translateY(-50%);
   z-index: 1;
+}
+
+.arrow::after {
+  background: linear-gradient(to right, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 38.67%, rgba(255, 255, 255, 0) 100%);
+}
+
+.arrow:hover {
+  opacity: 0.8;
 }
 
 .arrow-left {
@@ -41,4 +70,14 @@
 
 .arrow-right {
   right: 0;
+}
+
+.disabled {
+  cursor: not-allowed;
+  color: #9A9A9A;
+  opacity: 0.6;
+}
+
+.disabled:hover {
+  opacity: 0.6;
 }
