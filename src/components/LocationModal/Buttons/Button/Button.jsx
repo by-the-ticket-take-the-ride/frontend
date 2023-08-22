@@ -45,7 +45,7 @@ const Button = ({
     default:
       return (
         <button
-          type="button"
+          type={type}
           className={`button ${styleString} ${
             additionalClass ? additionalClass : ""
           }`}

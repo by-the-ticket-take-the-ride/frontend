@@ -4,9 +4,10 @@ import './EventCard.css';
 import { eventCardsData } from './test-data/eventCardsData'
 import ButtonLike from '../Buttons/ButtonLike/ButtonLike';
 
-function EventCard({ route, id }) {
+function EventCard({ route, id, EventData }) {
   const [isActive, setIsActive] = useState(false)
   const { name, image, date, location } = eventCardsData[0];
+  // const { name, image, date, location } = EventData;
 
   const handleLike = () => {
     setIsActive(!isActive)
