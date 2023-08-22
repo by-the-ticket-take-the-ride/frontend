@@ -5,6 +5,8 @@ import moment from 'moment';
 import 'moment/locale/ru';
 import arrow_left from '../../assets/images/icon-arrow-left.svg';
 import arrow_right from '../../assets/images/icon-arrow-right.svg';
+import { eventCardsData } from '../EventCard/test-data/eventCardsData';
+import EventsCardList from '../EventsCardList/EventsCardList';
 
 function Calendar() {
   const defaultProps = {
@@ -28,14 +30,20 @@ function Calendar() {
   const [selectedDay, setSelectedDay] = useState({});
 
   const handleDayClick = (monthIndex, day) => {
-    const selectedDate = moment().add(monthIndex, 'months').date(day);
-
     setSelectedDay(() => ({
       // ...prevSelectedDays,
       [monthIndex]: day,
     }));
 
+    const selectedDate = moment().add(monthIndex, 'months').date(day);
+
+    const eventsForSelectedDate = eventCardsData.filter(event => {
+      const eventDate = moment(event.date, 'D MMMM, HH:mm');
+      return eventDate.isSame(selectedDate, 'day');
+    });
+    
     localStorage.setItem('selectedDate', selectedDate.format('YYYY-MM-DD'));
+    localStorage.setItem('eventsForSelectedDate', JSON.stringify(eventsForSelectedDate));
   };
 
   const [visibleDays, setVisibleDays] = useState(11);
