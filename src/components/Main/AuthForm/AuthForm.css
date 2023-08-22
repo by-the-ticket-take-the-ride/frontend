@@ -17,14 +17,17 @@
   border-radius: 20px;
   margin-bottom: 16px;
   outline: none;
-}
-.popup-auth__input::placeholder {
+
+  
   font-family: "Nunito Sans";
   font-size: 18px;
   font-weight: 400;
   line-height: 22px;
   letter-spacing: 0px;
   text-align: left;
+  color: #000;
+}
+.popup-auth__input::placeholder {
   color: #9A9A9A;
 }
 .popup-auth__button-hide-show-password {
