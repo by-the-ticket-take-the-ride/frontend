@@ -4,6 +4,7 @@
   border-radius: 20px;
   background-color: #fff;
 
+  box-sizing: border-box;
   padding: 40px 40px 40px 40px;
 }
 .popup-auth__close-icon {

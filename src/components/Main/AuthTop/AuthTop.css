@@ -1,16 +1,20 @@
 .popup-auth__header {
+  margin-bottom: 48px;
 }
+
 .popup-auth__header-text {
   font-family: "Unbounded";
   font-size: 30px;
   font-weight: 700;
-  line-height: 32px;
+  line-height: 30px;
   letter-spacing: 0.005em;
   text-align: left;
   color: #000;
+   
+  margin-top: 3px;
 }
 .popup-auth__sub-text {
-  margin-top: 8px;
+  margin-top: 7px;
 
   font-family: "Nunito Sans";
   font-size: 16px;

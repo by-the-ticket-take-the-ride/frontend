@@ -2,7 +2,9 @@ import PopupAuth from "../PopupAuth/PopupAuth";
 
 function Register() {
   return (
-    <PopupAuth/>
+    <PopupAuth
+      type='register'
+    />
   );
 }
 
