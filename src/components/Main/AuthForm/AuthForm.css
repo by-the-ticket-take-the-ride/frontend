@@ -69,3 +69,22 @@
   
   cursor: pointer;
 }
+
+.popup-auth__test-agreement {
+  font-family: "Nunito Sans";
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 17px;
+  letter-spacing: 0px;
+  text-align: left;
+  color: rgba(0, 0, 0, .5);
+
+  margin-top: 8px;
+}
+.popup-auth__span-registration {
+  font-weight: 700;
+  color: rgba(0, 0, 0, .75);
+}
+.popup-auth__span-agreement {
+  color: #8B52F6;
+}

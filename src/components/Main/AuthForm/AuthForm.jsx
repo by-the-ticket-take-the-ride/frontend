@@ -1,11 +1,15 @@
 import "./AuthForm.css";
 
 function AuthForm(props) {
+  let textAgreement = false;
   let actionTextButton;
   const className = 'popup-auth__input';
   let inputAttributes;
 
   if (props.type === 'register') {
+    textAgreement = true;
+    actionTextButton = 'Зарегистрироваться';
+
     inputAttributes = [
       {
         className: `${className}`,
@@ -35,8 +39,6 @@ function AuthForm(props) {
       },
     ];
 
-    actionTextButton = 'Зарегистрироваться';
-
   }
   return (
     <form className="popup-auth__form">
@@ -64,6 +66,14 @@ function AuthForm(props) {
         )
       ))}
       <button className="popup-auth__button-action text-reset">{actionTextButton}</button>
+      {textAgreement &&
+        <p className="popup-auth__test-agreement text-reset">
+          Нажимая <span className="popup-auth__span-registration">Зарегистрироваться</span>,
+          вы даете <span className="popup-auth__span-agreement">согласие на сбор,<br></br>
+          обработку и хранение персональных данных</span> в соответствии<br></br>
+          с Политикой обработки персональных данных
+        </p>
+      }
     </form>
   );
 }
