@@ -11,25 +11,25 @@ function AuthForm(props) {
         className: `${className}`,
         name: 'name',
         type: 'text',
-        value: '',
+        placeholder: 'Имя',
       },
       {
         className: `${className}`,
         name: 'name',
-        type: 'text',
-        value: '',
+        type: 'email',
+        placeholder: 'Электронная почта',
       },
       {
         className: `${className}`,
         name: 'name',
-        type: 'text',
-        value: '',
+        type: 'password',
+        placeholder: 'Пароль',
       },
       {
         className: `${className}`,
         name: 'name',
-        type: 'text',
-        value: '',
+        type: 'password',
+        placeholder: 'Повторите пароль',
       },
     ];
 

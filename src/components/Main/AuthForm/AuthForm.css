@@ -1,0 +1,10 @@
+.popup-auth__form {
+  display: flex;
+  flex-direction: column;
+}
+.popup-auth__input {
+  height: 50px;
+  border: 1px solid #8B52F6;
+  border-radius: 20px;
+  margin-bottom: 16px;
+}
