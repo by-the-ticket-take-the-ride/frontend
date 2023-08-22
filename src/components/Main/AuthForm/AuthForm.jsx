@@ -24,12 +24,14 @@ function AuthForm(props) {
         name: 'name',
         type: 'password',
         placeholder: 'Пароль',
+        password: true,
       },
       {
         className: `${className}`,
         name: 'name',
         type: 'password',
         placeholder: 'Повторите пароль',
+        password: true,
       },
     ];
 
@@ -38,19 +40,29 @@ function AuthForm(props) {
   }
   return (
     <form className="popup-auth__form">
-      {inputAttributes ? inputAttributes.map((inputAttr) => (
-        <div className="popup-auth__wrapper-input">
+      {inputAttributes && inputAttributes.map((inputAttr) => (
+        inputAttr?.password ? (
+          <div className="popup-auth__wrapper-input">    
+            <input
+              className={inputAttr.className}
+              name={inputAttr.name}
+              type={inputAttr.type}
+              value={inputAttr.value}
+              placeholder={inputAttr.placeholder}
+            />
+
+            <button className="popup-auth__button-hide-show-password"></button>        
+          </div>
+        ):(
           <input
             className={inputAttr.className}
             name={inputAttr.name}
             type={inputAttr.type}
             value={inputAttr.value}
             placeholder={inputAttr.placeholder}
-          >
-          </input>
-          <button className="popup-auth__button-hide-show-password"></button> 
-        </div>
-      )) : ''}
+          />
+        )
+      ))}
       <button className="popup-auth__button-action text-reset">{actionTextButton}</button>
     </form>
   );
