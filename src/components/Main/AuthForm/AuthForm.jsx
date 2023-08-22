@@ -65,12 +65,12 @@ function AuthForm(props) {
           />
         )
       ))}
-      <button className="popup-auth__button-action text-reset">{actionTextButton}</button>
+      <button className="popup-auth__button-action">{actionTextButton}</button>
       {textAgreement &&
-        <p className="popup-auth__test-agreement text-reset">
+        <p className="popup-auth__text-agreement text-reset">
           Нажимая <span className="popup-auth__span-registration">Зарегистрироваться</span>,
-          вы даете <span className="popup-auth__span-agreement">согласие на сбор,<br></br>
-          обработку и хранение персональных данных</span> в соответствии<br></br>
+          вы даете <a href="#" className="popup-auth__link-agreement text-reset">согласие на сбор,<br></br>
+          обработку и хранение персональных данных</a> в соответствии<br></br>
           с Политикой обработки персональных данных
         </p>
       }
