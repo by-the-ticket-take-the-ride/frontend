@@ -3,10 +3,10 @@ import "./AuthForm.css";
 function AuthForm(props) {
   let actionTextButton;
   const className = 'popup-auth__input';
-  let inputAtributes;
+  let inputAttributes;
 
   if (props.type === 'register') {
-    inputAtributes = [
+    inputAttributes = [
       {
         className: `${className}`,
         name: 'name',
@@ -38,12 +38,12 @@ function AuthForm(props) {
   }
   return (
     <form className="popup-auth__form">
-      {inputAtributes ? inputAtributes.map((inputAtr) => (
+      {inputAttributes ? inputAttributes.map((inputAttr) => (
         <input
-          className={inputAtr.className}
-          name={inputAtr.name}
-          type={inputAtr.type}
-          value={inputAtr.value}
+          className={inputAttr.className}
+          name={inputAttr.name}
+          type={inputAttr.type}
+          value={inputAttr.value}
         ></input>
       )) : ''}
       <button>{actionTextButton}</button>
