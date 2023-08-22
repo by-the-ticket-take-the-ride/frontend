@@ -28,10 +28,14 @@ function Calendar() {
   const [selectedDay, setSelectedDay] = useState({});
 
   const handleDayClick = (monthIndex, day) => {
+    const selectedDate = moment().add(monthIndex, 'months').date(day);
+
     setSelectedDay(() => ({
       // ...prevSelectedDays,
-      [monthIndex]: day, // Обновляем выбранную дату для конкретного месяца
+      [monthIndex]: day,
     }));
+
+    localStorage.setItem('selectedDate', selectedDate.format('YYYY-MM-DD'));
   };
 
   const [visibleDays, setVisibleDays] = useState(11);
