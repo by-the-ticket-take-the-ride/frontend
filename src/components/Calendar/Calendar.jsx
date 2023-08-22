@@ -8,7 +8,7 @@ import arrow_right from '../../assets/images/icon-arrow-right.svg';
 import { eventCardsData } from '../EventCard/test-data/eventCardsData';
 import EventsCardList from '../EventsCardList/EventsCardList';
 
-function Calendar() {
+function Calendar({handleSelectedDateChange}) {
   const defaultProps = {
     weekDays: ['вс', 'пн', 'вт', 'ср', 'чт', 'пт', 'сб'],
     months: ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'],
@@ -44,6 +44,8 @@ function Calendar() {
     
     localStorage.setItem('selectedDate', selectedDate.format('YYYY-MM-DD'));
     localStorage.setItem('eventsForSelectedDate', JSON.stringify(eventsForSelectedDate));
+
+    handleSelectedDateChange(eventsForSelectedDate);
   };
 
   const [visibleDays, setVisibleDays] = useState(11);
