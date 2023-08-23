@@ -1,12 +1,11 @@
 import './Calendar.css';
-import React, {useState} from 'react';
+import React, { useState, useEffect } from 'react';
 import Month from './Month/Month';
 import moment from 'moment';
 import 'moment/locale/ru';
 import arrow_left from '../../assets/images/icon-arrow-left.svg';
 import arrow_right from '../../assets/images/icon-arrow-right.svg';
 import { eventCardsData } from '../EventCard/test-data/eventCardsData';
-import EventsCardList from '../EventsCardList/EventsCardList';
 
 function Calendar({handleSelectedDateChange}) {
   const defaultProps = {
@@ -42,11 +41,29 @@ function Calendar({handleSelectedDateChange}) {
       return eventDate.isSame(selectedDate, 'day');
     });
     
-    localStorage.setItem('selectedDate', selectedDate.format('YYYY-MM-DD'));
+    localStorage.setItem('selectedDate', JSON.stringify({ monthIndex, day }));
     localStorage.setItem('eventsForSelectedDate', JSON.stringify(eventsForSelectedDate));
+    localStorage.setItem('visibleDays', visibleDays);
 
     handleSelectedDateChange(eventsForSelectedDate);
   };
+
+  useEffect(() => {
+    const savedSelectedDate = localStorage.getItem('selectedDate');
+    const savedVisibleDays = localStorage.getItem('visibleDays');
+
+    if (savedSelectedDate) {
+      const { monthIndex, day } = JSON.parse(savedSelectedDate);
+      setSelectedDay({ [monthIndex]: day });
+
+      const eventsForSelectedDate = JSON.parse(localStorage.getItem('eventsForSelectedDate'));
+      handleSelectedDateChange(eventsForSelectedDate);
+    }
+
+    if (savedVisibleDays) {
+      setVisibleDays(parseInt(savedVisibleDays));
+    }
+  }, []);
 
   const [visibleDays, setVisibleDays] = useState(11);
 
@@ -54,18 +71,15 @@ function Calendar({handleSelectedDateChange}) {
   const [canScrollNext, setCanScrollNext] = useState(true); // Начальное значение true, так как начинаем с первого месяца
 
   const handleNextClick = () => {
-    const newVisibleDays = visibleDays + 11;
+    const newVisibleDays = Math.min(visibleDays + 11, monthsToShow * 30 - currentDay);
     setVisibleDays(newVisibleDays);
-    setCanScrollPrev(true); // Можно листать назад
-    setCanScrollNext(currentMonthIndex + (newVisibleDays / 30) < monthsToShow - 1); // Можно листать вперёд, если есть ещё месяцы для отображения
   };
   
   const handlePrevClick = () => {
     const newVisibleDays = Math.max(visibleDays - 11, 11);
     setVisibleDays(newVisibleDays);
-    setCanScrollNext(true); // Можно листать вперёд
-    setCanScrollPrev(newVisibleDays > 11); // Можно листать назад, если остались месяцы для отображения
   };
+  
 
   const calendar = [];
 
@@ -92,17 +106,18 @@ function Calendar({handleSelectedDateChange}) {
 
   return (
     <div className="calendar">
-      <div className={`arrow ${canScrollPrev ? "arrow-left" : ""}`}>
-        <img className={`arrow-btn arrow-left-btn ${canScrollPrev ? "" : "disabled"}`} src={arrow_left} alt='Стрелка влево' onClick={canScrollPrev ? handlePrevClick : null}/>
+      <div className={`arrow ${visibleDays > 11 ? "arrow-left" : ""}`}>
+        <img className={`arrow-btn arrow-left-btn ${visibleDays > 11 ? "" : "disabled"}`} src={arrow_left} alt='Стрелка влево' onClick={visibleDays > 11 ? handlePrevClick : null}/>
       </div>
       <div className="calendar__container">
-        <div className="dates-visible" style={{ transform: `translateX(-${(visibleDays - 11) * 47}px)` }}>          
+        <div className="dates-visible" style={{ transform: `translateX(-${(visibleDays - 11) * 47.5}px)` }}>          
         {calendar}
         </div>
       </div>
-      <div className={`arrow ${canScrollNext ? "arrow-right" : ""}`}>
-        <img className={`arrow-btn arrow-right-btn ${canScrollNext ? "" : "disabled"}`} src={arrow_right} alt='Стрелка вправо' onClick={canScrollNext ? handleNextClick : null}/>
+      <div className={`arrow ${currentMonthIndex + (visibleDays / 30) < monthsToShow - 1 ? "arrow-right" : ""}`}>
+        <img className={`arrow-btn arrow-right-btn ${currentMonthIndex + (visibleDays / 30) < monthsToShow - 1 ? "" : "disabled"}`} src={arrow_right} alt='Стрелка вправо' onClick={currentMonthIndex + (visibleDays / 30) < monthsToShow - 1 ? handleNextClick : null}/>
       </div>
+
     </div>
   );
 }
