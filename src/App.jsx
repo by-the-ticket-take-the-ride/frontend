@@ -7,6 +7,8 @@ import LocationModal from "./components/LocationModal/LocationModal";
 import React from "react";
 import EventsCardList from "./components/EventsCardList/EventsCardList";
 import CityPopup from "./components/CityPopup/CityPopup";
+import EventPage from "./components/EventPage/EventPage";
+import MainFrame from "./components/MainFrame/MainFrame";
 
 function App() {
   const [selectedDateEvents, setSelectedDateEvents] = React.useState([]);
@@ -22,6 +24,7 @@ function App() {
       <Header />
       <Calendar handleSelectedDateChange={handleSelectedDateChange} />
       <EventsCardList />
+      <MainFrame />
       <EventCards />
       <Footer />
       <LocationModal
