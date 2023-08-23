@@ -10,12 +10,12 @@ const LocationModal = ({ onClick }) => {
       <div className="location-modal__buttons">
         <Button
           additionalClass="location-modal__button"
-          light={true}
+          primaryOutlined={true}
           onClick={() => onClick(true)}
         >
           Другой
         </Button>
-        <Button additionalClass="location-modal__button" light={true}>
+        <Button additionalClass="location-modal__button" gradient={true}>
           Верно
         </Button>
       </div>
