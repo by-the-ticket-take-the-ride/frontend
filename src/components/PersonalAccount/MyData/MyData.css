@@ -39,6 +39,10 @@
   color: rgba(154, 154, 154, 1);
 }
 
+.my-data__input:last-of-type {
+  margin-bottom: 0;
+}
+
 .my-data__input_type_gray {
   background-color: rgba(154, 154, 154, 0.1);
   border: none;
@@ -67,28 +71,42 @@
 }
 
 .my-data__save-button {
+  font-family: 'Nunito Sans';
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 22px;
   margin-top: 48px;
   width: 100%;
   min-height: 52px;
   border-radius: 20px;
+
 }
 
-.success {
-  background-color: rgba(214, 248, 211, 1);
+.notification {
   display: none;
   justify-content: center;
   align-items: center;
   gap: 8px;
 }
 
-.success_visible {
+.notification_visible {
   display: flex;
 }
 
-.my-data__success {
+.my-data__notification {
   max-width: 549px;
   min-height: 52px;
   margin-top: 20px;
+}
+
+.notification_success {
+  display: flex;
+  background-color: #D6F8D3;
+}
+
+.notification_error {
+  display: flex;
+  background-color: #F8DAD3;
 }
 
 .my-data__success-text {

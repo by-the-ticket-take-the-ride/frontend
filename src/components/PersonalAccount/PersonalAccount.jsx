@@ -2,6 +2,9 @@ import { Link, Navigate, Outlet, useLocation } from 'react-router-dom';
 import './PersonalAccount.css';
 import NavTab from '../NavTab/NavTab';
 import LogoutIcon from '../Icons/LogoutIcon';
+import BreadCrumbs from '../BreadCrumbs/BreadCrumbs';
+
+import crumbs from './crumbs.json'
 import { tabData } from '../../utils/tabsData';
 
 function PersonalAccount() {
@@ -14,7 +17,7 @@ function PersonalAccount() {
   return ( 
     <main className='account'>
       <div className='account__wrapper'>
-        <div>Главная - кабинет</div>
+        <BreadCrumbs crumbs={crumbs}/>
         <div className='account__title-container'>
           <h2 className='account__title'>Личный кабинет</h2>
           <Link to='/' className='button-link'>Выйти <LogoutIcon/></Link>

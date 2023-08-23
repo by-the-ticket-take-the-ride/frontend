@@ -1,23 +1,25 @@
 import { useEffect } from "react";
 import useFormValid from "../../../hooks/useFormValid";
-import Button from "../../LocationModal/Buttons/Button/Button";
 import "./MyData.css";
 import SuccessIcon from "../../Icons/SuccessIcon";
 import useUserContext from "../../../hooks/useUserContext";
 import testData from './testData.json'
+import ErrorIcon from "../../Icons/ErrorIcon";
+import Button from "../../Buttons/Button/Button";
 
 function MyData() {
   const { inputValues, handleInputChange, resetFormValues } = useFormValid();
-  const { currentUser, setUserInfo, isSuccess } = useUserContext();
+  const { currentUser, handleSetUserInfo, isSuccess, isOpenNotific } = useUserContext();
 
   useEffect(() => {
+    /* когда будет настроен запрос на сервер */ 
     // resetFormValues(currentUser);
     resetFormValues(testData);
   }, [resetFormValues]);
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    setUserInfo({
+    handleSetUserInfo({
       surname: inputValues.surname,
       name: inputValues.name,
       dateOfBirth: inputValues.dateOfBirth,
@@ -110,13 +112,17 @@ function MyData() {
             additionalClass="my-data__save-button"
             children="Сохранить изменения"
             type="submit"
-            primary={true}
+            gradient={true}
             disabled={isDataMatch()}
           />
-          <div className={`success ${isSuccess ? 'success_visible' : ''} my-data__success`}>
-            <SuccessIcon size="28"/>
-            <span className="success__text">Данные сохранены</span>
-          </div>
+          {isOpenNotific &&
+            <div className={`notification ${isSuccess ? 'notification_success ' : 'notification_error'} my-data__notification`}>
+              { isSuccess ? <SuccessIcon size="28"/> : <ErrorIcon size="28" />}
+              <span className="success__text">
+                {isSuccess ? "Данные сохранены" : "Ошибка сохранения" }
+              </span>
+            </div>
+          }
         </form>
       </div>
     </section>

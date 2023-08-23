@@ -4,38 +4,45 @@ import * as currentUserApi from '../utils/currentUserApi'
 import testData from '../components/PersonalAccount/MyData/testData.json'
 
 function CurrentUserProvider({ children }) {
-  const [currentUser, setCurrentUser] = useState({})
-  const [isSuccess, setIsSuccess] = useState(false)
+  const [currentUser, setCurrentUser] = useState({});
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [isOpenNotific, setIsOpenNotific] = useState(false)
 
   useEffect(() => {
     currentUserApi
       .getCurrentUser()
       .then((currentUser) => {
+        /* когда будет настроен запрос на сервер */
+        // setCurrentUser(currentUser)
         setCurrentUser(testData);
       }).catch(err => console.log(err))
   },[])
 
-const setUserInfo = (userData) => {
-
+const handleSetUserInfo = (userData) => {
+  setIsOpenNotific(false)
   setIsSuccess(false)
     return currentUserApi
       .setUserInfo(userData)
       .then((currentUser) => {
         if (currentUser) {
-          setCurrentUser(currentUser)
+          /* когда будет настроен запрос на сервер */
+          // setCurrentUser(currentUser)
+          setCurrentUser(testData)
           setIsSuccess(true)
         }
       })
-      .catch(err => {
+      .catch(() => {
         setIsSuccess(false)
       })
+      .finally(() => setIsOpenNotific(true))
   }
 
   return ( 
     <CurrentUserContext.Provider value={{
       currentUser,
-      setUserInfo,
-      isSuccess
+      handleSetUserInfo,
+      isSuccess,
+      isOpenNotific
     }}>
       {children}
     </CurrentUserContext.Provider>

@@ -1,3 +1,4 @@
+/* заглушка для тестирования */
 const MAIN_API_URL = 'http://localhost:3005'
 
 export const getCurrentUser = () => {
