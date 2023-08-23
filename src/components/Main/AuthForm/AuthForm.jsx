@@ -1,22 +1,8 @@
 import "./AuthForm.css";
-import { useState } from "react";
 
 function AuthForm(props) {
-  const [dataForm, setDataForm] = useState({})
+  const {handleChange, handleSubmit} = props;
 
-  function handleChange(e) {
-    const {name, value} = e.target;
-    setDataForm((prevData) => ({    //позволяет отслеживать изменение только одного поля
-      ...prevData,
-      [name]: value,
-    }));
-  }
-  function handleSubmit(e) {
-    e.preventDefault();
-
-    const {name, email, password} = dataForm;
-  }
-  
   let textAgreement = false;
   let actionTextButton;
   const className = 'popup-auth__input';
@@ -70,13 +56,21 @@ function AuthForm(props) {
               type={inputAttr.type}
               value={inputAttr.value}
               placeholder={inputAttr.placeholder}
+              onChange={e => {
+                handleChange(e)
+              }}
             />
             {inputAttr?.password && (
               <button className="popup-auth__button-hide-show-password"></button>
             )}
           </div>
       ))}
-      <button className="popup-auth__button-action">{actionTextButton}</button>
+      <button 
+        className="popup-auth__button-action"
+        onClick={handleSubmit}
+      >
+        {actionTextButton}
+      </button>
       {textAgreement &&
         <p className="popup-auth__text-agreement text-reset">
           Нажимая <span className="popup-auth__span-registration">Зарегистрироваться</span>,

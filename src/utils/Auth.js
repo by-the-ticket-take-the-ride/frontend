@@ -1,4 +1,4 @@
-const BASE_URL = 'http://site.com';
+const BASE_URL = 'http://host';
 
 export function _getResponseData(res) {
   if (!res.ok) {
@@ -8,7 +8,7 @@ export function _getResponseData(res) {
 }
 
 export function register(name, email, password) {
-  return fetch(`$BASE_URL/register`, {
+  return fetch(`${BASE_URL}/register`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
