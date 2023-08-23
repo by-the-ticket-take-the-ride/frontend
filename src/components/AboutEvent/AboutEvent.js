@@ -1,0 +1,22 @@
+import React from "react";
+import './AboutEvent.css';
+import { eventCardsData } from '../../assets/test-data/eventCardsData';
+import HiddenText from '../HiddenText/HiddenText';
+
+function AboutEvent() {
+
+    const {subtitle, text } = eventCardsData[0];
+
+    return(
+        <section className="about-event">
+            <div className="about-event__description">
+                <h2 className="about-event__title">О концерте</h2>
+                <p className="about-event__text">{subtitle}</p>
+                <HiddenText text={text} className="about-event__text"/>
+            </div>
+            {/* <ButtonBuy /> */}
+        </section>
+    )
+}
+
+export default AboutEvent;
