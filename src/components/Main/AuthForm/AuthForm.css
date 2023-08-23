@@ -31,6 +31,10 @@
 .popup-auth__input::placeholder {
   color: #9A9A9A;
 }
+.popup-auth__margin-bottom_clear {
+  margin-bottom: 0;
+}
+
 .popup-auth__button-hide-show-password {
   position: absolute;
   top: 25%;

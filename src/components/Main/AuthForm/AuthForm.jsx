@@ -42,11 +42,15 @@ function AuthForm(props) {
   }
   return (
     <form className="popup-auth__form">
-      {inputAttributes && inputAttributes.map((inputAttr) => (
+      {inputAttributes && inputAttributes.map((inputAttr, index) => (
         inputAttr?.password ? (
-          <div className="popup-auth__wrapper-input">    
+          <div className="popup-auth__wrapper-input">
             <input
-              className={inputAttr.className}
+              className={
+                `${inputAttr.className}${
+                  index === (inputAttributes.length - 1) ? ' popup-auth__margin-bottom_clear' : ''
+                }`
+              }
               name={inputAttr.name}
               type={inputAttr.type}
               value={inputAttr.value}
