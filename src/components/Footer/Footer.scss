@@ -1,0 +1,31 @@
+.footer {
+  height: 348px;
+  background: linear-gradient(180deg, #191919 36.98%, #5f3ca1 100%);
+  color: var(--white, #fff);
+  &__top-box {
+    padding-top: 23px;
+    max-width: 1148px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  &__top-right-box {
+    display: flex;
+    flex-direction: row;
+    gap: 56px;
+    ul {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    li {
+      list-style-type: none;
+    }
+  }
+  &__bottom-box {
+    max-width: 1148px;
+    display: flex;
+    flex-direction: row;
+  }
+}
