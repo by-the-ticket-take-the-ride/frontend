@@ -19,6 +19,10 @@
   font-family: 'Nunito Sans', Arial, Helvetica, sans-serif;
 }
 
+.location-modal_hidden {
+  display: none;
+}
+
 .location-modal::before {
   content: '';
   width: 0;

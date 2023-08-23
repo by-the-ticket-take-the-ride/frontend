@@ -6,9 +6,12 @@ import EventCards from "./components/EventCards/EventCards";
 import LocationModal from "./components/LocationModal/LocationModal";
 import React from "react";
 import EventsCardList from "./components/EventsCardList/EventsCardList";
+import CityPopup from "./components/CityPopup/CityPopup";
 
 function App() {
   const [selectedDateEvents, setSelectedDateEvents] = React.useState([]);
+  const [isActivePopupCity, setIsActivePopupCity] = React.useState(false);
+  const [isHiddenLocation, setIsHiddenLocation] = React.useState(false);
 
   const handleSelectedDateChange = (events) => {
     setSelectedDateEvents(events);
@@ -21,7 +24,12 @@ function App() {
       <EventsCardList />
       <EventCards />
       <Footer />
-      <LocationModal />
+      <LocationModal
+        onClickOtherButton={setIsActivePopupCity}
+        onClickButton={setIsHiddenLocation}
+        isHidden={isHiddenLocation}
+      />
+      <CityPopup isActive={isActivePopupCity} onClose={setIsActivePopupCity} />
     </div>
   );
 }
