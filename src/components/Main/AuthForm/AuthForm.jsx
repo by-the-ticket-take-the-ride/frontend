@@ -43,31 +43,22 @@ function AuthForm(props) {
   return (
     <form className="popup-auth__form">
       {inputAttributes && inputAttributes.map((inputAttr, index) => (
-        inputAttr?.password ? (
-          <div className="popup-auth__wrapper-input">
+        
+          <div className={`popup-auth__wrapper-input${
+              index === (inputAttributes.length - 1) ? ' popup-auth__margin-bottom_clear' : ''
+            }`
+          }>
             <input
-              className={
-                `${inputAttr.className}${
-                  index === (inputAttributes.length - 1) ? ' popup-auth__margin-bottom_clear' : ''
-                }`
-              }
+              className={inputAttr.className}
               name={inputAttr.name}
               type={inputAttr.type}
               value={inputAttr.value}
               placeholder={inputAttr.placeholder}
             />
-
-            <button className="popup-auth__button-hide-show-password"></button>        
+            {inputAttr?.password && (
+              <button className="popup-auth__button-hide-show-password"></button>
+            )}
           </div>
-        ):(
-          <input
-            className={inputAttr.className}
-            name={inputAttr.name}
-            type={inputAttr.type}
-            value={inputAttr.value}
-            placeholder={inputAttr.placeholder}
-          />
-        )
       ))}
       <button className="popup-auth__button-action">{actionTextButton}</button>
       {textAgreement &&
