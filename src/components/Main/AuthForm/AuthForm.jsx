@@ -1,6 +1,22 @@
 import "./AuthForm.css";
+import { useState } from "react";
 
 function AuthForm(props) {
+  const [dataForm, setDataForm] = useState({})
+
+  function handleChange(e) {
+    const {name, value} = e.target;
+    setDataForm((prevData) => ({    //позволяет отслеживать изменение только одного поля
+      ...prevData,
+      [name]: value,
+    }));
+  }
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    const {name, email, password} = dataForm;
+  }
+  
   let textAgreement = false;
   let actionTextButton;
   const className = 'popup-auth__input';
