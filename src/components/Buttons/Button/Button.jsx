@@ -11,6 +11,7 @@ const Button = ({
   lightOutlined,
   dark,
   darkOutlined,
+  grayOutlined,
   gradient,
   type,
   url,
@@ -25,6 +26,7 @@ const Button = ({
     lightOutlined ? "button_type_light-outlined" : null,
     dark ? "button_type_dark" : null,
     darkOutlined ? "button_type_dark-outlined" : null,
+    grayOutlined ? "button_type_gray-outlined" : null,
     gradient ? "button_type_gradient" : null,
   ];
   const style = styles.filter((style) => style !== null);
