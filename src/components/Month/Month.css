@@ -20,7 +20,6 @@
   z-index: 2;
 }
 
-
 .month__name::first-letter {
   text-transform: uppercase;
 }
@@ -28,7 +27,6 @@
 .dates {
   display: flex;
   transition: transform 0.5s ease;
-  /* width: calc(22 * 54px); */
 }
 
 .date {
@@ -38,7 +36,6 @@
   margin-right: 13.6px;
   cursor: pointer;
   width: 33px;
-  /* height: 30px; */
 }
 
 .date:last-of-type {

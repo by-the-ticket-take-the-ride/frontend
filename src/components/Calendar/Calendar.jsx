@@ -1,13 +1,13 @@
 import './Calendar.css';
 import React, { useState, useEffect } from 'react';
-import Month from './Month/Month';
+import Month from '../Month/Month';
 import moment from 'moment';
 import 'moment/locale/ru';
 import arrow_left from '../../assets/images/icon-arrow-left.svg';
 import arrow_right from '../../assets/images/icon-arrow-right.svg';
 import { eventCardsData } from '../EventCard/test-data/eventCardsData';
 
-function Calendar({handleSelectedDateChange}) {
+function Calendar({ handleSelectedDateChange }) {
   const defaultProps = {
     weekDays: ['вс', 'пн', 'вт', 'ср', 'чт', 'пт', 'сб'],
     months: ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'],
@@ -18,19 +18,18 @@ function Calendar({handleSelectedDateChange}) {
     const [currentMonthIndex, setCurrentMonthIndex] = useState(0);
 
   const currentDate = moment();
-  const currentYear = currentDate.year();
-  const currentMonth = currentDate.month();
   const currentDay = currentDate.date();
 
-  const currentDayIndex = currentDate.day();
+  const currentWeekdayIndex = currentDate.day();
 
-  const monthsToShow = 12; // Количество месяцев для отображения
+  const monthsToShow = 12;
 
   const [selectedDay, setSelectedDay] = useState({});
 
+  const [visibleDays, setVisibleDays] = useState(11);
+
   const handleDayClick = (monthIndex, day) => {
     setSelectedDay(() => ({
-      // ...prevSelectedDays,
       [monthIndex]: day,
     }));
 
@@ -65,21 +64,15 @@ function Calendar({handleSelectedDateChange}) {
     }
   }, []);
 
-  const [visibleDays, setVisibleDays] = useState(11);
-
-  const [canScrollPrev, setCanScrollPrev] = useState(false);
-  const [canScrollNext, setCanScrollNext] = useState(true); // Начальное значение true, так как начинаем с первого месяца
-
   const handleNextClick = () => {
-    const newVisibleDays = Math.min(visibleDays + 11, monthsToShow * 30 - currentDay);
+    const newVisibleDays = (prev => prev + 11);
     setVisibleDays(newVisibleDays);
   };
   
   const handlePrevClick = () => {
-    const newVisibleDays = Math.max(visibleDays - 11, 11);
+    const newVisibleDays = (prev => prev - 11);
     setVisibleDays(newVisibleDays);
   };
-  
 
   const calendar = [];
 
@@ -93,13 +86,13 @@ function Calendar({handleSelectedDateChange}) {
     calendar.push(
         <Month
         key={i}
-        monthIndex={i} // Передаем индекс месяца
+        monthIndex={i}
         monthName={months[i]}
         daysToShow={daysToShow}
-        selectedDay={selectedDay[i]} // Передаем выбранную дату для месяца
-        handleDayClick={handleDayClick} // Передаем функцию для обновления выбранной даты
+        selectedDay={selectedDay[i]}
+        handleDayClick={handleDayClick}
         weekDays={weekDays}
-        currentDayIndex={currentDayIndex}
+        currentWeekdayIndex={currentWeekdayIndex}
       />
     );
   }
@@ -117,7 +110,6 @@ function Calendar({handleSelectedDateChange}) {
       <div className={`arrow ${currentMonthIndex + (visibleDays / 30) < monthsToShow - 1 ? "arrow-right" : ""}`}>
         <img className={`arrow-btn arrow-right-btn ${currentMonthIndex + (visibleDays / 30) < monthsToShow - 1 ? "" : "disabled"}`} src={arrow_right} alt='Стрелка вправо' onClick={currentMonthIndex + (visibleDays / 30) < monthsToShow - 1 ? handleNextClick : null}/>
       </div>
-
     </div>
   );
 }

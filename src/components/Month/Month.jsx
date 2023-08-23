@@ -2,7 +2,7 @@ import React from 'react';
 import './Month.css';
 import moment from 'moment';
 
-function Month({ monthIndex, daysToShow, selectedDay, handleDayClick, weekDays, currentDayIndex, visibleDays }) {
+function Month({ monthIndex, daysToShow, selectedDay, handleDayClick, weekDays }) {
   const monthInfo = moment().add(monthIndex, 'months');
   const monthName = monthInfo.format('MMMM');
 

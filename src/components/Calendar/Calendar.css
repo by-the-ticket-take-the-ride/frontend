@@ -11,23 +11,12 @@
   position: relative;
   overflow: hidden;
   margin: auto;
-  /* width: calc(22 * 54px); */
 }
-
-/* .calendar__container::before {
-  left: 0;
-}
-
-.calendar__container::after {
-  right: 0;
-} */
 
 .dates-visible {
   display: flex;
   transition: transform 0.5s ease;
   width: 100%;
-  /* width: calc(22 * 54px); */
-  /* overflow: hidden; */
 }
 
 .arrow::after {
