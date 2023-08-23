@@ -46,7 +46,9 @@ function AuthForm(props) {
     <form className="popup-auth__form">
       {inputAttributes && inputAttributes.map((inputAttr, index) => (
         
-          <div className={`popup-auth__wrapper-input${
+          <div
+            key={`idAuthFormRegister-${index}`}
+            className={`popup-auth__wrapper-input${
               index === (inputAttributes.length - 1) ? ' popup-auth__margin-bottom_clear' : ''
             }`
           }>
