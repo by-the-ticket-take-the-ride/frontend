@@ -1,0 +1,21 @@
+.category-button {
+  height: 36px;
+  width: auto;
+  display: flex;
+  gap: 8px;
+  &__image {
+    width: 36px;
+    height: 36px;
+  }
+  &__text {
+    color: var(--black, #191919);
+    font-feature-settings: "clig" off, "liga" off;
+    font-family: Nunito Sans;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 22px;
+    display: flex;
+    align-items: center;
+  }
+}

@@ -1,0 +1,7 @@
+.events-list {
+  max-width: 1120px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(550px, auto));
+  gap: 28px 20px;
+  margin: 60px auto 0;
+}
