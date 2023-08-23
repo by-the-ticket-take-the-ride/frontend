@@ -11,22 +11,7 @@
   position: relative;
   overflow: hidden;
   margin: auto;
-  background-color: rgba(255, 255, 255, 0.2);
-  border-radius: 10px;
   /* width: calc(22 * 54px); */
-}
-
-.calendar__container::before {
-  content: "";
-  position: absolute;
-  top: -10px;
-  left: -10px;
-  right: -10px;
-  bottom: -10px;
-  background-color: rgba(255, 255, 255, 0.2);
-  filter: blur(10px);
-  z-index: -1;
-  border-radius: 20px; /* Радиус в два раза больше, чтобы учесть размытие и наложение */
 }
 
 /* .calendar__container::before {
@@ -45,7 +30,35 @@
   /* overflow: hidden; */
 }
 
-.arrow {
+.arrow::after {
+  width: 0px;
+}
+
+.arrow-left::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 50px;
+  pointer-events: none;
+  background: linear-gradient(to right, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 38.67%, rgba(255, 255, 255, 0) 100%);
+  z-index: 1;
+  left: 30px;
+}
+
+.arrow-right::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 50px;
+  pointer-events: none;
+  background: linear-gradient(to left, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 38.67%, rgba(255, 255, 255, 0) 100%);
+  z-index: 1;
+  right: 30px;
+}
+
+.arrow-btn {
   width: 30px;
   height: 30px;
   cursor: pointer;
@@ -56,19 +69,15 @@
   z-index: 1;
 }
 
-.arrow::after {
-  background: linear-gradient(to right, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 38.67%, rgba(255, 255, 255, 0) 100%);
-}
-
-.arrow:hover {
+.arrow-btn:hover {
   opacity: 0.8;
 }
 
-.arrow-left {
+.arrow-left-btn {
   left: 0;
 }
 
-.arrow-right {
+.arrow-right-btn {
   right: 0;
 }
 

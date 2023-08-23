@@ -92,13 +92,17 @@ function Calendar({handleSelectedDateChange}) {
 
   return (
     <div className="calendar">
-      <img className={`arrow arrow-left ${canScrollPrev ? "" : "disabled"}`} src={arrow_left} alt='Стрелка влево' onClick={canScrollPrev ? handlePrevClick : null}/>
+      <div className={`arrow ${canScrollPrev ? "arrow-left" : ""}`}>
+        <img className={`arrow-btn arrow-left-btn ${canScrollPrev ? "" : "disabled"}`} src={arrow_left} alt='Стрелка влево' onClick={canScrollPrev ? handlePrevClick : null}/>
+      </div>
       <div className="calendar__container">
-        <div className="dates-visible" style={{ transform: `translateX(-${(visibleDays - 11) * 47.6}px)` }}>          
+        <div className="dates-visible" style={{ transform: `translateX(-${(visibleDays - 11) * 47}px)` }}>          
         {calendar}
         </div>
       </div>
-      <img className={`arrow arrow-right ${canScrollNext ? "" : "disabled"}`} src={arrow_right} alt='Стрелка вправо' onClick={canScrollNext ? handleNextClick : null}/>
+      <div className={`arrow ${canScrollNext ? "arrow-right" : ""}`}>
+        <img className={`arrow-btn arrow-right-btn ${canScrollNext ? "" : "disabled"}`} src={arrow_right} alt='Стрелка вправо' onClick={canScrollNext ? handleNextClick : null}/>
+      </div>
     </div>
   );
 }
