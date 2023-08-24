@@ -8,7 +8,6 @@ function AuthForm(props) {
   const [isDisabled, setIsDisabled] = useState('');
 
   function handleChange(e) {
-    console.log(e.target);
     const {name, value} = e.target;
     setDataForm((prevData) => ({    //позволяет отслеживать изменение только одного поля
       ...prevData,
@@ -21,7 +20,7 @@ function AuthForm(props) {
     const {name, email, password} = dataForm;
     auth.register(name, email, password)
       .then((res) => {
-        console.log('Вы автризовались');
+        console.log('Вы авторизовались');
       })
       .catch(() => {
         console.log('произошла ошибка');
