@@ -149,6 +149,11 @@ function AuthForm(props) {
             {inputAttr?.password && (
               <button className="auth-form__button-hide-show-password button-hover"></button>
             )}
+            <span>
+              Ошибка<br></br>
+              Ошибка<br></br>
+              Ошибка
+            </span>
           </div>
       ))}
       <button 

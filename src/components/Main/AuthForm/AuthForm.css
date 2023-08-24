@@ -44,7 +44,7 @@
 
 .auth-form__button-hide-show-password {
   position: absolute;
-  top: 50%;
+  top: calc(50px * .5);
   transform: translate(0, -50%);
   right: 22px;
   width: 19.5px;
