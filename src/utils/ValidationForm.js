@@ -87,7 +87,7 @@ function useValidationSet (value, validations) {
         if (value.trim().length === 0) {
           switchValidation('isEmpty');
           
-          setTextError('Поле не должно быть пустым');
+          setTextError('Неизвестная ошибка');
         } else {
           setIsEmpty(false);
         }

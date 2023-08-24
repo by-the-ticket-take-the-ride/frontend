@@ -8,6 +8,7 @@ function AuthForm(props) {
   const [isDisabled, setIsDisabled] = useState('');
 
   function handleChange(e) {
+    console.log(e.target);
     const {name, value} = e.target;
     setDataForm((prevData) => ({    //позволяет отслеживать изменение только одного поля
       ...prevData,
@@ -32,14 +33,18 @@ function AuthForm(props) {
       name: useInput('', {isEmpty: true, minLength: 3, maxLength: 30, isName: true}),
       email: useInput('', {isEmpty: true, isEmail: true}),
       password: useInput('', {isEmpty: true, minLength: 3, maxLength: 30}),
+      retypePassword: useInput('', {isEmpty: true, minLength: 3, maxLength: 30}),
     }
 
-    const {name, email, password} = nameInput;
+    const {name, email, password, retypePassword} = nameInput;
     
     let isValid;
     useEffect(() => {
       if (type === '/register') {
-        isValid = !name.inputValid || !email.inputValid || !password.inputValid;
+        isValid = !name.inputValid 
+        || !email.inputValid 
+        || !password.inputValid
+        || !retypePassword.inputValid;
       } 
       else if (type === '/login') {
         isValid = !email.inputValid || !password.inputValid;
@@ -52,6 +57,7 @@ function AuthForm(props) {
       name,
       email,
       password,
+      retypePassword,
       isValid,
     }
   }
@@ -60,6 +66,7 @@ function AuthForm(props) {
     name,
     email,
     password,
+    retypePassword,
     isValid,
   } = useValidation(props.type, useInput, useEffect);
 
@@ -71,37 +78,53 @@ function AuthForm(props) {
   if (props.type === 'register') {
     textAgreement = true;
     actionTextButton = 'Зарегистрироваться';
-
     inputAttributes = [
       {
-        className: `${className}`,
+        className: `${className} ${displayError(name).isUnderlinError}`,
         name: 'name',
         type: 'text',
         placeholder: 'Имя',
+        onChange: e => {
+          name.onChange(e);
+          handleChange(e);
+        }
       },
       {
-        className: `${className}`,
-        name: 'name',
+        className: `${className} ${displayError(email).isUnderlinError}`,
+        name: 'email',
         type: 'email',
         placeholder: 'Электронная почта',
+        onChange: e => {
+          email.onChange(e);
+          handleChange(e);
+        }
       },
       {
-        className: `${className}`,
-        name: 'name',
+        className: `${className} ${displayError(password).isUnderlinError}`,
+        name: 'password',
         type: 'password',
         placeholder: 'Пароль',
         password: true,
+        onChange: e => {
+          password.onChange(e);
+          handleChange(e);
+        }
       },
       {
-        className: `${className}`,
-        name: 'name',
+        className: `${className} ${displayError(retypePassword).isUnderlinError}`,
+        name: 'retypePassword',
         type: 'password',
         placeholder: 'Повторите пароль',
         password: true,
+        onChange: e => {
+          retypePassword.onChange(e);
+          handleChange(e);
+        }
       },
     ];
 
   }
+  
   return (
     <form className="auth-form">
       {inputAttributes && inputAttributes.map((inputAttr, index) => (
@@ -118,9 +141,7 @@ function AuthForm(props) {
               type={inputAttr.type}
               value={inputAttr.value}
               placeholder={inputAttr.placeholder}
-              onChange={e => {
-                handleChange(e)
-              }}
+              onChange={inputAttr.onChange}
             />
             {inputAttr?.password && (
               <button className="auth-form__button-hide-show-password"></button>

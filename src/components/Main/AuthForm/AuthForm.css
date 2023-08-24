@@ -36,6 +36,10 @@
   color: #9A9A9A;
 }
 
+.auth-form__stroke-line-error-data {
+  border-color: #EA3057 !important;
+}
+
 .auth-form__button-hide-show-password {
   position: absolute;
   top: 50%;
