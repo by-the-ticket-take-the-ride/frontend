@@ -9,6 +9,7 @@ import EventsCardList from "./components/EventsCardList/EventsCardList";
 import CityPopup from "./components/CityPopup/CityPopup";
 import EventPage from "./components/EventPage/EventPage";
 import MainFrame from "./components/MainFrame/MainFrame";
+import OrderForm from "./components/OrderForm/OrderForm";
 
 function App() {
   const [selectedDateEvents, setSelectedDateEvents] = React.useState([]);
@@ -27,6 +28,7 @@ function App() {
       <MainFrame />
       <EventCards />
       <Footer />
+      <OrderForm />
       <LocationModal
         onClickOtherButton={setIsActivePopupCity}
         onClickButton={setIsHiddenLocation}
