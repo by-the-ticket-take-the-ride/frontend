@@ -31,12 +31,14 @@
   letter-spacing: 0px;
   text-align: left;
   color: #000;
+
+  transition: border-color .3s ease-in;
 }
 .auth-form__input::placeholder {
   color: #9A9A9A;
 }
 
-.auth-form__stroke-line-error-data {
+.auth-form__input-border-error {
   border-color: #EA3057 !important;
 }
 

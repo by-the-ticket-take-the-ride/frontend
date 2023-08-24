@@ -147,7 +147,7 @@ function displayError(nameInput) {
     || nameInput.nameError)) 
   {
     isTextError = 'block';
-    isUnderlinError = 'auth-form__stroke-line-error-data';
+    isUnderlinError = 'auth-form__input-border-error';
     isValueError = 'auth-form__input-error-data';
   }
 

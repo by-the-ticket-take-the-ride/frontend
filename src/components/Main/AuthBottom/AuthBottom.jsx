@@ -22,7 +22,7 @@ function AuthBottom() {
       */}
 
       <p className="auth-bottom__to-login text-reset">
-        Уже зарегистрированы? <a href="#" className="auth-bottom__to-login-link text-reset">Войти в профиль</a>
+        Уже зарегистрированы? <a href="#" className="auth-bottom__to-login-link text-reset link-hover">Войти в профиль</a>
       </p>
     </div>
   );

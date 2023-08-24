@@ -147,12 +147,12 @@ function AuthForm(props) {
               onChange={inputAttr.onChange}
             />
             {inputAttr?.password && (
-              <button className="auth-form__button-hide-show-password"></button>
+              <button className="auth-form__button-hide-show-password button-hover"></button>
             )}
           </div>
       ))}
       <button 
-        className="auth-form__button-action"
+        className="auth-form__button-action button-hover"
         onClick={handleSubmit}
       >
         {actionTextButton}
@@ -160,7 +160,7 @@ function AuthForm(props) {
       {textAgreement &&
         <p className="auth-form__text-agreement text-reset">
           Нажимая <span className="auth-form__span-registration">Зарегистрироваться</span>,
-          вы даете <a href="#" className="auth-form__link-agreement text-reset">согласие на сбор,<br></br>
+          вы даете <a href="#" className="auth-form__link-agreement text-reset link-hover">согласие на сбор,<br></br>
           обработку и хранение персональных данных</a> в соответствии<br></br>
           с Политикой обработки персональных данных
         </p>
