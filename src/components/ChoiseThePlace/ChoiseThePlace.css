@@ -1,0 +1,141 @@
+.choise-the-place {
+  max-width: 1110px;
+  padding: 60px 49px;
+}
+
+.choise-the-place__hall-layout {
+  margin-top: 24px;
+}
+
+
+.choise-the-place__title {
+  font-family: 'Unbounded';
+  font-size: 50px;
+  line-height: 53px;
+  font-weight: 600;
+  margin: 0 0 40px;
+}
+
+.event-info__title {
+  font-family: 'Unbounded';
+  font-size: 30px;
+  line-height: 31.8px;
+  font-weight: 700;
+}
+
+.event-info__info-column {
+  max-height: 24px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.event-info__info-column:last-of-type {
+  margin-bottom: 0;
+}
+
+.event-info__text {
+  font-family: 'Nunito Sans';
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  color: #4C4F52;
+  margin-left: 8px;
+}
+
+/* Hall-Layout */
+
+.hall-layout__wrapper {
+  border-top: 1px solid #9A9A9A;
+  border-bottom: 1px solid #9A9A9A;
+  max-width: 573px;
+  min-height: 358px;
+}
+
+.hall-layout__about-zones {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 31.25px;
+}
+
+.hall-layout__location {
+  margin-top: 31.25px;
+}
+
+/* информация о зонах */
+
+.sector-element {
+  display: flex;
+  align-items: center;
+
+}
+
+.sector-element__text {
+  font-family: 'Nunito Sans';
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14px;
+}
+
+.sector-element__text_type_zone {
+  margin-right: 10px;
+  margin-left: 4px;
+}
+
+.sector-element__text_type_price {
+  color: #9A9A9A;
+}
+
+/* расположение мест */
+
+.location__scene {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.location__zone-seats {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.location__seats {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 24px;
+  gap: 6px;
+}
+
+.location__zone {
+  display: flex;
+  column-gap: 32px;
+}
+
+.location__zone:first-of-type{
+  transform: translateX(-11px);
+}
+
+.location__row-column {
+  display: flex;
+  flex-direction: row;
+  column-gap: 32px;
+}
+
+.location__zone-column {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.location__row {
+  display: flex;
+  gap: 6px;
+}
+
+.location__seat {
+  height: 16px;
+}
+

@@ -15,7 +15,6 @@ const Button = ({
   type,
   url,
   additionalClass,
-  onClick,
 }) => {
   const styles = [
     primary ? "button_type_primary" : null,
@@ -39,7 +38,6 @@ const Button = ({
             additionalClass ? additionalClass : ""
           }`}
           disabled={disabled}
-          onClick={onClick}
         >
           {children}
         </Link>
@@ -47,12 +45,11 @@ const Button = ({
     default:
       return (
         <button
-          type="button"
+          type={type}
           className={`button ${styleString} ${
             additionalClass ? additionalClass : ""
           }`}
           disabled={disabled}
-          onClick={onClick}
         >
           {children}
         </button>
