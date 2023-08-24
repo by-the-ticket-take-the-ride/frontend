@@ -1,18 +1,18 @@
-.popup-auth__footer {
+.auth-bottom {
   margin-top: 44px;
 }
 
-.popup-auth__border {
+.auth-bottom__border {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.popup-auth__stroke-line {
+.auth-bottom__stroke-line {
   width: 160px;
   height: 1px;
   background-color: #DADADA;
 }
-.popup-auth__border-text {
+.auth-bottom__border-text {
   font-family: "Nunito Sans";
   font-size: 16px;
   font-weight: 400;
@@ -24,7 +24,7 @@
   margin-right: 24px;
 }
 
-.popup-auth__button-social-network {
+.auth-bottom__button-social-network {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -50,29 +50,29 @@
   
   cursor: pointer;
 }
-.popup-auth__button-social-network:last-child {
+.auth-bottom__button-social-network:last-child {
   margin-top: 20px;
 }
 
-.popup-auth__icon-yandex, .popup-auth__icon-vk {
+.auth-bottom__icon-yandex, .auth-bottom__icon-vk {
 
   background-color: transparent;
   background-repeat: no-repeat;
   background-size: auto;
   background-position: center;
 }
-.popup-auth__icon-yandex {
+.auth-bottom__icon-yandex {
   width: 24px;
   height: 24px;
   background-image: url(../../../images/yandex-icon.svg);
 }
-.popup-auth__icon-vk {
+.auth-bottom__icon-vk {
   width: 26px;
   height: 26px;
   background-image: url(../../../images/vk-icon.svg);
 
 }
-.popup-auth__text-cocial-network {
+.auth-bottom__text-cocial-network {
   margin-left: 17px;
 
   font-family: "Nunito Sans";
@@ -83,7 +83,7 @@
   color: #191919;
 }
 
-.popup-auth__to-login {
+.auth-bottom__to-login {
   margin-top: 48px;
 
   font-family: "Nunito Sans";
@@ -94,7 +94,7 @@
   text-align: left;
   color: #191919;
 }
-.popup-auth__to-login-link {
+.auth-bottom__to-login-link {
   font-family: "Nunito Sans";
   font-size: 18px;
   font-weight: 400;

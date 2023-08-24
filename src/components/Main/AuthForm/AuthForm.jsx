@@ -65,7 +65,7 @@ function AuthForm(props) {
 
   let textAgreement = false;
   let actionTextButton;
-  const className = 'popup-auth__input';
+  const className = 'auth-form__input';
   let inputAttributes;
 
   if (props.type === 'register') {
@@ -103,13 +103,13 @@ function AuthForm(props) {
 
   }
   return (
-    <form className="popup-auth__form">
+    <form className="auth-form">
       {inputAttributes && inputAttributes.map((inputAttr, index) => (
         
           <div
             key={`idAuthFormRegister-${index}`}
-            className={`popup-auth__wrapper-input${
-              index === (inputAttributes.length - 1) ? ' popup-auth__margin-bottom_clear' : ''
+            className={`auth-form__wrapper-input${
+              index === (inputAttributes.length - 1) ? ' auth-form__margin-bottom_clear' : ''
             }`
           }>
             <input
@@ -123,20 +123,20 @@ function AuthForm(props) {
               }}
             />
             {inputAttr?.password && (
-              <button className="popup-auth__button-hide-show-password"></button>
+              <button className="auth-form__button-hide-show-password"></button>
             )}
           </div>
       ))}
       <button 
-        className="popup-auth__button-action"
+        className="auth-form__button-action"
         onClick={handleSubmit}
       >
         {actionTextButton}
       </button>
       {textAgreement &&
-        <p className="popup-auth__text-agreement text-reset">
-          Нажимая <span className="popup-auth__span-registration">Зарегистрироваться</span>,
-          вы даете <a href="#" className="popup-auth__link-agreement text-reset">согласие на сбор,<br></br>
+        <p className="auth-form__text-agreement text-reset">
+          Нажимая <span className="auth-form__span-registration">Зарегистрироваться</span>,
+          вы даете <a href="#" className="auth-form__link-agreement text-reset">согласие на сбор,<br></br>
           обработку и хранение персональных данных</a> в соответствии<br></br>
           с Политикой обработки персональных данных
         </p>

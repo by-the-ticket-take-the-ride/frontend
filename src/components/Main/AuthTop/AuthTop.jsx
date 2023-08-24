@@ -15,12 +15,12 @@ function AuthTop(props) {
   }
 
   return (
-    <div className="popup-auth__header">
-      <h1 className="popup-auth__header-text text-reset">
+    <div className="auth-top">
+      <h1 className="auth-top__header-text text-reset">
         {headerText}
       </h1>
 
-      <p className="popup-auth__sub-text text-reset">
+      <p className="auth-top__sub-text text-reset">
         {subText}
       </p>
     </div>

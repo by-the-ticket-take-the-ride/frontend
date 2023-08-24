@@ -1,18 +1,18 @@
-.popup-auth__form {
+.auth-form {
   display: flex;
   flex-direction: column;
 }
 
-.popup-auth__wrapper-input {
+.auth-form__wrapper-input {
   position: relative;
   margin-bottom: 16px;
 }
 
-.popup-auth__margin-bottom_clear {
+.auth-form__margin-bottom_clear {
   margin-bottom: 0;
 }
 
-.popup-auth__input {
+.auth-form__input {
   padding: 0;
   padding-left: 20px;
   box-sizing: border-box;
@@ -32,11 +32,11 @@
   text-align: left;
   color: #000;
 }
-.popup-auth__input::placeholder {
+.auth-form__input::placeholder {
   color: #9A9A9A;
 }
 
-.popup-auth__button-hide-show-password {
+.auth-form__button-hide-show-password {
   position: absolute;
   top: 50%;
   transform: translate(0, -50%);
@@ -54,10 +54,10 @@
   cursor: pointer;
 }
 
-.popup-auth__input:last-child {
+.auth-form__input:last-child {
   margin-bottom: 0;
 }
-.popup-auth__button-action {
+.auth-form__button-action {
   width: 100%;
   height: 50px;
   margin-top: 20px;
@@ -84,7 +84,7 @@
   cursor: pointer;
 }
 
-.popup-auth__text-agreement {
+.auth-form__text-agreement {
   font-family: "Nunito Sans";
   font-size: 14px;
   font-weight: 400;
@@ -95,11 +95,11 @@
 
   margin-top: 8px;
 }
-.popup-auth__span-registration {
+.auth-form__span-registration {
   font-weight: 700;
   color: rgba(0, 0, 0, .75);
 }
-.popup-auth__link-agreement {
+.auth-form__link-agreement {
   color: #8B52F6;
   text-decoration: none;
 }

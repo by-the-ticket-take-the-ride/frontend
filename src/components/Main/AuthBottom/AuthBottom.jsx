@@ -2,27 +2,27 @@ import "./AuthBottom.css";
 
 function AuthBottom() {
   return (
-    <div className="popup-auth__footer">
+    <div className="auth-bottom">
       {/* элементы пока не используются */}
       {/*
-      <div className="popup-auth__border">
-        <div className="popup-auth__stroke-line"></div>
-        <p className="popup-auth__border-text text-reset">или</p>
-        <div className="popup-auth__stroke-line"></div>
+      <div className="auth-bottom__border">
+        <div className="auth-bottom__stroke-line"></div>
+        <p className="auth-bottom__border-text text-reset">или</p>
+        <div className="auth-bottom__stroke-line"></div>
       </div>
 
-      <button className="popup-auth__button-social-network">
-        <div className="popup-auth__icon-yandex"></div>
-        <p className="popup-auth__text-cocial-network text-reset">Войти с Яндексом</p>
+      <button className="auth-bottom__button-social-network">
+        <div className="auth-bottom__icon-yandex"></div>
+        <p className="auth-bottom__text-cocial-network text-reset">Войти с Яндексом</p>
       </button>
-      <button className="popup-auth__button-social-network">
-        <div className="popup-auth__icon-vk"></div>
-        <p className="popup-auth__text-cocial-network text-reset">Войти с ВКонтакте</p>
+      <button className="auth-bottom__button-social-network">
+        <div className="auth-bottom__icon-vk"></div>
+        <p className="auth-bottom__text-cocial-network text-reset">Войти с ВКонтакте</p>
       </button>
       */}
 
-      <p className="popup-auth__to-login text-reset">
-        Уже зарегистрированы? <a href="#" className="popup-auth__to-login-link text-reset">Войти в профиль</a>
+      <p className="auth-bottom__to-login text-reset">
+        Уже зарегистрированы? <a href="#" className="auth-bottom__to-login-link text-reset">Войти в профиль</a>
       </p>
     </div>
   );
