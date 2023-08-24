@@ -1,12 +1,11 @@
 import "./PopupAuth.css";
+import {useState} from "react";
 import AuthTop from "../AuthTop/AuthTop";
 import AuthForm from "../AuthForm/AuthForm";
 import AuthBottom from "../AuthBottom/AuthBottom";
 
-
+      
 function PopupAuth(props) {
-  const {handleChange, handleSubmit} = props;
-
   return (
     <div className="popup-auth">
       <button className="popup-auth__close-icon"></button>
@@ -15,8 +14,6 @@ function PopupAuth(props) {
       />
       <AuthForm
         type={props.type}
-        handleChange={handleChange}
-        handleSubmit={handleSubmit}
       />
       <AuthBottom
         type={props.type}

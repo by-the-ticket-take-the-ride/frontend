@@ -1,7 +1,67 @@
 import "./AuthForm.css";
+import * as auth from "../../../utils/Auth";
+import { useState, useEffect } from "react";
+import {useInput, displayError} from '../../../utils/ValidationForm';
 
 function AuthForm(props) {
-  const {handleChange, handleSubmit} = props;
+  const [dataForm, setDataForm] = useState({});
+  const [isDisabled, setIsDisabled] = useState('');
+
+  function handleChange(e) {
+    const {name, value} = e.target;
+    setDataForm((prevData) => ({    //позволяет отслеживать изменение только одного поля
+      ...prevData,
+      [name]: value,
+    }));
+  }
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    const {name, email, password} = dataForm;
+    auth.register(name, email, password)
+      .then((res) => {
+        console.log('Вы автризовались');
+      })
+      .catch(() => {
+        console.log('произошла ошибка');
+      })
+  }
+
+  function useValidation(type, useInput, useEffect) {
+    const nameInput = {
+      name: useInput('', {isEmpty: true, minLength: 3, maxLength: 30, isName: true}),
+      email: useInput('', {isEmpty: true, isEmail: true}),
+      password: useInput('', {isEmpty: true, minLength: 3, maxLength: 30}),
+    }
+
+    const {name, email, password} = nameInput;
+    
+    let isValid;
+    useEffect(() => {
+      if (type === '/register') {
+        isValid = !name.inputValid || !email.inputValid || !password.inputValid;
+      } 
+      else if (type === '/login') {
+        isValid = !email.inputValid || !password.inputValid;
+      }
+      
+      setIsDisabled(isValid);
+    })
+
+    return {
+      name,
+      email,
+      password,
+      isValid,
+    }
+  }
+
+  const {
+    name,
+    email,
+    password,
+    isValid,
+  } = useValidation(props.type, useInput, useEffect);
 
   let textAgreement = false;
   let actionTextButton;
