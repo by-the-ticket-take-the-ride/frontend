@@ -83,6 +83,7 @@ function AuthForm(props) {
         className: `${className} ${displayError(name).isUnderlinError}`,
         name: 'name',
         type: 'text',
+        value: name.value,
         placeholder: 'Имя',
         onChange: e => {
           name.onChange(e);
@@ -93,33 +94,36 @@ function AuthForm(props) {
         className: `${className} ${displayError(email).isUnderlinError}`,
         name: 'email',
         type: 'email',
+        value: email.value,
         placeholder: 'Электронная почта',
         onChange: e => {
           email.onChange(e);
           handleChange(e);
-        }
+        },
       },
       {
         className: `${className} ${displayError(password).isUnderlinError}`,
         name: 'password',
         type: 'password',
+        value: password.value,
         placeholder: 'Пароль',
         password: true,
         onChange: e => {
           password.onChange(e);
           handleChange(e);
-        }
+        },
       },
       {
         className: `${className} ${displayError(retypePassword).isUnderlinError}`,
         name: 'retypePassword',
         type: 'password',
+        value: retypePassword.value,
         placeholder: 'Повторите пароль',
         password: true,
         onChange: e => {
           retypePassword.onChange(e);
           handleChange(e);
-        }
+        },
       },
     ];
 
