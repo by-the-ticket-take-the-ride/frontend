@@ -71,7 +71,7 @@ function AuthForm(props) {
 
   let textAgreement = false;
   let actionTextButton;
-  const className = 'auth-form__input';
+  const classNameInput = 'auth-form__input';
   let inputAttributes;
 
   if (props.type === 'register') {
@@ -79,7 +79,7 @@ function AuthForm(props) {
     actionTextButton = 'Зарегистрироваться';
     inputAttributes = [
       {
-        className: `${className} ${displayError(name).isUnderlinError}`,
+        className: `${classNameInput} ${displayError(name).isUnderlinError}`,
         name: 'name',
         type: 'text',
         value: name.value,
@@ -87,10 +87,13 @@ function AuthForm(props) {
         onChange: e => {
           name.onChange(e);
           handleChange(e);
+        },
+        spanErrorValid: {
+          textError: retypePassword.textError,
         }
       },
       {
-        className: `${className} ${displayError(email).isUnderlinError}`,
+        className: `${classNameInput} ${displayError(email).isUnderlinError}`,
         name: 'email',
         type: 'email',
         value: email.value,
@@ -99,9 +102,12 @@ function AuthForm(props) {
           email.onChange(e);
           handleChange(e);
         },
+        spanErrorValid: {
+          textError: retypePassword.textError,
+        }
       },
       {
-        className: `${className} ${displayError(password).isUnderlinError}`,
+        className: `${classNameInput} ${displayError(password).isUnderlinError}`,
         name: 'password',
         type: 'password',
         value: password.value,
@@ -111,9 +117,12 @@ function AuthForm(props) {
           password.onChange(e);
           handleChange(e);
         },
+        spanErrorValid: {
+          textError: retypePassword.textError,
+        }
       },
       {
-        className: `${className} ${displayError(retypePassword).isUnderlinError}`,
+        className: `${classNameInput} ${displayError(retypePassword).isUnderlinError}`,
         name: 'retypePassword',
         type: 'password',
         value: retypePassword.value,
@@ -123,6 +132,9 @@ function AuthForm(props) {
           retypePassword.onChange(e);
           handleChange(e);
         },
+        spanErrorValid: {
+          textError: retypePassword.textError,
+        }
       },
     ];
 
@@ -149,8 +161,8 @@ function AuthForm(props) {
             {inputAttr?.password && (
               <button className="auth-form__button-hide-show-password button-hover"></button>
             )}
-            <span>
-              Ошибка
+            <span className='auth-form__input-error-data'>
+              {inputAttr.spanErrorValid.textError}
             </span>
           </div>
       ))}

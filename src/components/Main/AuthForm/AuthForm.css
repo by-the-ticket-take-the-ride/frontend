@@ -41,7 +41,9 @@
 .auth-form__input-border-error {
   border-color: #EA3057 !important;
 }
-
+.auth-form__input-error-data {
+  color: #EA3057;
+}
 .auth-form__button-hide-show-password {
   position: absolute;
   top: calc(50px * .5);
