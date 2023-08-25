@@ -29,10 +29,10 @@ function AuthForm(props) {
 
   function useValidation(type, useInput, useEffect) {
     const nameInput = {
-      name: useInput('', {isEmpty: true, minLength: 3, maxLength: 30, isName: true}),
-      email: useInput('', {isEmpty: true, isEmail: true}),
-      password: useInput('', {isEmpty: true, minLength: 3, maxLength: 30}),
-      retypePassword: useInput('', {isEmpty: true, minLength: 3, maxLength: 30}),
+      name: useInput('', {isEmpty: true, minLength: 2, maxLength: 25, isName: true}),
+      email: useInput('', {isEmpty: true, minLength: 5, maxLength: 50, isEmail: true}),
+      password: useInput('', {isEmpty: true, minLength: 6, maxLength: 50}),
+      retypePassword: useInput('', {isEmpty: true, minLength: 6, maxLength: 50}),
     }
 
     const {name, email, password, retypePassword} = nameInput;
@@ -150,8 +150,6 @@ function AuthForm(props) {
               <button className="auth-form__button-hide-show-password button-hover"></button>
             )}
             <span>
-              Ошибка<br></br>
-              Ошибка<br></br>
               Ошибка
             </span>
           </div>

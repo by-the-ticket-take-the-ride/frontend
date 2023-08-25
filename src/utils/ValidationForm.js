@@ -37,7 +37,7 @@ function useValidationSet (value, validations) {
           if (value.length > 0 && value.length < validations[validation]) {
             switchValidation('minLength');
 
-            setTextError('Минимальная длинна поля 3 символа');
+            setTextError(`Минимальная длинна поля ${validations[validation]} символа`);
           } else {
             setMinLengthError(false);
           }
@@ -46,7 +46,7 @@ function useValidationSet (value, validations) {
           if (value.length > validations[validation]) {
             switchValidation('maxLength');
 
-            setTextError('Максимальная длинна поля 30 символов');
+            setTextError(`Максимальная длинна поля ${validations[validation]} символов`);
           } else {
             setMaxLengthError(false);
           }
@@ -61,12 +61,12 @@ function useValidationSet (value, validations) {
           }
           break;
         
-          case 'isEmail':
+        case 'isEmail':
           const regexEmail = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
           if ( value.trim().length !== 0 && !regexEmail.test(String(value).toLowerCase()) ) {
             switchValidation('isEmail');
 
-            setTextError('Невалидный Email');
+            setTextError('Некорректный e-mail');
           } else {
             setEmailError(false);
           }
@@ -77,7 +77,7 @@ function useValidationSet (value, validations) {
           if (!regexName.test(String(value).toLowerCase()) ) {
             switchValidation('isName');
 
-            setTextError('Невалидное Имя');
+            setTextError('Некорректное имя');
           } else {
             setNameError(false);
           }
