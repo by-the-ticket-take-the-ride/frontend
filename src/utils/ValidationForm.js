@@ -135,7 +135,7 @@ function useInput (initialValue, validations) {
 }
 
 function displayError(nameInput) {
-  let isTextError = 'none';
+  let isTextError = 'auth-form__display_none';
   let isUnderlinError = '';
   let isValueError = '';
 
@@ -146,7 +146,7 @@ function displayError(nameInput) {
     || nameInput.emailError
     || nameInput.nameError)) 
   {
-    isTextError = 'block';
+    isTextError = '';
     isUnderlinError = 'auth-form__input-border-error';
     isValueError = 'auth-form__input-error-data';
   }

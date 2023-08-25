@@ -87,6 +87,7 @@ function AuthForm(props) {
         onChange: e => {
           name.onChange(e);
           handleChange(e);
+          console.log(displayError(name).isTextError)
         },
         blockTextErrorValid: {
           textError: name.textError,
@@ -166,8 +167,9 @@ function AuthForm(props) {
               <button className="auth-form__button-hide-show-password button-hover"></button>
             )}
             <p 
-              className='auth-form__input-error-data text-reset'
-              display={inputAttr.display}
+              className={
+                `auth-form__input-error-data text-reset ${inputAttr.blockTextErrorValid.display}`
+              }
             >
               {inputAttr.blockTextErrorValid.textError}
             </p>

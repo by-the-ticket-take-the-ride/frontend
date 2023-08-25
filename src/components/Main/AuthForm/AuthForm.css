@@ -41,11 +41,16 @@
   border-color: #EA3057 !important;
 }
 .auth-form__input-error-data {
+  display: block;
   color: #EA3057;
   font-size: 16px;
   line-height: 22px;
   margin-top: 3px;
 }
+.auth-form__display_none {
+  display: none;
+}
+
 .auth-form__button-hide-show-password {
   position: absolute;
   top: calc(50px * .5);
