@@ -21,6 +21,14 @@ function AuthTop(props) {
         и первыми узнавать о новых событиях в городе
       </>
     );
+  } else if (props.type === 'password-recovery') {
+    headerText = 'Восстановление пароля';
+
+    subText = (
+      <>
+        Введите электронную почту, указанную при регистрации
+      </>
+    );
   }
 
   return (

@@ -19,6 +19,8 @@ function AuthBottom(props) {
         </a>
       </p>
     );
+  } else if (props.type === 'password-recovery') {
+    return (<></>);
   }
   
   return (

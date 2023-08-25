@@ -44,10 +44,12 @@ function AuthForm(props) {
         || !email.inputValid 
         || !password.inputValid
         || !retypePassword.inputValid;
-      } 
-      else if (type === 'login') {
+      } else if (type === 'login') {
         isValid = !email.inputValid || !password.inputValid;
+      } else if (type === 'password-recovery') {
+        isValid = !email.inputValid;
       }
+      
       
       setIsDisabled(isValid);
     })
@@ -177,6 +179,25 @@ function AuthForm(props) {
         blockTextErrorValid: {
           textError: password.textError,
           display: displayError(password).isTextError,
+        }
+      },
+    ];
+  } else if (props.type === 'password-recovery') {
+    actionTextButton = 'Восстановить пароль';
+    inputAttributes = [
+      {
+        className: `${classNameInput} ${displayError(email).isUnderlinError}`,
+        name: 'email',
+        type: 'email',
+        value: email.value,
+        placeholder: 'Электронная почта',
+        onChange: e => {
+          email.onChange(e);
+          handleChange(e);
+        },
+        blockTextErrorValid: {
+          textError: email.textError,
+          display: displayError(email).isTextError,
         }
       },
     ];
