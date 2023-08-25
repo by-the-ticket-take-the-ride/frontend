@@ -59,6 +59,7 @@ function OrderForm() {
           >
             <p className="order-details__buy-btn">Оплатить</p>
           </Button>
+          <p className="order-details__agreement-text">Нажимая «Оплатить», вы принимаете условия <span className="order-details__agreement-text-link">пользовательского соглашения</span></p>
         </div>
       </div>
     </div>
