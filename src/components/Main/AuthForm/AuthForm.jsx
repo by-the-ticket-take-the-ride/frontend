@@ -88,7 +88,7 @@ function AuthForm(props) {
           name.onChange(e);
           handleChange(e);
         },
-        spanErrorValid: {
+        blockTextErrorValid: {
           textError: retypePassword.textError,
         }
       },
@@ -102,7 +102,7 @@ function AuthForm(props) {
           email.onChange(e);
           handleChange(e);
         },
-        spanErrorValid: {
+        blockTextErrorValid: {
           textError: retypePassword.textError,
         }
       },
@@ -117,7 +117,7 @@ function AuthForm(props) {
           password.onChange(e);
           handleChange(e);
         },
-        spanErrorValid: {
+        blockTextErrorValid: {
           textError: retypePassword.textError,
         }
       },
@@ -132,7 +132,7 @@ function AuthForm(props) {
           retypePassword.onChange(e);
           handleChange(e);
         },
-        spanErrorValid: {
+        blockTextErrorValid: {
           textError: retypePassword.textError,
         }
       },
@@ -161,9 +161,9 @@ function AuthForm(props) {
             {inputAttr?.password && (
               <button className="auth-form__button-hide-show-password button-hover"></button>
             )}
-            <span className='auth-form__input-error-data'>
-              {inputAttr.spanErrorValid.textError}
-            </span>
+            <p className='auth-form__input-error-data text-reset'>
+              {inputAttr.blockTextErrorValid.textError}
+            </p>
           </div>
       ))}
       <button 
