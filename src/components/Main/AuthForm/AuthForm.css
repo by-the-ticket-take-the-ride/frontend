@@ -83,10 +83,8 @@
   border: none;
   border-radius: 50px;
   background: 
-  radial-gradient(53.99% 245.51% at 94.46% 100%, #EA3057 0%, rgba(234, 48, 87, 0) 100%),
+    radial-gradient(53.99% 245.51% at 94.46% 100%, #EA3057 0%, rgba(234, 48, 87, 0) 100%),
     linear-gradient(118.28deg, #8B52F6 22.11%, #3A66FF 88.65%);
-    
-
 
   font-family: "Nunito Sans";
   font-size: 18px;

@@ -39,13 +39,13 @@ function AuthForm(props) {
     
     let isValid;
     useEffect(() => {
-      if (type === '/register') {
+      if (type === 'register') {
         isValid = !name.inputValid 
         || !email.inputValid 
         || !password.inputValid
         || !retypePassword.inputValid;
       } 
-      else if (type === '/login') {
+      else if (type === 'login') {
         isValid = !email.inputValid || !password.inputValid;
       }
       
@@ -87,7 +87,6 @@ function AuthForm(props) {
         onChange: e => {
           name.onChange(e);
           handleChange(e);
-          console.log(displayError(name).isTextError)
         },
         blockTextErrorValid: {
           textError: name.textError,
@@ -178,6 +177,7 @@ function AuthForm(props) {
       <button 
         className="auth-form__button-action button-hover"
         onClick={handleSubmit}
+        disabled={isDisabled}
       >
         {actionTextButton}
       </button>
