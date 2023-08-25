@@ -90,6 +90,9 @@
   text-align: left;
   color: #191919;
 }
+.auth-bottom__text_align {
+  text-align: center;
+}
 .auth-bottom__to-login-link {
   font-family: "Nunito Sans";
   font-size: 18px;

@@ -3,7 +3,7 @@
   min-height: 2000px;
 }
 .cover-blackout {
-  /*position: fixed;*/
+  position: fixed;
   display: flex;
   justify-content: center;
   align-items: center;

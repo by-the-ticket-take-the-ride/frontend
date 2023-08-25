@@ -1,6 +1,26 @@
 import "./AuthBottom.css";
 
-function AuthBottom() {
+function AuthBottom(props) {
+  let linkText;
+
+  if (props.type === 'register') {
+    linkText = (
+      <p className="auth-bottom__to-login text-reset">
+        Уже зарегистрированы? <a href="#" className="auth-bottom__to-login-link text-reset link-hover">
+          Войти в профиль
+        </a>
+      </p>
+    );
+  } else if (props.type === 'login') {
+    linkText = (
+      <p className="auth-bottom__to-login auth-bottom__text_align text-reset">
+        <a href="#" className="auth-bottom__to-login-link text-reset link-hover">
+          Регистрация
+        </a>
+      </p>
+    );
+  }
+  
   return (
     <div className="auth-bottom">
       {/* элементы пока не используются */}
@@ -21,9 +41,7 @@ function AuthBottom() {
       </button>
       */}
 
-      <p className="auth-bottom__to-login text-reset">
-        Уже зарегистрированы? <a href="#" className="auth-bottom__to-login-link text-reset link-hover">Войти в профиль</a>
-      </p>
+      {linkText}
     </div>
   );
 }

@@ -142,6 +142,42 @@ function AuthForm(props) {
       },
     ];
 
+  } else if (props.type === 'login') {
+    textAgreement = false;
+    actionTextButton = 'Войти';
+    inputAttributes = [
+      {
+        className: `${classNameInput} ${displayError(email).isUnderlinError}`,
+        name: 'email',
+        type: 'email',
+        value: email.value,
+        placeholder: 'Электронная почта',
+        onChange: e => {
+          email.onChange(e);
+          handleChange(e);
+        },
+        blockTextErrorValid: {
+          textError: email.textError,
+          display: displayError(email).isTextError,
+        }
+      },
+      {
+        className: `${classNameInput} ${displayError(password).isUnderlinError}`,
+        name: 'password',
+        type: 'password',
+        value: password.value,
+        placeholder: 'Пароль',
+        password: true,
+        onChange: e => {
+          password.onChange(e);
+          handleChange(e);
+        },
+        blockTextErrorValid: {
+          textError: password.textError,
+          display: displayError(password).isTextError,
+        }
+      },
+    ];
   }
   
   return (
