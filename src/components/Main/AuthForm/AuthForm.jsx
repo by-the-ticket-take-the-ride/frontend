@@ -89,7 +89,8 @@ function AuthForm(props) {
           handleChange(e);
         },
         blockTextErrorValid: {
-          textError: retypePassword.textError,
+          textError: name.textError,
+          display: displayError(name).isTextError,
         }
       },
       {
@@ -103,7 +104,8 @@ function AuthForm(props) {
           handleChange(e);
         },
         blockTextErrorValid: {
-          textError: retypePassword.textError,
+          textError: email.textError,
+          display: displayError(email).isTextError,
         }
       },
       {
@@ -118,7 +120,8 @@ function AuthForm(props) {
           handleChange(e);
         },
         blockTextErrorValid: {
-          textError: retypePassword.textError,
+          textError: password.textError,
+          display: displayError(password).isTextError,
         }
       },
       {
@@ -134,6 +137,7 @@ function AuthForm(props) {
         },
         blockTextErrorValid: {
           textError: retypePassword.textError,
+          display: displayError(retypePassword).isTextError,
         }
       },
     ];
@@ -161,7 +165,10 @@ function AuthForm(props) {
             {inputAttr?.password && (
               <button className="auth-form__button-hide-show-password button-hover"></button>
             )}
-            <p className='auth-form__input-error-data text-reset'>
+            <p 
+              className='auth-form__input-error-data text-reset'
+              display={inputAttr.display}
+            >
               {inputAttr.blockTextErrorValid.textError}
             </p>
           </div>
