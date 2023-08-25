@@ -73,6 +73,7 @@ function AuthForm(props) {
   let actionTextButton;
   const classNameInput = 'auth-form__input';
   let inputAttributes;
+  let forgetPassword = false;
 
   if (props.type === 'register') {
     textAgreement = true;
@@ -144,6 +145,7 @@ function AuthForm(props) {
 
   } else if (props.type === 'login') {
     textAgreement = false;
+    forgetPassword = true;
     actionTextButton = 'Войти';
     inputAttributes = [
       {
@@ -210,6 +212,13 @@ function AuthForm(props) {
             </p>
           </div>
       ))}
+
+      {forgetPassword && 
+        <a href="#" className="auth-bottom__forgive-password text-reset link-hover">
+          Забыли пароль?
+        </a>
+      }
+
       <button 
         className="auth-form__button-action button-hover"
         onClick={handleSubmit}
