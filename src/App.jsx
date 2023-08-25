@@ -14,6 +14,7 @@ function App() {
   const [selectedDateEvents, setSelectedDateEvents] = React.useState([]);
   const [isActivePopupCity, setIsActivePopupCity] = React.useState(false);
   const [isHiddenLocation, setIsHiddenLocation] = React.useState(false);
+  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
 
   const handleSelectedDateChange = (events) => {
     setSelectedDateEvents(events);
@@ -21,7 +22,11 @@ function App() {
 
   return (
     <div className="App">
-      <Header />
+      <Header
+        isLoggedIn={isLoggedIn}
+        isActivePopupCity={isActivePopupCity}
+        setIsActivePopupCity={setIsActivePopupCity}
+      />
       <Calendar handleSelectedDateChange={handleSelectedDateChange} />
       <EventsCardList />
       <MainFrame />
