@@ -28,7 +28,6 @@ function App() {
       <MainFrame />
       <EventCards />
       <Footer />
-      <OrderForm />
       <LocationModal
         onClickOtherButton={setIsActivePopupCity}
         onClickButton={setIsHiddenLocation}
