@@ -38,10 +38,22 @@ function AuthTop(props) {
         <>
           Ссылка для восстановления пароля была отправлена<br></br>
           на <span className="auth-top__sub-text-bold">email@yandex.ru</span> 
-          &nbsp;<a href="#" className="auth-top__sub-text-link">Изменить</a>
+          &nbsp;<a href="#" className="auth-top__sub-text-link text-reset link-hover">Изменить</a>
         </>
       );
-  }
+  } else if (props.type === 'confirm-email') {
+    headerText = 'Подтверждение почты';
+
+    subText = (
+      <>
+        На адрес <span className="auth-top__sub-text-bold">email@yandex.ru</span>
+        &nbsp;отправлено сообщение<br></br> 
+        с инструкцией по активации аккаунта.<br></br>
+        Если письмо не пришло в течение 3 минут – проверьте<br></br>
+        папку “Спам”
+      </>
+    );
+}
 
   return (
     <div className={`auth-top${marginBottom}`}>

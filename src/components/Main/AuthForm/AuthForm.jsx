@@ -203,6 +203,8 @@ function AuthForm(props) {
     ];
   } else if (props.type === 'check-email') {
     return (<></>);
+  } else if (props.type === 'confirm-email') {
+    return (<></>);
   }
   
   return (

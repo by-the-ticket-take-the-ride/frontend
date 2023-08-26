@@ -23,6 +23,14 @@ function AuthBottom(props) {
     return (<></>);
   } else if (props.type === 'check-email') {
     return (<></>);
+  } else if (props.type === 'confirm-email') {
+    linkText = (
+      <p className="auth-bottom__to-login text-reset">
+        <a href="#" className="auth-bottom__to-login-link text-reset link-hover">
+          Войти в профиль
+        </a>
+      </p>
+    );
   }
   
   return (
