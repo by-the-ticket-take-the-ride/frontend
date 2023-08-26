@@ -2,6 +2,7 @@ import React from "react";
 import './OrderForm.css';
 import Button from "../Buttons/Button/Button";
 import { useFormWithValidation } from "../../utils/useFormWithValidation";
+import tick from '../../assets/images/tick.svg';
 
 function OrderForm() {
   const { values, errors, isValid, handleChange } = useFormWithValidation();
@@ -15,11 +16,11 @@ function OrderForm() {
           <form className="personal-details__form">
             <div className="personal-details__input">
               <input
-                className="personal-details__input-item"
+                className={`personal-details__input-item ${errors.name ? "personal-details__input-item-error" : (values.name ? "personal-details__input-item-success" : "")}`}
                 type="text" 
                 name="name" 
                 id="name"
-                placeholder="Иван"
+                placeholder="Имя"
                 minLength='2'
                 maxLength='64'
                 pattern="/^[a-zA-Zа-яА-Я\s-]*$"
@@ -27,15 +28,18 @@ function OrderForm() {
                 value={values.name || ''}
                 required
               />
+              {values.name && !errors.name && (
+                <img className="personal-details__input-item-success-icon" src={tick} alt="Галочка успеха"/>
+              )}
               <span className="personal-details__input-error">{errors.name}</span>
             </div>
             <div className="personal-details__input">
               <input
-                className="personal-details__input-item"
+                className={`personal-details__input-item ${errors.surname ? "personal-details__input-item-error" : (values.surname ? "personal-details__input-item-success" : "")}`}
                 type="text" 
                 name="surname" 
                 id="surname"
-                placeholder="Иванов"
+                placeholder="Фамилия"
                 minLength='2'
                 maxLength='64'
                 pattern="/^[a-zA-Zа-яА-Я\s-]*$"
@@ -43,15 +47,18 @@ function OrderForm() {
                 value={values.surname || ''}
                 required
               />
+              {values.surname && !errors.surname && (
+                <img className="personal-details__input-item-success-icon" src={tick} alt="Галочка успеха"/>
+              )}
               <span className="personal-details__input-error">{errors.surname}</span>
             </div>
             <div className="personal-details__input">
               <input
-                className="personal-details__input-item"
+                className={`personal-details__input-item ${errors.email ? "personal-details__input-item-error" : (values.email ? "personal-details__input-item-success" : "")}`}
                 type="email" 
                 name="email" 
                 id="email"
-                placeholder="name@mail.ru"
+                placeholder="Электронная почта"
                 minLength='2'
                 maxLength='64'
                 pattern='[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}'
@@ -59,19 +66,25 @@ function OrderForm() {
                 onChange={handleChange}
                 required
               />
+              {values.email && !errors.email && (
+                <img className="personal-details__input-item-success-icon" src={tick} alt="Галочка успеха"/>
+              )}
               <span className="personal-details__input-error">{errors.email}</span>
             </div>
             <div className="personal-details__input">
               <input
-                className="personal-details__input-item"
+                className={`personal-details__input-item ${errors.tel ? "personal-details__input-item-error" : (values.tel ? "personal-details__input-item-success" : "")}`}
                 type="tel" 
                 name="tel" 
                 id="tel"
-                placeholder="+7 (900) 000-00-00"
+                placeholder="Номер телефона"
                 value={values.tel || ""}
                 onChange={handleChange}
                 required
               />
+              {values.tel && !errors.tel && (
+                <img className="personal-details__input-item-success-icon" src={tick} alt="Галочка успеха"/>
+              )}
               <span className="personal-details__input-error">{errors.tel}</span>
             </div>
           </form>

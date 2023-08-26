@@ -37,13 +37,16 @@
   flex-direction: column;
 }
 
+.personal-details__input {
+  margin-bottom: 21px;
+}
+
 .personal-details__input-item {
   width: 100%;
   height: 46px;
   border-radius: 20px;
   border: 1px #9A9A9A solid;
   padding-left: 20px;
-  margin-bottom: 21px;
   width: 520px;
 }
 
@@ -53,7 +56,24 @@
   box-shadow: 2px 2px 12px 1px #00000024;
 }
 
+.personal-details__input-item-error:invalid {
+  border: 1px #EA3057 solid;
+}
+
+.personal-details__input-item-success:valid {
+  border: 1px #8B52F6 solid;
+}
+
+.personal-details__input-item-success-icon {
+  position: absolute;
+  transform: translateX(-200%) translateY(138%);
+}
+
 .personal-details__input-error {
+  font-family: 'Nunito Sans';
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
   color: #EA3057;
 }
 
