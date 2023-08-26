@@ -201,6 +201,8 @@ function AuthForm(props) {
         }
       },
     ];
+  } else if (props.type === 'check-email') {
+    return (<></>);
   }
   
   return (

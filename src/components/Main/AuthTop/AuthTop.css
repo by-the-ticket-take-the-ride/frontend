@@ -1,6 +1,9 @@
 .auth-top {
   margin-bottom: 48px;
 }
+.auth-top__clear_margin {
+  margin-bottom: 0;
+}
 
 .auth-top__header-text {
   font-family: "Unbounded";
@@ -22,4 +25,15 @@
   line-height: 22px;
   text-align: left;
   color: rgba(0, 0, 0, .5);
+}
+
+.auth-top__sub-text-bold {
+  font-size: 18px;
+  font-weight: 700;
+}
+.auth-top__sub-text-link {
+  font-size: 18px;
+  font-weight: 700;
+  color: #8B52F6;
+  text-decoration: underline;
 }

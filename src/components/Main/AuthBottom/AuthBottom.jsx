@@ -21,6 +21,8 @@ function AuthBottom(props) {
     );
   } else if (props.type === 'password-recovery') {
     return (<></>);
+  } else if (props.type === 'check-email') {
+    return (<></>);
   }
   
   return (
