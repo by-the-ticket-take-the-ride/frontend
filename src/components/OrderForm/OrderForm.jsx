@@ -23,7 +23,7 @@ function OrderForm() {
                 placeholder="Имя"
                 minLength='2'
                 maxLength='64'
-                pattern="/^[a-zA-Zа-яА-Я\s-]*$"
+                pattern="^[a-zA-Zа-яА-Я\\s]*$"
                 onChange={handleChange}
                 value={values.name || ''}
                 required
@@ -42,7 +42,7 @@ function OrderForm() {
                 placeholder="Фамилия"
                 minLength='2'
                 maxLength='64'
-                pattern="/^[a-zA-Zа-яА-Я\s-]*$"
+                pattern="^[a-zA-Zа-яА-Я\\s]*$"
                 onChange={handleChange}
                 value={values.surname || ''}
                 required
@@ -61,7 +61,7 @@ function OrderForm() {
                 placeholder="Электронная почта"
                 minLength='2'
                 maxLength='64'
-                pattern='[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}'
+                pattern="^[a-zA-Z0-9._\-]+@([a-zA-Z0-9\-]+\.)+[a-zA-Z]{2,}$"
                 value={values.email || ""}
                 onChange={handleChange}
                 required
@@ -80,6 +80,7 @@ function OrderForm() {
                 placeholder="Номер телефона"
                 value={values.tel || ""}
                 onChange={handleChange}
+                pattern="^(\+?7|8)\s?\(?\d{3}\)?\s?-?\d{3}-?\d{2}-?\d{2}$"
                 required
               />
               {values.tel && !errors.tel && (
@@ -103,7 +104,8 @@ function OrderForm() {
             <p className="order-details__order-price">6 100 &#8381;</p>
           </div>
           <Button
-            gradient
+            gradient={isValid}
+            disabled={!isValid}
             type="submit"
           >
             <p className="order-details__buy-btn">Оплатить</p>

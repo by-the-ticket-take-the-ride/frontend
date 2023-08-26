@@ -24,28 +24,28 @@ export function useFormWithValidation() {
       if (!value) {
         return 'Заполните это поле';
       }
-      if (!/^[a-zA-Zа-яА-Я\s-]{2,64}$/.test(value) || value.length < 2) {
+      if (!/^[a-zA-Zа-яА-Я\\s]{2,64}$/.test(value) || value.length < 2) {
         return 'Некорректное имя';
       }
     } else if (name === 'surname') {
         if (!value) {
           return 'Заполните это поле';
         }
-        if (!/^[a-zA-Zа-яА-Я\s-]{2,64}$/.test(value) || value.length < 2) {
+        if (!/^[a-zA-Zа-яА-Я\s]{2,64}$/.test(value) || value.length < 2) {
           return 'Некорректная фамилия';
         }
     } else if (name === 'email') {
         if (!value) {
           return 'Заполните это поле';
         }
-        if (!/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(value)) {
+        if (!/^[a-zA-Z0-9._\-]+@([a-zA-Z0-9\-]+\.)+[a-zA-Z]{2,}$/.test(value)) {
           return 'Некорректная электронная почта';
       }
     } else if (name === 'tel') {
         if (!value) {
           return 'Заполните это поле';
         }
-        if (!/^(\+7|8)?\s?\(?\d{3}\)?\s?-?\d{3}-?\d{2}-?\d{2}$/.test(value)) {
+        if (!/^(\+?7|8)\s?\(?\d{3}\)?\s?-?\d{3}-?\d{2}-?\d{2}$/.test(value)) {
           return 'Некорректный номер телефона';
         }
     }
