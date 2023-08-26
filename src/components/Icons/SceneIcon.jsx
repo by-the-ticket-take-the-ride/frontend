@@ -1,18 +1,13 @@
-function SceneIcon({
-  width,
-  height,
-  rx,
-  ry,
-}) {
+function SceneIcon() {
   return ( 
     <svg 
-      width={width}
-      height={height}
-      viewBox={`0 0 ${width} ${height}`}
+      width='344.95'
+      height='68.44'
+      viewBox='0 0 346 69'
       fill="none" 
       xmlns="http://www.w3.org/2000/svg"
     >
-      <ellipse cx="126" cy="25.5" rx={rx} ry={ry} fill='#D9D9D9'/>
+      <ellipse cx="173" cy="34.2213" rx="172.475" ry="34.2213" fill="#D9D9D9"/>
     </svg>
   );
 }
