@@ -1,10 +1,16 @@
 import "./App.css";
+import React from "react";
+import { Route, Routes } from "react-router-dom";
+import ChoiseThePalce from "./components/ChoiseThePlace/ChoiseThePlace";
+import SeatProvider from "./constext/SeatProvider";
+import PersonalAccount from "./components/PersonalAccount/PersonalAccount";
+import MyData from "./components/PersonalAccount/MyData/MyData";
+import CurrentUserProvider from "./constext/CurrentUserProvider";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import Calendar from "./components/Calendar/Calendar";
 import EventCards from "./components/EventCards/EventCards";
 import LocationModal from "./components/LocationModal/LocationModal";
-import React from "react";
 import EventsCardList from "./components/EventsCardList/EventsCardList";
 import CityPopup from "./components/CityPopup/CityPopup";
 import MainFrame from "./components/MainFrame/MainFrame";
@@ -29,6 +35,23 @@ function App() {
       <Calendar handleSelectedDateChange={handleSelectedDateChange} />
       <EventsCardList />
       <MainFrame />
+      <SeatProvider>
+        <ChoiseThePalce />
+      </SeatProvider>
+      <Routes>
+        <Route
+          path="/personal-account"
+          element={
+            <CurrentUserProvider>
+              <PersonalAccount />
+            </CurrentUserProvider>
+          }
+        >
+          <Route path="favourites" element={<></>} />
+          <Route path="my-data" element={<MyData />} />
+        </Route>
+      </Routes>
+      <Header />
       <EventCards />
       <Footer />
       <LocationModal
