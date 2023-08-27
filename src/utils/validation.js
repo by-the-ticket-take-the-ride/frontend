@@ -10,7 +10,9 @@ const validationConfig = {
       emptyError: 'Заполните это поле.',
   },
   email: {
+    /* eslint-disable */
       pattern: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+      /* eslint-enable */
       validationError: 'Email введен некорректно',
       emptyError: 'Заполните это поле.',
   }
