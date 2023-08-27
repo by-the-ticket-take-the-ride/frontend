@@ -1,14 +1,14 @@
 import React from "react";
 import "./CitySearch.css";
 
-const CitySearch = ({ data, setSearchData }) => {
+const CitySearch = ({ data, setData }) => {
   const [value, setValue] = React.useState("");
   const onChangeInput = (evt) => {
     const { value } = evt.target;
     setValue(value);
-    setSearchData(
+    setData(
       data.filter((item) =>
-        item.title.toLowerCase().startsWith(value.toLowerCase())
+        item.name.toLowerCase().startsWith(value.toLowerCase())
       )
     );
   };

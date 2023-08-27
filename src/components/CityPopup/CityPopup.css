@@ -21,7 +21,7 @@
 }
 
 .city-popup__body {
-  padding: 50px;
+  padding: 50px 50px 29px 50px;
   max-width: 500px;
   overflow: hidden;
   border-radius: 10px;

@@ -3,10 +3,20 @@ import "./CityPopup.css";
 import CitySearch from "../CitySearch/CitySearch";
 import Button from "../Buttons/Button/Button";
 import CityList from "../CityList/CityList";
-import testData from "./testData.json";
 
 const CityPopup = ({ isActive, onClose }) => {
-  const [searchData, setSearchData] = React.useState(testData);
+  const [data, setData] = React.useState([]);
+
+  React.useEffect(() => {
+    const getCities = async () => {
+      const res = await fetch("http://buytheticket.ddns.net/api/cities/");
+      const data = await res.json();
+      setData(data);
+      localStorage.setItem("cityDatas", JSON.stringify(data));
+    };
+    getCities();
+  }, []);
+  const cities = JSON.parse(localStorage.getItem("cityDatas"));
 
   return (
     <div className={`city-popup ${isActive ? "city-popup_opened" : ""}`}>
@@ -19,9 +29,9 @@ const CityPopup = ({ isActive, onClose }) => {
               onClick={() => onClose(false)}
             ></Button>
           </div>
-          <CitySearch data={testData} setSearchData={setSearchData} />
+          <CitySearch data={cities} setData={setData} />
         </div>
-        <CityList data={searchData} />
+        <CityList data={data} />
       </div>
     </div>
   );
