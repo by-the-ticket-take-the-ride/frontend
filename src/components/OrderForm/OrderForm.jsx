@@ -106,6 +106,7 @@ function OrderForm() {
             gradient={isValid}
             disabled={!isValid}
             type="submit"
+            additionalClass="order-details__btn"
           >
             <p className="order-details__buy-btn">Оплатить</p>
           </Button>
