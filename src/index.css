@@ -15,7 +15,7 @@ code {
 @import url('./assets/fonts/fonts.css');
 @import url('./App.css');
 @import url('./components/AboutEvent/AboutEvent.css');
-@import url('./components/BreadCrumbs/BreadCrumbs.css');
+@import url('./components/Breadcrumbs/Breadcrumbs.css');
 @import url('./components/Buttons/Button/Button.css');
 @import url('./components/OrderForm/OrderForm.css');
 @import url('./components/Buttons/ButtonLike/ButtonLike.css');
@@ -35,3 +35,5 @@ code {
 @import url('./components/MainFrame/MainFrame.css');
 @import url('./components/Map/Map.css');
 @import url('./components/Month/Month.css');
+@import url('./components/NoResult/NoResult.css');
+@import url('./components/NoResultPage/NoResultPage.css');

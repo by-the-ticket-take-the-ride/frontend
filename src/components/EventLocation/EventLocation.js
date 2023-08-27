@@ -7,10 +7,12 @@ function EventLocation() {
 
     return(
         <section className="event-location">
-            <h2 className="event-location__title">Место проведения</h2>
-            <p className="event-location__location">{location}</p>
-            <p className="event-location__adress">{adress}</p>
-            <Map className={"event-location__map"}/>
+            <div className="event-location__container">
+                <h2 className="event-location__title">Место проведения</h2>
+                <p className="event-location__location">{location}</p>
+                <p className="event-location__adress">{adress}</p>
+                <Map className={"event-location__map"}/>
+            </div>
         </section >
     )
 }

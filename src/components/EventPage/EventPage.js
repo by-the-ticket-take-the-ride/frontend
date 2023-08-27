@@ -1,5 +1,4 @@
 import React from "react";
-// import BreadCrumbs from "../BreadCrumbs/BreadCrumbs";
 import Header from "../Header/Header";
 import Calendar from "../Calendar/Calendar";
 import MainFrame from "../MainFrame/MainFrame";
@@ -13,7 +12,6 @@ function EventPage() {
             <Header />
             {<Calendar />}
             <section className="event-page">
-                {/* <BreadCrumbs /> */}
                 <MainFrame />
                 <AboutEvent />
                 <EventLocation />

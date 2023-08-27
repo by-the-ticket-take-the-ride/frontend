@@ -10,6 +10,7 @@ import CityPopup from "./components/CityPopup/CityPopup";
 import EventPage from "./components/EventPage/EventPage";
 import MainFrame from "./components/MainFrame/MainFrame";
 import OrderForm from "./components/OrderForm/OrderForm";
+import NoResultPage from "./components/NoResultPage/NoResultPage";
 
 function App() {
   const [selectedDateEvents, setSelectedDateEvents] = React.useState([]);
@@ -45,6 +46,7 @@ function App() {
               <CityPopup isActive={isActivePopupCity} onClose={setIsActivePopupCity} />
             </div>
           </Route> */}
+          <Route path="/no-result" element={<NoResultPage value={'аовл'}/>} />
 
           <Route path='/event-page' element={<EventPage />} />
 

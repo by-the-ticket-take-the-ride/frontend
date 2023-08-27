@@ -1,9 +1,13 @@
 .event-location {
+    background-color: rgba(154, 154, 154, 0.1);
+}
+
+.event-location__container {
     width: 1120px;
     height: 544px;
     margin: 0px auto;
     color: #191919;
-    padding-bottom: 112px;
+    padding: 60px 0px 112px 0px;
 }
 
 .event-location__title {
@@ -18,7 +22,6 @@
 .event-location__location {
     font-size: 18px;
     font-family:'Nunito Sans';
-    letter-spacing: -1px;
     font-weight: 700;
     margin: 0px;
     padding-bottom: 8px;
