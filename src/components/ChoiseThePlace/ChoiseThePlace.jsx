@@ -9,18 +9,18 @@ import SeatIcon from '../Icons/hall-layout/SeatIcon';
 import SeatIconDisabled from '../Icons/hall-layout/SeatIconDisabled';
 import './ChoiseThePlace.css'
 import useSeatContext from '../../hooks/useSeatContext';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 
 
 
-function ChoiseThePlace() {
+function ChoiseThePlace({ isOpen = false, setIsOpen }) {
 
   const { event, eventZone, tickets, setTotalOrder } = useSeatContext();
 
   const [paymentData, setPaymentData] = useState([]);
   const [counterPrice, setCounterPrice] = useState(0);
   // const [listTicket, setListTicket] = useState([]);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const handleСhoicePlace = (numSeat, numRow, nameZone, numPrice ) => {
     if (isPaid(numSeat, numRow, nameZone)) {
@@ -169,153 +169,157 @@ function ChoiseThePlace() {
   }
 
   const handleRedirect = () => {
-    navigate(-1)
+    // Для закрытия
+    // setIsOpen(isOpen)
   }
 
   return ( 
-    <main className="choise-the-place">
-      <ButtonCross onClick={handleRedirect} black={true} additionalClass={'choise-the-place__close-button'}/>
-      <h1 className="choise-the-place__title">Выбор места</h1>
-      <div className='event-info'>
-        <h2 className='event-info__title'>{event?.name}</h2>
-        <div className='event-info__info-column'>
-          <PlaceIcon />
-          <span className='event-info__text'>{event?.place?.city?.name}, {event?.place?.name}</span>
+    <div className={`choise-the-place ${isOpen ?  'choise-the-place_visible' : ''}`}>
+      <div className='choise-the-place__container'>
+
+        <ButtonCross onClick={handleRedirect} black={true} additionalClass={'choise-the-place__close-button'}/>
+        <h1 className="choise-the-place__title">Выбор места</h1>
+        <div className='event-info'>
+          <h2 className='event-info__title'>{event?.name}</h2>
+          <div className='event-info__info-column'>
+            <PlaceIcon />
+            <span className='event-info__text'>{event?.place?.city?.name}, {event?.place?.name}</span>
+          </div>
+          <div className='event-info__info-column'>
+            <TimeIcon />
+            <span className='event-info__text'>{event?.date_event} {event?.time_event}</span>
+          </div>
         </div>
-        <div className='event-info__info-column'>
-          <TimeIcon />
-          <span className='event-info__text'>{event?.date_event} {event?.time_event}</span>
-        </div>
-      </div>
 
-      <section className='hall-layout choise-the-place__hall-layout'>
-        <div className='hall-layout__wrapper'>
-          <div className='location hall-layout__location'>
-            <div className='location__scene'>
-              <SceneIcon />
-            </div>
-            <div className='location__zone-seats'>
-              <div className='location__seats'>
-                {eventZone.map((zone) => (
-                  <div key={zone.id} className='location__zone'>
-                    {Array.from(Array(zone.row).keys()).map((row, i ) => (
-                      <div key={i} className='location__row'>
-                        <div className='location__column'>
-                          {Array.from(Array(Math.floor((zone.seat / zone.row)/ 2)).keys()).map((seat, i) => (
-                            <span key={i} className='location__seat' onClick={() => {
-                              // setListTicket([...listTicket, { numSeat: seat + 1, numRow: row + 1, nameZone: zone.name}])
-                            }}>
-                              { 
-                                renderValueSeat(
-                                  isPaid(seat + 1,row + 1, zone.name),
-                                  zone.id,
-                                  seat + 1,
-                                  row + 1,
-                                  zone.name,
-                                  zone.price
-                                )
-                              }
-                            </span>
-
-                          ))}
-                        </div>
-                        <div className='location__column'>
-
-                          {Array.from(Array(Math.floor((zone.seat / zone.row) / 2)).keys()).map((seat, i) => {
-                            return (
+        <section className='hall-layout choise-the-place__hall-layout'>
+          <div className='hall-layout__wrapper'>
+            <div className='location hall-layout__location'>
+              <div className='location__scene'>
+                <SceneIcon />
+              </div>
+              <div className='location__zone-seats'>
+                <div className='location__seats'>
+                  {eventZone.map((zone) => (
+                    <div key={zone.id} className='location__zone'>
+                      {Array.from(Array(zone.row).keys()).map((row, i ) => (
+                        <div key={i} className='location__row'>
+                          <div className='location__column'>
+                            {Array.from(Array(Math.floor((zone.seat / zone.row)/ 2)).keys()).map((seat, i) => (
                               <span key={i} className='location__seat' onClick={() => {
-
-                                }}>
-                                  
-                                  { renderValueSeat(
-                                      isPaid(seat + 1 + (Math.floor(zone.seat / zone.row) / 2),row + 1, zone.name), 
-                                      zone.id,
-                                      seat + 1 + (Math.floor(zone.seat / zone.row) / 2),
-                                      row + 1,
-                                      zone.name,
-                                      zone.price,
+                                // setListTicket([...listTicket, { numSeat: seat + 1, numRow: row + 1, nameZone: zone.name}])
+                              }}>
+                                { 
+                                  renderValueSeat(
+                                    isPaid(seat + 1,row + 1, zone.name),
+                                    zone.id,
+                                    seat + 1,
+                                    row + 1,
+                                    zone.name,
+                                    zone.price
                                   )
                                 }
                               </span>
-                            )
-                          }
 
-                        )}
+                            ))}
+                          </div>
+                          <div className='location__column'>
+
+                            {Array.from(Array(Math.floor((zone.seat / zone.row) / 2)).keys()).map((seat, i) => {
+                              return (
+                                <span key={i} className='location__seat' onClick={() => {
+
+                                  }}>
+                                    
+                                    { renderValueSeat(
+                                        isPaid(seat + 1 + (Math.floor(zone.seat / zone.row) / 2),row + 1, zone.name), 
+                                        zone.id,
+                                        seat + 1 + (Math.floor(zone.seat / zone.row) / 2),
+                                        row + 1,
+                                        zone.name,
+                                        zone.price,
+                                    )
+                                  }
+                                </span>
+                              )
+                            }
+
+                          )}
+                          </div>
                         </div>
-                      </div>
-                    ))}
-                  </div>
-                ))}
+                      ))}
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
+              <div className='hall-layout__about-zones'>
+                {
+                  eventZone.map((zoneElem, id) => (
+                    <div key={id} className='sector-element'>
+                      {
+                        renderColorZone(zoneElem.id)
+                      }
+                      <span className='sector-element__text sector-element__text_type_zone'>{zoneElem.name}</span>
+                      <span className='sector-element__text sector-element__text_type_price'>{renderInt(zoneElem.price)} ₽</span>
+                    </div>
+                  ))
+                }
+              </div>
           </div>
-            <div className='hall-layout__about-zones'>
+
+          <div className='counter choise-the-place__counter'>
+            <h3 className='counter__title'>Билеты</h3>
+            <div className='counter__amount-list'>
               {
-                eventZone.map((zoneElem, id) => (
-                  <div key={id} className='sector-element'>
-                    {
-                      renderColorZone(zoneElem.id)
-                    }
-                    <span className='sector-element__text sector-element__text_type_zone'>{zoneElem.name}</span>
-                    <span className='sector-element__text sector-element__text_type_price'>{renderInt(zoneElem.price)} ₽</span>
+                paymentData.map((payData, id) => {
+
+                  return(
+
+                  <div key={id} className='counter__seat-info'>
+                    <div className='counter__column'>
+                      <span className='counter__text counter__text_type_zone'>{payData.zone}&nbsp;</span>
+                      <span className='counter__text'>ряд {payData.row},&nbsp;</span>
+                      <span className='counter__text'> место {payData.seat} </span>
+                    </div>
+                    <div className='counter__column'>
+                      <span className='counter__text'>{renderInt(payData.price)} ₽</span>
+                      <ButtonCross onClick={() => {
+                        handleDeleteСhoicePlace(id, payData.price)
+
+                      }} additionalClass='counter__cross-button' red={true}/>
+                    </div>
                   </div>
-                ))
-              }
-            </div>
-        </div>
-
-        <div className='counter choise-the-place__counter'>
-          <h3 className='counter__title'>Билеты</h3>
-          <div className='counter__amount-list'>
-            {
-              paymentData.map((payData, id) => {
-
-                return(
-
-                <div key={id} className='counter__seat-info'>
-                  <div className='counter__column'>
-                    <span className='counter__text counter__text_type_zone'>{payData.zone}&nbsp;</span>
-                    <span className='counter__text'>ряд {payData.row},&nbsp;</span>
-                    <span className='counter__text'> место {payData.seat} </span>
-                  </div>
-                  <div className='counter__column'>
-                    <span className='counter__text'>{renderInt(payData.price)} ₽</span>
-                    <ButtonCross onClick={() => {
-                      handleDeleteСhoicePlace(id, payData.price)
-
-                    }} additionalClass='counter__cross-button' red={true}/>
-                  </div>
-                </div>
+                  )
+                }
                 )
               }
-              )
-            }
-          </div>
+            </div>
 
-          <div className='counter__amount-info'>
-            <div className='counter__column'>
-              <span className='counter__text'>{paymentData.length} {handleEnding(paymentData.length)} на сумму</span>
-              <span>{renderInt(counterPrice)} ₽</span>
+            <div className='counter__amount-info'>
+              <div className='counter__column'>
+                <span className='counter__text'>{paymentData.length} {handleEnding(paymentData.length)} на сумму</span>
+                <span>{renderInt(counterPrice)} ₽</span>
+              </div>
+              <div className='counter__column'>
+                <span className='counter__text'>Сервисный сбор</span>
+                <span>{renderInt(100)} ₽</span>
+              </div>
+              <div className='counter__column'>
+                <span className='counter__text counter__info-text_type_total-amount'>Итого к оплате:</span>
+                <span className='counter__text  counter__info-text_type_total-amount'>{renderInt(counterPrice + 100)} ₽</span>
+              </div>
             </div>
-            <div className='counter__column'>
-              <span className='counter__text'>Сервисный сбор</span>
-              <span>{renderInt(100)} ₽</span>
-            </div>
-            <div className='counter__column'>
-              <span className='counter__text counter__info-text_type_total-amount'>Итого к оплате:</span>
-              <span className='counter__text  counter__info-text_type_total-amount'>{renderInt(counterPrice + 100)} ₽</span>
-            </div>
+            <Button 
+              children='Оформить заказ'
+              gradient={true}
+              additionalClass='counter__column__add-button'
+              onClick={handleOrder}
+              disabled={paymentData.length === 0 ? true : false}
+            />
           </div>
-          <Button 
-            children='Оформить заказ'
-            gradient={true}
-            additionalClass='counter__column__add-button'
-            onClick={handleOrder}
-            disabled={paymentData.length === 0 ? true : false}
-          />
-        </div>
-      </section>
-    </main>
+        </section>
+      </div>
+    </div>
   );
 }
 
