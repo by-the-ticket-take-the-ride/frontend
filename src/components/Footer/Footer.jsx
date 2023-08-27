@@ -15,7 +15,7 @@ const Footer = () => {
             <div className="footer__top-left-ticket-box">
               <p className="footer__top-left-ticket-box-title">TICKETERA</p>
               <p className="footer__top-left-ticket-box-subtitle">
-                Афиша событий в вашем городе
+                Афиша событий в&nbsp;вашем городе
               </p>
             </div>
           </div>
@@ -24,6 +24,7 @@ const Footer = () => {
               Клиентская поддержка
             </p>
             <p className="footer__top-left-number-number">8 800 000 00 00</p>
+            <p className="footer__top-left-number-mail">help@ticketera.ru</p>
           </div>
         </div>
         <div className="footer__top-right">
