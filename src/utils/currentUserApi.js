@@ -1,8 +1,18 @@
 /* заглушка для тестирования */
-const MAIN_API_URL = 'http://localhost:3005'
+const MAIN_API_URL = 'http://buytheticket.ddns.net/api'
 
-export const getCurrentUser = () => {
-  return fetch(`${MAIN_API_URL}/users/me`, {
+/**
+ * 
+ * @param {*} userData
+ * {
+    "username": "string",
+    "id": 0,
+    "email": "user@example.com"
+  }
+ */
+
+export const getCurrentUser = (id) => {
+  return fetch(`${MAIN_API_URL}/users/${id}`, {
     // credentials: 'include',
     headers: {
       'Content-Type': 'application/json'
@@ -28,8 +38,8 @@ export const getCurrentUser = () => {
   }
  */
 
-export const setUserInfo = (userData) => {
-  return fetch(`${MAIN_API_URL}/users/me`, {
+export const setUserInfo = (userData, id) => {
+  return fetch(`${MAIN_API_URL}/users/${id}`, {
     method: 'PATCH',
     // credentials: 'include',
     headers: {

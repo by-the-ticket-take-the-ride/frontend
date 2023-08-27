@@ -1,7 +1,32 @@
 .choise-the-place {
+  display: flex;
+  visibility: hidden;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, .5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transition: visibility .3s, opacity .3s ease-in;
+}
+
+.choise-the-place_visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.choise-the-place__container {
   max-width: 1110px;
   padding: 60px 49px;
   position: relative;
+  border-radius: 20px;
+  -webkit-box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2);
+  -moz-box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2);
+  box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2);
+  background-color: #fff;
 }
 
 .choise-the-place__hall-layout {
