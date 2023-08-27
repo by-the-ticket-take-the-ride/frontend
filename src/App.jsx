@@ -51,7 +51,6 @@ function App() {
           <Route path="my-data" element={<MyData />} />
         </Route>
       </Routes>
-      <Header />
       <EventCards />
       <Footer />
       <LocationModal
