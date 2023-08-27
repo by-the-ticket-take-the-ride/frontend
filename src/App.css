@@ -3,3 +3,8 @@
   margin: 0 auto;
   height: 100vh;
 }
+.page {
+  margin: auto;
+  color: #fff;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+}

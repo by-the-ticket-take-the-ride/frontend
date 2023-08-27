@@ -11,11 +11,12 @@ const Button = ({
   lightOutlined,
   dark,
   darkOutlined,
+  grayOutlined,
   gradient,
   type,
   url,
   additionalClass,
-  onClick
+  onClick,
 }) => {
   const styles = [
     primary ? "button_type_primary" : null,
@@ -25,6 +26,7 @@ const Button = ({
     lightOutlined ? "button_type_light-outlined" : null,
     dark ? "button_type_dark" : null,
     darkOutlined ? "button_type_dark-outlined" : null,
+    grayOutlined ? "button_type_gray-outlined" : null,
     gradient ? "button_type_gradient" : null,
   ];
   const style = styles.filter((style) => style !== null);
@@ -39,6 +41,7 @@ const Button = ({
             additionalClass ? additionalClass : ""
           }`}
           disabled={disabled}
+          onClick={onClick}
         >
           {children}
         </Link>
@@ -46,7 +49,7 @@ const Button = ({
     default:
       return (
         <button
-          type={type}
+          type="button"
           className={`button ${styleString} ${
             additionalClass ? additionalClass : ""
           }`}

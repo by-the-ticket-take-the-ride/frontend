@@ -1,0 +1,17 @@
+.button-share{
+  border: none;
+  cursor: pointer;
+  background-image: url('../../../assets/images/button-share.svg');
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: transparent;
+  padding: 0;
+  transition: transform .2s ease-in;
+  width: 24px;
+  height: 24px;
+}
+
+.button-share:hover {
+  transform: scale(1.3);
+}

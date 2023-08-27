@@ -50,6 +50,11 @@
   color: #fff;
 }
 
+.button_type_gray-outlined {
+  border-color: #4c4f52;
+  color: #4c4f52;
+}
+
 .button_type_disabled {
   background-color: #9a9a9a;
   border-color: #9a9a9a;

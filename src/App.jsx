@@ -6,6 +6,9 @@ import SeatProvider from "./constext/SeatProvider";
 import PersonalAccount from './components/PersonalAccount/PersonalAccount'
 import MyData from "./components/PersonalAccount/MyData/MyData";
 import CurrentUserProvider from "./constext/CurrentUserProvider";
+import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
+import EventCards from "./components/EventCards/EventCards";
 
 function App() {
   return (
@@ -23,6 +26,9 @@ function App() {
           <Route path='my-data' element={<MyData/>}/>
         </Route>
       </Routes>
+      <Header />
+      <EventCards />
+      <Footer />
     </div>
   );
 }

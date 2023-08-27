@@ -1,0 +1,15 @@
+.hidden-text__button {
+    border: none;
+    cursor: pointer;
+    background-color: transparent;
+    padding: 0;
+}
+
+.hidden-text__button-text {
+    font-size: 16px;
+    font-family:'Nunito Sans';
+    font-weight: 400px;
+    margin: 0px;
+    text-decoration: underline;
+    color: #191919;
+}
