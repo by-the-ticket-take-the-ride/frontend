@@ -56,21 +56,15 @@
     "@storybook/react-webpack5": "^7.2.3",
     "@storybook/testing-library": "^0.2.0",
     "babel-plugin-named-exports-order": "^0.0.2",
-<<<<<<< HEAD
     "cz-conventional-changelog": "^3.3.0",
-=======
->>>>>>> feature/event-page
     "eslint-plugin-storybook": "^0.6.13",
     "prop-types": "^15.8.1",
     "storybook": "^7.2.3",
     "webpack": "^5.88.2"
-<<<<<<< HEAD
   },
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
-=======
->>>>>>> feature/event-page
   }
 }
