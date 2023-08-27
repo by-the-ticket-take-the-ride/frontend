@@ -1,5 +1,4 @@
 import React from "react";
-import "./CitySearch.css";
 
 const CitySearch = ({ data, setSearchData }) => {
   const [value, setValue] = React.useState("");

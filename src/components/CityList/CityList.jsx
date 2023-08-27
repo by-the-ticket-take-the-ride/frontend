@@ -1,5 +1,4 @@
 import React from "react";
-import "./CityList.css";
 
 const CityList = ({ data }) => {
   return (

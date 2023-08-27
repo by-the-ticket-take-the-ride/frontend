@@ -11,9 +11,9 @@ function EventPage() {
     return(
         <>
             <Header />
+            {<Calendar />}
             <section className="event-page">
                 {/* <BreadCrumbs /> */}
-                {<Calendar />}
                 <MainFrame />
                 <AboutEvent />
                 <EventLocation />

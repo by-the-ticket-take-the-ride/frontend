@@ -1,5 +1,4 @@
 import React from "react";
-import "./LocationModal.css";
 import Button from "../Buttons/Button/Button";
 
 const LocationModal = ({ onClickOtherButton, onClickButton, isHidden }) => {

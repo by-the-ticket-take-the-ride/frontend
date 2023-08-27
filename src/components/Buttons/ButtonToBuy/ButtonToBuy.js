@@ -1,10 +1,9 @@
 import Button from '../Button/Button';
-import './ButtonToBuy.css'
 
 function ButtonToBuy({text}) {
 
   return (
-    <Button gradient={true} additionalClass={'button-buy'}>
+    <Button additionalClass={'button-buy'} gradient={true} >
         {text}
     </Button>
    );

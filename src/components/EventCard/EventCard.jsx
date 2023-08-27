@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import "./EventCard.css";
 import { eventCardsData } from "./test-data/eventCardsData";
 import ButtonLike from "../Buttons/ButtonLike/ButtonLike";
 

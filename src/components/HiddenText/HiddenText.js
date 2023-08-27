@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import './HiddenText.css';
 
 
 function HiddenText({text, className}) {

@@ -1,4 +1,3 @@
-import './EventLocation.css';
 import { eventCardsData } from '../../assets/test-data/eventCardsData';
 import Map from '../Map/Map';
 

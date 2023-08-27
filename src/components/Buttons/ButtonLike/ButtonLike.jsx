@@ -1,5 +1,3 @@
-import './ButtonLike.css'
-
 function ButtonLike({ 
   extraClass,
   isActive,

@@ -1,5 +1,4 @@
 import React from "react";
-import './AboutEvent.css';
 import { eventCardsData } from '../../assets/test-data/eventCardsData';
 import HiddenText from '../HiddenText/HiddenText';
 import ButtonToBuy from "../Buttons/ButtonToBuy/ButtonToBuy";

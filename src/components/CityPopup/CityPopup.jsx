@@ -1,5 +1,4 @@
 import React from "react";
-import "./CityPopup.css";
 import CitySearch from "../CitySearch/CitySearch";
 import Button from "../Buttons/Button/Button";
 import CityList from "../CityList/CityList";
