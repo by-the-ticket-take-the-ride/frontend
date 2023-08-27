@@ -1,5 +1,3 @@
-import './ButtonShare.css'
-
 function ButtonShare() {
 
   return (

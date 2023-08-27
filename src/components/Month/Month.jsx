@@ -1,5 +1,4 @@
 import React from 'react';
-import './Month.css';
 import moment from 'moment';
 
 function Month({ monthIndex, daysToShow, selectedDay, handleDayClick, weekDays }) {

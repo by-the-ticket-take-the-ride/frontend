@@ -1,7 +1,6 @@
 import Button from "../Buttons/Button/Button";
 import React from "react";
 import EventCard from "../EventCard/EventCard";
-import "./EventCards.css";
 import { eventCardsData } from "../EventCard/test-data/eventCardsData";
 import eventCardsButtonData from "./eventCardsButtonData.json";
 

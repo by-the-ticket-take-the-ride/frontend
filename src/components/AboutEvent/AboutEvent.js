@@ -1,7 +1,8 @@
 import React from "react";
-import './AboutEvent.css';
 import { eventCardsData } from '../../assets/test-data/eventCardsData';
 import HiddenText from '../HiddenText/HiddenText';
+import ButtonToBuy from "../Buttons/ButtonToBuy/ButtonToBuy";
+
 
 function AboutEvent() {
 
@@ -14,7 +15,7 @@ function AboutEvent() {
                 <p className="about-event__text">{subtitle}</p>
                 <HiddenText text={text} className="about-event__text"/>
             </div>
-            {/* <ButtonBuy /> */}
+            <ButtonToBuy text={"Купить билет"}/>
         </section>
     )
 }

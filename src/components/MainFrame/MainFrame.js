@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import './MainFrame.css';
 import { eventCardsData } from '../../assets/test-data/eventCardsData';
 import ButtonLike from '../Buttons/ButtonLike/ButtonLike';
 import ButtonShare from '../Buttons/ButtonShare/ButtonShare';

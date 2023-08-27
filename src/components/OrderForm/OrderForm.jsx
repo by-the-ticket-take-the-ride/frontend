@@ -1,5 +1,4 @@
 import React from "react";
-import './OrderForm.css';
 import Button from "../Buttons/Button/Button";
 import { useFormWithValidation } from "../../utils/useFormWithValidation";
 import tick from '../../assets/images/tick.svg';
@@ -107,6 +106,7 @@ function OrderForm() {
             gradient={isValid}
             disabled={!isValid}
             type="submit"
+            additionalClass="order-details__btn"
           >
             <p className="order-details__buy-btn">Оплатить</p>
           </Button>

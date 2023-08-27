@@ -3,7 +3,7 @@
     height: 370px;
     color: #191919;
     margin: 0px auto;
-    padding-top: 60px;
+    padding: 60px 0px 90px 0px;
 }
 
 .about-event__title {
@@ -13,6 +13,10 @@
     margin: 0px;
     padding-bottom: 40px;
     letter-spacing: calc(0.5% * 30px);
+}
+
+.about-event__description {
+    padding-bottom: 40px;
 }
 
 .about-event__text {

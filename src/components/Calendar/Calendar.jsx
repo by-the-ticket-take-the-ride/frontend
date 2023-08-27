@@ -1,4 +1,3 @@
-import './Calendar.css';
 import React, { useState, useEffect } from 'react';
 import Month from '../Month/Month';
 import moment from 'moment';
