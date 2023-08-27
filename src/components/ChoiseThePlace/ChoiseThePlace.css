@@ -1,6 +1,7 @@
 .choise-the-place {
   max-width: 1110px;
   padding: 60px 49px;
+  position: relative;
 }
 
 .choise-the-place__hall-layout {
@@ -12,6 +13,13 @@
   margin-top: 13px;
 }
 
+.choise-the-place__close-button {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 28px;
+  right: 28px;
+}
 
 .choise-the-place__title {
   font-family: 'Unbounded';
@@ -63,7 +71,7 @@
   box-sizing: border-box;
   margin: 49px 0 0;
   width: 100%;
-  max-width: 570.21px;
+  min-width: 570.21px;
   min-height: 402px;
 }
 
@@ -75,9 +83,10 @@
 
 .hall-layout__location {
   margin-top: 31.25px;
+  box-sizing: border-box;
   overflow: auto;
   padding: 0;
-  min-height: 233px;
+  max-height: 344px;
 }
 
 /* информация о зонах */
@@ -123,14 +132,16 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 24px;
+  margin-top: 32.85px;
   gap: 8.21px;
+  min-height: 233px;
+  /* padding-left: 40px; */
 }
 
 .location__zone {
   display: flex;
   flex-direction: column; 
-  row-gap: 8.21px;
+  row-gap: 8px;
 
 
 }
@@ -154,6 +165,10 @@
 .location__column {
   display: flex;
   gap: 8.21px;
+}
+
+.location__seat {
+  height: 21.6px;
 }
 
 /*? счетчик */
@@ -212,6 +227,7 @@
 
 .counter__amount-info {
   margin-top: 42px;
+  padding-right: 32px;
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -234,26 +250,3 @@
   margin-top: 30px;
 }
 
-/* TEST */
-
-.ZONE {
-  min-width: 100px;
-  /* min-height: 70px; */
-  background-color: antiquewhite;
-}
-
-.ROW {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  /* row-gap: 10px; */
-  min-width: 300px;
-  /* min-height: 20px; */
-  background-color: beige;
-  /* float: right; */
-}
-
-.LEFT {
-  /* width: 50%; */
-  /* float: left; */
-}

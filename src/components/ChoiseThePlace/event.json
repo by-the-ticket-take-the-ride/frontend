@@ -19,24 +19,24 @@
       "zone": [
         {
           "id": 1,
-          "name": "Партер",
+          "name": "Зона 1",
           "row": 2,
           "seat": 20,
-          "price": 2000
+          "price": 3000
       },
       {
           "id": 2,
-          "name": "Балкон",
+          "name": "Зона 2",
           "row": 4,
           "seat": 56,
-          "price": 1000
+          "price": 1500
       },
       {
           "id": 3,
-          "name": "Танцпол",
+          "name": "Зона 3",
           "row": 2,
           "seat": 32,
-          "price": 800
+          "price": 1000
       }
       ],
       "max_hall_capacity": 0

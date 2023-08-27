@@ -9,11 +9,10 @@ function SeatIcon({
   handleDel,
   seat, row, zone,
   price,
-  handleСhoicePlace,
+  handleСhoicePlace
 }) {
 
-  const [isActive, setIsActive] = useState(false)
-  const [test2, settest2] = useState()
+  const [isActive, setIsActive] = useState(false);
 
   const colors = [
     blue ? '#2BA6FF' : null,
@@ -26,20 +25,16 @@ function SeatIcon({
   const handleClick = () => {
     setIsActive(!isActive)
     if (isActive) {
-      // console.log(seat, row, zone);
       handleDel(seat, row, zone, price)
-      setIsActive(false)
     } else if(!isActive) {
       handleСhoicePlace(seat, row, zone, price)
-
     }
-    // console.log(isCheck());
   }
   return ( 
     <svg 
-      width="21.9" 
-      height="21.9"
-      viewBox="0 0 21.9 21.9"
+      width="21.6" 
+      height="21.6"
+      viewBox="0 0 21.6 21.6"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       onClick={handleClick}

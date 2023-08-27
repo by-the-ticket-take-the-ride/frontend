@@ -1,11 +1,14 @@
 import "./App.css";
 import React from "react";
 import ChoiseThePalce from "./components/ChoiseThePlace/ChoiseThePlace";
+import SeatProvider from "./constext/SeatProvider";
 
 function App() {
   return (
     <div className="App">
-      <ChoiseThePalce/>
+      <SeatProvider>
+        <ChoiseThePalce/>
+      </SeatProvider>
     </div>
   );
 }
