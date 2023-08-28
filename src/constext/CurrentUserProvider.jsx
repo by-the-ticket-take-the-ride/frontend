@@ -7,6 +7,7 @@ function CurrentUserProvider({ children }) {
   const [currentUser, setCurrentUser] = useState({});
   const [isSuccess, setIsSuccess] = useState(false);
   const [isOpenNotific, setIsOpenNotific] = useState(false)
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
 
   useEffect(() => {
     currentUserApi
@@ -42,7 +43,9 @@ const handleSetUserInfo = (userData) => {
       currentUser,
       handleSetUserInfo,
       isSuccess,
-      isOpenNotific
+      isOpenNotific,
+      setIsLoggedIn,
+      isLoggedIn
     }}>
       {children}
     </CurrentUserContext.Provider>

@@ -6,6 +6,8 @@ import BreadCrumbs from '../BreadCrumbs/BreadCrumbs';
 
 import crumbs from './crumbs.json'
 import { tabData } from '../../utils/tabsData';
+import Header from '../Header/Header';
+import Footer from '../Footer/Footer';
 
 function PersonalAccount() {
   const { pathname } = useLocation();
@@ -14,7 +16,9 @@ function PersonalAccount() {
     return <Navigate to='/personal-account/favourites' replace/>
   }
 
-  return ( 
+  return (
+    <>
+    <Header/>
     <main className='account'>
       <div className='account__wrapper'>
         <BreadCrumbs crumbs={crumbs}/>
@@ -40,6 +44,8 @@ function PersonalAccount() {
         </div>
       </div>
     </main>
+    <Footer/>
+    </>
   );
 }
 

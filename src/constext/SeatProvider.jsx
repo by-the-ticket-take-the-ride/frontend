@@ -10,6 +10,7 @@ function SeatProvider({ children }) {
   const [eventZone, setEventZone] = useState([]);
   const [event, setEvent] = useState({});
   const [tickets, setTickets] = useState([]);
+  const [isOpenPopap, setIsOpenPopap] = useState(false)
 
   useLayoutEffect(() => {
     EventApi
@@ -42,7 +43,9 @@ function SeatProvider({ children }) {
       setTotalOrder,
       eventZone,
       event,
-      tickets
+      tickets,
+      isOpenPopap,
+      setIsOpenPopap
     }} >
       {children}
     </SeatContext.Provider>
