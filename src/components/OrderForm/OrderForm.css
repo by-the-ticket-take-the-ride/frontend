@@ -1,0 +1,164 @@
+.order-form {
+  margin-top: 100px;
+  margin-bottom: 5000px;
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+.order-form__title {
+  font-family: 'Unbounded';
+  font-weight: 700;
+  font-size: 30px;
+  line-height: 31.8px;
+  margin-bottom: 36px;
+}
+
+.order-form__details {
+  display: flex;
+}
+
+.personal-details {
+  max-width: 548px;
+  margin-right: 122px;
+}
+
+.details__title {
+  font-family: 'Nunito Sans';
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 22px;
+  border-bottom: 1px #9A9A9A solid;
+  padding-bottom: 12px;
+  margin-bottom: 32px;
+}
+
+.personal-details__form {
+  display: flex;
+  flex-direction: column;
+}
+
+.personal-details__input {
+  margin-bottom: 21px;
+}
+
+.personal-details__input-item {
+  width: 100%;
+  height: 46px;
+  border-radius: 20px;
+  border: 1px #9A9A9A solid;
+  padding-left: 20px;
+  width: 520px;
+}
+
+.personal-details__input-item:focus {
+  border: 1px #8B52F680 solid;
+  outline: none;
+  box-shadow: 2px 2px 12px 1px #00000024;
+}
+
+.personal-details__input-item-error:invalid  {
+  border: 1px #EA3057 solid;
+}
+
+.personal-details__input-item-success:valid {
+  border: 1px #8B52F6 solid;
+}
+
+.personal-details__input-item-success-icon {
+  position: absolute;
+  transform: translateX(-200%) translateY(138%);
+}
+
+.personal-details__input-error {
+  font-family: 'Nunito Sans';
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  color: #EA3057;
+}
+
+.order-details {
+  width: 455px;
+}
+
+.order-details__name {
+  font-family: 'Nunito Sans';
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 22px;
+  border-bottom: 1px #9A9A9A solid;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+}
+
+.order-details__tickets-info {
+  display: grid;
+  grid-template-columns: 170px auto;
+  gap: 12px 0;
+  border-bottom: 1px #9A9A9A solid;
+  padding-bottom: 20px;
+  margin-bottom: 18px;
+}
+
+.order-details__tickets-info-result {
+  font-family: 'Nunito Sans';
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  color: #4C4F52;
+  justify-self: flex-start;
+}
+
+.order-details__tickets-info-result-price {
+  font-family: 'Nunito Sans';
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  color: #191919;
+  justify-self: flex-end;
+}
+
+.order-details__order-sum {
+  display: flex;
+  justify-content: space-between;
+}
+
+.order-details__order-price {
+  font-family: 'Nunito Sans';
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 22px;
+  color: #4C4F52;
+  margin-bottom: 105px;
+}
+
+.order-details__btn {
+  height: 52px;
+  width: 100%;
+  border-radius: 50px;
+  margin-bottom: 16px;
+}
+
+.order-details__buy-btn {
+  font-family: 'Nunito Sans';
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 22px;
+}
+
+.order-details__agreement-text {
+  font-family: 'Nunito Sans';
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14px;
+  color: #4C4F52;
+  max-width: 334px;
+  align-self: center;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.order-details__agreement-text-link {
+  color: #8B52F6;
+  text-decoration: underline;
+}

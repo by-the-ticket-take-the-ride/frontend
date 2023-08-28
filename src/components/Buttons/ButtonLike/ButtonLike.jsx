@@ -1,5 +1,3 @@
-import './ButtonLike.css'
-
 function ButtonLike({ 
   extraClass,
   isActive,
@@ -9,7 +7,7 @@ function ButtonLike({
   return ( 
     <button 
       type='button' 
-      className={`button ${isActive ? 'button_active' : ''} ${extraClass}`} 
+      className={`button-like ${isActive ? 'button-like_active' : ''} ${extraClass}`} 
       onClick={handleLike}
     >
     </button>
