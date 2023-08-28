@@ -6,7 +6,12 @@ import profileImg from "../../assets/images/profile.svg";
 import loginImg from "../../assets/images/login-button.svg";
 import CategoryButton from "./CategoryButton";
 import { category } from "./Header.data.js";
-const Header = ({ isLoggedIn, isActivePopupCity, setIsActivePopupCity }) => {
+const Header = ({
+  isLoggedIn,
+  isActivePopupCity,
+  setIsActivePopupCity,
+  currentCity,
+}) => {
   return (
     <div className="header">
       <div className="header__box">
@@ -16,7 +21,7 @@ const Header = ({ isLoggedIn, isActivePopupCity, setIsActivePopupCity }) => {
           onClick={() => setIsActivePopupCity(!isActivePopupCity)}
           className="header__box-location"
         >
-          г. Москва
+          г. {currentCity}
         </p>
         <div className="header__box-input">
           <input

@@ -4,15 +4,19 @@ import Button from "../Buttons/Button/Button";
 import CityList from "../CityList/CityList";
 import { getCities } from "../../utils/getCitiesApi";
 
-const CityPopup = ({ isActive, onClose }) => {
+const CityPopup = ({ isActive, onClose, setCurrentCity }) => {
   const [data, setData] = React.useState([]);
   const cities = JSON.parse(localStorage.getItem("cityDatas"));
 
   React.useEffect(() => {
     const getAllCity = async () => {
-      const data = await getCities();
-      setData(data);
-      localStorage.setItem("cityDatas", JSON.stringify(data));
+      try {
+        const data = await getCities();
+        setData(data);
+        localStorage.setItem("cityDatas", JSON.stringify(data));
+      } catch (error) {
+        console.log(error);
+      }
     };
     getAllCity();
   }, []);
@@ -30,7 +34,7 @@ const CityPopup = ({ isActive, onClose }) => {
           </div>
           <CitySearch data={cities} setData={setData} />
         </div>
-        <CityList data={data} />
+        <CityList data={data} setCurrentCity={setCurrentCity} />
       </div>
     </div>
   );

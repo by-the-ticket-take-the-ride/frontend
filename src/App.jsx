@@ -21,6 +21,7 @@ function App() {
   const [isActivePopupCity, setIsActivePopupCity] = React.useState(false);
   const [isHiddenLocation, setIsHiddenLocation] = React.useState(false);
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+  const [currentCity, setCurrentCity] = React.useState("Москва");
 
   const handleSelectedDateChange = (events) => {
     setSelectedDateEvents(events);
@@ -32,6 +33,7 @@ function App() {
         isLoggedIn={isLoggedIn}
         isActivePopupCity={isActivePopupCity}
         setIsActivePopupCity={setIsActivePopupCity}
+        currentCity={currentCity}
       />
       <Calendar handleSelectedDateChange={handleSelectedDateChange} />
       <EventsCardList />
@@ -40,13 +42,8 @@ function App() {
         <ChoiseThePalce />
       </SeatProvider>
       <Routes>
-        <Route
-          exact
-          path="/"
-          element={<Main/>}
-        >
-        </Route>
-        
+        <Route exact path="/" element={<Main />}></Route>
+
         <Route
           path="/personal-account"
           element={
@@ -66,7 +63,11 @@ function App() {
         onClickButton={setIsHiddenLocation}
         isHidden={isHiddenLocation}
       />
-      <CityPopup isActive={isActivePopupCity} onClose={setIsActivePopupCity} />
+      <CityPopup
+        isActive={isActivePopupCity}
+        onClose={setIsActivePopupCity}
+        setCurrentCity={setCurrentCity}
+      />
     </div>
   );
 }
