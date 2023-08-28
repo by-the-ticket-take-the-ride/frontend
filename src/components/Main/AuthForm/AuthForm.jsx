@@ -27,7 +27,14 @@ function AuthForm(props) {
           console.log('произошла ошибка');
         })
     } else if (e.target.id === 'button-login') {
-    
+      const {email, password} = dataForm;
+      auth.login(email, password)
+        .then((res) => {
+          console.log('Вы авторизовались');
+        })
+        .catch(() => {
+          console.log('произошла ошибка');
+        })
     } else {
       console.log('Такой запрос не существует');
     }

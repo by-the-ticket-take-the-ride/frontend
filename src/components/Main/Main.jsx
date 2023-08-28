@@ -11,10 +11,10 @@ function Main() {
     <main className="content">
       <div className="cover-blackout">
         <Register/>
-        <Login/>
+        {/*<Login/>
         <PasswordRecovery/>
         <CheckEmail/>
-        <ConfirmEmail/>
+        <ConfirmEmail/>*/}
       </div>
     </main>
   )
