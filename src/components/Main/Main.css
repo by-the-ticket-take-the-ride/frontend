@@ -1,0 +1,13 @@
+.content {
+  width: 100%;
+  min-height: 2000px;
+}
+.cover-blackout {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  min-height: 100vh;
+  background-color: rgba(0, 0, 0, .3);
+}

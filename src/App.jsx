@@ -14,6 +14,7 @@ import LocationModal from "./components/LocationModal/LocationModal";
 import EventsCardList from "./components/EventsCardList/EventsCardList";
 import CityPopup from "./components/CityPopup/CityPopup";
 import MainFrame from "./components/MainFrame/MainFrame";
+import Main from "./components/Main/Main";
 
 function App() {
   const [selectedDateEvents, setSelectedDateEvents] = React.useState([]);
@@ -39,6 +40,13 @@ function App() {
         <ChoiseThePalce />
       </SeatProvider>
       <Routes>
+        <Route
+          exact
+          path="/"
+          element={<Main/>}
+        >
+        </Route>
+        
         <Route
           path="/personal-account"
           element={

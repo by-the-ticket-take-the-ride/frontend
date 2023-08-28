@@ -8,3 +8,30 @@
   color: #fff;
   font-family: 'Inter', Arial, Helvetica, sans-serif;
 }
+
+.text-reset {
+  margin: 0;
+  padding: 0;
+}
+.button-hover {
+  transition: .2s ease opacity;
+}
+.button-hover:disabled {
+  color: #C2C2C2;
+
+  background: 
+    radial-gradient(53.99% 245.51% at 94.46% 100%, #969696 0%, rgba(234, 48, 87, 0) 100%),
+    linear-gradient(118.28deg, #9b9b9b 22.11%, #616161 88.65%);
+  cursor: default;
+  opacity: 1 !important;
+}
+.button-hover:hover {
+  opacity: .8;
+}
+
+.link-hover {
+  transition: .2s ease opacity;
+}
+.link-hover:hover {
+  opacity: .7;
+}
