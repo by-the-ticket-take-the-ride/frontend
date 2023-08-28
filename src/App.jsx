@@ -19,58 +19,57 @@ import OrderForm from "./components/OrderForm/OrderForm";
 
 function App() {
   const [isActivePopupCity, setIsActivePopupCity] = React.useState(false);
+  const [currentCity, setCurrentCity] = React.useState("Москва");
 
   return (
     <div className="App">
       <CurrentUserProvider>
-      <PopupProvider>
-        <EventsProvider>
-          <SeatProvider>
-      <Routes>
-        <Route
-          exact
-          path="/"
-          element={<Main/>}
-        >
-        </Route>
-        <Route
-          
-          path={`/event/*`}
-          element={<EventPage />}
-        >
-        </Route>
-        <Route
-          
-          path="/order"
-          element={<OrderForm/>}
-        >
-        </Route>
+        <PopupProvider>
+          <EventsProvider>
+            <SeatProvider>
+              <Routes>
+                <Route
+                  exact
+                  path="/"
+                  element={
+                    <Main
+                      currentCity={currentCity}
+                      isActivePopupCity={isActivePopupCity}
+                      setIsActivePopupCity={setIsActivePopupCity}
+                    />
+                  }
+                ></Route>
+                <Route path={`/event/*`} element={<EventPage />}></Route>
+                <Route path="/order" element={<OrderForm />}></Route>
 
-        <Route
-          path="/personal-account"
-          element={
-            <CurrentUserProvider>
-              <PersonalAccount />
-            </CurrentUserProvider>
-          }
-        >
-          <Route path="favourites" element={<></>} />
-          <Route path="my-data" element={<MyData />} />
-        </Route>
-      </Routes>
-      <CityPopup isActive={isActivePopupCity} onClose={setIsActivePopupCity} />
-        <Register/>
-        <Login/>
-        <PasswordRecovery/>
-        <CheckEmail/>
-        <ConfirmEmail/>
-        </SeatProvider>
-        </EventsProvider>
-      </PopupProvider>
+                <Route
+                  path="/personal-account"
+                  element={
+                    <CurrentUserProvider>
+                      <PersonalAccount />
+                    </CurrentUserProvider>
+                  }
+                >
+                  <Route path="favourites" element={<></>} />
+                  <Route path="my-data" element={<MyData />} />
+                </Route>
+              </Routes>
+              <CityPopup
+                isActive={isActivePopupCity}
+                onClose={setIsActivePopupCity}
+                setCurrentCity={setCurrentCity}
+              />
+              <Register />
+              <Login />
+              <PasswordRecovery />
+              <CheckEmail />
+              <ConfirmEmail />
+            </SeatProvider>
+          </EventsProvider>
+        </PopupProvider>
       </CurrentUserProvider>
     </div>
   );
 }
 
 export default App;
-

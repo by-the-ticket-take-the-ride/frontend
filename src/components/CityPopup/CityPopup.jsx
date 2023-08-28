@@ -2,10 +2,24 @@ import React from "react";
 import CitySearch from "../CitySearch/CitySearch";
 import Button from "../Buttons/Button/Button";
 import CityList from "../CityList/CityList";
-import testData from "./testData.json";
+import { getCities } from "../../utils/getCitiesApi";
 
-const CityPopup = ({ isActive, onClose }) => {
-  const [searchData, setSearchData] = React.useState(testData);
+const CityPopup = ({ isActive, onClose, setCurrentCity }) => {
+  const [data, setData] = React.useState([]);
+  const cities = JSON.parse(localStorage.getItem("cityDatas"));
+
+  React.useEffect(() => {
+    const getAllCity = async () => {
+      try {
+        const data = await getCities();
+        setData(data);
+        localStorage.setItem("cityDatas", JSON.stringify(data));
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getAllCity();
+  }, []);
 
   return (
     <div className={`city-popup ${isActive ? "city-popup_opened" : ""}`}>
@@ -18,9 +32,9 @@ const CityPopup = ({ isActive, onClose }) => {
               onClick={() => onClose(false)}
             ></Button>
           </div>
-          <CitySearch data={testData} setSearchData={setSearchData} />
+          <CitySearch data={cities} setData={setData} />
         </div>
-        <CityList data={searchData} />
+        <CityList data={data} setCurrentCity={setCurrentCity} />
       </div>
     </div>
   );

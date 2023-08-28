@@ -10,18 +10,18 @@ import Button from "../Buttons/Button/Button";
 import usePopupContext from "../../hooks/usePopupContext";
 import useUserContext from "../../hooks/useUserContext";
 import { useNavigate } from "react-router-dom";
-const Header = ({ isActivePopupCity, setIsActivePopupCity }) => {
-  const { isOpenPopupLogin,setIsOpenPopupLogin } = usePopupContext()
-  const {isLoggedIn, setIsLoggedIn} = useUserContext()
-  const navigate = useNavigate()
+const Header = ({ isActivePopupCity, setIsActivePopupCity, currentCity }) => {
+  const { isOpenPopupLogin, setIsOpenPopupLogin } = usePopupContext();
+  const { isLoggedIn, setIsLoggedIn } = useUserContext();
+  const navigate = useNavigate();
   // console.log(isOpenPopupRegister);
   const handleClick = () => {
-    setIsOpenPopupLogin(!isOpenPopupLogin)
-    setIsLoggedIn(true)
-  }
+    setIsOpenPopupLogin(!isOpenPopupLogin);
+    setIsLoggedIn(true);
+  };
   const handleHavigate = () => {
-    navigate('/personal-account')
-  }
+    navigate("/personal-account");
+  };
   return (
     <div className="header">
       <div className="header__box">
@@ -31,7 +31,7 @@ const Header = ({ isActivePopupCity, setIsActivePopupCity }) => {
           onClick={() => setIsActivePopupCity(!isActivePopupCity)}
           className="header__box-location"
         >
-          г. Москва
+          г. {currentCity}
         </p>
         <div className="header__box-input">
           <input
@@ -47,10 +47,14 @@ const Header = ({ isActivePopupCity, setIsActivePopupCity }) => {
             className="header__button_logged"
             onClick={handleHavigate}
           ></img>
-          ) : (
-            <Button onClick={handleClick} gradient={true} additionalClass='header__button_signin'>
-              Войти
-            </Button>
+        ) : (
+          <Button
+            onClick={handleClick}
+            gradient={true}
+            additionalClass="header__button_signin"
+          >
+            Войти
+          </Button>
           //   <img
           //   src={loginImg}
           //   alt="Кнопка входа"
