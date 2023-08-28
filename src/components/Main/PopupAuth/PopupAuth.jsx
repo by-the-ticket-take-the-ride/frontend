@@ -6,9 +6,25 @@ import AuthBottom from "../AuthBottom/AuthBottom";
 
       
 function PopupAuth(props) {
+  const [isVisiblePopup, setIsVisiblePopup] = useState(true);
+
+  function openPopupAuth(type) {
+    setIsVisiblePopup(true);
+  }
+  function closePopupAuth(type) {
+    setIsVisiblePopup(false);
+  }
+
+  function handleClickClose() {
+    closePopupAuth(props.type);
+  }
+
   return (
-    <div className="popup-auth">
-      <button className="popup-auth__close-icon"></button>
+    <div className={`popup-auth${isVisiblePopup ? '' : ' popup-auth__visible_none'}`}>
+      <button 
+        className="popup-auth__close-icon"
+        onClick={handleClickClose}
+      ></button>
       <AuthTop
         type={props.type}
       />

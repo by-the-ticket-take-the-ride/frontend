@@ -9,8 +9,8 @@ import ConfirmEmail from './ConfirmEmail/ConfirmEmail';
 function Main() {
   return (
     <div className="cover-blackout">
-      {/*<Register/>
-      <Login/>
+      <Register/>
+      {/*<Login/>
       <PasswordRecovery/>
       <CheckEmail/>
       <ConfirmEmail/>*/}

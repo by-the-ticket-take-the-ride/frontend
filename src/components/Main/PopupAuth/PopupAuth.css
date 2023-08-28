@@ -23,3 +23,6 @@
   border: none;
   cursor: pointer;
 }
+.popup-auth__visible_none {
+  display: none;
+}
