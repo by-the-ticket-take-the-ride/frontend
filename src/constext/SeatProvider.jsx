@@ -17,8 +17,8 @@ function SeatProvider({ children }) {
       .getCurrentEvent(1)
       .then((event) => {
         if(event) {
-          setEventZone(event.place?.type?.zone)
-          setEvent(event)
+          setEventZone(eventJson.place.type.zone)
+          setEvent(eventJson)
         } else {
           setEventZone(eventJson.place.type.zone)
           setEvent(eventJson)

@@ -16,7 +16,7 @@ import { useNavigate } from 'react-router-dom';
 function ChoiseThePlace({  }) {
 
   const { event, eventZone, tickets, setTotalOrder, isOpenPopap,setIsOpenPopap } = useSeatContext();
-
+ console.log(event);
   const [paymentData, setPaymentData] = useState([]);
   const [counterPrice, setCounterPrice] = useState(0);
   // const [listTicket, setListTicket] = useState([]);
