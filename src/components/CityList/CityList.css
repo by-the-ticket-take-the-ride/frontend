@@ -4,15 +4,17 @@
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 43px;
+  gap: 36px;
   overflow: auto;
-  max-height: 350px;
+  max-height: 370px;
   height: 80%;
 }
 
-.city-list__text {
+.city-list__city {
   color: #191919;
   font-size: 18px;
   font-weight: 400;
   line-height: 22px;
+  cursor: pointer;
+  display: block;
 }

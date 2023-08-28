@@ -6,7 +6,7 @@ const CityList = ({ data }) => {
       {data.length ? (
         data.map((item) => (
           <li key={item.id}>
-            <span className="city-list__text">{item.title}</span>
+            <span className="city-list__city">{item.name}</span>
           </li>
         ))
       ) : (
