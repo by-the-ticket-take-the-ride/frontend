@@ -17,14 +17,21 @@ function AuthForm(props) {
   function handleSubmit(e) {
     e.preventDefault();
 
-    const {name, email, password} = dataForm;
-    auth.register(name, email, password)
-      .then((res) => {
-        console.log('Вы авторизовались');
-      })
-      .catch(() => {
-        console.log('произошла ошибка');
-      })
+    if (e.target.id === 'button-register') {
+      const {name, email, password} = dataForm;
+      auth.register(name, email, password)
+        .then((res) => {
+          console.log('Вы зарегистрировались');
+        })
+        .catch(() => {
+          console.log('произошла ошибка');
+        })
+    } else if (e.target.id === 'button-login') {
+    
+    } else {
+      console.log('Такой запрос не существует');
+    }
+    
   }
 
   function useValidation(type, useInput, useEffect) {
@@ -246,6 +253,7 @@ function AuthForm(props) {
 
       <button 
         className="auth-form__button-action button-hover"
+        id={`button-${props.type}`}
         onClick={handleSubmit}
         disabled={isDisabled}
       >
