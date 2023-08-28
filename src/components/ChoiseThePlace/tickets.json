@@ -1,0 +1,218 @@
+[
+  {
+    "id": 1,
+    "event": {
+      "id": 0,
+      "type_event": {
+        "id": 0,
+        "name": "string",
+        "slug": "7_RbAw4Hqih8y86tZG40IYMG--JA_oVEEGWpLuXO24-nPGppmL"
+      },
+      "place": {
+        "id": 0,
+        "name": "string",
+        "address": "string",
+        "city": {
+          "id": 0,
+          "name": "string"
+        },
+        "type": {
+          "id": 0,
+          "name": "string",
+          "zone": [
+            {
+              "id": 1,
+              "name": "Зона 1",
+              "row": 2,
+              "seat": 20,
+              "price": 3000
+            },
+            {
+              "id": 2,
+              "name": "Зона 2",
+              "row": 4,
+              "seat": 56,
+              "price": 1500
+            },
+            {
+              "id": 3,
+              "name": "Зона 3",
+              "row": 2,
+              "seat": 32,
+              "price": 1000
+            }
+          ],
+          "max_hall_capacity": 0
+        }
+      },
+      "name": "string",
+      "description": "string",
+      "date_event": "2023-08-25",
+      "time_event": "string",
+      "image": "string",
+      "is_favorited": "string"
+    },
+    "zone_hall": {
+      "id": 1,
+      "name": "Зона 1",
+      "row": 2,
+      "seat": 20,
+      "price": 2000
+    },
+    "row": 2,
+    "seat": 3,
+    "price": 0,
+    "guest": {
+      "id": 0,
+      "username": "string",
+      "email": "user@example.com",
+      "phone": "+79332946655",
+      "telegram": "string"
+    },
+    "is_paid": true
+  },
+  {
+    "id": 2,
+    "event": {
+      "id": 0,
+      "type_event": {
+        "id": 0,
+        "name": "string",
+        "slug": "7_RbAw4Hqih8y86tZG40IYMG--JA_oVEEGWpLuXO24-nPGppmL"
+      },
+      "place": {
+        "id": 0,
+        "name": "string",
+        "address": "string",
+        "city": {
+          "id": 0,
+          "name": "string"
+        },
+        "type": {
+          "id": 0,
+          "name": "string",
+          "zone": [
+            {
+              "id": 1,
+              "name": "Зона 1",
+              "row": 2,
+              "seat": 20,
+              "price": 3000
+            },
+            {
+              "id": 2,
+              "name": "Зона 2",
+              "row": 4,
+              "seat": 56,
+              "price": 1500
+            },
+            {
+              "id": 3,
+              "name": "Зона 3",
+              "row": 2,
+              "seat": 32,
+              "price": 1000
+            }
+          ],
+          "max_hall_capacity": 0
+        }
+      },
+      "name": "string",
+      "description": "string",
+      "date_event": "2023-08-25",
+      "time_event": "string",
+      "image": "string",
+      "is_favorited": "string"
+    },
+    "zone_hall": {
+      "id": 1,
+      "name": "Зона 1",
+      "row": 2,
+      "seat": 20,
+      "price": 2000
+    },
+    "row": 1,
+    "seat": 8,
+    "price": 0,
+    "guest": {
+      "id": 0,
+      "username": "string",
+      "email": "user@example.com",
+      "phone": "+79332946655",
+      "telegram": "string"
+    },
+    "is_paid": true
+  },
+  {
+    "id": 3,
+    "event": {
+      "id": 0,
+      "type_event": {
+        "id": 0,
+        "name": "string",
+        "slug": "7_RbAw4Hqih8y86tZG40IYMG--JA_oVEEGWpLuXO24-nPGppmL"
+      },
+      "place": {
+        "id": 0,
+        "name": "string",
+        "address": "string",
+        "city": {
+          "id": 0,
+          "name": "string"
+        },
+        "type": {
+          "id": 0,
+          "name": "string",
+          "zone": [
+            {
+              "id": 1,
+              "name": "Зона 1",
+              "row": 2,
+              "seat": 20,
+              "price": 3000
+            },
+            {
+              "id": 2,
+              "name": "Зона 2",
+              "row": 4,
+              "seat": 56,
+              "price": 1500
+            },
+            {
+              "id": 3,
+              "name": "Зона 3",
+              "row": 2,
+              "seat": 32,
+              "price": 1000
+            }
+          ],
+          "max_hall_capacity": 0
+        }
+      },
+      "name": "string",
+      "description": "string",
+      "date_event": "2023-08-25",
+      "time_event": "string",
+      "image": "string",
+      "is_favorited": "string"
+    },
+    "zone_hall": {
+      "id": 3,
+      "name": "Зона 3",
+      "row": 2,
+      "seat": 32,
+      "price": 1000
+    },
+    "row": 1,
+    "seat": 15,
+    "price": 0,
+    "guest": {
+      "id": 0,
+      "username": "string",
+      "email": "user@example.com",
+      "phone": "+79332946655",
+      "telegram": "string"
+    },
+    "is_paid": true
+  }
+]

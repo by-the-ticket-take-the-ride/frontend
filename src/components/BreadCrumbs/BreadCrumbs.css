@@ -1,0 +1,42 @@
+.bread-crumbs {
+  min-height: 18px;
+}
+
+.bread-crumbs__list {
+  list-style-type: none;
+  display: flex;
+  flex-wrap: nowrap;
+  margin: 0;
+  padding: 0;
+}
+
+.bread-crumbs__crumb {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.bread-crumbs__svg {
+  margin-inline: 10px;
+  background: url('../../assets/images/vector-crumb.svg') center no-repeat;
+  width: 5px;
+  height: 9px;
+}
+
+.bread-crumbs__link {
+  box-sizing: border-box;
+  height: 18px;
+  display: block;
+  text-decoration: none;
+  font-family: 'Nunito Sans';
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14.63px;
+  color: #191919;
+  text-align: center;
+  padding-top: 3px;
+}
+
+.bread-crumbs__link_disabled {
+  color: rgba(0, 0, 0, 0.5);
+}
