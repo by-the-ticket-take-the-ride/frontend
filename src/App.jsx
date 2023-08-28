@@ -58,6 +58,7 @@ function App() {
                 isActive={isActivePopupCity}
                 onClose={setIsActivePopupCity}
                 setCurrentCity={setCurrentCity}
+                setIsActive={setIsActivePopupCity}
               />
               <Register />
               <Login />
