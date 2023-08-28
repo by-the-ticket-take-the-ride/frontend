@@ -1,0 +1,25 @@
+.popup-auth {
+  position: relative;
+  min-width: 520px;
+  border-radius: 20px;
+  background-color: #fff;
+
+  box-sizing: border-box;
+  padding: 40px 40px 40px 40px;
+}
+.popup-auth__close-icon {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 36px;
+  height: 36px;
+
+  background-color: transparent;
+  background-image: url(../../../images/close-icon.svg);
+  background-repeat: no-repeat;
+  background-size: auto;
+  background-position: center;
+
+  border: none;
+  cursor: pointer;
+}

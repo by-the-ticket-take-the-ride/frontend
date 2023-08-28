@@ -1,0 +1,39 @@
+.auth-top {
+  margin-bottom: 48px;
+}
+.auth-top__clear_margin {
+  margin-bottom: 0;
+}
+
+.auth-top__header-text {
+  font-family: "Unbounded";
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 30px;
+  letter-spacing: 0.005em;
+  text-align: left;
+  color: #000;
+   
+  margin-top: 3px;
+}
+.auth-top__sub-text {
+  margin-top: 7px;
+
+  font-family: "Nunito Sans";
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 22px;
+  text-align: left;
+  color: rgba(0, 0, 0, .5);
+}
+
+.auth-top__sub-text-bold {
+  font-size: 18px;
+  font-weight: 700;
+}
+.auth-top__sub-text-link {
+  font-size: 18px;
+  font-weight: 700;
+  color: #8B52F6;
+  text-decoration: underline;
+}
