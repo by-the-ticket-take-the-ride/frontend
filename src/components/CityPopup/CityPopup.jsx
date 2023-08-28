@@ -2,20 +2,20 @@ import React from "react";
 import CitySearch from "../CitySearch/CitySearch";
 import Button from "../Buttons/Button/Button";
 import CityList from "../CityList/CityList";
+import { getCities } from "../../utils/getCitiesApi";
 
 const CityPopup = ({ isActive, onClose }) => {
   const [data, setData] = React.useState([]);
+  const cities = JSON.parse(localStorage.getItem("cityDatas"));
 
   React.useEffect(() => {
-    const getCities = async () => {
-      const res = await fetch("http://buytheticket.ddns.net/api/cities/");
-      const data = await res.json();
+    const getAllCity = async () => {
+      const data = await getCities();
       setData(data);
       localStorage.setItem("cityDatas", JSON.stringify(data));
     };
-    getCities();
+    getAllCity();
   }, []);
-  const cities = JSON.parse(localStorage.getItem("cityDatas"));
 
   return (
     <div className={`city-popup ${isActive ? "city-popup_opened" : ""}`}>
