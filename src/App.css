@@ -1,3 +1,50 @@
+.App {
+  margin: 0 auto;
+  height: 100vh;
+  position: relative;
+  max-width: 1440px;
+}
+
 .page {
   margin: auto;
+  color: #fff;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+}
+
+.text-reset {
+  margin: 0;
+  padding: 0;
+}
+.button-hover {
+  transition: .2s ease opacity;
+}
+.button-hover:disabled {
+  color: #C2C2C2;
+
+  background: 
+    radial-gradient(53.99% 245.51% at 94.46% 100%, #969696 0%, rgba(234, 48, 87, 0) 100%),
+    linear-gradient(118.28deg, #9b9b9b 22.11%, #616161 88.65%);
+  cursor: default;
+  opacity: 1 !important;
+}
+.button-hover:hover {
+  opacity: .8;
+}
+
+.link-hover {
+  transition: .2s ease opacity;
+}
+.link-hover:hover {
+  opacity: .7;
+}
+
+.title {
+  font-family: Unbounded;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 106%; /* 31.8px */
+  letter-spacing: 0.15px;
+  padding-inline: 163px 158px;
+  margin: 80px 0 0;
 }

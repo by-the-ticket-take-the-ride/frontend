@@ -1,0 +1,18 @@
+.button-cross {
+  border: none;
+  cursor: pointer;
+  transition: opacity .1s ease-in;
+  background-position: center;
+}
+
+.button-cross:hover {
+  opacity: .5;
+}
+
+.button-cross_color_black {
+  background: url('../../../assets/images/close.svg') center no-repeat;
+}
+
+.button-cross_color_red {
+  background: url('../../../assets/images/close-red.svg') center no-repeat;
+}

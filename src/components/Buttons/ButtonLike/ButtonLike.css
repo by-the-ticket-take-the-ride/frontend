@@ -7,6 +7,7 @@
   background-repeat: no-repeat;
   background-color: transparent;
   padding: 0;
+  cursor: pointer;
   transition: transform .2s ease-in;
   width: 21.98px;
   height: 20.32px;

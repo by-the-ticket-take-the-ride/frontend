@@ -1,9 +1,9 @@
 import Button from '../Button/Button';
 
-function ButtonToBuy({text}) {
+function ButtonToBuy({text, handleClick}) {
 
   return (
-    <Button additionalClass={'button-buy'} gradient={true} >
+    <Button onClick={handleClick} additionalClass={'button-buy'} gradient={true} >
         {text}
     </Button>
    );

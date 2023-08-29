@@ -3,7 +3,7 @@ export const eventCardsData = [{
   image: require('../../../assets/images/event-card-img-1.png'),
   location: 'Олимпийский комплекс «Лужники»',
   date: '15 сентября, 19:00',
-  name: 'Сергей Лазарев',
+  name: 'Zivert',
 }, {
   id: 2,
   image: require('../../../assets/images/event-card-img-2.png'),
