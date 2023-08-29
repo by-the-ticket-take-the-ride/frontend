@@ -37,3 +37,5 @@ code {
 @import url('./components/Month/Month.css');
 @import url('./components/NoResult/NoResult.css');
 @import url('./components/NoResultPage/NoResultPage.css');
+@import url('./components/PaymentSuccessPopup/PaymentSuccessPopup.css');
+@import url('./components/PaymentPopup/PaymentPopup.css');

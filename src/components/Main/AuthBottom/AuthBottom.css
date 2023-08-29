@@ -89,6 +89,7 @@
   line-height: 22px;
   text-align: left;
   color: #191919;
+  cursor: pointer;
 }
 .auth-bottom__text_align {
   text-align: center;

@@ -1,10 +1,10 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { eventCardsData } from '../../assets/test-data/eventCardsData';
 import ButtonLike from '../Buttons/ButtonLike/ButtonLike';
 import ButtonShare from '../Buttons/ButtonShare/ButtonShare';
+import useEventsContext from '../../hooks/useEventsContext';
 
-function MainFrame() {
-
+function MainFrame({idEvent = 0}) {
   const { name, image, date, location, type, tag } = eventCardsData[0];
   const [isActive, setIsActive] = useState(false);
 

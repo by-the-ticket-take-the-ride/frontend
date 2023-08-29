@@ -1,6 +1,8 @@
 .App {
   margin: 0 auto;
   height: 100vh;
+  position: relative;
+  max-width: 1440px;
 }
 
 .page {
@@ -34,4 +36,15 @@
 }
 .link-hover:hover {
   opacity: .7;
+}
+
+.title {
+  font-family: Unbounded;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 106%; /* 31.8px */
+  letter-spacing: 0.15px;
+  padding-inline: 163px 158px;
+  margin: 80px 0 0;
 }

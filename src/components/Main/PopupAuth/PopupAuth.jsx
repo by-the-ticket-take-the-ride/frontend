@@ -6,17 +6,20 @@ import AuthBottom from "../AuthBottom/AuthBottom";
 
       
 function PopupAuth(props) {
+
   return (
     <div className="popup-auth">
-      <button className="popup-auth__close-icon"></button>
+      <button onClick={props.handleClick}  className="popup-auth__close-icon"></button>
       <AuthTop
         type={props.type}
       />
       <AuthForm
         type={props.type}
+        {...props}
       />
       <AuthBottom
         type={props.type}
+        {...props}
       />
     </div>
   );

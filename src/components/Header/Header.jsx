@@ -6,12 +6,22 @@ import profileImg from "../../assets/images/profile.svg";
 import loginImg from "../../assets/images/login-button.svg";
 import CategoryButton from "./CategoryButton";
 import { category } from "./Header.data.js";
-const Header = ({
-  isLoggedIn,
-  isActivePopupCity,
-  setIsActivePopupCity,
-  currentCity,
-}) => {
+import Button from "../Buttons/Button/Button";
+import usePopupContext from "../../hooks/usePopupContext";
+import useUserContext from "../../hooks/useUserContext";
+import { useNavigate } from "react-router-dom";
+const Header = ({ isActivePopupCity, setIsActivePopupCity, currentCity }) => {
+  const { isOpenPopupLogin, setIsOpenPopupLogin } = usePopupContext();
+  const { isLoggedIn, setIsLoggedIn } = useUserContext();
+  const navigate = useNavigate();
+  // console.log(isOpenPopupRegister);
+  const handleClick = () => {
+    setIsOpenPopupLogin(!isOpenPopupLogin);
+    setIsLoggedIn(true);
+  };
+  const handleHavigate = () => {
+    navigate("/personal-account");
+  };
   return (
     <div className="header">
       <div className="header__box">
@@ -35,13 +45,21 @@ const Header = ({
             src={profileImg}
             alt="Кнопка профиля"
             className="header__button_logged"
+            onClick={handleHavigate}
           ></img>
         ) : (
-          <img
-            src={loginImg}
-            alt="Кнопка входа"
-            className="header__button"
-          ></img>
+          <Button
+            onClick={handleClick}
+            gradient={true}
+            additionalClass="header__button_signin"
+          >
+            Войти
+          </Button>
+          //   <img
+          //   src={loginImg}
+          //   alt="Кнопка входа"
+          //   className="header__button"
+          // ></img>
         )}
       </div>
       <div className="header__buttons">

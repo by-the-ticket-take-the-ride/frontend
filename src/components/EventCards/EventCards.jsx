@@ -1,11 +1,13 @@
 import Button from "../Buttons/Button/Button";
-import React from "react";
+import React, { useEffect, useLayoutEffect } from "react";
 import EventCard from "../EventCard/EventCard";
 import { eventCardsData } from "../EventCard/test-data/eventCardsData";
 import eventCardsButtonData from "./eventCardsButtonData.json";
+// import * as EventApi from '../../utils/currentEventApi'
 
 const EventCards = () => {
   const [buttonId, setButtonId] = React.useState(0);
+
   return (
     <section className="event-cards">
       <div className="event-cards__container">
@@ -25,8 +27,8 @@ const EventCards = () => {
           ))}
         </div>
         <div className="event-cards__list">
-          {eventCardsData.map((item) => (
-            <EventCard key={item.id} />
+          {eventCardsData.map((item, id) => (
+            <EventCard route={'event'} id={id + 1} key={item.id} eventData={item}/>
           ))}
         </div>
         <Button primaryOutlined={true} additionalClass="event-cards__button">
