@@ -1,5 +1,5 @@
 import "./App.css";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import SeatProvider from "./constext/SeatProvider";
 import PersonalAccount from "./components/PersonalAccount/PersonalAccount";
@@ -14,18 +14,61 @@ import PasswordRecovery from "./components/Main/PasswordRecovery/PasswordRecover
 import CheckEmail from "./components/Main/CheckEmail/CheckEmail";
 import ConfirmEmail from "./components/Main/ConfirmEmail/ConfirmEmail";
 import PopupProvider from "./constext/PopupProvider";
-import EventsProvider from "./constext/EventsProvider";
 import OrderForm from "./components/OrderForm/OrderForm";
+import * as EventApi from './utils/currentEventApi';
+import * as currentUserApi from './utils/currentUserApi'
+import eventsJson from './components/ChoiseThePlace/events.json'
+import { EventsContext } from "./constext/EventsContext";
+import { CurrentUserContext } from "./constext/CurrentUserContext";
+import testData from './components/PersonalAccount/MyData/testData.json'
 
 function App() {
   const [isActivePopupCity, setIsActivePopupCity] = React.useState(false);
   const [currentCity, setCurrentCity] = React.useState("Москва");
+  const [events, setEvents] = React.useState([]);
+  const [currentEvent, setCurrentEvent] = React.useState({});
+  // const { currentUser, handleSetUserInfo, isSuccess, isOpenNotific } = useUserContext();
+  const [currentUser, setCurrentUser] = useState({});
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+
+  useEffect(() => {
+    currentUserApi.getCurrentUser(1).then(currentUser => {
+      if(currentUser) {
+        // заглушка
+        setCurrentUser(currentUser);
+      } else {
+        setCurrentUser(testData);
+      }
+    }).catch(err => console.log(err))
+
+    EventApi.getAllEvents().then((events => {
+      if( events) {
+        setEvents(() => events)
+      } else {
+        setEvents(() => eventsJson)
+      }
+    })).catch(err => console.log(err))
+
+  },[])
+
 
   return (
     <div className="App">
+      <EventsContext.Provider value={{
+        events,
+        setEvents,
+        currentEvent,
+        setCurrentEvent
+      }}>
+      <CurrentUserContext.Provider value={{
+        currentUser,
+        setCurrentUser,
+        isLoggedIn,
+        setIsLoggedIn
+      }} >
       <CurrentUserProvider>
         <PopupProvider>
-          <EventsProvider>
+          {/* <EventsProvider> */}
             <SeatProvider>
               <Routes>
                 <Route
@@ -39,14 +82,24 @@ function App() {
                     />
                   }
                 ></Route>
-                <Route path={`/event/*`} element={<EventPage />}></Route>
-                <Route path="/order" element={<OrderForm />}></Route>
+                <Route path={`/event/:id`} element={
+                  <EventPage 
+                    currentCity={currentCity}
+                    isActivePopupCity={isActivePopupCity}
+                    setIsActivePopupCity={setIsActivePopupCity}
+                  />}
+                />
+                <Route path="/order" element={<OrderForm />}/>
 
                 <Route
                   path="/personal-account"
                   element={
                     <CurrentUserProvider>
-                      <PersonalAccount />
+                      <PersonalAccount
+                        currentCity={currentCity}
+                        isActivePopupCity={isActivePopupCity}
+                        setIsActivePopupCity={setIsActivePopupCity}
+                      />
                     </CurrentUserProvider>
                   }
                 >
@@ -66,9 +119,11 @@ function App() {
               <CheckEmail />
               <ConfirmEmail />
             </SeatProvider>
-          </EventsProvider>
+          {/* </EventsProvider> */}
         </PopupProvider>
       </CurrentUserProvider>
+      </CurrentUserContext.Provider>
+      </EventsContext.Provider>
     </div>
   );
 }
