@@ -1,10 +1,11 @@
 import React from "react";
 import { getCitiesById } from "../../utils/getCitiesApi";
 
-const CityList = ({ data, setCurrentCity }) => {
+const CityList = ({ data, setCurrentCity, setIsActive }) => {
   const onClickCity = async (id) => {
     const city = await getCitiesById(id);
     setCurrentCity(city.name);
+    setIsActive(false);
   };
   return (
     <ul className="city-list">

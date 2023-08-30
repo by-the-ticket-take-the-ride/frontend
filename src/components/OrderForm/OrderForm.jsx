@@ -2,11 +2,31 @@ import React from "react";
 import Button from "../Buttons/Button/Button";
 import { useFormWithValidation } from "../../utils/useFormWithValidation";
 import tick from '../../assets/images/tick.svg';
+import Header from "../Header/Header";
+import Footer from "../Footer/Footer";
+import useSeatContext from "../../hooks/useSeatContext";
+import { useNavigate } from "react-router-dom";
 
 function OrderForm() {
   const { values, errors, isValid, handleChange } = useFormWithValidation();
+  const [isActivePopupCity, setIsActivePopupCity] = React.useState(false);
+  const [isHiddenLocation, setIsHiddenLocation] = React.useState(false);
+  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+  const {totalOrder} = useSeatContext()
+  const navigate = useNavigate()
+  console.log(totalOrder);
+  const handleClick = () => {
+    navigate('/', {replace: true})
+  }
   
   return (
+
+    <>
+    <Header
+        isLoggedIn={isLoggedIn}
+        isActivePopupCity={isActivePopupCity}
+        setIsActivePopupCity={setIsActivePopupCity}
+      />
     <div className="order-form">
       <h2 className="order-form__title">Оформление заказа</h2>
       <div className="order-form__details">
@@ -93,20 +113,21 @@ function OrderForm() {
           <h3 className="details__title">Данные заказа</h3>
           <p className="order-details__name">Zivert</p>
           <div className="order-details__tickets-info">
-            <p className="order-details__tickets-info-result">4 билета на сумму</p>
-            <p className="order-details__tickets-info-result-price">6 000 &#8381;</p>
+            <p className="order-details__tickets-info-result">{totalOrder?.tickets?.length} билета на сумму</p>
+            <p className="order-details__tickets-info-result-price">{totalOrder?.totalSum - 100} &#8381;</p>
             <p className="order-details__tickets-info-result">Сервисный сбор</p>
             <p className="order-details__tickets-info-result-price">100 &#8381;</p>
           </div>
           <div className="order-details__order-sum">
             <p className="order-details__order-price">Сумма заказа</p>
-            <p className="order-details__order-price">6 100 &#8381;</p>
+            <p className="order-details__order-price">{totalOrder?.totalSum} &#8381;</p>
           </div>
           <Button
             gradient={isValid}
             disabled={!isValid}
             type="submit"
             additionalClass="order-details__btn"
+            onClick={handleClick}
           >
             <p className="order-details__buy-btn">Оплатить</p>
           </Button>
@@ -114,6 +135,8 @@ function OrderForm() {
         </div>
       </div>
     </div>
+    <Footer/>
+    </>
   )
 }
 

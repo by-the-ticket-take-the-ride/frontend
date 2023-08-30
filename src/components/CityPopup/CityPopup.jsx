@@ -4,7 +4,7 @@ import Button from "../Buttons/Button/Button";
 import CityList from "../CityList/CityList";
 import { getCities } from "../../utils/getCitiesApi";
 
-const CityPopup = ({ isActive, onClose, setCurrentCity }) => {
+const CityPopup = ({ isActive, onClose, setCurrentCity, setIsActive }) => {
   const [data, setData] = React.useState([]);
   const cities = JSON.parse(localStorage.getItem("cityDatas"));
 
@@ -34,7 +34,11 @@ const CityPopup = ({ isActive, onClose, setCurrentCity }) => {
           </div>
           <CitySearch data={cities} setData={setData} />
         </div>
-        <CityList data={data} setCurrentCity={setCurrentCity} />
+        <CityList
+          data={data}
+          setCurrentCity={setCurrentCity}
+          setIsActive={setIsActive}
+        />
       </div>
     </div>
   );

@@ -7,16 +7,17 @@ function CurrentUserProvider({ children }) {
   const [currentUser, setCurrentUser] = useState({});
   const [isSuccess, setIsSuccess] = useState(false);
   const [isOpenNotific, setIsOpenNotific] = useState(false)
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
 
-  useEffect(() => {
-    currentUserApi
-      .getCurrentUser()
-      .then((currentUser) => {
-        /* когда будет настроен запрос на сервер */
-        // setCurrentUser(currentUser)
-        setCurrentUser(testData);
-      }).catch(err => console.log(err))
-  },[])
+  // useEffect(() => {
+  //   currentUserApi
+  //     .getCurrentUser(1)
+  //     .then((currentUser) => {
+  //       /* когда будет настроен запрос на сервер */
+  //       // setCurrentUser(currentUser)
+  //       setCurrentUser(testData);
+  //     }).catch(err => console.log(err))
+  // },[])
 
 const handleSetUserInfo = (userData) => {
   setIsOpenNotific(false)
@@ -42,7 +43,9 @@ const handleSetUserInfo = (userData) => {
       currentUser,
       handleSetUserInfo,
       isSuccess,
-      isOpenNotific
+      isOpenNotific,
+      setIsLoggedIn,
+      isLoggedIn
     }}>
       {children}
     </CurrentUserContext.Provider>

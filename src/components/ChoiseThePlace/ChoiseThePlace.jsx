@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import Button from '../Buttons/Button/Button';
 import ButtonCross from '../Buttons/ButtonCross/ButtonCross';
 import PlaceIcon from '../Icons/PlaceIcon';
@@ -9,18 +9,18 @@ import SeatIcon from '../Icons/hall-layout/SeatIcon';
 import SeatIconDisabled from '../Icons/hall-layout/SeatIconDisabled';
 import './ChoiseThePlace.css'
 import useSeatContext from '../../hooks/useSeatContext';
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { EventsContext } from '../../constext/EventsContext';
+import * as supportFunction from '../../utils/supportFunction'
 
 
 
-function ChoiseThePlace({ isOpen = false, setIsOpen }) {
+function ChoiseThePlace() {
 
-  const { event, eventZone, tickets, setTotalOrder } = useSeatContext();
-
+  const { eventForChoisePlace, eventZone, tickets, setTotalOrder, isOpenPopap,setIsOpenPopap } = useSeatContext();
   const [paymentData, setPaymentData] = useState([]);
   const [counterPrice, setCounterPrice] = useState(0);
-  // const [listTicket, setListTicket] = useState([]);
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const handleСhoicePlace = (numSeat, numRow, nameZone, numPrice ) => {
     if (isPaid(numSeat, numRow, nameZone)) {
@@ -160,34 +160,34 @@ function ChoiseThePlace({ isOpen = false, setIsOpen }) {
   const handleOrder = () => {
     if (counterPrice > 0) {
       setTotalOrder({
-        totalSum: counterPrice,
+        totalSum: counterPrice + 100,
         tickets: paymentData
       })
-      // Указать роут
-      // navigate('/')
+      navigate('/order')
     }
   }
 
-  const handleRedirect = () => {
+  const handleClose = () => {
     // Для закрытия
     // setIsOpen(isOpen)
+    setIsOpenPopap(!isOpenPopap)
   }
 
   return ( 
-    <div className={`choise-the-place ${isOpen ?  'choise-the-place_visible' : ''}`}>
+    <div className={`choise-the-place ${isOpenPopap ?  'choise-the-place_visible' : ''}`}>
       <div className='choise-the-place__container'>
 
-        <ButtonCross onClick={handleRedirect} black={true} additionalClass={'choise-the-place__close-button'}/>
+        <ButtonCross onClick={handleClose} black={true} additionalClass={'choise-the-place__close-button'}/>
         <h1 className="choise-the-place__title">Выбор места</h1>
         <div className='event-info'>
-          <h2 className='event-info__title'>{event?.name}</h2>
+          <h2 className='event-info__title'>{eventForChoisePlace?.name}</h2>
           <div className='event-info__info-column'>
             <PlaceIcon />
-            <span className='event-info__text'>{event?.place?.city?.name}, {event?.place?.name}</span>
+            <span className='event-info__text'>{eventForChoisePlace?.place?.city?.name}, {eventForChoisePlace?.place?.name}</span>
           </div>
           <div className='event-info__info-column'>
             <TimeIcon />
-            <span className='event-info__text'>{event?.date_event} {event?.time_event}</span>
+            <span className='event-info__text'>{supportFunction.renderDate(eventForChoisePlace?.date_event)}, {supportFunction.renderTime(eventForChoisePlace?.time_event)}</span>
           </div>
         </div>
 

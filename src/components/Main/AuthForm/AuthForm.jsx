@@ -246,9 +246,9 @@ function AuthForm(props) {
       ))}
 
       {forgetPassword && 
-        <a href="#" className="auth-bottom__forgive-password text-reset link-hover">
+        <span onClick={props.handleClickPasswordRecovery} className="auth-bottom__forgive-password text-reset link-hover">
           Забыли пароль?
-        </a>
+        </span>
       }
 
       <button 
