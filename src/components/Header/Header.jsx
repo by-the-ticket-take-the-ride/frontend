@@ -16,7 +16,7 @@ const Header = ({ isActivePopupCity, setIsActivePopupCity, currentCity }) => {
   const { isOpenPopupLogin, setIsOpenPopupLogin } = usePopupContext();
   const { isLoggedIn, setIsLoggedIn } = useContext(CurrentUserContext);
   const navigate = useNavigate();
- 
+
   const handleClick = () => {
     setIsOpenPopupLogin(!isOpenPopupLogin);
     setIsLoggedIn(true);
@@ -24,7 +24,7 @@ const Header = ({ isActivePopupCity, setIsActivePopupCity, currentCity }) => {
   const handleHavigate = () => {
     navigate("/personal-account/favourites");
   };
-  
+
   return (
     <div className="header">
       <div className="header__box">

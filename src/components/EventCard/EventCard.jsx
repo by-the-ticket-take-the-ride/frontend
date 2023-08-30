@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import ButtonLike from "../Buttons/ButtonLike/ButtonLike";
-import * as supportFunction from '../../utils/supportFunction'
+import * as supportFunction from "../../utils/supportFunction";
 
-function EventCard({ eventData  }) {
+function EventCard({ eventData }) {
   const [isActive, setIsActive] = useState(false);
   const { name, image, time_event, date_event, place, id } = eventData;
 
@@ -21,7 +21,10 @@ function EventCard({ eventData  }) {
           <div className="event-card__info-columns">
             <div className="event-card__info-column">
               <i className="event-card__icon event-card__icon_time"></i>
-              <span className="event-card__text">{supportFunction.renderDate(date_event)}, {supportFunction.renderTime(time_event)}</span>
+              <span className="event-card__text">
+                {supportFunction.renderDate(date_event)},{" "}
+                {supportFunction.renderTime(time_event)}
+              </span>
             </div>
             <div className="event-card__info-column">
               <i className="event-card__icon event-card__icon_place"></i>
@@ -30,11 +33,11 @@ function EventCard({ eventData  }) {
           </div>
         </div>
       </Link>
-        <ButtonLike
-          extraClass="event-card__button-like"
-          handleLike={handleLike}
-          isActive={isActive}
-        />
+      <ButtonLike
+        extraClass="event-card__button-like"
+        handleLike={handleLike}
+        isActive={isActive}
+      />
     </article>
   );
 }

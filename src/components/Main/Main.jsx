@@ -7,8 +7,7 @@ import EventCards from "../EventCards/EventCards";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import LocationModal from "../LocationModal/LocationModal";
-import eventTestData from '../../assets/test-data/eventTestData.json';
-
+import eventTestData from "../../assets/test-data/eventTestData.json";
 
 function Main({ currentCity, isActivePopupCity, setIsActivePopupCity }) {
   const [selectedDateEvents, setSelectedDateEvents] = React.useState([]);
@@ -17,8 +16,6 @@ function Main({ currentCity, isActivePopupCity, setIsActivePopupCity }) {
   const handleSelectedDateChange = (events) => {
     setSelectedDateEvents(events);
   };
-
-
 
   return (
     <main>
@@ -31,7 +28,7 @@ function Main({ currentCity, isActivePopupCity, setIsActivePopupCity }) {
       <Calendar handleSelectedDateChange={handleSelectedDateChange} />
       {/* <EventsCardList /> */}
       {/* стили в app.css */}
-      <MainFrame eventData={eventTestData}/>
+      <MainFrame eventData={eventTestData} />
       <EventCards />
       <Footer />
       <LocationModal

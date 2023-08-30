@@ -29,7 +29,7 @@ const EventCards = () => {
         </div>
         <div className="event-cards__list">
           {events.map((item, id) => (
-            <EventCard id={id + 1} key={item.id} eventData={item}/>
+            <EventCard id={id + 1} key={item.id} eventData={item} />
           ))}
         </div>
         <Button primaryOutlined={true} additionalClass="event-cards__button">

@@ -57,12 +57,19 @@ function SeatProvider({ children }) {
       totalOrder,
       setTotalOrder,
       eventZone,
+<<<<<<< HEAD
       eventForChoisePlace,
       setEventForChoisePlace,
       tickets,
       isOpenPopap,
       setIsOpenPopap,
       handleGetCurrentEvent
+=======
+      event,
+      tickets,
+      isOpenPopap,
+      setIsOpenPopap
+>>>>>>> feat/popup-payment-success
     }} >
       {children}
     </SeatContext.Provider>
