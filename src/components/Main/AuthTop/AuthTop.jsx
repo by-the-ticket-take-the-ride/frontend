@@ -2,7 +2,7 @@ import "./AuthTop.css";
 
 function AuthTop(props) {
   let headerText;
-  let marginBottom;
+  let marginBottom = '';
   let subText;
   if (props.type === 'register') {
     headerText = 'Регистрация';
