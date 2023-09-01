@@ -11,6 +11,7 @@ function SeatProvider({ children }) {
   const [eventForChoisePlace, setEventForChoisePlace] = useState({});
   const [tickets, setTickets] = useState([]);
   const [isOpenPopap, setIsOpenPopap] = useState(false);
+  const [paymentData, setPaymentData] = useState([]);
 
   useLayoutEffect(() => {
     // EventApi
@@ -29,6 +30,8 @@ function SeatProvider({ children }) {
     EventApi.getTickets().then((tickets) => {
       if (tickets) {
         setTickets(tickets);
+        // для теста
+        // setTickets(ticketsJson);
       } else {
         setTickets(ticketsJson);
       }
@@ -61,6 +64,8 @@ function SeatProvider({ children }) {
         isOpenPopap,
         setIsOpenPopap,
         handleGetCurrentEvent,
+        paymentData,
+        setPaymentData
       }}
     >
       {children}
