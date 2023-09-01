@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import Button from "../Buttons/Button/Button";
 import ButtonCross from "../Buttons/ButtonCross/ButtonCross";
 import PlaceIcon from "../Icons/PlaceIcon";
@@ -10,7 +10,6 @@ import SeatIconDisabled from "../Icons/hall-layout/SeatIconDisabled";
 import "./ChoiseThePlace.css";
 import useSeatContext from "../../hooks/useSeatContext";
 import { useNavigate } from "react-router-dom";
-import { EventsContext } from "../../constext/EventsContext";
 import * as supportFunction from "../../utils/supportFunction";
 
 function ChoiseThePlace() {
@@ -21,13 +20,13 @@ function ChoiseThePlace() {
     setTotalOrder,
     isOpenPopap,
     setIsOpenPopap,
+    paymentData,
+    setPaymentData
   } = useSeatContext();
-  const [paymentData, setPaymentData] = useState([]);
   const [counterPrice, setCounterPrice] = useState(0);
-  // const [listTicket, setListTicket] = useState([]);
   const navigate = useNavigate();
 
-  const handleСhoicePlace = (numSeat, numRow, nameZone, numPrice) => {
+  const handleСhoicePlace = (numSeat, numRow, nameZone, numPrice , idSeat) => {
     if (isPaid(numSeat, numRow, nameZone)) {
       return;
     } else {
@@ -35,7 +34,7 @@ function ChoiseThePlace() {
       setPaymentData((el, id) => {
         return [
           ...paymentData,
-          { seat: numSeat, row: numRow, zone: nameZone, price: numPrice },
+          { seat: numSeat, row: numRow, zone: nameZone, price: numPrice , id: idSeat},
         ];
       });
     }
@@ -73,7 +72,7 @@ function ChoiseThePlace() {
     }
   };
 
-  function renderColorSeat(zoneId, seat, row, zone, price) {
+  function renderColorSeat(zoneId, seat, row, zone, price , id) {
     switch (zoneId) {
       case 1:
         return (
@@ -85,6 +84,7 @@ function ChoiseThePlace() {
             handleDel={handleDel}
             handleСhoicePlace={handleСhoicePlace}
             blue={true}
+            id={id}
           />
         );
       case 2:
@@ -97,6 +97,7 @@ function ChoiseThePlace() {
             handleDel={handleDel}
             handleСhoicePlace={handleСhoicePlace}
             violet={true}
+            id={id}
           />
         );
       case 3:
@@ -109,16 +110,17 @@ function ChoiseThePlace() {
             handleDel={handleDel}
             handleСhoicePlace={handleСhoicePlace}
             red={true}
+            id={id}
           />
         );
       default:
         return <SeatIcon handleDel={handleDel} blue={true} />;
     }
   }
-  function renderValueSeat(seatValue, zoneId, seat, row, zone, price) {
+  function renderValueSeat(seatValue, zoneId, seat, row, zone, price, id) {
     switch (seatValue) {
       case false:
-        return renderColorSeat(zoneId, seat, row, zone, price);
+        return renderColorSeat(zoneId, seat, row, zone, price, id);
       case true:
         return <SeatIconDisabled />;
       default:
@@ -134,6 +136,7 @@ function ChoiseThePlace() {
         ticket.zone_hall.name === nameZone
       );
     });
+    console.log(tickets);
   }
 
   const declination = (numTicket, text, cases) => {
@@ -179,8 +182,7 @@ function ChoiseThePlace() {
   };
 
   const handleClose = () => {
-    // Для закрытия
-    // setIsOpen(isOpen)
+    setPaymentData([])
     setIsOpenPopap(!isOpenPopap);
   };
 
@@ -230,13 +232,10 @@ function ChoiseThePlace() {
                           <div className="location__column">
                             {Array.from(
                               Array(Math.floor(zone.seat / zone.row / 2)).keys()
-                            ).map((seat, i) => (
+                            ).map((seat, id) => (
                               <span
-                                key={i}
+                                key={id}
                                 className="location__seat"
-                                onClick={() => {
-                                  // setListTicket([...listTicket, { numSeat: seat + 1, numRow: row + 1, nameZone: zone.name}])
-                                }}
                               >
                                 {renderValueSeat(
                                   isPaid(seat + 1, row + 1, zone.name),
@@ -244,7 +243,8 @@ function ChoiseThePlace() {
                                   seat + 1,
                                   row + 1,
                                   zone.name,
-                                  zone.price
+                                  zone.price,
+                                  id + 1
                                 )}
                               </span>
                             ))}
@@ -252,12 +252,11 @@ function ChoiseThePlace() {
                           <div className="location__column">
                             {Array.from(
                               Array(Math.floor(zone.seat / zone.row / 2)).keys()
-                            ).map((seat, i) => {
+                            ).map((seat, id) => {
                               return (
                                 <span
-                                  key={i}
+                                  key={id}
                                   className="location__seat"
-                                  onClick={() => {}}
                                 >
                                   {renderValueSeat(
                                     isPaid(
@@ -273,7 +272,8 @@ function ChoiseThePlace() {
                                       Math.floor(zone.seat / zone.row) / 2,
                                     row + 1,
                                     zone.name,
-                                    zone.price
+                                    zone.price,
+                                    id + 1
                                   )}
                                 </span>
                               );
@@ -301,7 +301,7 @@ function ChoiseThePlace() {
             </div>
           </div>
 
-          <div className="counter choise-the-place__counter">
+          {paymentData.length > 0 && <div className="counter choise-the-place__counter">
             <h3 className="counter__title">Билеты</h3>
             <div className="counter__amount-list">
               {paymentData.map((payData, id) => {
@@ -364,7 +364,7 @@ function ChoiseThePlace() {
               onClick={handleOrder}
               disabled={paymentData.length === 0 ? true : false}
             />
-          </div>
+          </div>}
         </section>
       </div>
     </div>

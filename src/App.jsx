@@ -27,7 +27,6 @@ function App() {
   const [currentCity, setCurrentCity] = React.useState("Москва");
   const [events, setEvents] = React.useState([]);
   const [currentEvent, setCurrentEvent] = React.useState({});
-  // const { currentUser, handleSetUserInfo, isSuccess, isOpenNotific } = useUserContext();
   const [currentUser, setCurrentUser] = useState({});
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
