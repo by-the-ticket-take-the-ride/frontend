@@ -31,17 +31,18 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
-    currentUserApi
-      .getCurrentUser(1)
-      .then((currentUser) => {
-        if (currentUser) {
-          // заглушка
-          setCurrentUser(currentUser);
-        } else {
-          setCurrentUser(testData);
-        }
-      })
-      .catch((err) => console.log(err));
+    // currentUserApi
+    //   .getCurrentUser(1)
+    //   .then((currentUser) => {
+    //     if (currentUser) {
+    //       // заглушка
+    //       setCurrentUser(currentUser);
+    //     } else {
+    //       console.log(testData);
+    //       setCurrentUser(testData);
+    //     }
+    //   })
+    //   .catch((err) => console.log(err));
 
     EventApi.getAllEvents()
       .then((events) => {
@@ -53,6 +54,8 @@ function App() {
       })
       .catch((err) => console.log(err));
   }, []);
+
+  
 
   return (
     <div className="App">
@@ -66,8 +69,8 @@ function App() {
       >
         <CurrentUserContext.Provider
           value={{
-            currentUser,
-            setCurrentUser,
+            // currentUser,
+            // setCurrentUser,
             isLoggedIn,
             setIsLoggedIn,
           }}
@@ -103,13 +106,11 @@ function App() {
                   <Route
                     path="/personal-account"
                     element={
-                      <CurrentUserProvider>
                         <PersonalAccount
                           currentCity={currentCity}
                           isActivePopupCity={isActivePopupCity}
                           setIsActivePopupCity={setIsActivePopupCity}
                         />
-                      </CurrentUserProvider>
                     }
                   >
                     <Route path="favourites" element={<></>} />
