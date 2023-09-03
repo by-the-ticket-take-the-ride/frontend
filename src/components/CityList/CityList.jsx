@@ -6,11 +6,14 @@ const CityList = ({ data, setCurrentCity, setIsActive }) => {
     const city = await getCitiesById(id);
     setCurrentCity(city.name);
     setIsActive(false);
+    localStorage.setItem("currentCity", city.name);
+    localStorage.setItem("isCityDefinedCorrectly", true);
   };
+
   return (
     <ul className="city-list">
-      {data.length ? (
-        data.map((item) => (
+      {data.cities.length ? (
+        data.cities.map((item) => (
           <li key={item.id}>
             <span
               className="city-list__city"

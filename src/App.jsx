@@ -29,6 +29,7 @@ function App() {
   const [currentEvent, setCurrentEvent] = React.useState({});
   const [currentUser, setCurrentUser] = useState({});
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isHiddenLocation, setIsHiddenLocation] = React.useState(false);
 
   useEffect(() => {
     // currentUserApi
@@ -54,8 +55,6 @@ function App() {
       })
       .catch((err) => console.log(err));
   }, []);
-
-  
 
   return (
     <div className="App">
@@ -88,6 +87,9 @@ function App() {
                         currentCity={currentCity}
                         isActivePopupCity={isActivePopupCity}
                         setIsActivePopupCity={setIsActivePopupCity}
+                        isHiddenLocation={isHiddenLocation}
+                        setIsHiddenLocation={setIsHiddenLocation}
+                        setCurrentCity={setCurrentCity}
                       />
                     }
                   ></Route>
@@ -106,11 +108,11 @@ function App() {
                   <Route
                     path="/personal-account"
                     element={
-                        <PersonalAccount
-                          currentCity={currentCity}
-                          isActivePopupCity={isActivePopupCity}
-                          setIsActivePopupCity={setIsActivePopupCity}
-                        />
+                      <PersonalAccount
+                        currentCity={currentCity}
+                        isActivePopupCity={isActivePopupCity}
+                        setIsActivePopupCity={setIsActivePopupCity}
+                      />
                     }
                   >
                     <Route path="favourites" element={<></>} />

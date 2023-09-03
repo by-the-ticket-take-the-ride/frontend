@@ -21,7 +21,7 @@
 }
 
 .city-popup__body {
-  padding: 50px 50px 29px 50px;
+  padding: 50px 0 29px;
   max-width: 500px;
   overflow: hidden;
   border-radius: 10px;
@@ -36,6 +36,7 @@
 
 .city-popup__header {
   margin-bottom: 41px;
+  padding: 0 50px;
 }
 
 .city-popup__row {
@@ -60,4 +61,28 @@
   height: 26px;
   background: url('../../assets/images/close.svg') no-repeat center/cover;
   padding: 0;
+}
+
+.city-popup__block {
+  overflow: auto;
+  max-height: 370px;
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+}
+
+.city-popup__column {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+}
+
+.city-popup__column-title {
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 900;
+  line-height: 22px;
+  margin: 0 50px;
 }

@@ -9,9 +9,16 @@ import Footer from "../Footer/Footer";
 import LocationModal from "../LocationModal/LocationModal";
 import eventTestData from "../../assets/test-data/eventTestData.json";
 
-function Main({ currentCity, isActivePopupCity, setIsActivePopupCity }) {
+function Main({
+  currentCity,
+  isActivePopupCity,
+  setIsActivePopupCity,
+  isHiddenLocation,
+  setIsHiddenLocation,
+  setCurrentCity,
+}) {
   const [selectedDateEvents, setSelectedDateEvents] = React.useState([]);
-  const [isHiddenLocation, setIsHiddenLocation] = React.useState(false);
+  const currentCityStorage = localStorage.getItem("currentCity");
 
   const handleSelectedDateChange = (events) => {
     setSelectedDateEvents(events);
@@ -24,7 +31,9 @@ function Main({ currentCity, isActivePopupCity, setIsActivePopupCity }) {
         setIsActivePopupCity={setIsActivePopupCity}
         currentCity={currentCity}
       />
-      <h1 className="title">Афиша {currentCity}</h1>
+      <h1 className="title">
+        Афиша {currentCityStorage ? currentCityStorage : currentCity}
+      </h1>
       <Calendar handleSelectedDateChange={handleSelectedDateChange} />
       {/* <EventsCardList /> */}
       {/* стили в app.css */}
@@ -35,6 +44,7 @@ function Main({ currentCity, isActivePopupCity, setIsActivePopupCity }) {
         onClickOtherButton={setIsActivePopupCity}
         onClickButton={setIsHiddenLocation}
         isHidden={isHiddenLocation}
+        setCurrentCity={setCurrentCity}
       />
     </main>
   );

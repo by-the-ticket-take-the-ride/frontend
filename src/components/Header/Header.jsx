@@ -14,6 +14,7 @@ import { CurrentUserContext } from "../../constext/CurrentUserContext";
 
 const Header = ({ isActivePopupCity, setIsActivePopupCity, currentCity }) => {
   const { isOpenPopupLogin, setIsOpenPopupLogin } = usePopupContext();
+  const currentCityStorage = localStorage.getItem("currentCity");
   const { isLoggedIn, setIsLoggedIn } = useContext(CurrentUserContext);
   const navigate = useNavigate();
 
@@ -34,7 +35,7 @@ const Header = ({ isActivePopupCity, setIsActivePopupCity, currentCity }) => {
           onClick={() => setIsActivePopupCity(!isActivePopupCity)}
           className="header__box-location"
         >
-          г. {currentCity}
+          г. {currentCityStorage ? currentCityStorage : currentCity}
         </p>
         <div className="header__box-input">
           <input
