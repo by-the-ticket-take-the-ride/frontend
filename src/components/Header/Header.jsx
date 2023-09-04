@@ -8,7 +8,7 @@ import CategoryButton from "./CategoryButton";
 import { category } from "./Header.data.js";
 import Button from "../Buttons/Button/Button";
 import usePopupContext from "../../hooks/usePopupContext";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { CurrentUserContext } from "../../constext/CurrentUserContext";
 
@@ -29,8 +29,14 @@ const Header = ({ isActivePopupCity, setIsActivePopupCity, currentCity }) => {
   return (
     <div className="header">
       <div className="header__box">
-        <img src={headerLogo} alt="Лого проекта" className="header__box-logo" />
-        <p className="header__box-title">TICKETERA</p>
+        <Link to="/" className="logo">
+          <img
+            src={headerLogo}
+            alt="Лого проекта"
+            className="header__box-logo"
+          />
+          <p className="header__box-title">TICKETERA</p>
+        </Link>
         <p
           onClick={() => setIsActivePopupCity(!isActivePopupCity)}
           className="header__box-location"
