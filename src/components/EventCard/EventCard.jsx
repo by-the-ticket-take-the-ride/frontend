@@ -1,18 +1,15 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import { eventCardsData } from "./test-data/eventCardsData";
 import ButtonLike from "../Buttons/ButtonLike/ButtonLike";
-import useEventsContext from "../../hooks/useEventsContext";
+import * as supportFunction from "../../utils/supportFunction";
 
-function EventCard({ route, id, eventData  }) {
+function EventCard({ eventData }) {
   const [isActive, setIsActive] = useState(false);
-  const { name, image, date, location } = eventData;
-
+  const { name, image, time_event, date_event, place, id } = eventData;
 
   const handleLike = () => {
     setIsActive(!isActive);
   };
-
   return (
     <article className="event-card">
       <Link to={`/event/${id}`}>
@@ -24,20 +21,23 @@ function EventCard({ route, id, eventData  }) {
           <div className="event-card__info-columns">
             <div className="event-card__info-column">
               <i className="event-card__icon event-card__icon_time"></i>
-              <span className="event-card__text">{date}</span>
+              <span className="event-card__text">
+                {supportFunction.renderDate(date_event)},{" "}
+                {supportFunction.renderTime(time_event)}
+              </span>
             </div>
             <div className="event-card__info-column">
               <i className="event-card__icon event-card__icon_place"></i>
-              <span className="event-card__text">{location}</span>
+              <span className="event-card__text">{place.name}</span>
             </div>
           </div>
         </div>
       </Link>
-        <ButtonLike
-          extraClass="event-card__button-like"
-          handleLike={handleLike}
-          isActive={isActive}
-        />
+      <ButtonLike
+        extraClass="event-card__button-like"
+        handleLike={handleLike}
+        isActive={isActive}
+      />
     </article>
   );
 }

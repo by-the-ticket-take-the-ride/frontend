@@ -5,9 +5,9 @@ export const tabData = [
   {
     link: '/personal-account/favourites',
     text: 'Избранное',
-    svg: HeartIcon 
+    svg: HeartIcon
   },
-   {
+  {
     link: '/personal-account/my-data',
     text: 'Мои данные',
     svg: PersonIcon

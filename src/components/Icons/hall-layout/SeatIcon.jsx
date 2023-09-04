@@ -1,5 +1,6 @@
 import { useState } from "react";
 import './SeatIcon.css'
+import useSeatContext from "../../../hooks/useSeatContext";
 
 function SeatIcon({
   blue,
@@ -7,12 +8,16 @@ function SeatIcon({
   red,
   grey,
   handleDel,
-  seat, row, zone,
+  seat, 
+  row, 
+  zone,
   price,
-  handleСhoicePlace
+  handleСhoicePlace,
+  id
 }) {
 
   const [isActive, setIsActive] = useState(false);
+  const { paymentData } = useSeatContext();
 
   const colors = [
     blue ? '#2BA6FF' : null,
@@ -27,9 +32,16 @@ function SeatIcon({
     if (isActive) {
       handleDel(seat, row, zone, price)
     } else if(!isActive) {
-      handleСhoicePlace(seat, row, zone, price)
+      handleСhoicePlace(seat, row, zone, price, id)
     }
   }
+
+  function handleIsActive () {
+    return paymentData.some((ticket) => {
+      return seat === ticket.seat && row === ticket.row && zone === ticket.zone
+    })
+  }
+
   return ( 
     <svg 
       width="21.6" 
@@ -40,7 +52,7 @@ function SeatIcon({
       onClick={handleClick}
       className="seat-icon"
     >
-      {isActive ? 
+      {handleIsActive() ? 
       <path 
         d="M2.90137 7.63916L10.4014 15.6392L20.4014 2.63916"
         stroke={color}

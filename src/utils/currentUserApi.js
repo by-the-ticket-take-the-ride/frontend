@@ -17,12 +17,12 @@ export const getCurrentUser = (id) => {
     headers: {
       'Content-Type': 'application/json'
     }
-  }).then( res => {
+  }).then(res => {
     return res.ok ? res.json() : Promise.reject(res.status)
   })
-  .catch(err => {
-    console.log(err);
-  })
+    .catch(err => {
+      console.log(err);
+    })
 }
 
 /**
@@ -45,10 +45,10 @@ export const setUserInfo = (userData, id) => {
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify( userData )
+    body: JSON.stringify(userData)
   })
-  .then( res => {
-    return res.ok ? res.json() : Promise.reject(res.status)
-  })
+    .then(res => {
+      return res.ok ? res.json() : Promise.reject(res.status)
+    })
 }
 

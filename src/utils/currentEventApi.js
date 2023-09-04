@@ -6,12 +6,12 @@ export const getAllEvents = () => {
     headers: {
       'Content-Type': 'application/json'
     }
-  }).then( res => {
+  }).then(res => {
     return res.ok ? res.json() : Promise.reject(res.status)
   })
-  .catch(err => {
-    console.log(err);
-  })
+    .catch(err => {
+      console.log(err);
+    })
 }
 
 export const getCurrentEvent = (id) => {
@@ -20,12 +20,12 @@ export const getCurrentEvent = (id) => {
     headers: {
       'Content-Type': 'application/json'
     }
-  }).then( res => {
+  }).then(res => {
     return res.ok ? res.json() : Promise.reject(res.status)
   })
-  .catch(err => {
-    console.log(err);
-  })
+    .catch(err => {
+      console.log(err);
+    })
 }
 export const getTickets = () => {
   return fetch(`${MAIN_API_URL}/tickets`, {
@@ -33,10 +33,10 @@ export const getTickets = () => {
     headers: {
       'Content-Type': 'application/json'
     }
-  }).then( res => {
+  }).then(res => {
     return res.ok ? res.json() : Promise.reject(res.status)
   })
-  .catch(err => {
-    console.log(err);
-  })
+    .catch(err => {
+      console.log(err);
+    })
 }

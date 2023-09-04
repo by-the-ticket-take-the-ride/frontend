@@ -8,30 +8,40 @@ import CategoryButton from "./CategoryButton";
 import { category } from "./Header.data.js";
 import Button from "../Buttons/Button/Button";
 import usePopupContext from "../../hooks/usePopupContext";
-import useUserContext from "../../hooks/useUserContext";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { CurrentUserContext } from "../../constext/CurrentUserContext";
+
 const Header = ({ isActivePopupCity, setIsActivePopupCity, currentCity }) => {
   const { isOpenPopupLogin, setIsOpenPopupLogin } = usePopupContext();
-  const { isLoggedIn, setIsLoggedIn } = useUserContext();
+  const currentCityStorage = localStorage.getItem("currentCity");
+  const { isLoggedIn, setIsLoggedIn } = useContext(CurrentUserContext);
   const navigate = useNavigate();
-  // console.log(isOpenPopupRegister);
+
   const handleClick = () => {
     setIsOpenPopupLogin(!isOpenPopupLogin);
     setIsLoggedIn(true);
   };
   const handleHavigate = () => {
-    navigate("/personal-account");
+    navigate("/personal-account/favourites");
   };
+
   return (
     <div className="header">
       <div className="header__box">
-        <img src={headerLogo} alt="Лого проекта" className="header__box-logo" />
-        <p className="header__box-title">TICKETERA</p>
+        <Link to="/" className="logo">
+          <img
+            src={headerLogo}
+            alt="Лого проекта"
+            className="header__box-logo"
+          />
+          <p className="header__box-title">TICKETERA</p>
+        </Link>
         <p
           onClick={() => setIsActivePopupCity(!isActivePopupCity)}
           className="header__box-location"
         >
-          г. {currentCity}
+          г. {currentCityStorage ? currentCityStorage : currentCity}
         </p>
         <div className="header__box-input">
           <input

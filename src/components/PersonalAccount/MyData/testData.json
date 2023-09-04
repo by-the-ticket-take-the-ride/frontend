@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
   "surname": "Иванов",
   "name": "Иван",
@@ -5,4 +6,13 @@
   "city": "Москва",
   "telephone": "+7 (981) 333 - 22 - 11",
   "email": "IvanMail@yandex.ru"
+=======
+{
+  "surname": "Иванов",
+  "name": "Иван",
+  "date": "22.03.2000",
+  "city": "Москва",
+  "telephone": "79818423771",
+  "email": "IvanMail@yandex.ru"
+>>>>>>> develop
 }

@@ -127,10 +127,7 @@ function OrderForm() {
             disabled={!isValid}
             type="submit"
             additionalClass="order-details__btn"
-<<<<<<< HEAD
             onClick={handleClick}
-=======
->>>>>>> 51ad8dd82ab63bf1fda642e78b482e31edbf5232
           >
             <p className="order-details__buy-btn">Оплатить</p>
           </Button>

@@ -1,0 +1,37 @@
+{
+  "id": 3,
+  "type_event": {
+    "id": 1,
+    "name": "Концерт",
+    "slug": "concert"
+  },
+  "place": {
+    "id": 3,
+    "name": "Олимпийский комплекс «Лужники",
+    "address": "просп. Медиков, 3",
+    "city": {
+      "id": 740,
+      "name": "Москва"
+    },
+    "type": {
+      "id": 3,
+      "name": "Олимпийский комплекс «Лужники",
+      "zone": [
+        {
+          "id": 1,
+          "name": "Танцпол",
+          "row": 1,
+          "seat": 500,
+          "price": 1000
+        }
+      ],
+      "max_hall_capacity": 500
+    }
+  },
+  "name": "Zivert",
+  "description": "Классный концерт",
+  "date_event": "2023-05-10",
+  "time_event": "19:40:00",
+  "image": "https://sun9-71.userapi.com/impg/KgGTycbri-oKCD79VLLpxmtooFUO42LBl2U9Tg/4J4MXpdhYHg.jpg?size=1280x720&quality=96&sign=a568443207b0d9a6c1220fd325141c6a&c_uniq_tag=KmVGtL65TX3YyhNDK1h1SVVANP5AeeENfKg9E2epZgs&type=album",
+  "is_favorited": false
+}

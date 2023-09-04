@@ -1,21 +1,26 @@
 const validationConfig = {
-  name: {
-      pattern: /^([a-zA-Zа-яА-ЯёЁ-]{2,30})+[a-zA-Zа-яА-ЯёЁ -]*$/,
-      validationError: 'Имя должно быть от 2 до 30 символов, может содержать пробел или дефис',
-      emptyError: 'Заполните это поле.',
-  },
   surname: {
-      pattern: /^([a-zA-Zа-яА-ЯёЁ-]{2,30})+[a-zA-Zа-яА-ЯёЁ -]*$/,
-      validationError: 'Фамилия должно быть от 2 до 30 символов, может содержать пробел или дефис',
-      emptyError: 'Заполните это поле.',
+    pattern: /^[A-я-\\s]{2,25}$/,
+    validationError: 'Некорректная фамилия',
+    // emptyError: 'Заполните это поле.',
   },
-  email: {
-    /* eslint-disable */
-      pattern: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
-      /* eslint-enable */
-      validationError: 'Email введен некорректно',
-      emptyError: 'Заполните это поле.',
-  }
+  name: {
+    pattern: /^[A-я-\\s]{2,25}$/,
+    validationError: 'Некорректное имя',
+    // emptyError: 'Заполните это поле.',
+  },
+  city: {
+    pattern: /^[A-я-\\s]{2,35}$/,
+    validationError: 'Некорректный город',
+    // emptyError: 'Заполните это поле.',
+  },
+  // email: {
+  //   /* eslint-disable */
+  //     pattern: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+  //     /* eslint-enable */
+  //     validationError: 'Email введен некорректно',
+  //     emptyError: 'Заполните это поле.',
+  // }
 }
 
 export {

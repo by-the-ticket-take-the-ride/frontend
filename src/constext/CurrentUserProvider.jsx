@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useLayoutEffect, useState } from "react";
 import { CurrentUserContext } from "./CurrentUserContext";
 import * as currentUserApi from '../utils/currentUserApi'
 import testData from '../components/PersonalAccount/MyData/testData.json'
@@ -7,23 +7,29 @@ function CurrentUserProvider({ children }) {
   const [currentUser, setCurrentUser] = useState({});
   const [isSuccess, setIsSuccess] = useState(false);
   const [isOpenNotific, setIsOpenNotific] = useState(false)
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [inputTelValue, setInputTelValue] = useState();
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     currentUserApi
-      .getCurrentUser()
+      .getCurrentUser(1)
       .then((currentUser) => {
         /* когда будет настроен запрос на сервер */
-        // setCurrentUser(currentUser)
-        setCurrentUser(testData);
+        if (currentUser) {
+          setCurrentUser(currentUser)
+          setInputTelValue(currentUser?.telephone)
+        } else {
+          setCurrentUser(testData);
+          setInputTelValue(testData?.telephone)
+        }
       }).catch(err => console.log(err))
   },[])
 
-const handleSetUserInfo = (userData) => {
+const handleSetUserInfo = (userData, id) => {
   setIsOpenNotific(false)
   setIsSuccess(false)
     return currentUserApi
-      .setUserInfo(userData)
+      .setUserInfo(userData, id)
       .then((currentUser) => {
         if (currentUser) {
           /* когда будет настроен запрос на сервер */
@@ -45,7 +51,9 @@ const handleSetUserInfo = (userData) => {
       isSuccess,
       isOpenNotific,
       setIsLoggedIn,
-      isLoggedIn
+      isLoggedIn,
+      inputTelValue,
+      setInputTelValue
     }}>
       {children}
     </CurrentUserContext.Provider>
