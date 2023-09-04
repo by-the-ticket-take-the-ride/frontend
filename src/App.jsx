@@ -24,6 +24,7 @@ function App() {
   const [currentCity, setCurrentCity] = React.useState("Москва");
   const [events, setEvents] = React.useState([]);
   const [currentEvent, setCurrentEvent] = React.useState({});
+  const [isHiddenLocation, setIsHiddenLocation] = React.useState(false);
 
   useLayoutEffect(() => {
     EventApi.getAllEvents()
@@ -61,6 +62,9 @@ function App() {
                       currentCity={currentCity}
                       isActivePopupCity={isActivePopupCity}
                       setIsActivePopupCity={setIsActivePopupCity}
+                      isHiddenLocation={isHiddenLocation}
+                      setIsHiddenLocation={setIsHiddenLocation}
+                      setCurrentCity={setCurrentCity}
                     />
                   }
                 ></Route>
