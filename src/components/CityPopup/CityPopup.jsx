@@ -24,24 +24,17 @@ const CityPopup = ({ isActive, onClose, setCurrentCity, setIsActive }) => {
     const getAllCity = async () => {
       try {
         const data = await getCities();
-<<<<<<< HEAD
-        setData(data);
-=======
         setCities(data);
->>>>>>> develop
         localStorage.setItem("cityDatas", JSON.stringify(data));
       } catch (error) {
         console.log(error);
       }
     };
     getAllCity();
-<<<<<<< HEAD
-=======
 
     if (isCityDefinedCorrectly) {
       controller.abort();
     }
->>>>>>> develop
   }, []);
 
   return (
@@ -55,15 +48,6 @@ const CityPopup = ({ isActive, onClose, setCurrentCity, setIsActive }) => {
               onClick={() => onClose(false)}
             ></Button>
           </div>
-<<<<<<< HEAD
-          <CitySearch data={cities} setData={setData} />
-        </div>
-        <CityList
-          data={data}
-          setCurrentCity={setCurrentCity}
-          setIsActive={setIsActive}
-        />
-=======
           <CitySearch data={cityDatasStorage} setData={setData} />
         </div>
         <div className="city-popup__block">
@@ -78,7 +62,6 @@ const CityPopup = ({ isActive, onClose, setCurrentCity, setIsActive }) => {
             </div>
           ))}
         </div>
->>>>>>> develop
       </div>
     </div>
   );
