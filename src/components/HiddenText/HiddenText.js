@@ -11,7 +11,7 @@ function HiddenText({text, className}) {
       return (
         <div className='hidden-text'>
             <p className={className}>
-                {isHidden ? text.slice(0, text.length / 2) + "..." : text}
+                {isHidden ? text?.slice(0, text.length / 2) + "..." : text}
             </p>
           <button type='button' className='hidden-text__button' onClick={toggleHidden}>
             <span className='hidden-text__button-text'>{isHidden ? 'Раскрыть описание' : 'Скрыть описание'}</span>

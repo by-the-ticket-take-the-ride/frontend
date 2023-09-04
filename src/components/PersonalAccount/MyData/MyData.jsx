@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import useFormValid from "../../../hooks/useFormValid";
 import "./MyData.css";
 import SuccessIcon from "../../Icons/SuccessIcon";
@@ -6,10 +6,12 @@ import useUserContext from "../../../hooks/useUserContext";
 import testData from './testData.json'
 import ErrorIcon from "../../Icons/ErrorIcon";
 import Button from "../../Buttons/Button/Button";
+import { CurrentUserContext } from "../../../constext/CurrentUserContext";
 
 function MyData() {
   const { inputValues, handleInputChange, resetFormValues } = useFormValid();
-  const { currentUser, handleSetUserInfo, isSuccess, isOpenNotific } = useUserContext();
+  const { handleSetUserInfo, isSuccess, isOpenNotific } = useUserContext();
+  const { currentUser } = useContext(CurrentUserContext);
 
   useEffect(() => {
     /* когда будет настроен запрос на сервер */ 
