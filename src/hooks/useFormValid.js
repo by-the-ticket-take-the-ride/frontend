@@ -1,9 +1,8 @@
 import { useCallback, useLayoutEffect, useRef, useState } from "react";
 import { validationConfig } from "../utils/validation";
 
-function useFormValid( values = {}) {
-  const [inputValues, setInputValues] = useState(values);
-  const [checkboxValues, setCheckboxValues] = useState({})
+function useFormValid() {
+  const [inputValues, setInputValues] = useState({});
   const [errorMessages, setErrorMessages] = useState({});
   const [formIsValid, setFormIsValid] = useState(false);
   const formRef = useRef(null);
@@ -13,20 +12,10 @@ function useFormValid( values = {}) {
         ...current,
         [name]: value,
     }))
-    setCheckboxValues(current => ({
-      ...current,
-      [name]: value,
-    }))
-  }
-
-  const handleToggleChange = (event) => {
-    const { name, checked } = event.target;
-    setCheckboxValues({...values, [name]: checked})
   }
 
   const resetFormValues = useCallback((newValues = {}, newError = {}, newIsValid = false) => {
     setInputValues(newValues);
-    setCheckboxValues(newValues)
     setErrorMessages(newError);
     setFormIsValid(newIsValid);
   }, [setInputValues, setErrorMessages, setFormIsValid]);
@@ -70,7 +59,7 @@ function useFormValid( values = {}) {
     } else {
         handleDefaultValidation(name, validationMessage);
     }
-}
+  }
 
   useLayoutEffect(() => {
     const isValid = formRef.current?.checkValidity();
@@ -82,12 +71,10 @@ function useFormValid( values = {}) {
 
   return { 
     inputValues, 
-    handleInputChange, 
+    handleInputChange,
     formIsValid, 
     errorMessages, 
-    resetFormValues, 
-    handleToggleChange, 
-    checkboxValues 
+    resetFormValues,
   }
 }
 

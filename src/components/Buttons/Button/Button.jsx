@@ -45,6 +45,18 @@ const Button = ({
           {children}
         </Link>
       );
+    case "submit":
+      return (
+        <button
+          type="submit"
+          className={`button ${styleString} ${
+            additionalClass ? additionalClass : ""
+          }`}
+          disabled={disabled}
+        >
+          {children}
+        </button>
+      );
     default:
       return (
         <button

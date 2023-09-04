@@ -3,36 +3,46 @@ import "./AuthBottom.css";
 function AuthBottom(props) {
   let linkText;
 
-  if (props.type === 'register') {
+  if (props.type === "register") {
     linkText = (
       <p className="auth-bottom__to-login text-reset">
-        Уже зарегистрированы? <a href="#" className="auth-bottom__to-login-link text-reset link-hover">
+        Уже зарегистрированы?{" "}
+        <span
+          onClick={props.handleClickLogin}
+          className="auth-bottom__to-login-link text-reset link-hover"
+        >
           Войти в профиль
-        </a>
+        </span>
       </p>
     );
-  } else if (props.type === 'login') {
+  } else if (props.type === "login") {
     linkText = (
-      <p className="auth-bottom__to-login auth-bottom__text_align text-reset">
-        <a href="#" className="auth-bottom__to-login-link text-reset link-hover">
+      <p
+        onClick={props.handleClickRegister}
+        className="auth-bottom__to-login auth-bottom__text_align text-reset"
+      >
+        <span
+          onClick={props.handleClickRegister}
+          className="auth-bottom__to-login-link text-reset link-hover"
+        >
           Регистрация
-        </a>
+        </span>
       </p>
     );
-  } else if (props.type === 'password-recovery') {
-    return (<></>);
-  } else if (props.type === 'check-email') {
-    return (<></>);
-  } else if (props.type === 'confirm-email') {
+  } else if (props.type === "password-recovery") {
+    return <></>;
+  } else if (props.type === "check-email") {
+    return <></>;
+  } else if (props.type === "confirm-email") {
     linkText = (
       <p className="auth-bottom__to-login text-reset">
-        <a href="#" className="auth-bottom__to-login-link text-reset link-hover">
+        <span className="auth-bottom__to-login-link text-reset link-hover">
           Войти в профиль
-        </a>
+        </span>
       </p>
     );
   }
-  
+
   return (
     <div className="auth-bottom">
       {/* элементы пока не используются */}
