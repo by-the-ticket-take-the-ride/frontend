@@ -8,7 +8,7 @@ import useSeatContext from "../../hooks/useSeatContext";
 import { useNavigate } from "react-router-dom";
 import PaymentSuccessPopup from "../PaymentSuccessPopup/PaymentSuccessPopup";
 
-function OrderForm() {
+function OrderForm({currentCity}) {
   const { values, errors, isValid, handleChange } = useFormWithValidation();
   const [isActivePopupCity, setIsActivePopupCity] = React.useState(false);
   const [isHiddenLocation, setIsHiddenLocation] = React.useState(false);
@@ -34,7 +34,8 @@ function OrderForm() {
   return (
     <>
       <Header
-        isLoggedIn={isLoggedIn}
+        // isLoggedIn={isLoggedIn}
+        currentCity={currentCity}
         isActivePopupCity={isActivePopupCity}
         setIsActivePopupCity={setIsActivePopupCity}
       />

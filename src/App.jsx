@@ -24,26 +24,6 @@ function App() {
   const [currentCity, setCurrentCity] = React.useState("Москва");
   const [events, setEvents] = React.useState([]);
   const [currentEvent, setCurrentEvent] = React.useState({});
-<<<<<<< HEAD
-  const [currentUser, setCurrentUser] = useState({});
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [isHiddenLocation, setIsHiddenLocation] = React.useState(false);
-
-  useEffect(() => {
-    // currentUserApi
-    //   .getCurrentUser(1)
-    //   .then((currentUser) => {
-    //     if (currentUser) {
-    //       // заглушка
-    //       setCurrentUser(currentUser);
-    //     } else {
-    //       console.log(testData);
-    //       setCurrentUser(testData);
-    //     }
-    //   })
-    //   .catch((err) => console.log(err));
-=======
->>>>>>> 1d7224f (feat: функция регистрации, авторизации, аутентификации, смена данных пользователя)
 
   useLayoutEffect(() => {
     EventApi.getAllEvents()
@@ -57,11 +37,8 @@ function App() {
       .catch((err) => console.log(err));
   }, []);
 
-<<<<<<< HEAD
-=======
 
 
->>>>>>> 1d7224f (feat: функция регистрации, авторизации, аутентификации, смена данных пользователя)
   return (
     <div className="App">
       <EventsContext.Provider
@@ -72,66 +49,6 @@ function App() {
           setCurrentEvent,
         }}
       >
-<<<<<<< HEAD
-        <CurrentUserContext.Provider
-          value={{
-            // currentUser,
-            // setCurrentUser,
-            isLoggedIn,
-            setIsLoggedIn,
-          }}
-        >
-          <CurrentUserProvider>
-            <PopupProvider>
-              {/* <EventsProvider> */}
-              <SeatProvider>
-                <Routes>
-                  <Route
-                    exact
-                    path="/"
-                    element={
-                      <Main
-                        currentCity={currentCity}
-                        isActivePopupCity={isActivePopupCity}
-                        setIsActivePopupCity={setIsActivePopupCity}
-                        isHiddenLocation={isHiddenLocation}
-                        setIsHiddenLocation={setIsHiddenLocation}
-                        setCurrentCity={setCurrentCity}
-                      />
-                    }
-                  ></Route>
-                  <Route
-                    path={`/event/:id`}
-                    element={
-                      <EventPage
-                        currentCity={currentCity}
-                        isActivePopupCity={isActivePopupCity}
-                        setIsActivePopupCity={setIsActivePopupCity}
-                      />
-                    }
-                  />
-                  <Route path="/order" element={<OrderForm />} />
-
-                  <Route
-                    path="/personal-account"
-                    element={
-                      <PersonalAccount
-                        currentCity={currentCity}
-                        isActivePopupCity={isActivePopupCity}
-                        setIsActivePopupCity={setIsActivePopupCity}
-                      />
-                    }
-                  >
-                    <Route path="favourites" element={<></>} />
-                    <Route path="my-data" element={<MyData />} />
-                  </Route>
-                </Routes>
-                <CityPopup
-                  isActive={isActivePopupCity}
-                  onClose={setIsActivePopupCity}
-                  setCurrentCity={setCurrentCity}
-                  setIsActive={setIsActivePopupCity}
-=======
         <CurrentUserProvider>
           <PopupProvider>
             <SeatProvider>
@@ -156,9 +73,8 @@ function App() {
                       setIsActivePopupCity={setIsActivePopupCity}
                     />
                   }
->>>>>>> 1d7224f (feat: функция регистрации, авторизации, аутентификации, смена данных пользователя)
                 />
-                <Route path="/order" element={<OrderForm />} />
+                <Route path="/order" element={<OrderForm currentCity={currentCity} />} />
 
                 <Route
                   path="/personal-account"

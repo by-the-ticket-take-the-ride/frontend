@@ -47,8 +47,8 @@ function EventPage({
       <Calendar handleSelectedDateChange={handleSelectedDateChange} />
       <section className="event-page">
         <MainFrame eventData={currentEvent} {...props} />
-        <AboutEvent idEvent={id} />
-        <EventLocation />
+        <AboutEvent  idEvent={id} />
+        <EventLocation eventData={currentEvent} />
       </section>
       <Footer />
       <ChoiseThePalce />
