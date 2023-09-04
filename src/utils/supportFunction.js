@@ -19,6 +19,6 @@ export const renderDate = (date) => {
 }
 
 export const renderTime = (time) => {
-  const newTime = time?.split(':').slice(0,2).join(":")
+  const newTime = time?.split(':').slice(0, 2).join(":")
   return newTime;
 }

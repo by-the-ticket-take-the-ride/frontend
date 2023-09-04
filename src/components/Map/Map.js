@@ -1,8 +1,4 @@
-import { eventCardsData } from '../../assets/test-data/eventCardsData';
-
-function Map({className}) {
-
-    const { map } = eventCardsData[0];
+function Map({className, map}) {
 
     return(
         <iframe src={map} className={className}></iframe>

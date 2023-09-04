@@ -24,7 +24,7 @@ export const getCurrentEvent = (id) => {
     return res.ok ? res.json() : Promise.reject(res.status)
   })
   .catch(err => {
-    console.log(err);
+    console.log(id);
   })
 }
 export const getTickets = () => {
