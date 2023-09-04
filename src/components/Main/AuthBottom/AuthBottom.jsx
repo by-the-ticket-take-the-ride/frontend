@@ -18,7 +18,6 @@ function AuthBottom(props) {
   } else if (props.type === "login") {
     linkText = (
       <p
-        onClick={props.handleClickRegister}
         className="auth-bottom__to-login auth-bottom__text_align text-reset"
       >
         <span

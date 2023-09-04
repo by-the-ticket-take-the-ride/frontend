@@ -21,6 +21,7 @@ function Login(props) {
     setIsOpenPopupLogin(!isOpenPopupLogin);
     setIsOpenPopupPasswordRecovery(!isOpenPopupPasswordRecovery);
   };
+
   return (
     <div
       className={`cover-blackout ${

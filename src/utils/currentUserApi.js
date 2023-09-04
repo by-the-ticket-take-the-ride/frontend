@@ -15,6 +15,7 @@ export const getCurrentUser = (id) => {
   return fetch(`${MAIN_API_URL}/users/${id}`, {
     // credentials: 'include',
     headers: {
+      "Authorization": "Token 3231987740ee4dfee24a5daa618fdc21e84eef72",
       'Content-Type': 'application/json'
     }
   }).then( res => {
@@ -22,33 +23,6 @@ export const getCurrentUser = (id) => {
   })
   .catch(err => {
     console.log(err);
-  })
-}
-
-/**
- * 
- * @param {*} userData
- * {
-    surname: 'Иванов',
-    name: 'Иван',
-    dateOfBirth: '31.03.1997',
-    city: 'Москва',
-    telephone: '+7 (981) 333 - 22 - 11',
-    email: 'IvanMail@yandex.ru'
-  }
- */
-
-export const setUserInfo = (userData, id) => {
-  return fetch(`${MAIN_API_URL}/users/${id}`, {
-    method: 'PATCH',
-    // credentials: 'include',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify( userData )
-  })
-  .then( res => {
-    return res.ok ? res.json() : Promise.reject(res.status)
   })
 }
 

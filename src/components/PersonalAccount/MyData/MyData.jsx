@@ -18,28 +18,32 @@ function MyData() {
     resetFormValues(currentUser);
   }, [currentUser, resetFormValues]);
 
+  const isFormValid = () => {
+    if (errorMessages.surname || errorMessages.username || !validateDate(inputValues.date) || errorMessages.city ) {
+      return false
+    }
+    return true
+  }
+
   const handleSubmit = (evt) => {
     evt.preventDefault();
     setValidate(true);
-    if (validate) {
-      handleSetUserInfo(
-        {
-          surname: inputValues?.surname,
-          name: inputValues?.name,
-          date: inputValues?.date,
-          city: inputValues?.city,
-          telephone: inputTelValue,
-          email: inputValues?.email,
-        },
-        1
-      );
+    if (isFormValid()) {  
+      handleSetUserInfo({
+        surname: inputValues?.surname,
+        username: inputValues?.username,
+        date: inputValues?.date,
+        city: inputValues?.city,
+        telephone: inputTelValue,
+        email: inputValues?.email
+      })
     }
   };
 
   const isDataMatch = () => {
     if (
       inputValues?.surname === currentUser?.surname &&
-      inputValues?.name === currentUser?.name &&
+      inputValues?.username === currentUser?.username &&
       inputValues?.date === currentUser?.date &&
       inputValues?.city === currentUser?.city &&
       inputTelValue === currentUser?.telephone &&
@@ -77,18 +81,7 @@ function MyData() {
     ) {
       return new Date(f_date + " ") !== "Invalid Date";
     }
-  };
-  const isFormValid = () => {
-    if (
-      errorMessages.surname ||
-      errorMessages.name ||
-      !validateDate(inputValues.date) ||
-      errorMessages.city
-    ) {
-      return false;
-    }
-    return true;
-  };
+  }
 
   return (
     <section className="my-data">
@@ -124,27 +117,17 @@ function MyData() {
           </div>
           <div className="my-data__input-data">
             <input
-              value={inputValues.name || ""}
+              value={inputValues.username || ''}
               onChange={(evt) =>
                 handleInputChange(evt, { customValidation: true })
               }
-              className={`my-data__input ${
-                validate && errorMessages.name ? "my-data__input_error" : ""
-              }`}
+              className={`my-data__input ${(validate && errorMessages.username) ? 'my-data__input_error' : ''}`}
               type="text"
-              name="name"
+              name="username"
               id="name"
               placeholder="Имя"
             />
-            {validate && (
-              <span
-                className={`my-data__error ${
-                  errorMessages.name ? "my-data__error_active" : ""
-                } `}
-              >
-                {errorMessages.name}
-              </span>
-            )}
+            {validate && <span className={`my-data__error ${errorMessages.username ? 'my-data__error_active' : ''} `}>{errorMessages.username}</span>}
           </div>
           <div className="my-data__input-data">
             <input
@@ -225,18 +208,14 @@ function MyData() {
             />
           </div>
           <Button
-            additionalClass={`my-data__save-button ${
-              validate && (isDataMatch() || !isFormValid())
-                ? "my-data__save-button_disabled"
-                : ""
-            }`}
+            additionalClass={`my-data__save-button ${(validate || isDataMatch()) && (isDataMatch() || !isFormValid()) ? 'my-data__save-button_disabled' : ''}`}
             children="Сохранить изменения"
             type="submit"
             gradient={true}
             onClick={() => {
               setValidate(true);
             }}
-            disabled={validate && (isDataMatch() || !isFormValid())}
+            disabled={(validate || isDataMatch()) && (isDataMatch() || !isFormValid())}
           />
           {isOpenNotific && (
             <div

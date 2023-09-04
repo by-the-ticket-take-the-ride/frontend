@@ -1,5 +1,4 @@
 import "./PopupAuth.css";
-import { useState } from "react";
 import AuthTop from "../AuthTop/AuthTop";
 import AuthForm from "../AuthForm/AuthForm";
 import AuthBottom from "../AuthBottom/AuthBottom";

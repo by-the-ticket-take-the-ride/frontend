@@ -16,12 +16,13 @@ function OrderForm() {
   const [isOpen, setIsOpen] = React.useState(false);
   const { totalOrder } = useSeatContext();
   const navigate = useNavigate();
-  console.log(totalOrder);
+  // console.log(totalOrder);
   const handleClick = () => {
     setIsOpen(true);
     setTimeout(function () {
       navigate("/", { replace: true });
     }, 5000);
+    console.log('click');
   };
 
   function closePopup() {
@@ -193,7 +194,7 @@ function OrderForm() {
             <Button
               gradient={isValid}
               disabled={!isValid}
-              type="submit"
+              type="button"
               additionalClass="order-details__btn"
               onClick={handleClick}
             >

@@ -8,6 +8,7 @@ import LogoutIcon from "../Icons/LogoutIcon";
 import { tabData } from "../../utils/tabsData";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
+import useUserContext from "../../hooks/useUserContext";
 
 function PersonalAccount({
   currentCity,
@@ -15,9 +16,17 @@ function PersonalAccount({
   setIsActivePopupCity,
 }) {
   const { pathname } = useLocation();
+  const { handleLogout, setIsLoggedIn, setCurrentUser } = useUserContext();
 
   if (pathname === "/personal-account" || pathname === "/personal-account/") {
     return <Navigate to="/personal-account/favourites" replace />;
+  }
+
+  const handleClickLogout = () => {
+    localStorage.removeItem('token')
+    setIsLoggedIn(false);
+    handleLogout();
+    setCurrentUser({});
   }
 
   return (
@@ -32,7 +41,7 @@ function PersonalAccount({
           {/* <BreadCrumbs crumbs={crumbs}/> */}
           <div className="account__title-container">
             <h2 className="account__title">Личный кабинет</h2>
-            <Link to="/" className="button-link">
+            <Link onClick={handleClickLogout} to="/" className="button-link">
               Выйти <LogoutIcon />
             </Link>
           </div>

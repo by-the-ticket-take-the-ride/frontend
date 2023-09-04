@@ -3,24 +3,21 @@ import "./Header.scss";
 import headerLogo from "../../assets/images/header-logo.svg";
 import searchImg from "../../assets/images/search.svg";
 import profileImg from "../../assets/images/profile.svg";
-import loginImg from "../../assets/images/login-button.svg";
 import CategoryButton from "./CategoryButton";
 import { category } from "./Header.data.js";
 import Button from "../Buttons/Button/Button";
 import usePopupContext from "../../hooks/usePopupContext";
 import { Link, useNavigate } from "react-router-dom";
-import { useContext } from "react";
-import { CurrentUserContext } from "../../constext/CurrentUserContext";
+import useUserContext from "../../hooks/useUserContext";
 
 const Header = ({ isActivePopupCity, setIsActivePopupCity, currentCity }) => {
   const { isOpenPopupLogin, setIsOpenPopupLogin } = usePopupContext();
   const currentCityStorage = localStorage.getItem("currentCity");
-  const { isLoggedIn, setIsLoggedIn } = useContext(CurrentUserContext);
+  const {isLoggedIn} = useUserContext();
   const navigate = useNavigate();
 
   const handleClick = () => {
     setIsOpenPopupLogin(!isOpenPopupLogin);
-    setIsLoggedIn(true);
   };
   const handleHavigate = () => {
     navigate("/personal-account/favourites");
@@ -65,11 +62,6 @@ const Header = ({ isActivePopupCity, setIsActivePopupCity, currentCity }) => {
           >
             Войти
           </Button>
-          //   <img
-          //   src={loginImg}
-          //   alt="Кнопка входа"
-          //   className="header__button"
-          // ></img>
         )}
       </div>
       <div className="header__buttons">
