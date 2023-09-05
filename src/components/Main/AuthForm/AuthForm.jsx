@@ -2,10 +2,12 @@ import "./AuthForm.css";
 import * as auth from "../../../utils/Auth";
 import { useState, useEffect } from "react";
 import { useInput, displayError } from "../../../utils/ValidationForm";
+import useUserContext from "../../../hooks/useUserContext";
 
 function AuthForm(props) {
   const [dataForm, setDataForm] = useState({});
   const [isDisabled, setIsDisabled] = useState("");
+  const { setIsLoggedIn } = useUserContext();
 
   function handleChange(e) {
     const { name, value } = e.target;
@@ -15,20 +17,40 @@ function AuthForm(props) {
       [name]: value,
     }));
   }
+
+  const handleSignIn = (email, password) => {
+    return auth
+        .signIn(email, password)
+        .then(res => {
+          if (res) {
+            localStorage.setItem('token', res.auth_token)
+            setIsLoggedIn(true);
+            props.handleClick()
+          }
+        })
+        .catch(err => console.log(err))
+  }
+
   function handleSubmit(e) {
     e.preventDefault();
 
     if (e.target.id === "button-register") {
       const { name, email, password } = dataForm;
+      console.log(name, email, password);
       auth
         .register(name, email, password)
         .then((res) => {
-          console.log("Вы зарегистрировались");
+          if (res) {
+            console.log("Вы зарегистрировались");
+            handleSignIn(email, password)
+          }
         })
         .catch(() => {
           console.log("произошла ошибка");
         });
     } else if (e.target.id === "button-login") {
+      const {  email, password } = dataForm;
+      handleSignIn(email, password)
     } else {
       console.log("Такой запрос не существует");
     }
@@ -48,10 +70,10 @@ function AuthForm(props) {
         maxLength: 50,
         isEmail: true,
       }),
-      password: useInput("", { isEmpty: true, minLength: 6, maxLength: 50 }),
+      password: useInput("", { isEmpty: true, minLength: 8, maxLength: 50 }),
       retypePassword: useInput("", {
         isEmpty: true,
-        minLength: 6,
+        minLength: 8,
         maxLength: 50,
       }),
     };
@@ -252,7 +274,7 @@ function AuthForm(props) {
               onChange={inputAttr.onChange}
             />
             {inputAttr?.password && (
-              <button className="auth-form__button-hide-show-password button-hover"></button>
+              <button type="button" className="auth-form__button-hide-show-password button-hover"></button>
             )}
             <p
               className={`auth-form__input-error-data text-reset ${inputAttr.blockTextErrorValid.display}`}

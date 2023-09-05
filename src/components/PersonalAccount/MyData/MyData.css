@@ -48,10 +48,6 @@
   color: #191919;
 }
 
-/* .my-data__input:last-of-type {
-  margin-bottom: 0;
-} */
-
 .my-data__input_type_gray {
   background-color: rgba(154, 154, 154, 0.1);
   border: none;
@@ -79,7 +75,7 @@
   margin: 5px 0 0 5px;
 }
 
-.my-data__error_active{
+.my-data__error_active {
   display: inline-block;
 }
 

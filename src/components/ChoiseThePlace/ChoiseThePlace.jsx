@@ -136,7 +136,6 @@ function ChoiseThePlace() {
         ticket.zone_hall.name === nameZone
       );
     });
-    console.log(tickets);
   }
 
   const declination = (numTicket, text, cases) => {

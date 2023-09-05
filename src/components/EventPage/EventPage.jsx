@@ -9,7 +9,6 @@ import ChoiseThePalce from "../ChoiseThePlace/ChoiseThePlace";
 import { useParams } from "react-router-dom";
 import * as currentEventApi from "../../utils/currentEventApi";
 import { EventsContext } from "../../constext/EventsContext";
-import useSeatContext from "../../hooks/useSeatContext";
 
 function EventPage({
   currentCity,
@@ -23,7 +22,6 @@ function EventPage({
   };
 
   const { currentEvent, setCurrentEvent } = useContext(EventsContext);
-  const { setEvent } = useSeatContext();
   const { id } = useParams();
 
   useEffect(() => {
@@ -32,7 +30,6 @@ function EventPage({
       .then((event) => {
         if (event) {
           setCurrentEvent(event);
-          setEvent(event);
         }
       })
       .catch((err) => console.log(err));
@@ -50,8 +47,8 @@ function EventPage({
       <Calendar handleSelectedDateChange={handleSelectedDateChange} />
       <section className="event-page">
         <MainFrame eventData={currentEvent} {...props} />
-        <AboutEvent idEvent={id} />
-        <EventLocation />
+        <AboutEvent  idEvent={id} />
+        <EventLocation eventData={currentEvent} />
       </section>
       <Footer />
       <ChoiseThePalce />

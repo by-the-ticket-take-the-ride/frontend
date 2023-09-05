@@ -34,6 +34,7 @@
 .choise-the-place__hall-layout {
   display: flex;
   justify-content: space-between;
+  gap: 10px;
 }
 
 .choise-the-place__counter {
@@ -106,7 +107,6 @@
 }
 
 .hall-layout__location {
-  margin-top: 31.25px;
   box-sizing: border-box;
   overflow: auto;
   padding: 0;

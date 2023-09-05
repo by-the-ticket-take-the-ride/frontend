@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useState } from "react";
+import { useLayoutEffect, useState } from "react";
 import { EventsContext } from "./EventsContext";
 import * as EventApi from "../utils/currentEventApi";
 

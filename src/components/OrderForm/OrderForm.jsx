@@ -8,7 +8,7 @@ import useSeatContext from "../../hooks/useSeatContext";
 import { useNavigate } from "react-router-dom";
 import PaymentSuccessPopup from "../PaymentSuccessPopup/PaymentSuccessPopup";
 
-function OrderForm() {
+function OrderForm({currentCity}) {
   const { values, errors, isValid, handleChange } = useFormWithValidation();
   const [isActivePopupCity, setIsActivePopupCity] = React.useState(false);
   const [isHiddenLocation, setIsHiddenLocation] = React.useState(false);
@@ -16,12 +16,13 @@ function OrderForm() {
   const [isOpen, setIsOpen] = React.useState(false);
   const { totalOrder } = useSeatContext();
   const navigate = useNavigate();
-  console.log(totalOrder);
+  // console.log(totalOrder);
   const handleClick = () => {
     setIsOpen(true);
     setTimeout(function () {
       navigate("/", { replace: true });
     }, 5000);
+    console.log('click');
   };
 
   function closePopup() {
@@ -33,7 +34,8 @@ function OrderForm() {
   return (
     <>
       <Header
-        isLoggedIn={isLoggedIn}
+        // isLoggedIn={isLoggedIn}
+        currentCity={currentCity}
         isActivePopupCity={isActivePopupCity}
         setIsActivePopupCity={setIsActivePopupCity}
       />
@@ -193,7 +195,7 @@ function OrderForm() {
             <Button
               gradient={isValid}
               disabled={!isValid}
-              type="submit"
+              type="button"
               additionalClass="order-details__btn"
               onClick={handleClick}
             >
