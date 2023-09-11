@@ -1,38 +1,46 @@
 import "./PopupAuth.css";
-import {useState} from "react";
 import AuthTop from "../AuthTop/AuthTop";
 import AuthForm from "../AuthForm/AuthForm";
 import AuthBottom from "../AuthBottom/AuthBottom";
 
       
 function PopupAuth(props) {
-  const [isVisiblePopup, setIsVisiblePopup] = useState(true);
+  const {type, setType} = props;
 
   function openPopupAuth(type) {
-    setIsVisiblePopup(true);
+    setType(type);
   }
-  function closePopupAuth(type) {
-    setIsVisiblePopup(false);
+  function closePopupAuth() {
+    setType('');
   }
 
   function handleClickClose() {
-    closePopupAuth(props.type);
+    closePopupAuth();
+  }
+
+  function handleClickGoForm(type) {
+    closePopupAuth();
+    openPopupAuth(type);
   }
 
   return (
-    <div className={`popup-auth${isVisiblePopup ? '' : ' popup-auth__visible_none'}`}>
+    <div className="popup-auth">
       <button 
         className="popup-auth__close-icon"
         onClick={handleClickClose}
       ></button>
       <AuthTop
-        type={props.type}
+        type={type}
       />
       <AuthForm
-        type={props.type}
+        openPopupAuth={openPopupAuth}
+        closePopupAuth={closePopupAuth}
+        handleClickGoForm={handleClickGoForm}
+        type={type}
       />
       <AuthBottom
-        type={props.type}
+        handleClickGoForm={handleClickGoForm}
+        type={type}
       />
     </div>
   );

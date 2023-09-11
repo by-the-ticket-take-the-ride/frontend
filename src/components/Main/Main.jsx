@@ -1,20 +1,30 @@
 import './Main.css';
-import React from 'react';
-import Register from './Register/Register';
-import Login from './Login/Login';
-import PasswordRecovery from './PasswordRecovery/PasswordRecovery';
-import CheckEmail from './CheckEmail/CheckEmail';
-import ConfirmEmail from './ConfirmEmail/ConfirmEmail';
+import React, {useState} from 'react';
+import Auth from './Auth/Auth';
+
 
 function Main() {
+  const [type, setType] = useState('password-update');
+  /*
+    register
+    login
+    password-recovery
+    check-email
+    confirm-email
+    password-update
+  */
+
   return (
-    <div className="cover-blackout">
-      <Register/>
-      {/*<Login/>
-      <PasswordRecovery/>
-      <CheckEmail/>
-      <ConfirmEmail/>*/}
-    </div>
+    <>
+      {type !== '' && (
+        <div className="cover-blackout">
+          <Auth
+            type={type}
+            setType={setType}
+          />;
+        </div>
+      )}
+    </>
   )
 }
 

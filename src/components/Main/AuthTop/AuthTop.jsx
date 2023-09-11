@@ -4,7 +4,10 @@ function AuthTop(props) {
   let headerText;
   let marginBottom = '';
   let subText;
-  if (props.type === 'register') {
+
+  const {type} = props;
+  
+  if (type === 'register') {
     headerText = 'Регистрация';
 
     subText = (
@@ -13,24 +16,24 @@ function AuthTop(props) {
         и первыми узнавать о новых событиях в городе
       </>
     );
-  } else if (props.type === 'login') {
-    headerText = 'Вход';
+  } else if (type === 'login') {
+      headerText = 'Вход';
 
-    subText = (
-      <>
-        Вы сможете сохранять билеты, оставлять отзывы<br></br>
-        и первыми узнавать о новых событиях в городе
-      </>
-    );
-  } else if (props.type === 'password-recovery') {
-    headerText = 'Восстановление пароля';
+      subText = (
+        <>
+          Вы сможете сохранять билеты, оставлять отзывы<br></br>
+          и первыми узнавать о новых событиях в городе
+        </>
+      );
+  } else if (type === 'password-recovery') {
+      headerText = 'Восстановление пароля';
 
-    subText = (
-      <>
-        Введите электронную почту, указанную при регистрации
-      </>
-    );
-  } else if (props.type === 'check-email') {
+      subText = (
+        <>
+          Введите электронную почту, указанную при регистрации
+        </>
+      );
+  } else if (type === 'check-email') {
       headerText = 'Проверьте почту';
       marginBottom = ' auth-top__clear_margin';
 
@@ -41,19 +44,28 @@ function AuthTop(props) {
           &nbsp;<a href="#" className="auth-top__sub-text-link text-reset link-hover">Изменить</a>
         </>
       );
-  } else if (props.type === 'confirm-email') {
-    headerText = 'Подтверждение почты';
+  } else if (type === 'confirm-email') {
+      headerText = 'Подтверждение почты';
 
-    subText = (
-      <>
-        На адрес <span className="auth-top__sub-text-bold">email@yandex.ru</span>
-        &nbsp;отправлено сообщение<br></br> 
-        с инструкцией по активации аккаунта.<br></br>
-        Если письмо не пришло в течение 3 минут – проверьте<br></br>
-        папку “Спам”
-      </>
-    );
-}
+      subText = (
+        <>
+          На адрес <span className="auth-top__sub-text-bold">email@yandex.ru</span>
+          &nbsp;отправлено сообщение<br></br> 
+          с инструкцией по активации аккаунта.<br></br>
+          Если письмо не пришло в течение 3 минут – проверьте<br></br>
+          папку “Спам”
+        </>
+      );
+  } else if (type === 'password-update') {
+      headerText = 'Обновите пароль';
+
+      subText = (
+        <>
+          Используйте хотя бы один символ или цифру, не менее 8<br></br>
+          и не более 50 знаков
+        </>
+      );
+  }
 
   return (
     <div className={`auth-top${marginBottom}`}>

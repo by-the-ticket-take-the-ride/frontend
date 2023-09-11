@@ -1,4 +1,4 @@
-const BASE_URL = 'http://host';
+const BASE_URL = 'http://buytheticket.ddns.net';
 
 export function _getResponseData(res) {
   if (!res.ok) {
@@ -7,18 +7,18 @@ export function _getResponseData(res) {
   return res.json();
 }
 
-export function register(name, email, password) {
-  return fetch(`${BASE_URL}/register`, {
+export function register(username, email, password, re_password) {
+  return fetch(`${BASE_URL}/api/users/`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({name, email, password})
+    body: JSON.stringify({username, email, password, re_password})
   }).then(res => _getResponseData(res));
 }
 
 export function login(email, password) {
-  return fetch(`${BASE_URL}/login`, {
+  return fetch(`${BASE_URL}/api/auth/token/login/`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'

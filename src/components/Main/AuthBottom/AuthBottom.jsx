@@ -1,38 +1,60 @@
 import "./AuthBottom.css";
 
 function AuthBottom(props) {
+  const {handleClickGoForm, type} = props;
+
   let linkText;
 
-  if (props.type === 'register') {
+  
+
+  if (type === 'register') {
     linkText = (
       <p className="auth-bottom__to-login text-reset">
-        Уже зарегистрированы? <a href="#" className="auth-bottom__to-login-link text-reset link-hover">
+        Уже зарегистрированы?&nbsp;
+        <button 
+          className="auth-bottom__to-login-link text-reset link-hover"
+          onClick={
+            () => handleClickGoForm('login')
+          }
+        >
           Войти в профиль
-        </a>
+        </button>
       </p>
     );
-  } else if (props.type === 'login') {
+  } else if (type === 'login') {
     linkText = (
       <p className="auth-bottom__to-login auth-bottom__text_align text-reset">
-        <a href="#" className="auth-bottom__to-login-link text-reset link-hover">
+        <button 
+          className="auth-bottom__to-login-link text-reset link-hover"
+          onClick={
+            () => handleClickGoForm('register')
+          }
+        >
           Регистрация
-        </a>
+        </button>
       </p>
     );
-  } else if (props.type === 'password-recovery') {
-    return (<></>);
-  } else if (props.type === 'check-email') {
-    return (<></>);
-  } else if (props.type === 'confirm-email') {
+  } else if (type === 'password-recovery') {
+      return (<></>);
+  } else if (type === 'check-email') {
+      return (<></>);
+  } else if (type === 'confirm-email') {
     linkText = (
       <p className="auth-bottom__to-login text-reset">
-        <a href="#" className="auth-bottom__to-login-link text-reset link-hover">
+        <button 
+          className="auth-bottom__to-login-link text-reset link-hover"
+          onClick={
+            () => handleClickGoForm('login')
+          }
+        >
           Войти в профиль
-        </a>
+        </button>
       </p>
     );
+  } else if (type === 'password-update') {
+    return (<></>);
   }
-  
+
   return (
     <div className="auth-bottom">
       {/* элементы пока не используются */}

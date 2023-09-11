@@ -6,6 +6,12 @@ import {useInput, displayError} from '../../../utils/ValidationForm';
 function AuthForm(props) {
   const [dataForm, setDataForm] = useState({});
   const [isDisabled, setIsDisabled] = useState('');
+  
+  const [isTextError_RePassword, setIsTextError_RePassword] = useState('auth-form__display_none');
+  const [isUnderlineError_RePassword, setIsUnderlineError_RePassword] = useState('');
+  const [isValid_RePassword, setIsValid_RePassword] = useState(false);
+
+  const {openPopupAuth, closePopupAuth, handleClickGoForm, type} = props;
 
   function handleChange(e) {
     const {name, value} = e.target;
@@ -13,7 +19,31 @@ function AuthForm(props) {
       ...prevData,
       [name]: value,
     }));
+
   }
+  function handleChangeRePassword(e) {
+    let flagError = false;
+    if (e.target.name === 'password') {
+      if (dataForm.retypePassword !== e.target.value) {
+        flagError = true;
+      }
+    } else {
+      if (dataForm.password !== e.target.value) {
+        flagError = true;
+      }
+    }
+
+    if (flagError === true) {
+      setIsTextError_RePassword('');
+      setIsUnderlineError_RePassword('auth-form__input-border-error');
+      setIsValid_RePassword(false);
+    } else {
+      setIsTextError_RePassword('auth-form__display_none');
+      setIsUnderlineError_RePassword('');
+      setIsValid_RePassword(true);
+    }
+  }
+
   function handleSubmit(e) {
     e.preventDefault();
 
@@ -22,9 +52,14 @@ function AuthForm(props) {
       auth.register(name, email, password)
         .then((res) => {
           console.log('Вы зарегистрировались');
+          /*closePopupAuth();
+          openPopupAuth('confirm-email');*/
         })
         .catch(() => {
-          console.log('произошла ошибка');
+          console.log('произошла ошибкаа');
+          /*временно*/
+          closePopupAuth();
+          openPopupAuth('confirm-email');
         })
     } else if (e.target.id === 'button-login') {
       const {email, password} = dataForm;
@@ -43,10 +78,10 @@ function AuthForm(props) {
 
   function useValidation(type, useInput, useEffect) {
     const nameInput = {
-      name: useInput('', {isEmpty: true, minLength: 2, maxLength: 25, isName: true}),
-      email: useInput('', {isEmpty: true, minLength: 5, maxLength: 50, isEmail: true}),
-      password: useInput('', {isEmpty: true, minLength: 6, maxLength: 50}),
-      retypePassword: useInput('', {isEmpty: true, minLength: 6, maxLength: 50}),
+      name: useInput('', {isEmpty: true, minLength: 2, maxLength: 25, isName: true}, 'name'),
+      email: useInput('', {isEmpty: true, minLength: 5, maxLength: 50, isEmail: true}, 'email'),
+      password: useInput('', {isEmpty: true, minLength: 6, maxLength: 50}, 'password'),
+      retypePassword: useInput('', {isEmpty: false}),
     }
 
     const {name, email, password, retypePassword} = nameInput;
@@ -57,14 +92,14 @@ function AuthForm(props) {
         isValid = !name.inputValid 
         || !email.inputValid 
         || !password.inputValid
-        || !retypePassword.inputValid;
+        || !retypePassword.inputValid
+        || !isValid_RePassword;
       } else if (type === 'login') {
         isValid = !email.inputValid || !password.inputValid;
       } else if (type === 'password-recovery') {
         isValid = !email.inputValid;
       }
-      
-      
+
       setIsDisabled(isValid);
     })
 
@@ -83,7 +118,7 @@ function AuthForm(props) {
     password,
     retypePassword,
     isValid,
-  } = useValidation(props.type, useInput, useEffect);
+  } = useValidation(type, useInput, useEffect);
 
   let textAgreement = false;
   let actionTextButton;
@@ -91,7 +126,7 @@ function AuthForm(props) {
   let inputAttributes;
   let forgetPassword = false;
 
-  if (props.type === 'register') {
+  if (type === 'register') {
     textAgreement = true;
     actionTextButton = 'Зарегистрироваться';
     inputAttributes = [
@@ -135,6 +170,7 @@ function AuthForm(props) {
         onChange: e => {
           password.onChange(e);
           handleChange(e);
+          handleChangeRePassword(e);
         },
         blockTextErrorValid: {
           textError: password.textError,
@@ -142,7 +178,7 @@ function AuthForm(props) {
         }
       },
       {
-        className: `${classNameInput} ${displayError(retypePassword).isUnderlinError}`,
+        className: `${classNameInput} ${isUnderlineError_RePassword}`,
         name: 'retypePassword',
         type: 'password',
         value: retypePassword.value,
@@ -151,15 +187,16 @@ function AuthForm(props) {
         onChange: e => {
           retypePassword.onChange(e);
           handleChange(e);
+          handleChangeRePassword(e);
         },
         blockTextErrorValid: {
-          textError: retypePassword.textError,
-          display: displayError(retypePassword).isTextError,
+          textError: 'Пароли не совпадают',
+          display: isTextError_RePassword,
         }
       },
     ];
 
-  } else if (props.type === 'login') {
+  } else if (type === 'login') {
     textAgreement = false;
     forgetPassword = true;
     actionTextButton = 'Войти';
@@ -196,29 +233,67 @@ function AuthForm(props) {
         }
       },
     ];
-  } else if (props.type === 'password-recovery') {
-    actionTextButton = 'Восстановить пароль';
+  } else if (type === 'password-recovery') {
+      actionTextButton = 'Восстановить пароль';
+      inputAttributes = [
+        {
+          className: `${classNameInput} ${displayError(email).isUnderlinError}`,
+          name: 'email',
+          type: 'email',
+          value: email.value,
+          placeholder: 'Электронная почта',
+          onChange: e => {
+            email.onChange(e);
+            handleChange(e);
+          },
+          blockTextErrorValid: {
+            textError: email.textError,
+            display: displayError(email).isTextError,
+          }
+        },
+      ];
+  } else if (type === 'check-email') {
+      return (<></>);
+  } else if (type === 'confirm-email') {
+      return (<></>);
+  } else if (type === 'password-update') {
+    actionTextButton = 'Обновить пароль';
     inputAttributes = [
       {
-        className: `${classNameInput} ${displayError(email).isUnderlinError}`,
-        name: 'email',
-        type: 'email',
-        value: email.value,
-        placeholder: 'Электронная почта',
+        className: `${classNameInput} ${displayError(password).isUnderlinError}`,
+        name: 'password',
+        type: 'password',
+        value: password.value,
+        placeholder: 'Пароль',
+        password: true,
         onChange: e => {
-          email.onChange(e);
+          password.onChange(e);
           handleChange(e);
+          handleChangeRePassword(e);
         },
         blockTextErrorValid: {
-          textError: email.textError,
-          display: displayError(email).isTextError,
+          textError: password.textError,
+          display: displayError(password).isTextError,
+        }
+      },
+      {
+        className: `${classNameInput} ${isUnderlineError_RePassword}`,
+        name: 'retypePassword',
+        type: 'password',
+        value: retypePassword.value,
+        placeholder: 'Повторите пароль',
+        password: true,
+        onChange: e => {
+          retypePassword.onChange(e);
+          handleChange(e);
+          handleChangeRePassword(e);
+        },
+        blockTextErrorValid: {
+          textError: 'Пароли не совпадают',
+          display: isTextError_RePassword,
         }
       },
     ];
-  } else if (props.type === 'check-email') {
-    return (<></>);
-  } else if (props.type === 'confirm-email') {
-    return (<></>);
   }
   
   return (
@@ -253,14 +328,21 @@ function AuthForm(props) {
       ))}
 
       {forgetPassword && 
-        <a href="#" className="auth-bottom__forgive-password text-reset link-hover">
+      <p className="auth-bottom__forgive-password-containter text-reset">
+        <button
+          className="auth-bottom__forgive-password link-hover"
+          onClick={
+            () => handleClickGoForm('password-recovery')
+          }
+        >
           Забыли пароль?
-        </a>
+        </button>
+      </p>
       }
 
       <button 
         className="auth-form__button-action button-hover"
-        id={`button-${props.type}`}
+        id={`button-${type}`}
         onClick={handleSubmit}
         disabled={isDisabled}
       >
