@@ -24,7 +24,7 @@ function AuthForm(props) {
   function handleChangeRePassword(e) {
     let flagError = false;
     if (e.target.name === 'password') {
-      if (dataForm.retypePassword !== e.target.value) {
+      if (dataForm.re_password !== e.target.value) {
         flagError = true;
       }
     } else {
@@ -48,18 +48,14 @@ function AuthForm(props) {
     e.preventDefault();
 
     if (e.target.id === 'button-register') {
-      const {name, email, password} = dataForm;
-      auth.register(name, email, password)
+      const {username, email, password, re_password} = dataForm;
+      auth.register(username, email, password, re_password)
         .then((res) => {
-          console.log('Вы зарегистрировались');
-          /*closePopupAuth();
-          openPopupAuth('confirm-email');*/
-        })
-        .catch(() => {
-          console.log('произошла ошибкаа');
-          /*временно*/
           closePopupAuth();
           openPopupAuth('confirm-email');
+        })
+        .catch(() => {
+          console.log('произошла ошибка');
         })
     } else if (e.target.id === 'button-login') {
       const {email, password} = dataForm;
@@ -78,21 +74,21 @@ function AuthForm(props) {
 
   function useValidation(type, useInput, useEffect) {
     const nameInput = {
-      name: useInput('', {isEmpty: true, minLength: 2, maxLength: 25, isName: true}, 'name'),
+      username: useInput('', {isEmpty: true, minLength: 2, maxLength: 25, isName: true}, 'username'),
       email: useInput('', {isEmpty: true, minLength: 5, maxLength: 50, isEmail: true}, 'email'),
       password: useInput('', {isEmpty: true, minLength: 6, maxLength: 50}, 'password'),
-      retypePassword: useInput('', {isEmpty: false}),
+      re_password: useInput('', {isEmpty: false}),
     }
 
-    const {name, email, password, retypePassword} = nameInput;
+    const {username, email, password, re_password} = nameInput;
     
     let isValid;
     useEffect(() => {
       if (type === 'register') {
-        isValid = !name.inputValid 
+        isValid = !username.inputValid 
         || !email.inputValid 
         || !password.inputValid
-        || !retypePassword.inputValid
+        || !re_password.inputValid
         || !isValid_RePassword;
       } else if (type === 'login') {
         isValid = !email.inputValid || !password.inputValid;
@@ -104,19 +100,19 @@ function AuthForm(props) {
     })
 
     return {
-      name,
+      username,
       email,
       password,
-      retypePassword,
+      re_password,
       isValid,
     }
   }
 
   const {
-    name,
+    username,
     email,
     password,
-    retypePassword,
+    re_password,
     isValid,
   } = useValidation(type, useInput, useEffect);
 
@@ -131,18 +127,18 @@ function AuthForm(props) {
     actionTextButton = 'Зарегистрироваться';
     inputAttributes = [
       {
-        className: `${classNameInput} ${displayError(name).isUnderlinError}`,
-        name: 'name',
+        className: `${classNameInput} ${displayError(username).isUnderlinError}`,
+        name: 'username',
         type: 'text',
-        value: name.value,
+        value: username.value,
         placeholder: 'Имя',
         onChange: e => {
-          name.onChange(e);
+          username.onChange(e);
           handleChange(e);
         },
         blockTextErrorValid: {
-          textError: name.textError,
-          display: displayError(name).isTextError,
+          textError: username.textError,
+          display: displayError(username).isTextError,
         }
       },
       {
@@ -179,13 +175,13 @@ function AuthForm(props) {
       },
       {
         className: `${classNameInput} ${isUnderlineError_RePassword}`,
-        name: 'retypePassword',
+        name: 're_password',
         type: 'password',
-        value: retypePassword.value,
+        value: re_password.value,
         placeholder: 'Повторите пароль',
         password: true,
         onChange: e => {
-          retypePassword.onChange(e);
+          re_password.onChange(e);
           handleChange(e);
           handleChangeRePassword(e);
         },
@@ -278,13 +274,13 @@ function AuthForm(props) {
       },
       {
         className: `${classNameInput} ${isUnderlineError_RePassword}`,
-        name: 'retypePassword',
+        name: 're_password',
         type: 'password',
-        value: retypePassword.value,
+        value: re_password.value,
         placeholder: 'Повторите пароль',
         password: true,
         onChange: e => {
-          retypePassword.onChange(e);
+          re_password.onChange(e);
           handleChange(e);
           handleChangeRePassword(e);
         },

@@ -4,7 +4,7 @@ import Auth from './Auth/Auth';
 
 
 function Main() {
-  const [type, setType] = useState('password-update');
+  const [type, setType] = useState('register');
   /*
     register
     login
