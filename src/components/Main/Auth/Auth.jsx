@@ -1,6 +1,8 @@
 import PopupAuth from "../PopupAuth/PopupAuth";
 
 function Auth(props) {
+  
+
   return (
     <PopupAuth
       type={props.type}

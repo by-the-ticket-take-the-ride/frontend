@@ -11,7 +11,7 @@ function AuthForm(props) {
   const [isUnderlineError_RePassword, setIsUnderlineError_RePassword] = useState('');
   const [isValid_RePassword, setIsValid_RePassword] = useState(false);
 
-  const {openPopupAuth, closePopupAuth, handleClickGoForm, type} = props;
+  const {openPopupAuth, closePopupAuth, handleClickGoForm, setEmailSubmit, type} = props;
 
   function handleChange(e) {
     const {name, value} = e.target;
@@ -51,6 +51,7 @@ function AuthForm(props) {
       const {username, email, password, re_password} = dataForm;
       auth.register(username, email, password, re_password)
         .then((res) => {
+          setEmailSubmit(res.email);
           closePopupAuth();
           openPopupAuth('confirm-email');
         })

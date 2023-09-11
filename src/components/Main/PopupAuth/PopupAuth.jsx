@@ -1,3 +1,4 @@
+import {useState} from 'react';
 import "./PopupAuth.css";
 import AuthTop from "../AuthTop/AuthTop";
 import AuthForm from "../AuthForm/AuthForm";
@@ -5,6 +6,7 @@ import AuthBottom from "../AuthBottom/AuthBottom";
 
       
 function PopupAuth(props) {
+  const [emailSubmit, setEmailSubmit] = useState('email@yandex.ru');
   const {type, setType} = props;
 
   function openPopupAuth(type) {
@@ -31,11 +33,13 @@ function PopupAuth(props) {
       ></button>
       <AuthTop
         type={type}
+        emailSubmit={emailSubmit}
       />
       <AuthForm
         openPopupAuth={openPopupAuth}
         closePopupAuth={closePopupAuth}
         handleClickGoForm={handleClickGoForm}
+        setEmailSubmit={setEmailSubmit}
         type={type}
       />
       <AuthBottom

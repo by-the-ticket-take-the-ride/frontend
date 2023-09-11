@@ -5,7 +5,7 @@ function AuthTop(props) {
   let marginBottom = '';
   let subText;
 
-  const {type} = props;
+  const {type, emailSubmit} = props;
   
   if (type === 'register') {
     headerText = 'Регистрация';
@@ -40,7 +40,7 @@ function AuthTop(props) {
       subText = (
         <>
           Ссылка для восстановления пароля была отправлена<br></br>
-          на <span className="auth-top__sub-text-bold">email@yandex.ru</span> 
+          на <span className="auth-top__sub-text-bold">{emailSubmit}</span> 
           &nbsp;<a href="#" className="auth-top__sub-text-link text-reset link-hover">Изменить</a>
         </>
       );
@@ -49,7 +49,7 @@ function AuthTop(props) {
 
       subText = (
         <>
-          На адрес <span className="auth-top__sub-text-bold">email@yandex.ru</span>
+          На адрес <span className="auth-top__sub-text-bold">{emailSubmit}</span>
           &nbsp;отправлено сообщение<br></br> 
           с инструкцией по активации аккаунта.<br></br>
           Если письмо не пришло в течение 3 минут – проверьте<br></br>
