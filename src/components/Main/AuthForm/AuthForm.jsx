@@ -10,6 +10,9 @@ function AuthForm(props) {
   const [isTextError_RePassword, setIsTextError_RePassword] = useState('auth-form__display_none');
   const [isUnderlineError_RePassword, setIsUnderlineError_RePassword] = useState('');
   const [isValid_RePassword, setIsValid_RePassword] = useState(false);
+  const [typePassword, setTypePassword] = useState('password');
+  const [typeRe_password, setTypeRe_password] = useState('password');
+  
 
   const {openPopupAuth, closePopupAuth, handleClickGoForm, setEmailSubmit, type} = props;
 
@@ -77,7 +80,7 @@ function AuthForm(props) {
     const nameInput = {
       username: useInput('', {isEmpty: true, minLength: 2, maxLength: 25, isName: true}, 'username'),
       email: useInput('', {isEmpty: true, minLength: 5, maxLength: 50, isEmail: true}, 'email'),
-      password: useInput('', {isEmpty: true, minLength: 6, maxLength: 50}, 'password'),
+      password: useInput('', {isEmpty: true, minLength: 8, maxLength: 50}, 'password'),
       re_password: useInput('', {isEmpty: false}),
     }
 
@@ -106,6 +109,28 @@ function AuthForm(props) {
       password,
       re_password,
       isValid,
+    }
+  }
+
+  function showPasword(e, name) {
+    e.preventDefault();
+    switch(name) {
+      case 'password':
+        if (typePassword === 'text') {
+          setTypePassword('password');
+        } else {
+            setTypePassword('text');
+        }
+        break;
+      case 're_password':
+        if (typeRe_password === 'text') {
+          setTypeRe_password('password');
+        } else {
+            setTypeRe_password('text');
+        }
+        break;
+      default:
+        break;
     }
   }
 
@@ -160,7 +185,7 @@ function AuthForm(props) {
       {
         className: `${classNameInput} ${displayError(password).isUnderlinError}`,
         name: 'password',
-        type: 'password',
+        type: typePassword,
         value: password.value,
         placeholder: 'Пароль',
         password: true,
@@ -177,7 +202,7 @@ function AuthForm(props) {
       {
         className: `${classNameInput} ${isUnderlineError_RePassword}`,
         name: 're_password',
-        type: 'password',
+        type: typeRe_password,
         value: re_password.value,
         placeholder: 'Повторите пароль',
         password: true,
@@ -216,7 +241,7 @@ function AuthForm(props) {
       {
         className: `${classNameInput} ${displayError(password).isUnderlinError}`,
         name: 'password',
-        type: 'password',
+        type: typePassword,
         value: password.value,
         placeholder: 'Пароль',
         password: true,
@@ -259,7 +284,7 @@ function AuthForm(props) {
       {
         className: `${classNameInput} ${displayError(password).isUnderlinError}`,
         name: 'password',
-        type: 'password',
+        type: typePassword,
         value: password.value,
         placeholder: 'Пароль',
         password: true,
@@ -276,7 +301,7 @@ function AuthForm(props) {
       {
         className: `${classNameInput} ${isUnderlineError_RePassword}`,
         name: 're_password',
-        type: 'password',
+        type: typeRe_password,
         value: re_password.value,
         placeholder: 'Повторите пароль',
         password: true,
@@ -312,7 +337,12 @@ function AuthForm(props) {
               onChange={inputAttr.onChange}
             />
             {inputAttr?.password && (
-              <button className="auth-form__button-hide-show-password button-hover"></button>
+              <button 
+                className="auth-form__button-hide-show-password button-hover"
+                onClick={
+                  (e) => showPasword(e, inputAttr.name)
+                }
+              ></button>
             )}
             <p 
               className={
