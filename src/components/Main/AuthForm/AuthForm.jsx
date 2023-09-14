@@ -70,8 +70,30 @@ function AuthForm(props) {
         .catch(() => {
           console.log('произошла ошибка');
         })
+    } else if (e.target.id === 'button-password-recovery') {
+      const {email} = dataForm;
+      auth.resetPassword(email)
+        .then((res) => {
+          console.log('Первый этап сброса пароля успешен');
+          setEmailSubmit(res.email);
+          closePopupAuth();
+          openPopupAuth('check-email');
+        })
+        .catch(() => {
+          console.log('произошла ошибка');
+        })
+    } else if (e.target.id === 'button-password-update') {
+        const {password, re_password} = dataForm;
+        auth.resetPassword(password, re_password)
+          .then((res) => {
+            console.log('Пароль обновлен');
+            closePopupAuth();
+          })
+          .catch(() => {
+            console.log('произошла ошибка');
+          })
     } else {
-      console.log('Такой запрос не существует');
+        console.log('Такого запроса не существует', e.target.id);
     }
     
   }

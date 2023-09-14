@@ -26,3 +26,23 @@ export function login(email, password) {
     body: JSON.stringify({email, password})
   }).then(res => _getResponseData(res));
 }
+
+export function resetPassword(email) {
+  return fetch(`${BASE_URL}/api/users/reset_password/`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({email})
+  }).then(res => _getResponseData(res));
+}
+
+export function setPassword(new_password, re_new_password, current_password) {
+  return fetch(`${BASE_URL}/api/users/set_password/`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({new_password, re_new_password, current_password})
+  }).then(res => _getResponseData(res));
+}
