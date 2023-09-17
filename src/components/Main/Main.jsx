@@ -11,7 +11,7 @@ function Main() {
     password-recovery
     check-email
     confirm-email
-    password-update
+    reset-password-confirm
   */
 
   return (

@@ -82,9 +82,11 @@ function AuthForm(props) {
         .catch(() => {
           console.log('произошла ошибка');
         })
-    } else if (e.target.id === 'button-password-update') {
-        const {password, re_password} = dataForm;
-        auth.resetPassword(password, re_password)
+    } else if (e.target.id === 'button-reset-password-confirm') {
+        const uid = '';
+        const token = '';
+        const {password} = dataForm;
+        auth.resetPasswordConfirm(uid, token, password)
           .then((res) => {
             console.log('Пароль обновлен');
             closePopupAuth();
@@ -300,7 +302,7 @@ function AuthForm(props) {
       return (<></>);
   } else if (type === 'confirm-email') {
       return (<></>);
-  } else if (type === 'password-update') {
+  } else if (type === 'reset-password-confirm') {
     actionTextButton = 'Обновить пароль';
     inputAttributes = [
       {

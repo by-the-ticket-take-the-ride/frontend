@@ -56,7 +56,7 @@ function AuthTop(props) {
           папку “Спам”
         </>
       );
-  } else if (type === 'password-update') {
+  } else if (type === 'reset-password-confirm') {
       headerText = 'Обновите пароль';
 
       subText = (

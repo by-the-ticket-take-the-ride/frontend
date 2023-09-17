@@ -51,7 +51,7 @@ function AuthBottom(props) {
         </button>
       </p>
     );
-  } else if (type === 'password-update') {
+  } else if (type === 'reset-password-confirm') {
     return (<></>);
   }
 
