@@ -24,7 +24,12 @@ export function login(email, password) {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({email, password})
-  }).then(res => _getResponseData(res));
+  }).then(res => _getResponseData(res))
+    .then((data) => {
+      localStorage.setItem('jwt', data.token);
+      console.log(data.token);
+      return data;
+    })
 }
 
 export function resetPassword(email) {
