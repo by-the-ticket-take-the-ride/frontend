@@ -1,25 +1,39 @@
 import React from 'react';
 import moment from 'moment';
 
-function Month({ monthIndex, daysToShow, selectedDay, handleDayClick, weekDays }) {
+function Month({ monthIndex, daysToShow, selectedDay, handleDayClick, weekDays, currentDay, eventDates, currentSelectedDay }) {
   const monthInfo = moment().add(monthIndex, 'months');
   const monthName = monthInfo.format('MMMM');
 
   const firstDayOfMonth = moment(monthInfo).startOf('month');
   const firstDayOfWeekIndex = firstDayOfMonth.day();
 
+  const handleDateClick = (day) => {
+    handleDayClick(monthIndex, day);
+  };
+
   return (
     <div className='month'>
       <p className="month__name">{monthName}</p>
       <div className='dates'>
-        {daysToShow?.map((day, index) => (
-          <div key={index} className='date' onClick={() => handleDayClick(monthIndex, day)}>
-            <span className={`date__day ${day === selectedDay ? 'date__selected' : ''}`}>{day}</span>
-            <span className={`date__weekday ${weekDays[(day + firstDayOfWeekIndex - 1) % 7] === 'сб' || weekDays[(day + firstDayOfWeekIndex - 1) % 7] === 'вс' ? 'date__weekend' : ''}`}>
-              {weekDays[(day + firstDayOfWeekIndex - 1) % 7]}
-            </span>
-          </div>
-        ))}
+        {daysToShow?.map((day, index) => {
+          const isEventDate = eventDates.includes(moment({ year: monthInfo.year(), month: monthInfo.month(), date: day }).format('YYYY-MM-DD'));
+
+          return (
+            <div
+              key={index}
+              className={`date ${isEventDate ? '' : 'date__no-event'}`}
+              onClick={() => handleDateClick(day)}
+            >
+              <span className={`date__day ${day === currentDay ? 'date__today' : ''} ${day === currentSelectedDay ? 'date__selected' : ''}`}>
+                {day}
+              </span>
+              <span className={`date__weekday ${weekDays[(day + firstDayOfWeekIndex - 1) % 7] === 'сб' || weekDays[(day + firstDayOfWeekIndex - 1) % 7] === 'вс' ? 'date__weekend' : ''}`}>
+                {weekDays[(day + firstDayOfWeekIndex - 1) % 7]}
+              </span>
+            </div>
+          );
+        })}
       </div>
     </div>
   );

@@ -4,64 +4,56 @@ import moment from 'moment';
 import 'moment/locale/ru';
 import arrow_left from '../../assets/images/icon-arrow-left.svg';
 import arrow_right from '../../assets/images/icon-arrow-right.svg';
-import { eventCardsData } from '../EventCard/test-data/eventCardsData';
 
-function Calendar({ handleSelectedDateChange }) {
+function Calendar({ eventCards }) {
+
+  const [currentMonthIndex, setCurrentMonthIndex] = useState(0);
+  const [selectedDay, setSelectedDay] = useState({});
+  const [visibleDays, setVisibleDays] = useState(11);
+
   const defaultProps = {
     weekDays: ['вс', 'пн', 'вт', 'ср', 'чт', 'пт', 'сб'],
     months: ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'],
   }
 
+  const eventDates = eventCards.map(event => event.date_event);
   const {weekDays, months} = defaultProps;
-
-    const [currentMonthIndex, setCurrentMonthIndex] = useState(0);
-
   const currentDate = moment();
   const currentDay = currentDate.date();
-
+  const [currentSelectedDay, setCurrentSelectedDay] = useState(currentDay);
   const currentWeekdayIndex = currentDate.day();
-
   const monthsToShow = 12;
 
-  const [selectedDay, setSelectedDay] = useState({});
-
-  const [visibleDays, setVisibleDays] = useState(11);
-
   const handleDayClick = (monthIndex, day) => {
+    // const selectedDate = moment().add(monthIndex, 'months').date(day).format('YYYY-MM-DD');
+
+    // const eventsForSelectedDate = eventCards.filter(event => event.date_event === selectedDate);
+
+    setCurrentSelectedDay(day);
     setSelectedDay(() => ({
-      [monthIndex]: day,
+        [monthIndex]: day,
     }));
 
-    const selectedDate = moment().add(monthIndex, 'months').date(day);
+    // localStorage.setItem('selectedDate', JSON.stringify({ monthIndex, day }));
+    // localStorage.setItem('eventsForSelectedDate', JSON.stringify(eventsForSelectedDate));
+    // localStorage.setItem('visibleDays', visibleDays);
+};
 
-    const eventsForSelectedDate = eventCardsData.filter(event => {
-      const eventDate = moment(event.date, 'D MMMM, HH:mm');
-      return eventDate.isSame(selectedDate, 'day');
-    });
-    
-    localStorage.setItem('selectedDate', JSON.stringify({ monthIndex, day }));
-    localStorage.setItem('eventsForSelectedDate', JSON.stringify(eventsForSelectedDate));
-    localStorage.setItem('visibleDays', visibleDays);
+  // useEffect(() => {
+  //   const savedSelectedDate = localStorage.getItem('selectedDate');
+  //   console.log(savedSelectedDate)
+  //   const savedVisibleDays = localStorage.getItem('visibleDays');
+  //   console.log(savedVisibleDays)
 
-    handleSelectedDateChange(eventsForSelectedDate);
-  };
+  //   if (savedSelectedDate) {
+  //     const { monthIndex, day } = JSON.parse(savedSelectedDate);
+  //     setSelectedDay({ [monthIndex]: day });
+  //   }
 
-  useEffect(() => {
-    const savedSelectedDate = localStorage.getItem('selectedDate');
-    const savedVisibleDays = localStorage.getItem('visibleDays');
-
-    if (savedSelectedDate) {
-      const { monthIndex, day } = JSON.parse(savedSelectedDate);
-      setSelectedDay({ [monthIndex]: day });
-
-      const eventsForSelectedDate = JSON.parse(localStorage.getItem('eventsForSelectedDate'));
-      handleSelectedDateChange(eventsForSelectedDate);
-    }
-
-    if (savedVisibleDays) {
-      setVisibleDays(parseInt(savedVisibleDays));
-    }
-  }, []);
+  //   if (savedVisibleDays) {
+  //     setVisibleDays(parseInt(savedVisibleDays));
+  //   }
+  // }, []);
 
   const handleNextClick = () => {
     const newVisibleDays = (prev => prev + 11);
@@ -92,6 +84,8 @@ function Calendar({ handleSelectedDateChange }) {
         handleDayClick={handleDayClick}
         weekDays={weekDays}
         currentWeekdayIndex={currentWeekdayIndex}
+        eventDates={eventDates}
+        currentSelectedDay={currentSelectedDay}
       />
     );
   }
@@ -102,7 +96,7 @@ function Calendar({ handleSelectedDateChange }) {
         <img className={`arrow-btn arrow-left-btn ${visibleDays > 11 ? "" : "disabled"}`} src={arrow_left} alt='Стрелка влево' onClick={visibleDays > 11 ? handlePrevClick : null}/>
       </div>
       <div className="calendar__container">
-        <div className="dates-visible" style={{ transform: `translateX(-${(visibleDays - 11) * 47.5}px)` }}>          
+        <div className="dates-visible" style={{ transform: `translateX(-${(visibleDays - 11) * 47.5}px)` }}>
         {calendar}
         </div>
       </div>

@@ -65,6 +65,7 @@ function App() {
                       isHiddenLocation={isHiddenLocation}
                       setIsHiddenLocation={setIsHiddenLocation}
                       setCurrentCity={setCurrentCity}
+                      eventCards={events}
                     />
                   }
                 ></Route>

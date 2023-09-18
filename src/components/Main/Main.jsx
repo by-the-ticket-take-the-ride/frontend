@@ -16,14 +16,9 @@ function Main({
   isHiddenLocation,
   setIsHiddenLocation,
   setCurrentCity,
+  eventCards,
 }) {
-  const [selectedDateEvents, setSelectedDateEvents] = React.useState([]);
   const currentCityStorage = localStorage.getItem("currentCity");
-
-  const handleSelectedDateChange = (events) => {
-    setSelectedDateEvents(events);
-  };
-
   return (
     <main>
       <Header
@@ -34,7 +29,7 @@ function Main({
       <h1 className="title">
         Афиша {currentCityStorage ? currentCityStorage : currentCity}
       </h1>
-      <Calendar handleSelectedDateChange={handleSelectedDateChange} />
+      <Calendar eventCards={eventCards} />
       {/* <EventsCardList /> */}
       {/* стили в app.css */}
       <MainFrame eventData={eventTestData} />
