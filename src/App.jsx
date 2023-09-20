@@ -79,7 +79,6 @@ function App() {
                   }
                 />
                 <Route path="/order" element={<OrderForm currentCity={currentCity} />} />
-
                 <Route
                   path="/personal-account"
                   element={

@@ -8,6 +8,7 @@ import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import LocationModal from "../LocationModal/LocationModal";
 import eventTestData from "../../assets/test-data/eventTestData.json";
+import ScrollToTop from "../../utils/ScrollToTop";
 
 function Main({
   currentCity,
@@ -26,6 +27,7 @@ function Main({
 
   return (
     <main>
+      <ScrollToTop/>
       <Header
         isActivePopupCity={isActivePopupCity}
         setIsActivePopupCity={setIsActivePopupCity}
