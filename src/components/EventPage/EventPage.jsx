@@ -9,6 +9,7 @@ import ChoiseThePalce from "../ChoiseThePlace/ChoiseThePlace";
 import { useParams } from "react-router-dom";
 import * as currentEventApi from "../../utils/currentEventApi";
 import { EventsContext } from "../../constext/EventsContext";
+import ScrollToTop from "../../utils/ScrollToTop";
 
 function EventPage({
   currentCity,
@@ -37,6 +38,7 @@ function EventPage({
 
   return (
     <>
+      <ScrollToTop/>
       <Header
         currentCity={currentCity}
         isActivePopupCity={isActivePopupCity}

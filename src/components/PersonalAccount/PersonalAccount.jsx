@@ -9,6 +9,7 @@ import { tabData } from "../../utils/tabsData";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import useUserContext from "../../hooks/useUserContext";
+import ScrollToTop from "../../utils/ScrollToTop";
 
 function PersonalAccount({
   currentCity,
@@ -31,6 +32,7 @@ function PersonalAccount({
 
   return (
     <>
+      <ScrollToTop/>
       <Header
         isActivePopupCity={isActivePopupCity}
         setIsActivePopupCity={setIsActivePopupCity}
