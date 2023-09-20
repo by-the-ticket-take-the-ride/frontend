@@ -1,7 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 
-function Month({ monthIndex, daysToShow, selectedDay, handleDayClick, weekDays, currentDay, eventDates, currentSelectedDay }) {
+function Month({ monthIndex, daysToShow, selectedDay, handleDayClick, weekDays, currentDay, eventDates, currentSelectedDay, handleMouseLeave, handleMouseEnter }) {
   const monthInfo = moment().add(monthIndex, 'months');
   const monthName = monthInfo.format('MMMM');
 
@@ -25,7 +25,10 @@ function Month({ monthIndex, daysToShow, selectedDay, handleDayClick, weekDays, 
               className={`date ${isEventDate ? '' : 'date__no-event'}`}
               onClick={() => handleDateClick(day)}
             >
-              <span className={`date__day ${day === currentDay ? 'date__today' : ''} ${day === currentSelectedDay ? 'date__selected' : ''}`}>
+              <span className={`date__day ${day === currentSelectedDay ? 'date__selected' : ''}`}
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+              >
                 {day}
               </span>
               <span className={`date__weekday ${weekDays[(day + firstDayOfWeekIndex - 1) % 7] === 'сб' || weekDays[(day + firstDayOfWeekIndex - 1) % 7] === 'вс' ? 'date__weekend' : ''}`}>

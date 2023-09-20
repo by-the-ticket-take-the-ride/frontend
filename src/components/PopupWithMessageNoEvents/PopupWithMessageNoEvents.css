@@ -1,0 +1,32 @@
+.popup-with-message-no-event {
+    position: absolute;
+    visibility: hidden;
+    padding: 10px 10px 0px 10px;
+    border-radius: 20px;
+    box-shadow: 2px 4px 20px rgba(0, 0, 0, 0.17);
+    width: 120px;
+    height: 48px;
+    font-family: 'Nunito Sans', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    color: #4C4F52;
+    text-align: center;
+    background-color: #FFFFFF;
+    top: 80px;
+    z-index: 200;
+}
+
+.popup-with-message-no-event_is-visible {
+    visibility: visible;
+}
+
+.popup-with-message-no-event:after {
+    content: '';
+    border-bottom: 10px solid #FFFFFF;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    position: absolute;
+    left: 50%;
+    bottom: 100%;
+    transform: translateX(-50%);
+}

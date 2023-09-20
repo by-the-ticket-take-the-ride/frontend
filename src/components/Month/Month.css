@@ -27,13 +27,14 @@
 .dates {
   display: flex;
   transition: transform 0.5s ease;
+  /* padding: 0px 35px 0px 35px; */
 }
 
 .date {
   display: flex;
   flex-direction: column;
   text-align: center;
-  margin-right: 13.6px;
+  padding-right: 13.6px;
   cursor: pointer;
   width: 33px;
 }
@@ -43,7 +44,7 @@
 }
 
 .date:last-of-type {
-  margin-right: 0px;
+  padding-right: 0px;
 }
 
 .date__selected {
@@ -61,8 +62,7 @@
   font-weight: 700;
   line-height: 22px;
   font-size: 18px;
-  margin-bottom: 2px;
-  padding: 4px 0;
+  padding: 4px 0px 2px 0px;
 }
 
 .date__weekday {

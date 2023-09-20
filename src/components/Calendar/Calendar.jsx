@@ -4,6 +4,7 @@ import moment from 'moment';
 import 'moment/locale/ru';
 import arrow_left from '../../assets/images/icon-arrow-left.svg';
 import arrow_right from '../../assets/images/icon-arrow-right.svg';
+import PopupWithMessageNoEvents from '../PopupWithMessageNoEvents/PopupWithMessageNoEvents';
 
 function Calendar({ eventCards }) {
 
@@ -37,6 +38,23 @@ function Calendar({ eventCards }) {
     // localStorage.setItem('selectedDate', JSON.stringify({ monthIndex, day }));
     // localStorage.setItem('eventsForSelectedDate', JSON.stringify(eventsForSelectedDate));
     // localStorage.setItem('visibleDays', visibleDays);
+};
+
+const [isPopupVisible, setPopupVisible] = useState(false);
+const [popupPosition, setPopupPosition] = useState({ x: 0 });
+
+const handleMouseEnter = (e) => {
+
+  if (!e.currentTarget.classList.contains('date__selected')) {
+    setPopupVisible(true);
+    const target = e.currentTarget;
+    const x = target.offsetLeft; // Используйте offsetLeft, чтобы получить горизонтальное смещение
+    setPopupPosition({ x: x - 80 });
+  }
+};
+
+const handleMouseLeave = () => {
+  setPopupVisible(false);
 };
 
   // useEffect(() => {
@@ -86,6 +104,9 @@ function Calendar({ eventCards }) {
         currentWeekdayIndex={currentWeekdayIndex}
         eventDates={eventDates}
         currentSelectedDay={currentSelectedDay}
+        handleMouseEnter={handleMouseEnter}
+        handleMouseLeave={handleMouseLeave}
+        currentDate={currentDate}
       />
     );
   }
@@ -99,6 +120,7 @@ function Calendar({ eventCards }) {
         <div className="dates-visible" style={{ transform: `translateX(-${(visibleDays - 11) * 47.5}px)` }}>
         {calendar}
         </div>
+        <PopupWithMessageNoEvents isPopupVisible={isPopupVisible} x={popupPosition.x}/>
       </div>
       <div className={`arrow ${currentMonthIndex + (visibleDays / 30) < monthsToShow - 1 ? "arrow-right" : ""}`}>
         <img className={`arrow-btn arrow-right-btn ${currentMonthIndex + (visibleDays / 30) < monthsToShow - 1 ? "" : "disabled"}`} src={arrow_right} alt='Стрелка вправо' onClick={currentMonthIndex + (visibleDays / 30) < monthsToShow - 1 ? handleNextClick : null}/>

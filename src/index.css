@@ -39,3 +39,4 @@ code {
 @import url('./components/NoResultPage/NoResultPage.css');
 @import url('./components/PaymentSuccessPopup/PaymentSuccessPopup.css');
 @import url('./components/PaymentPopup/PaymentPopup.css');
+@import url('./components/PopupWithMessageNoEvents/PopupWithMessageNoEvents.css');
