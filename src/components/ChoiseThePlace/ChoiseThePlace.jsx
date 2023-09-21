@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "../Buttons/Button/Button";
 import ButtonCross from "../Buttons/ButtonCross/ButtonCross";
 import PlaceIcon from "../Icons/PlaceIcon";
@@ -11,6 +11,9 @@ import "./ChoiseThePlace.css";
 import useSeatContext from "../../hooks/useSeatContext";
 import { useNavigate } from "react-router-dom";
 import * as supportFunction from "../../utils/supportFunction";
+
+import eventTest from './event.json'
+console.log(eventTest.place.type.zone);
 
 function ChoiseThePlace() {
   const {
@@ -25,6 +28,19 @@ function ChoiseThePlace() {
   } = useSeatContext();
   const [counterPrice, setCounterPrice] = useState(0);
   const navigate = useNavigate();
+
+  const RowNum1 = eventTest.place.type.zone[0].row;
+  const zoneName = eventTest.place.type.zone[0].name;
+  const zoneId = eventTest.place.type.zone[0].id;
+  const zonePrice = eventTest.place.type.zone[0].price;
+  const zoneName2 = eventTest.place.type.zone[1].name;
+  const RowNum2 = eventTest.place.type.zone[1].row;
+  const zoneId2 = eventTest.place.type.zone[1].id;
+  const zonePrice2 = eventTest.place.type.zone[1].price;
+  const zoneName3 = eventTest.place.type.zone[2].name;
+  const RowNum3 = eventTest.place.type.zone[2].row;
+  const zoneId3 = eventTest.place.type.zone[2].id;
+  const zonePrice3 = eventTest.place.type.zone[2].price;
 
   const handleСhoicePlace = (numSeat, numRow, nameZone, numPrice , idSeat) => {
     if (isPaid(numSeat, numRow, nameZone)) {
@@ -185,6 +201,24 @@ function ChoiseThePlace() {
     setIsOpenPopap(!isOpenPopap);
   };
 
+  const countSeat = () => {
+    // const numberSeats = eventZone.reduce((prevVal, zone) => {
+    //   console.log('LOOOG',zone.price);
+    //   return prevVal + zone.price
+    // }, 0)
+    const numberSeats = eventZone.reduce((prevVal, zone) => {
+      console.log('LOOOG',zone.price);
+      return prevVal + zone.seat
+    }, 0)
+
+    return numberSeats;
+  }
+
+  useEffect(() => {
+    console.log(eventZone);
+    console.log(countSeat());
+  }, []);
+
   return (
     <div
       className={`choise-the-place ${
@@ -224,7 +258,7 @@ function ChoiseThePlace() {
               </div>
               <div className="location__zone-seats">
                 <div className="location__seats">
-                  {eventZone.map((zone) => (
+                  {/* {eventZone.map((zone) => (
                     <div key={zone.id} className="location__zone">
                       {Array.from(Array(zone.row).keys()).map((row, i) => (
                         <div key={i} className="location__row">
@@ -281,7 +315,371 @@ function ChoiseThePlace() {
                         </div>
                       ))}
                     </div>
-                  ))}
+                  ))} */}
+
+                  
+                  <div className="sector">
+
+                    <div className="zone-1 left">
+                      {
+                        Array.from(Array(RowNum1).keys()).map((row2, numRow) => (
+                          <div className="row left-row">
+                            {
+                               Array.from(Array(4 + numRow).keys()).map((seat, numSeat) => (
+                                  <span onClick={() => console.log()}>
+                                    {renderValueSeat(
+                                  isPaid(numSeat + 1, numRow + 1, zoneName),
+                                  zoneId,
+                                  numSeat + 1,
+                                  numRow + 1,
+                                  zoneName,
+                                  zonePrice,
+                                  numSeat + 1
+                                    )}
+                                  </span>
+                               ))
+                            }
+                          </div>
+                        ))
+                      }
+                    </div>
+                    {/* Центральная зона */}
+                    <div className="zone-1 center">
+                    {
+                        Array.from(Array(RowNum1).keys()).map((row, numRow) => (
+                          <div className="row center-row">
+                            {
+                               Array.from(Array(6 + numRow).keys()).map((row, numSeat) => (
+                                  <span onClick={() => console.log()}>
+                                    {renderValueSeat(
+                                  isPaid(numSeat + (5 + numRow), numRow + 1, zoneName),
+                                  zoneId,
+                                  numSeat + (5 + numRow),
+                                  numRow + 1,
+                                  zoneName,
+                                  zonePrice,
+                                  numSeat + 1
+                                )}
+                                  </span>
+                               ))
+                            }
+                          </div>
+                        ))
+                      }
+                    </div>
+
+                    <div className="zone-1 right">
+                      {
+                        Array.from(Array(RowNum1).keys()).map((row, numRow) => (
+                          <div className="row right-row">
+                            {
+                               Array.from(Array(4 + numRow).keys()).map((row, numSeat) => (
+                                  <span onClick={() => console.log(numSeat + 1)}>
+                                    {renderValueSeat(
+                                  isPaid(numSeat + (11 + numRow), numRow + 1, zoneName),
+                                  zoneId,
+                                  numSeat + ((11 + numRow) + numRow),
+                                  numRow + 1,
+                                  zoneName,
+                                  zonePrice,
+                                  numSeat + 1
+                                )}
+                                  </span>
+                               ))
+                            }
+                          </div>
+                        ))
+                      }
+                    </div>
+                  </div>
+
+                  <div className="sector">
+                    <div className="zone-1 left">
+                    {
+                          Array.from(Array(1).keys()).map((row, numRow) => (
+                            <div className="row left-row">
+                              {
+                                Array.from(Array(7).keys()).map((row, numSeat) => (
+                                    <span onClick={() => console.log()}>
+                                      {renderValueSeat(
+                                  isPaid(numSeat + 1, numRow + 1, zoneName2),
+                                  zoneId2,
+                                  numSeat + 1,
+                                  numRow + 1,
+                                  zoneName2,
+                                  zonePrice2,
+                                  numSeat + 1
+                                      )}
+                                    </span>
+                                ))
+                              }
+                            </div>
+                          ))
+                        }
+                        {
+                          Array.from(Array(2).keys()).map((row, numRow) => (
+                            <div className="row left-row">
+                              {
+                                Array.from(Array(6).keys()).map((row, numSeat) => (
+                                    <span onClick={() => console.log()}>
+                                      {renderValueSeat(
+                                  isPaid(numSeat + 1, numRow + 2, zoneName2),
+                                  zoneId2,
+                                  numSeat + 1,
+                                  numRow + 2,
+                                  zoneName2,
+                                  zonePrice2,
+                                  numSeat + 1
+                                      )}
+                                    </span>
+                                ))
+                              }
+                            </div>
+                          ))
+                        }
+                        {
+                          Array.from(Array(2).keys()).map((row, numRow) => (
+                            <div className="row left-row">
+                              {
+                                Array.from(Array(5).keys()).map((row, numSeat) => (
+                                    <span onClick={() => console.log()}>
+                                      {renderValueSeat(
+                                  isPaid(numSeat + 1, numRow + 1, zoneName3),
+                                  zoneId3,
+                                  numSeat + 1,
+                                  numRow + 1,
+                                  zoneName3,
+                                  zonePrice3,
+                                  numSeat + 1
+                                      )}
+                                    </span>
+                                ))
+                              }
+                            </div>
+                          ))
+                        }
+                        {
+                          Array.from(Array(1).keys()).map((row, numRow) => (
+                            <div className="row left-row">
+                              {
+                                Array.from(Array(4).keys()).map((row, numSeat) => (
+                                    <span onClick={() => console.log()}>
+                                      {renderValueSeat(
+                                      isPaid(numSeat + 1, numRow + 3, zoneName3),
+                                      zoneId3,
+                                      numSeat + 1,
+                                      numRow + 3,
+                                      zoneName3,
+                                      zonePrice3,
+                                      numSeat + 1
+                                      )}
+                                    </span>
+                                ))
+                              }
+                            </div>
+                          ))
+                        }
+                        {
+                          Array.from(Array(1).keys()).map((row, numRow) => (
+                            <div className="row left-row">
+                              {
+                                Array.from(Array(3).keys()).map((row, numSeat) => (
+                                    <span onClick={() => console.log()}>
+                                      {renderValueSeat(
+                                      isPaid(numSeat + 1, numRow + 4, zoneName3),
+                                      zoneId3,
+                                      numSeat + 1,
+                                      numRow + 4,
+                                      zoneName3,
+                                      zonePrice3,
+                                      numSeat + 1
+                                      )}
+                                    </span>
+                                ))
+                              }
+                            </div>
+                          ))
+                        }
+                    </div>
+
+                    <div className="zone-1 center">
+                    {
+                        Array.from(Array(1).keys()).map((row, numRow) => (
+                          <div className="row center-row">
+                            {
+                               Array.from(Array(12 + numRow).keys()).map((row, numSeat) => (
+                                  <span onClick={() => console.log()}>
+                                    {renderValueSeat(
+                                      isPaid(numSeat + (8 + numRow), numRow + 1, zoneName2),
+                                      zoneId2,
+                                      numSeat + (8 + numRow),
+                                      numRow + 1,
+                                      zoneName2,
+                                      zonePrice2,
+                                      numSeat + 1
+                                      )}
+                                  </span>
+                               ))
+                            }
+                          </div>
+                        ))
+                      }
+                    {
+                        Array.from(Array(5).keys()).map((row, numRow) => (
+                          <div className="row center-row">
+                            {
+                               Array.from(Array(13 + numRow).keys()).map((row, numSeat) => (
+                                  <span onClick={() => console.log()}>
+                                    {renderValueSeat(
+                                      isPaid(numSeat + 7, numRow + 2, zoneName2),
+                                      zoneId2,
+                                      numSeat + 7,
+                                      numRow + 2,
+                                      zoneName2,
+                                      zonePrice2,
+                                      numSeat + 1
+                                      )}
+                                  </span>
+                               ))
+                            }
+                          </div>
+                        ))
+                      }
+                    </div>
+
+                    <div className="zone-1 right">
+                    {
+                        Array.from(Array(1).keys()).map((row, numRow) => (
+                          <div className="row right-row">
+                            {
+                               Array.from(Array(7).keys()).map((row, numSeat) => (
+                                  <span onClick={() => console.log()}>
+                                    {renderValueSeat(
+                                      isPaid(numSeat + 20, numRow + 1, zoneName2),
+                                      zoneId2,
+                                      numSeat + 20,
+                                      numRow + 1,
+                                      zoneName2,
+                                      zonePrice2,
+                                      numSeat + 1
+                                      )}
+                                  </span>
+                               ))
+                            }
+                          </div>
+                        ))
+                      }
+                      {
+                        Array.from(Array(2).keys()).map((row, numRow) => (
+                          <div className="row right-row">
+                            {
+                               Array.from(Array(6).keys()).map((row, numSeat) => (
+                                  <span onClick={() => console.log()}>
+                                    {renderValueSeat(
+                                      isPaid((numSeat + 20) + numRow, numRow + 2, zoneName2),
+                                      zoneId2,
+                                      (numSeat + 20) + numRow,
+                                      numRow + 2,
+                                      zoneName2,
+                                      zonePrice2,
+                                      numSeat + 1
+                                      )}
+                                  </span>
+                               ))
+                            }
+                          </div>
+                        ))
+                      }
+                      {
+                        Array.from(Array(2).keys()).map((row, numRow) => (
+                          <div className="row right-row">
+                            {
+                               Array.from(Array(5).keys()).map((row, numSeat) => (
+                                  <span onClick={() => console.log()}>
+                                    {renderValueSeat(
+                                      isPaid(numSeat + 24, numRow + 1, zoneName3),
+                                      zoneId3,
+                                      numSeat + 24,
+                                      numRow + 1,
+                                      zoneName3,
+                                      zonePrice3,
+                                      numSeat + 1
+                                      )}
+                                  </span>
+                               ))
+                            }
+                          </div>
+                        ))
+                      }
+                      {
+                        Array.from(Array(1).keys()).map((row, numRow) => (
+                          <div className="row right-row">
+                            {
+                               Array.from(Array(4).keys()).map((row, numSeat) => (
+                                  <span onClick={() => console.log()}>
+                                    {renderValueSeat(
+                                      isPaid(numSeat + 5, numRow + 3, zoneName3),
+                                      zoneId3,
+                                      numSeat + 5,
+                                      numRow + 3,
+                                      zoneName3,
+                                      zonePrice3,
+                                      numSeat + 1
+                                      )}
+                                  </span>
+                               ))
+                            }
+                          </div>
+                        ))
+                      }
+                      {
+                        Array.from(Array(1).keys()).map((row, numRow) => (
+                          <div className="row right-row">
+                            {
+                               Array.from(Array(3).keys()).map((row, numSeat) => (
+                                  <span onClick={() => console.log()}>
+                                    {renderValueSeat(
+                                      isPaid(numSeat + 4, numRow + 4, zoneName3),
+                                      zoneId3,
+                                      numSeat + 4,
+                                      numRow + 3,
+                                      zoneName3,
+                                      zonePrice3,
+                                      numSeat + 1
+                                      )}
+                                  </span>
+                               ))
+                            }
+                          </div>
+                        ))
+                      }
+                    </div>
+                  </div>
+
+                  <div className="sector-additional">
+                  {
+                        Array.from(Array(2).keys()).map((row, numRow) => (
+                          <div className="row right-row">
+                            {
+                               Array.from(Array(18).keys()).map((row, numSeat) => (
+                                  <span onClick={() => console.log()}>
+                                    {renderValueSeat(
+                                      isPaid(numSeat + 6, numRow + 1, zoneName3),
+                                      zoneId3,
+                                      numSeat + 6,
+                                      numRow + 1,
+                                      zoneName3,
+                                      zonePrice3,
+                                      numSeat + 1
+                                      )}
+                                  </span>
+                               ))
+                            }
+                          </div>
+                        ))
+                      }
+                  </div>
+                  
                 </div>
               </div>
             </div>

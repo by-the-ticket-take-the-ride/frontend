@@ -161,12 +161,20 @@
   min-height: 233px;
 }
 
+/* NEW data */
+.sector {
+  display: flex;
+  justify-content: space-between;
+}
+
+.sector-additional {
+  
+}
+
 .location__zone {
   display: flex;
   flex-direction: column; 
   row-gap: 8px;
-
-
 }
 
 .location__row {
@@ -177,6 +185,41 @@
 .location__column {
   display: flex;
   gap: 8.21px;
+}
+
+.left {
+  transform: rotate(25deg) translate(-15px, -45px);
+}
+.right {
+  transform: rotate(-25deg) translate(15px, -45px);
+}
+
+/* .left:nth-child(1) {
+  transform: rotate(100deg);
+} */
+
+.row {
+  /* transform: scale(-1, -1); */
+  /* display: flex;
+  justify-content: end; */
+}
+
+.left-row {
+  display: flex;
+  justify-content: end;
+}
+
+.center-row {
+  display: flex;
+  justify-content: center;
+}
+
+.right-row {
+
+}
+
+.zone-1  .right {
+  transform: translateY(40px);
 }
 
 .location__seat {
