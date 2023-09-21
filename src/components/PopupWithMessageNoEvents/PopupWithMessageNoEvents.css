@@ -13,11 +13,13 @@
     text-align: center;
     background-color: #FFFFFF;
     top: 80px;
-    z-index: 200;
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
 
 .popup-with-message-no-event_is-visible {
     visibility: visible;
+    opacity: 1;
 }
 
 .popup-with-message-no-event:after {

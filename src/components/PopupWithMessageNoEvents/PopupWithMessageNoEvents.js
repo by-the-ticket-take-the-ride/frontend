@@ -1,7 +1,7 @@
 function PopupWithMessageNoEvents({isPopupVisible, x}) {
 
     const popupStyle = {
-        left: `${x + 35}px`,
+        left: `${x - 50 }px`,
     };
 
     return(

@@ -31,3 +31,7 @@
   opacity: 1;
   visibility: visible;
 }
+
+.title {
+  padding-bottom: 36px;
+}
