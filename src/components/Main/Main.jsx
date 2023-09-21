@@ -13,7 +13,7 @@ function Main() {
     confirm-email
     reset-password-confirm
   */
-
+ 
   return (
     <>
       {type !== '' && (
