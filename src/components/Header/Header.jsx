@@ -7,7 +7,7 @@ import CategoryButton from "./CategoryButton";
 import { category } from "./Header.data.js";
 import Button from "../Buttons/Button/Button";
 import usePopupContext from "../../hooks/usePopupContext";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import useUserContext from "../../hooks/useUserContext";
 
 const Header = ({ isActivePopupCity, setIsActivePopupCity, currentCity }) => {
@@ -15,6 +15,7 @@ const Header = ({ isActivePopupCity, setIsActivePopupCity, currentCity }) => {
   const currentCityStorage = localStorage.getItem("currentCity");
   const {isLoggedIn} = useUserContext();
   const navigate = useNavigate();
+  const { pathname } = useLocation(); 
 
   const handleClick = () => {
     setIsOpenPopupLogin(!isOpenPopupLogin);
@@ -23,10 +24,18 @@ const Header = ({ isActivePopupCity, setIsActivePopupCity, currentCity }) => {
     navigate("/personal-account/favourites");
   };
 
+  const reloadPage = () => {
+    if (pathname === '/') {
+      window.location.reload();
+    } else {
+      return;
+    }
+  }
+
   return (
     <div className="header">
       <div className="header__box">
-        <Link to="/" className="logo">
+        <Link to="/" className="logo" onClick={reloadPage}>
           <img
             src={headerLogo}
             alt="Лого проекта"

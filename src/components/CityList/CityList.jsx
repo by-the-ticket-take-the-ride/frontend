@@ -4,6 +4,7 @@ import { getCitiesById } from "../../utils/getCitiesApi";
 const CityList = ({ data, setCurrentCity, setIsActive }) => {
   const onClickCity = async (id) => {
     const city = await getCitiesById(id);
+    console.log(city);
     setCurrentCity(city.name);
     setIsActive(false);
     localStorage.setItem("currentCity", city.name);

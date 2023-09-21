@@ -176,7 +176,7 @@ function ChoiseThePlace() {
         tickets: paymentData,
         оrderNumber: randomFiveDigitNumber,
       });
-      navigate("/order");
+      navigate("/order", { replace: true });
     }
   };
 

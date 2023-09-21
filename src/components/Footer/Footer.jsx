@@ -5,19 +5,31 @@ import tiktokLogo from "../../assets/images/tiktok-icon.svg";
 import vkLogo from "../../assets/images/vk-icon.svg";
 
 import okLogo from "../../assets/images/ok-icon.svg";
+import { Link, useLocation } from "react-router-dom";
 const Footer = () => {
+  const { pathname } = useLocation();
+  const reloadPage = () => {
+    if (pathname === '/') {
+      window.location.reload();
+      window.scrollTo(0, 0);
+    } else {
+      return;
+    }
+  }
   return (
     <div className="footer">
       <div className="footer__top">
         <div className="footer__top-left">
           <div className="footer__top-left-ticket">
-            <img src={footerLogo} alt="Лого проекта" />
-            <div className="footer__top-left-ticket-box">
-              <p className="footer__top-left-ticket-box-title">TICKETERA</p>
-              <p className="footer__top-left-ticket-box-subtitle">
-                Афиша событий в&nbsp;вашем городе
-              </p>
-            </div>
+            <Link to="/" className="footer__logo" onClick={reloadPage}>
+              <img src={footerLogo} alt="Лого проекта" />
+              <div className="footer__top-left-ticket-box">
+                <p className="footer__top-left-ticket-box-title">TICKETERA</p>
+                <p className="footer__top-left-ticket-box-subtitle">
+                  Афиша событий в&nbsp;вашем городе
+                </p>
+              </div>
+            </Link>
           </div>
           <div className="footer__top-left-number">
             <p className="footer__top-left-number-title">

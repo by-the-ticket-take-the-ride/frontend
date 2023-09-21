@@ -35,7 +35,7 @@ const CityPopup = ({ isActive, onClose, setCurrentCity, setIsActive }) => {
     if (isCityDefinedCorrectly) {
       controller.abort();
     }
-  }, []);
+  }, [isCityDefinedCorrectly]);
 
   return (
     <div className={`city-popup ${isActive ? "city-popup_opened" : ""}`}>
@@ -51,8 +51,8 @@ const CityPopup = ({ isActive, onClose, setCurrentCity, setIsActive }) => {
           <CitySearch data={cityDatasStorage} setData={setData} />
         </div>
         <div className="city-popup__block">
-          {data.map((item) => (
-            <div className="city-popup__column">
+          {data.map((item, index) => (
+            <div key={index} className="city-popup__column">
               <span className="city-popup__column-title">{item.letter}</span>
               <CityList
                 data={item}

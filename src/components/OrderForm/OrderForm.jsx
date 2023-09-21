@@ -14,15 +14,19 @@ function OrderForm({currentCity}) {
   const [isHiddenLocation, setIsHiddenLocation] = React.useState(false);
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
   const [isOpen, setIsOpen] = React.useState(false);
-  const { totalOrder } = useSeatContext();
+  const { totalOrder, setTotalOrder, setPaymentData, setIsOpenPopap } = useSeatContext();
   const navigate = useNavigate();
   // console.log(totalOrder);
   const handleClick = () => {
     setIsOpen(true);
     setTimeout(function () {
       navigate("/", { replace: true });
+      setTotalOrder({});
+      setPaymentData([])
+      setIsOpenPopap(false);
+      // window.history.replaceState({}, document.title)
     }, 5000);
-    console.log('click');
+    
   };
 
   function closePopup() {
