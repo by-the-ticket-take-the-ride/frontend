@@ -8,16 +8,13 @@ import CurrentUserProvider from "./constext/CurrentUserProvider";
 import CityPopup from "./components/CityPopup/CityPopup";
 import Main from "./components/Main/Main";
 import EventPage from "./components/EventPage/EventPage";
-import Register from "./components/Main/Register/Register";
-import Login from "./components/Main/Login/Login";
-import PasswordRecovery from "./components/Main/PasswordRecovery/PasswordRecovery";
-import CheckEmail from "./components/Main/CheckEmail/CheckEmail";
-import ConfirmEmail from "./components/Main/ConfirmEmail/ConfirmEmail";
+import Auth from "./components/Main/Auth/Auth"
 import PopupProvider from "./constext/PopupProvider";
 import OrderForm from "./components/OrderForm/OrderForm";
 import * as EventApi from "./utils/currentEventApi";
 import eventsJson from "./components/ChoiseThePlace/events.json";
 import { EventsContext } from "./constext/EventsContext";
+import { useState } from "react"
 
 function App() {
   const [isActivePopupCity, setIsActivePopupCity] = React.useState(false);
@@ -25,6 +22,7 @@ function App() {
   const [events, setEvents] = React.useState([]);
   const [currentEvent, setCurrentEvent] = React.useState({});
   const [isHiddenLocation, setIsHiddenLocation] = React.useState(false);
+  const [type, setType] = useState('register');
 
   useLayoutEffect(() => {
     EventApi.getAllEvents()
@@ -97,11 +95,14 @@ function App() {
                 setCurrentCity={setCurrentCity}
                 setIsActive={setIsActivePopupCity}
               />
-              <Register />
-              <Login />
-              <PasswordRecovery />
-              <CheckEmail />
-              <ConfirmEmail />
+              {type !== '' && (
+                <div className="cover-blackout">
+                  <Auth
+                    type={type}
+                    setType={setType}
+                  />;
+                </div>
+              )}
             </SeatProvider>
           </PopupProvider>
         </CurrentUserProvider>
