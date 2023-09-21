@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Button from "../Buttons/Button/Button";
-import { getCurrentCity } from "../../utils/getCurrentCity";
+import { getCurrentCity, getCurrentCityRus, getUserApi } from "../../utils/getCurrentCity";
+import { validCity } from "../../utils/supportFunction";
 
 const LocationModal = ({
   onClickOtherButton,
@@ -9,6 +10,7 @@ const LocationModal = ({
   currentCity,
   setCurrentCity,
 }) => {
+  const [userIp, setUserIp] = useState('')
   const currentCityStorage = localStorage.getItem("currentCity");
   const isCityDefinedCorrectly = localStorage.getItem("isCityDefinedCorrectly");
   const onClick = () => {
@@ -20,20 +22,45 @@ const LocationModal = ({
     localStorage.setItem("isCityDefinedCorrectly", true);
     onClickButton(true);
   };
-
-  React.useEffect(() => {
-    const getCity = async () => {
-      try {
-        const city = await getCurrentCity();
-        console.log(city);
-        setCurrentCity(city);
-        localStorage.setItem("currentCity", city);
-      } catch (error) {
-        return;
+  // определение ip пользователя
+  useEffect(() => {
+    if (!isCityDefinedCorrectly) {
+      const getIp = async() => {
+        try {
+          const ip = await getUserApi();
+          setUserIp(ip.ipAddress)
+        } catch (error) {
+          return
+        }
       }
-    };
-    getCity();
-  }, []);
+        getIp();
+    }
+  },[isCityDefinedCorrectly]);
+
+  /* 
+    после определения ip пользователя получаем данные с https://dadata.ru/, 
+    если пользователь не из России, обращаемся к https://ipapi.co/
+  */
+  useEffect( () => {
+    if (userIp.length > 0) {
+      // let testIp = '31.192.8.255' //  Ts'khinvali (город) Грузия
+      getCurrentCityRus(userIp)
+        .then(res => {
+          if (res) {
+            setCurrentCity(validCity(res.location.value));
+            localStorage.setItem("currentCity", validCity(res.location.value));
+          }
+        })
+        .catch(() => {
+          getCurrentCity()
+            .then(city => {
+              setCurrentCity(city);
+              localStorage.setItem("currentCity", city);
+            })
+            .catch(err => console.log(`Не удалось определить город ${err}`))
+        })
+    }
+  }, [setCurrentCity, userIp]);
   return (
     <div
       className={`location-modal ${

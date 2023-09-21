@@ -22,3 +22,7 @@ export const renderTime = (time) => {
   const newTime = time?.split(':').slice(0, 2).join(":")
   return newTime;
 }
+
+export const validCity = (city) => {
+  return city.replace('г ', '')
+}
