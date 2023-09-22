@@ -89,7 +89,6 @@
   line-height: 22px;
   text-align: left;
   color: #191919;
-  cursor: pointer;
 }
 .auth-bottom__text_align {
   text-align: center;
@@ -101,4 +100,8 @@
   line-height: 22px;
   color: #8B52F6;
   text-decoration: underline;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background-color: transparent;
 }

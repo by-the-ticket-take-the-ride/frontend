@@ -12,6 +12,7 @@
   background-color: rgba(0, 0, 0, .3);
 } */
 
+/*
 .cover-blackout {
   display: flex;
   visibility: hidden;
@@ -30,4 +31,6 @@
 .cover-blackout_visible {
   opacity: 1;
   visibility: visible;
+>>>>>>> develop
 }
+*/

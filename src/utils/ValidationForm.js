@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 
-function useValidationSet (value, validations) {
+function useValidationSet (value, validations, typeInput) {
   const [textError, setTextError] = useState('');
   const [isEmpty, setIsEmpty] = useState(false);
   const [minLengthError, setMinLengthError] = useState(false);
@@ -37,7 +37,19 @@ function useValidationSet (value, validations) {
           if (value.length > 0 && value.length < validations[validation]) {
             switchValidation('minLength');
 
-            setTextError(`Минимальная длинна поля ${validations[validation]} символа`);
+            let inputErrorText = '';
+
+            if (typeInput === 'email') {
+              inputErrorText = 'Некорректный e-mail';
+            } else if (typeInput === 'name') {
+              inputErrorText = 'Некорректное имя';
+            } else if (typeInput === 'password') {
+              inputErrorText = 'Некорректный пароль';
+            } else {
+              inputErrorText = `Минимальная длинна поля ${validations[validation]} символа`;
+            }
+            
+            setTextError(inputErrorText);
           } else {
             setMinLengthError(false);
           }
@@ -46,7 +58,19 @@ function useValidationSet (value, validations) {
           if (value.length > validations[validation]) {
             switchValidation('maxLength');
 
-            setTextError(`Максимальная длинна поля ${validations[validation]} символов`);
+            let inputErrorText = '';
+
+            if (typeInput === 'email') {
+              inputErrorText = 'Некорректный e-mail';
+            } else if (typeInput === 'name') {
+              inputErrorText = 'Некорректное имя';
+            } else if (typeInput === 'password') {
+              inputErrorText = 'Некорректный пароль';
+            } else {
+              inputErrorText = `Максимальная длинна поля ${validations[validation]} символа`;
+            }
+
+            setTextError(inputErrorText);
           } else {
             setMaxLengthError(false);
           }
@@ -116,10 +140,10 @@ function useValidationSet (value, validations) {
 }
 
 
-function useInput (initialValue, validations) {
+function useInput (initialValue, validations, typeInput='') {
   const [value, setValue] = useState(initialValue);
   const [isChange, setIsChange] = useState(false);
-  const valid = useValidationSet(value, validations);
+  const valid = useValidationSet(value, validations, typeInput);
 
   function onChange (e) {
     setValue(e.target.value);
@@ -138,7 +162,7 @@ function displayError(nameInput) {
   let isTextError = 'auth-form__display_none';
   let isUnderlinError = '';
   let isValueError = '';
-
+  
   if (nameInput.isChange && 
     (nameInput.isEmpty 
     || nameInput.minLengthError

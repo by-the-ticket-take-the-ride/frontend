@@ -1,45 +1,58 @@
 import "./AuthBottom.css";
 
 function AuthBottom(props) {
+  const {handleClickGoForm, type} = props;
+
   let linkText;
 
-  if (props.type === "register") {
+  
+
+  if (type === 'register') {
     linkText = (
       <p className="auth-bottom__to-login text-reset">
-        Уже зарегистрированы?{" "}
-        <span
-          onClick={props.handleClickLogin}
+        Уже зарегистрированы?&nbsp;
+        <button 
           className="auth-bottom__to-login-link text-reset link-hover"
+          onClick={
+            () => handleClickGoForm('login')
+          }
         >
           Войти в профиль
-        </span>
+        </button>
       </p>
     );
-  } else if (props.type === "login") {
+  } else if (type === 'login') {
     linkText = (
-      <p
-        className="auth-bottom__to-login auth-bottom__text_align text-reset"
-      >
-        <span
-          onClick={props.handleClickRegister}
+      <p className="auth-bottom__to-login auth-bottom__text_align text-reset">
+        <button 
           className="auth-bottom__to-login-link text-reset link-hover"
+          onClick={
+            () => handleClickGoForm('register')
+          }
         >
           Регистрация
-        </span>
+        </button>
       </p>
     );
-  } else if (props.type === "password-recovery") {
-    return <></>;
-  } else if (props.type === "check-email") {
-    return <></>;
-  } else if (props.type === "confirm-email") {
+  } else if (type === 'password-recovery') {
+      return (<></>);
+  } else if (type === 'check-email') {
+      return (<></>);
+  } else if (type === 'confirm-email') {
     linkText = (
       <p className="auth-bottom__to-login text-reset">
-        <span className="auth-bottom__to-login-link text-reset link-hover">
+        <button 
+          className="auth-bottom__to-login-link text-reset link-hover"
+          onClick={
+            () => handleClickGoForm('login')
+          }
+        >
           Войти в профиль
-        </span>
+        </button>
       </p>
     );
+  } else if (type === 'reset-password-confirm') {
+    return (<></>);
   }
 
   return (

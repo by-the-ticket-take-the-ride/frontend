@@ -59,3 +59,22 @@ export function signOut (token) {
     }
   }).then(res => _getResponseData(res))
 }
+
+export function resetPasswordConfirm(uid, token, new_password) {
+  return fetch(`${BASE_URL}/api/users/set_password/`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({uid, token, new_password})
+  }).then(res => _getResponseData(res));
+}
+export function resetPassword(email) {
+  return fetch(`${BASE_URL}/api/users/reset_password/`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({email})
+  }).then(res => _getResponseData(res));
+}
