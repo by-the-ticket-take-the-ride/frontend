@@ -22,7 +22,7 @@ function App() {
   const [events, setEvents] = React.useState([]);
   const [currentEvent, setCurrentEvent] = React.useState({});
   const [isHiddenLocation, setIsHiddenLocation] = React.useState(false);
-  const [type, setType] = useState('register');
+  const [type, setType] = useState('');
 
   useLayoutEffect(() => {
     EventApi.getAllEvents()

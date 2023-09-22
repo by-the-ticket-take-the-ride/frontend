@@ -63,7 +63,7 @@ function AuthForm(props) {
         })
     } else if (e.target.id === 'button-login') {
       const {email, password} = dataForm;
-      auth.login(email, password)
+      auth.signIn(email, password)
         .then((res) => {
           console.log('Вы авторизовались');
         })
