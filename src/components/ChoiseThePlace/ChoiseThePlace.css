@@ -94,7 +94,7 @@
 
 .hall-layout__wrapper {
   box-sizing: border-box;
-  margin: 49px 0 0;
+  margin:0;
   width: 100%;
   min-width: 570.21px;
   min-height: 402px;
@@ -103,14 +103,14 @@
 .hall-layout__about-zones {
   display: flex;
   justify-content: space-around;
-  margin-top: 48px;
+  margin-top: 62px;
 }
 
 .hall-layout__location {
+  padding-top: 29px;
   box-sizing: border-box;
   overflow: auto;
-  padding: 0;
-  max-height: 344px;
+  max-height: 511px;
 }
 
 /* информация о зонах */
@@ -161,12 +161,26 @@
   min-height: 233px;
 }
 
+.location__seats_type_big {
+  gap: 4px;
+  margin-top: 27.43px;
+}
+
+/* NEW data */
+.sector {
+  display: flex;
+  justify-content: space-between;
+}
+
+.sector_type_additional {
+  flex-direction: column;
+  gap: 4px;
+}
+
 .location__zone {
   display: flex;
   flex-direction: column; 
   row-gap: 8px;
-
-
 }
 
 .location__row {
@@ -177,6 +191,43 @@
 .location__column {
   display: flex;
   gap: 8.21px;
+}
+
+.zone_type_left {
+  transform: rotate(30deg) translate(-20px, -40px);
+}
+
+.zone_type_left-second {
+  transform: rotate(30deg) translate(-14px, -57px);
+}
+
+.zone_type_right {
+  transform: rotate(-30deg) translate(20px, -40px);
+}
+
+.zone_type_right-second {
+  transform: rotate(-30deg) translate(13px, -55px);
+}
+
+.row {
+  display: flex;
+  gap: 4.48px;
+}
+
+.left-row {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.center-row {
+  display: flex;
+  justify-content: center;
+}
+
+.zone {
+  display: flex;
+  flex-direction: column;
+  gap: 4px
 }
 
 .location__seat {

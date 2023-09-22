@@ -3,6 +3,7 @@ import { SeatContext } from "./SeatContext";
 import * as EventApi from "../utils/currentEventApi";
 import eventJson from "../components/ChoiseThePlace/event.json";
 import ticketsJson from "../components/ChoiseThePlace/tickets.json";
+import eventTestData2 from '../components/ChoiseThePlace/event.json'
 
 function SeatProvider({ children }) {
   const [totalOrder, setTotalOrder] = useState({});
@@ -27,6 +28,7 @@ function SeatProvider({ children }) {
       .then((event) => {
         if (event) {
           setEventZone(event.place.type.zone);
+          // setEventZone(eventTestData2.place.type.zone);
           setEventForChoisePlace(event);
         } else {
           setEventZone(eventJson.place.type.zone);

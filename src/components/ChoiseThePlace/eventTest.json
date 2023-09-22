@@ -20,24 +20,24 @@
         {
           "id": 1,
           "name": "Зона 1",
-          "row": 5,
-          "seat": 101,
+          "row": 2,
+          "seat": 20,
           "price": 3000
-      },
-      {
+        },
+        {
           "id": 2,
           "name": "Зона 2",
-          "row": 6,
-          "seat": 143,
+          "row": 4,
+          "seat": 56,
           "price": 1500
-      },
-      {
+        },
+        {
           "id": 3,
           "name": "Зона 3",
-          "row": 4,
-          "seat": 70,
+          "row": 2,
+          "seat": 32,
           "price": 1000
-      }
+        }
       ],
       "max_hall_capacity": 0
     }

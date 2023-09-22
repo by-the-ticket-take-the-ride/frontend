@@ -7,6 +7,7 @@ import Footer from "../Footer/Footer";
 import useSeatContext from "../../hooks/useSeatContext";
 import { useNavigate } from "react-router-dom";
 import PaymentSuccessPopup from "../PaymentSuccessPopup/PaymentSuccessPopup";
+import ScrollToTop from "../../utils/ScrollToTop";
 
 function OrderForm({currentCity}) {
   const { values, errors, isValid, handleChange } = useFormWithValidation();
@@ -37,6 +38,7 @@ function OrderForm({currentCity}) {
 
   return (
     <>
+    <ScrollToTop/>
       <Header
         // isLoggedIn={isLoggedIn}
         currentCity={currentCity}

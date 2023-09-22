@@ -10,6 +10,7 @@ import { useParams } from "react-router-dom";
 import * as currentEventApi from "../../utils/currentEventApi";
 import { EventsContext } from "../../constext/EventsContext";
 import ScrollToTop from "../../utils/ScrollToTop";
+import useSeatContext from "../../hooks/useSeatContext";
 
 function EventPage({
   currentCity,
@@ -21,11 +22,17 @@ function EventPage({
   const handleSelectedDateChange = (events) => {
     setSelectedDateEvents(events);
   };
+  const {
+    setTotalOrder,
+    setPaymentData,
+  } = useSeatContext();
 
   const { currentEvent, setCurrentEvent } = useContext(EventsContext);
   const { id } = useParams();
 
   useEffect(() => {
+    setTotalOrder({});
+    setPaymentData([]);
     currentEventApi
       .getCurrentEvent(id)
       .then((event) => {
