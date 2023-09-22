@@ -2,13 +2,20 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import ButtonLike from "../Buttons/ButtonLike/ButtonLike";
 import * as supportFunction from "../../utils/supportFunction";
+import useUserContext from "../../hooks/useUserContext";
 
 function EventCard({ eventData }) {
   const [isActive, setIsActive] = useState(false);
   const { name, image, time_event, date_event, place, id } = eventData;
-
+  const {isLoggedIn} = useUserContext();
+  
   const handleLike = () => {
-    setIsActive(!isActive);
+    if (isLoggedIn) {
+      setIsActive(!isActive);
+    } else {
+      console.log('Вам надо авторизоваться');
+    }
+    
   };
   return (
     <article className="event-card">
