@@ -1,0 +1,53 @@
+.notification-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 60px;
+}
+
+.notification-page__image {
+  max-width: 200px;
+  max-height: 200px;
+}
+
+.notification-page__title {
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-family: 'Nunito Sans';
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 22px; /* 100% */
+  letter-spacing: -1px;
+  margin: 36px 0 14px;
+  align-self: center;
+}
+
+.notification-page__wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+
+.notification-page__subtitle {
+  font-family: Nunito Sans;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 22px; /* 137.5% */
+  min-width: 377px;
+}
+
+.notification-page__icon {
+  display: block;
+  width: 34px;
+  height: 34px;
+}
+
+.notification-page__button {
+  padding: 12px 24px;
+  min-width: 231px;
+  border-radius: 50px;
+}

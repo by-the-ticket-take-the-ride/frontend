@@ -153,7 +153,7 @@ function MyData() {
               </span>
             )}
           </div>
-          <div className="my-data__input-data">
+          {/* <div className="my-data__input-data">
             <input
               value={inputValues.city || ""}
               onChange={(evt) =>
@@ -176,7 +176,7 @@ function MyData() {
                 {errorMessages.city}
               </span>
             )}
-          </div>
+          </div> */}
           <div className="my-data__input-data">
             <InputPhoneMask
               extraClass={`my-data__input ${

@@ -2,12 +2,21 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import ButtonLike from "../Buttons/ButtonLike/ButtonLike";
 import * as supportFunction from "../../utils/supportFunction";
+import { addEventToFavorites } from "../../utils/currentEventApi";
 
 function EventCard({ eventData }) {
   const [isActive, setIsActive] = useState(false);
   const { name, image, time_event, date_event, place, id } = eventData;
 
   const handleLike = () => {
+    const toket = localStorage.getItem('token')
+    if (!isActive) {
+      addEventToFavorites(id,toket)
+        .then(res => {
+
+        })
+        .catch(err => console.log(err))
+    }
     setIsActive(!isActive);
   };
   return (

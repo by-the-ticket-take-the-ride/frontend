@@ -40,3 +40,15 @@ export const getTickets = () => {
     console.log(err);
   })
 }
+
+export const addEventToFavorites = (id, token) => {
+  return fetch(`${MAIN_API_URL}/events/${id}/favorite/`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      "Authorization": `Token ${token}`
+    }
+  }).then( res => {
+    return res.ok ? res.json() : Promise.reject(res.status)
+  })
+}
