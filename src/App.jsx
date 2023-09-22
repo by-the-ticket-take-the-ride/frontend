@@ -24,7 +24,7 @@ function App() {
   const [currentEvent, setCurrentEvent] = React.useState({});
   const [isHiddenLocation, setIsHiddenLocation] = React.useState(false);
   const {type, setType} = usePopupTypeContext();
-
+console.log(type);
   useLayoutEffect(() => {
     EventApi.getAllEvents()
       .then((events) => {
