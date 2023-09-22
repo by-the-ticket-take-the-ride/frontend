@@ -1,40 +1,51 @@
-import { useEffect, useState } from "react";
+import { useLayoutEffect, useState } from "react";
 import { CurrentUserContext } from "./CurrentUserContext";
-import * as currentUserApi from '../utils/currentUserApi'
-import testData from '../components/PersonalAccount/MyData/testData.json'
+import * as Auth from '../utils/Auth'
 
 function CurrentUserProvider({ children }) {
   const [currentUser, setCurrentUser] = useState({});
   const [isSuccess, setIsSuccess] = useState(false);
-  const [isOpenNotific, setIsOpenNotific] = useState(false)
+  const [isOpenNotific, setIsOpenNotific] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [inputTelValue, setInputTelValue] = useState();
 
-  useEffect(() => {
-    currentUserApi
-      .getCurrentUser()
-      .then((currentUser) => {
-        /* когда будет настроен запрос на сервер */
-        // setCurrentUser(currentUser)
-        setCurrentUser(testData);
-      }).catch(err => console.log(err))
-  },[])
+  useLayoutEffect(() => {
+    const token = localStorage.getItem('token')
+    Auth
+      .tockenCheck(token)
+      .then(res => {
+        if (res) {
+          setCurrentUser(res);
+          setIsLoggedIn(true);
+        }
+      })
+      .catch(err => console.log('Не удалось провести аутентификацию',err))
+  },[isLoggedIn])
 
 const handleSetUserInfo = (userData) => {
   setIsOpenNotific(false)
   setIsSuccess(false)
-    return currentUserApi
-      .setUserInfo(userData)
+  const token = localStorage.getItem('token')
+    return Auth
+      .setUserInfo(userData, token)
       .then((currentUser) => {
         if (currentUser) {
-          /* когда будет настроен запрос на сервер */
-          // setCurrentUser(currentUser)
-          setCurrentUser(testData)
+          setCurrentUser(currentUser)
           setIsSuccess(true)
         }
       })
       .catch(() => {
-        setIsSuccess(false)
+        setIsSuccess(false);
       })
-      .finally(() => setIsOpenNotific(true))
+      .finally(() => setIsOpenNotific(true));
+  };
+
+  const handleLogout = () => {
+    const token = localStorage.getItem('token')
+    return Auth
+      .signOut(token)
+      .then(res => console.log('Выход произведен успешно'))
+      .catch(err => console.log(err))
   }
 
   return ( 
@@ -42,11 +53,16 @@ const handleSetUserInfo = (userData) => {
       currentUser,
       handleSetUserInfo,
       isSuccess,
-      isOpenNotific
+      isOpenNotific,
+      setIsLoggedIn,
+      isLoggedIn,
+      inputTelValue,
+      setInputTelValue,
+      handleLogout
     }}>
       {children}
     </CurrentUserContext.Provider>
-   );
+  );
 }
 
 export default CurrentUserProvider;

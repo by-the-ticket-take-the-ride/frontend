@@ -1,4 +1,4 @@
-const BASE_URL = 'http://buytheticket.ddns.net';
+const BASE_URL = 'http://buytheticket.ddns.net/api';
 
 export function _getResponseData(res) {
   if (!res.ok) {
@@ -7,39 +7,57 @@ export function _getResponseData(res) {
   return res.json();
 }
 
-export function register(username, email, password, re_password) {
-  return fetch(`${BASE_URL}/api/users/`, {
+export function register(username, email, password) {
+  return fetch(`${BASE_URL}/users/`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({username, email, password, re_password})
+    body: JSON.stringify({ username, email, password: password, re_password: password })
   }).then(res => _getResponseData(res));
 }
 
-export function login(email, password) {
-  return fetch(`${BASE_URL}/api/auth/token/login/`, {
+export function signIn (email, password ) {
+  return fetch(`${BASE_URL}/auth/token/login`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({email, password})
+    body: JSON.stringify({ password, email })
   }).then(res => _getResponseData(res))
-    .then((data) => {
-      localStorage.setItem('jwt', data.token);
-      console.log(data.token);
-      return data;
-    })
 }
 
-export function resetPassword(email) {
-  return fetch(`${BASE_URL}/api/users/reset_password/`, {
-    method: 'POST',
+export function tockenCheck (token) {
+  return fetch(`${BASE_URL}/users/me/`, {
     headers: {
+      "Authorization": `Token ${token}`,
+      'Content-Type': 'application/json'
+    }
+  }).then(res => _getResponseData(res))
+}
+
+export function setUserInfo (userData, token) {
+  const { username } = userData;
+  return fetch(`${BASE_URL}/users/me/`, {
+    method: 'PATCH',
+    headers: {
+      "Authorization": `Token ${token}`,
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({email})
-  }).then(res => _getResponseData(res));
+    body: JSON.stringify({
+      username
+    })
+  }).then(res => _getResponseData(res))
+}
+
+export function signOut (token) {
+  return fetch(`${BASE_URL}/auth/token/logout`, {
+    method: 'POST',
+    headers: {
+      "Authorization": `Token ${token}`,
+      'Content-Type': 'application/json'
+    }
+  }).then(res => _getResponseData(res))
 }
 
 export function resetPasswordConfirm(uid, token, new_password) {
@@ -49,5 +67,14 @@ export function resetPasswordConfirm(uid, token, new_password) {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({uid, token, new_password})
+  }).then(res => _getResponseData(res));
+}
+export function resetPassword(email) {
+  return fetch(`${BASE_URL}/api/users/reset_password/`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({email})
   }).then(res => _getResponseData(res));
 }

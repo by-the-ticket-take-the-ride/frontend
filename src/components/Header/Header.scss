@@ -28,9 +28,9 @@
       margin-left: 12px;
     }
     &-location {
+      max-width: 250px;
       text-align: center;
-      display: flex;
-      align-items: center;
+      align-self: center;
       color: var(--black, #191919);
       text-align: center;
       font-feature-settings: "clig" off, "liga" off;
@@ -41,6 +41,10 @@
       line-height: 22px; /* 122.222% */
       text-decoration-line: underline;
       margin-left: 35px;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+      float:left;
       cursor: pointer;
     }
     &-input {
@@ -75,6 +79,16 @@
   &__button {
     &_logged {
       width: 40px;
+    }
+    &_signin {
+      // width: ;
+      padding: 12px 38px;
+      border-radius: 50px;
+      font-family: Nunito Sans;
+      font-size: 18px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 22px; /* 122.222% */
     }
   }
   &__buttons {

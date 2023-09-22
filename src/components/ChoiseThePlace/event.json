@@ -44,8 +44,8 @@
   },
   "name": "Zivert",
   "description": "string",
-  "date_event": "15 сентября",
-  "time_event": "19:00",
+  "date_event": "2023-05-10",
+  "time_event": "19:40:00",
   "image": "string",
   "is_favorited": "string"
 }

@@ -1,134 +1,113 @@
 import "./App.css";
-import React from "react";
+import React, { useLayoutEffect } from "react";
 import { Route, Routes } from "react-router-dom";
-import ChoiseThePalce from "./components/ChoiseThePlace/ChoiseThePlace";
 import SeatProvider from "./constext/SeatProvider";
 import PersonalAccount from "./components/PersonalAccount/PersonalAccount";
 import MyData from "./components/PersonalAccount/MyData/MyData";
 import CurrentUserProvider from "./constext/CurrentUserProvider";
-import Header from "./components/Header/Header";
-import Footer from "./components/Footer/Footer";
-import Calendar from "./components/Calendar/Calendar";
-import EventCards from "./components/EventCards/EventCards";
-import LocationModal from "./components/LocationModal/LocationModal";
-import EventsCardList from "./components/EventsCardList/EventsCardList";
 import CityPopup from "./components/CityPopup/CityPopup";
-import MainFrame from "./components/MainFrame/MainFrame";
 import Main from "./components/Main/Main";
+import EventPage from "./components/EventPage/EventPage";
+import Register from "./components/Main/Register/Register";
+import Login from "./components/Main/Login/Login";
+import PasswordRecovery from "./components/Main/PasswordRecovery/PasswordRecovery";
+import CheckEmail from "./components/Main/CheckEmail/CheckEmail";
+import ConfirmEmail from "./components/Main/ConfirmEmail/ConfirmEmail";
+import PopupProvider from "./constext/PopupProvider";
+import OrderForm from "./components/OrderForm/OrderForm";
+import * as EventApi from "./utils/currentEventApi";
+import eventsJson from "./components/ChoiseThePlace/events.json";
+import { EventsContext } from "./constext/EventsContext";
 
 function App() {
-  const [selectedDateEvents, setSelectedDateEvents] = React.useState([]);
   const [isActivePopupCity, setIsActivePopupCity] = React.useState(false);
+  const [currentCity, setCurrentCity] = React.useState("Москва");
+  const [events, setEvents] = React.useState([]);
+  const [currentEvent, setCurrentEvent] = React.useState({});
   const [isHiddenLocation, setIsHiddenLocation] = React.useState(false);
-  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
 
-  const handleSelectedDateChange = (events) => {
-    setSelectedDateEvents(events);
-  };
+  useLayoutEffect(() => {
+    EventApi.getAllEvents()
+      .then((events) => {
+        if (events) {
+          setEvents(() => events);
+        } else {
+          setEvents(() => eventsJson);
+        }
+      })
+      .catch((err) => console.log(err));
+  }, []);
 
   return (
     <div className="App">
-      <Header
-        isLoggedIn={isLoggedIn}
-        isActivePopupCity={isActivePopupCity}
-        setIsActivePopupCity={setIsActivePopupCity}
-      />
-      <Calendar handleSelectedDateChange={handleSelectedDateChange} />
-      <EventsCardList />
-      <MainFrame />
-      <SeatProvider>
-        <ChoiseThePalce />
-      </SeatProvider>
-      <Routes>
-        <Route
-          exact
-          path="/"
-          element={<Main/>}
-        >
-        </Route>
-        
-        <Route
-          path="/personal-account"
-          element={
-            <CurrentUserProvider>
-              <PersonalAccount />
-            </CurrentUserProvider>
-          }
-        >
-          <Route path="favourites" element={<></>} />
-          <Route path="my-data" element={<MyData />} />
-        </Route>
-      </Routes>
-      <EventCards />
-      <Footer />
-      <LocationModal
-        onClickOtherButton={setIsActivePopupCity}
-        onClickButton={setIsHiddenLocation}
-        isHidden={isHiddenLocation}
-      />
-      <CityPopup isActive={isActivePopupCity} onClose={setIsActivePopupCity} />
+      <EventsContext.Provider
+        value={{
+          events,
+          setEvents,
+          currentEvent,
+          setCurrentEvent,
+        }}
+      >
+        <CurrentUserProvider>
+          <PopupProvider>
+            <SeatProvider>
+              <Routes>
+                <Route
+                  exact
+                  path="/"
+                  element={
+                    <Main
+                      currentCity={currentCity}
+                      isActivePopupCity={isActivePopupCity}
+                      setIsActivePopupCity={setIsActivePopupCity}
+                      isHiddenLocation={isHiddenLocation}
+                      setIsHiddenLocation={setIsHiddenLocation}
+                      setCurrentCity={setCurrentCity}
+                    />
+                  }
+                ></Route>
+                <Route
+                  path={`/event/:id`}
+                  element={
+                    <EventPage
+                      currentCity={currentCity}
+                      isActivePopupCity={isActivePopupCity}
+                      setIsActivePopupCity={setIsActivePopupCity}
+                    />
+                  }
+                />
+                <Route path="/order" element={<OrderForm currentCity={currentCity} />} />
+                <Route
+                  path="/personal-account"
+                  element={
+                    <PersonalAccount
+                      currentCity={currentCity}
+                      isActivePopupCity={isActivePopupCity}
+                      setIsActivePopupCity={setIsActivePopupCity}
+                    />
+                  }
+                >
+                  <Route path="favourites" element={<></>} />
+                  <Route path="my-data" element={<MyData />} />
+                </Route>
+              </Routes>
+              <CityPopup
+                isActive={isActivePopupCity}
+                onClose={setIsActivePopupCity}
+                setCurrentCity={setCurrentCity}
+                setIsActive={setIsActivePopupCity}
+              />
+              <Register />
+              <Login />
+              <PasswordRecovery />
+              <CheckEmail />
+              <ConfirmEmail />
+            </SeatProvider>
+          </PopupProvider>
+        </CurrentUserProvider>
+      </EventsContext.Provider>
     </div>
   );
 }
 
 export default App;
-
-// import React from "react";
-// import { Routes, Route } from 'react-router-dom';
-// import Header from "./components/Header/Header";
-// import Footer from "./components/Footer/Footer";
-// import Calendar from "./components/Calendar/Calendar";
-// import EventCards from "./components/EventCards/EventCards";
-// import LocationModal from "./components/LocationModal/LocationModal";
-// import EventsCardList from "./components/EventsCardList/EventsCardList";
-// import CityPopup from "./components/CityPopup/CityPopup";
-// import EventPage from "./components/EventPage/EventPage";
-// import MainFrame from "./components/MainFrame/MainFrame";
-// import OrderForm from "./components/OrderForm/OrderForm";
-// import NoResultPage from "./components/NoResultPage/NoResultPage";
-
-// function App() {
-//   const [selectedDateEvents, setSelectedDateEvents] = React.useState([]);
-//   const [isActivePopupCity, setIsActivePopupCity] = React.useState(false);
-//   const [isHiddenLocation, setIsHiddenLocation] = React.useState(false);
-//   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
-
-//   const handleSelectedDateChange = (events) => {
-//     setSelectedDateEvents(events);
-//   };
-
-//   return (
-//     <div className="page">
-//         <Routes>
-
-//           {/* <Route exact path='/'>
-//             <div className="App">
-//               <Header
-//                 isLoggedIn={isLoggedIn}
-//                 isActivePopupCity={isActivePopupCity}
-//                 setIsActivePopupCity={setIsActivePopupCity}
-//               />
-//               <Calendar handleSelectedDateChange={handleSelectedDateChange} />
-//               <EventsCardList />
-//               <MainFrame />
-//               <EventCards />
-//               <Footer />
-//               <LocationModal
-//                 onClickOtherButton={setIsActivePopupCity}
-//                 onClickButton={setIsHiddenLocation}
-//                 isHidden={isHiddenLocation}
-//               />
-//               <CityPopup isActive={isActivePopupCity} onClose={setIsActivePopupCity} />
-//             </div>
-//           </Route> */}
-//           <Route path="/no-result" element={<NoResultPage value={'аовл'}/>} />
-
-//           <Route path='/event-page' element={<EventPage />} />
-
-//         </Routes>
-//       </div>
-
-//   );
-// }
-
-// export default App;

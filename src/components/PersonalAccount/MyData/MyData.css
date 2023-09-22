@@ -24,23 +24,28 @@
   margin-bottom: 12px;
 }
 
+.my-data__input-data {
+  max-width: 550px;
+  margin-bottom: 12px;
+}
+
+.my-data__input-data:last-of-type {
+  margin-bottom: 0;
+}
+
 .my-data__input {
+  width: 100%;
   border: none;
   background-color: #fff;
   border: 1px solid #9A9A9A;
   border-radius: 20px;
   padding: 16px 14px;
   box-sizing: border-box;
-  margin-bottom: 12px;
   font-family: 'Nunito Sans';
   font-weight: 400;
   font-size: 16px;
   line-height: 22px;
-  color: rgba(154, 154, 154, 1);
-}
-
-.my-data__input:last-of-type {
-  margin-bottom: 0;
+  color: #191919;
 }
 
 .my-data__input_type_gray {
@@ -54,6 +59,24 @@
   font-size: 16px;
   line-height: 22px;
   color: rgba(154, 154, 154, 1);
+}
+
+.my-data__input_error {
+  border: 1px solid #EA3057;
+}
+
+.my-data__error {
+  display: none;
+  font-family: 'Nunito Sans';
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  color: #EA3057;
+  margin: 5px 0 0 5px;
+}
+
+.my-data__error_active {
+  display: inline-block;
 }
 
 .my-data__group {
@@ -79,7 +102,10 @@
   width: 100%;
   min-height: 52px;
   border-radius: 20px;
+}
 
+.my-data__save-button_disabled {
+  background: #9A9A9A;
 }
 
 .notification {
