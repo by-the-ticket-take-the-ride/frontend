@@ -15,7 +15,7 @@ import * as EventApi from "./utils/currentEventApi";
 import eventsJson from "./components/ChoiseThePlace/events.json";
 import { EventsContext } from "./constext/EventsContext";
 import { useState } from "react";
-import usePopupTypeContext from "./hooks/usePopupTypeContext";
+import usePopupContext from "./hooks/usePopupContext";
 
 function App() {
   const [isActivePopupCity, setIsActivePopupCity] = React.useState(false);
@@ -23,8 +23,10 @@ function App() {
   const [events, setEvents] = React.useState([]);
   const [currentEvent, setCurrentEvent] = React.useState({});
   const [isHiddenLocation, setIsHiddenLocation] = React.useState(false);
-  const {type, setType} = usePopupTypeContext();
-console.log(type);
+  const {type, setType} = usePopupContext();
+
+  console.log(type);
+
   useLayoutEffect(() => {
     EventApi.getAllEvents()
       .then((events) => {
@@ -96,6 +98,7 @@ console.log(type);
                 setCurrentCity={setCurrentCity}
                 setIsActive={setIsActivePopupCity}
               />
+              
               {type !== '' && (
                 <div className="cover-blackout">
                   <Auth
