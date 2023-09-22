@@ -94,7 +94,7 @@
 
 .hall-layout__wrapper {
   box-sizing: border-box;
-  margin: 49px 0 0;
+  margin:0;
   width: 100%;
   min-width: 570.21px;
   min-height: 402px;
@@ -103,14 +103,14 @@
 .hall-layout__about-zones {
   display: flex;
   justify-content: space-around;
-  margin-top: 48px;
+  margin-top: 62px;
 }
 
 .hall-layout__location {
+  padding-top: 29px;
   box-sizing: border-box;
   overflow: auto;
-  padding: 0;
-  max-height: 344px;
+  max-height: 511px;
 }
 
 /* информация о зонах */
@@ -161,14 +161,20 @@
   min-height: 233px;
 }
 
+.location__seats_type_big {
+  gap: 4px;
+  margin-top: 27.43px;
+}
+
 /* NEW data */
 .sector {
   display: flex;
   justify-content: space-between;
 }
 
-.sector-additional {
-  
+.sector_type_additional {
+  flex-direction: column;
+  gap: 4px;
 }
 
 .location__zone {
@@ -187,26 +193,30 @@
   gap: 8.21px;
 }
 
-.left {
-  transform: rotate(25deg) translate(-15px, -45px);
-}
-.right {
-  transform: rotate(-25deg) translate(15px, -45px);
+.zone_type_left {
+  transform: rotate(30deg) translate(-20px, -40px);
 }
 
-/* .left:nth-child(1) {
-  transform: rotate(100deg);
-} */
+.zone_type_left-second {
+  transform: rotate(30deg) translate(-14px, -57px);
+}
+
+.zone_type_right {
+  transform: rotate(-30deg) translate(20px, -40px);
+}
+
+.zone_type_right-second {
+  transform: rotate(-30deg) translate(13px, -55px);
+}
 
 .row {
-  /* transform: scale(-1, -1); */
-  /* display: flex;
-  justify-content: end; */
+  display: flex;
+  gap: 4.48px;
 }
 
 .left-row {
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
 }
 
 .center-row {
@@ -214,12 +224,10 @@
   justify-content: center;
 }
 
-.right-row {
-
-}
-
-.zone-1  .right {
-  transform: translateY(40px);
+.zone {
+  display: flex;
+  flex-direction: column;
+  gap: 4px
 }
 
 .location__seat {
