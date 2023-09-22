@@ -1,0 +1,143 @@
+.my-data {
+ padding-top: 70px;
+}
+
+.my-data__wrapper {
+  background-color: rgba(154, 154, 154, 0.1);
+  max-width: 1120px;
+  padding: 64px 95px;
+  border-radius: 20px;
+}
+
+.my-data__form {
+  display: flex;
+  flex-direction: column;
+  max-width: 550px;
+}
+
+.my-data__label {
+  font-family: 'Nunito Sans';
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14px;
+  color: rgba(154, 154, 154, 1);
+  margin-bottom: 12px;
+}
+
+.my-data__input-data {
+  max-width: 550px;
+  margin-bottom: 12px;
+}
+
+.my-data__input-data:last-of-type {
+  margin-bottom: 0;
+}
+
+.my-data__input {
+  width: 100%;
+  border: none;
+  background-color: #fff;
+  border: 1px solid #9A9A9A;
+  border-radius: 20px;
+  padding: 16px 14px;
+  box-sizing: border-box;
+  font-family: 'Nunito Sans';
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  color: #191919;
+}
+
+.my-data__input_type_gray {
+  background-color: rgba(154, 154, 154, 0.1);
+  border: none;
+}
+
+.my-data__input::placeholder {
+  font-family: 'Nunito Sans';
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  color: rgba(154, 154, 154, 1);
+}
+
+.my-data__input_error {
+  border: 1px solid #EA3057;
+}
+
+.my-data__error {
+  display: none;
+  font-family: 'Nunito Sans';
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  color: #EA3057;
+  margin: 5px 0 0 5px;
+}
+
+.my-data__error_active {
+  display: inline-block;
+}
+
+.my-data__group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+.my-data__group-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.my-data__save-button {
+  font-family: 'Nunito Sans';
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 22px;
+  margin-top: 48px;
+  width: 100%;
+  min-height: 52px;
+  border-radius: 20px;
+}
+
+.my-data__save-button_disabled {
+  background: #9A9A9A;
+}
+
+.notification {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.notification_visible {
+  display: flex;
+}
+
+.my-data__notification {
+  max-width: 549px;
+  min-height: 52px;
+  margin-top: 20px;
+}
+
+.notification_success {
+  display: flex;
+  background-color: #D6F8D3;
+}
+
+.notification_error {
+  display: flex;
+  background-color: #F8DAD3;
+}
+
+.my-data__success-text {
+  font-family: 'Nunito Sans';
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+}

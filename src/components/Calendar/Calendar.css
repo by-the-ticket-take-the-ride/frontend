@@ -1,0 +1,81 @@
+.calendar {
+  max-width: 1120px;
+  display: flex;
+  margin: 0 auto;
+  position: relative;
+}
+
+.calendar__container {
+  display: flex;
+  max-width: 1020px;
+  position: relative;
+  overflow: hidden;
+  margin: auto;
+}
+
+.dates-visible {
+  display: flex;
+  transition: transform 0.5s ease;
+  width: 100%;
+}
+
+.arrow::after {
+  width: 0px;
+}
+
+.arrow-left::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 50px;
+  pointer-events: none;
+  background: linear-gradient(to right, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 38.67%, rgba(255, 255, 255, 0) 100%);
+  z-index: 1;
+  left: 30px;
+}
+
+.arrow-right::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 50px;
+  pointer-events: none;
+  background: linear-gradient(to left, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 38.67%, rgba(255, 255, 255, 0) 100%);
+  z-index: 1;
+  right: 30px;
+}
+
+.arrow-btn {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  color: #9A9A9A;
+  position: absolute;
+  top: 68%;
+  transform: translateY(-50%);
+  z-index: 1;
+}
+
+.arrow-btn:hover {
+  opacity: 0.8;
+}
+
+.arrow-left-btn {
+  left: 0;
+}
+
+.arrow-right-btn {
+  right: 0;
+}
+
+.disabled {
+  cursor: not-allowed;
+  color: #9A9A9A;
+  opacity: 0.6;
+}
+
+.disabled:hover {
+  opacity: 0.6;
+}
