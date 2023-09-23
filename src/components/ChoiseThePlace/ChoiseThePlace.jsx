@@ -198,6 +198,13 @@ function ChoiseThePlace() {
         tickets: paymentData,
         оrderNumber: randomFiveDigitNumber,
       });
+      sessionStorage.setItem('totalOrder', JSON.stringify(
+        {
+          totalSum: counterPrice + 100,
+          tickets: paymentData,
+          оrderNumber: randomFiveDigitNumber,
+          eventName: eventForChoisePlace?.name
+        }))
       navigate("/order", { replace: true });
     }
   };

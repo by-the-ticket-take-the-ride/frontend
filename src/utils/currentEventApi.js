@@ -46,7 +46,8 @@ export const addEventToFavorites = (id, token) => {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      "Authorization": `Token ${token}`
+      "Authorization": `Token c5c77b451c25816536538ff0c646de646854cc2f`
+      // "Authorization": `Token ${token}`
     }
   }).then( res => {
     return res.ok ? res.json() : Promise.reject(res.status)

@@ -8,6 +8,8 @@ import useSeatContext from "../../hooks/useSeatContext";
 import { useNavigate } from "react-router-dom";
 import PaymentSuccessPopup from "../PaymentSuccessPopup/PaymentSuccessPopup";
 import ScrollToTop from "../../utils/ScrollToTop";
+import InputPhoneMask from "../PersonalAccount/MyData/InputPhoneMask/InputPhoneMask";
+import useUserContext from "../../hooks/useUserContext";
 
 function OrderForm({currentCity}) {
   const { values, errors, isValid, handleChange } = useFormWithValidation();
@@ -17,6 +19,12 @@ function OrderForm({currentCity}) {
   const [isOpen, setIsOpen] = React.useState(false);
   const { totalOrder, setTotalOrder, setPaymentData, setIsOpenPopap } = useSeatContext();
   const navigate = useNavigate();
+
+  //!
+  const [validate, setValidate] = React.useState(false);
+  const { currentUser, inputTelValue } = useUserContext();
+  const { eventName, totalSum, оrderNumber, tickets } = JSON.parse(sessionStorage.getItem('totalOrder'))
+
   // console.log(totalOrder);
   const handleClick = () => {
     setIsOpen(true);
@@ -65,19 +73,19 @@ function OrderForm({currentCity}) {
                   id="name"
                   placeholder="Имя"
                   minLength="2"
-                  maxLength="64"
+                  maxLength="25"
                   pattern="^[a-zA-Zа-яА-Я\\s]*$"
                   onChange={handleChange}
                   value={values.name || ""}
                   required
                 />
-                {values.name && !errors.name && (
+                {/* {values.name && !errors.name && (
                   <img
                     className="personal-details__input-item-success-icon"
                     src={tick}
                     alt="Галочка успеха"
                   />
-                )}
+                )} */}
                 <span className="personal-details__input-error">
                   {errors.name}
                 </span>
@@ -96,19 +104,19 @@ function OrderForm({currentCity}) {
                   id="surname"
                   placeholder="Фамилия"
                   minLength="2"
-                  maxLength="64"
+                  maxLength="25"
                   pattern="^[a-zA-Zа-яА-Я\\s]*$"
                   onChange={handleChange}
                   value={values.surname || ""}
                   required
                 />
-                {values.surname && !errors.surname && (
+                {/* {values.surname && !errors.surname && (
                   <img
                     className="personal-details__input-item-success-icon"
                     src={tick}
                     alt="Галочка успеха"
                   />
-                )}
+                )} */}
                 <span className="personal-details__input-error">
                   {errors.surname}
                 </span>
@@ -133,19 +141,19 @@ function OrderForm({currentCity}) {
                   onChange={handleChange}
                   required
                 />
-                {values.email && !errors.email && (
+                {/* {values.email && !errors.email && (
                   <img
                     className="personal-details__input-item-success-icon"
                     src={tick}
                     alt="Галочка успеха"
                   />
-                )}
+                )} */}
                 <span className="personal-details__input-error">
                   {errors.email}
                 </span>
               </div>
               <div className="personal-details__input">
-                <input
+                {/* <input
                   className={`personal-details__input-item ${
                     errors.tel
                       ? "personal-details__input-item-error"
@@ -161,29 +169,40 @@ function OrderForm({currentCity}) {
                   onChange={handleChange}
                   pattern="^(\+?7|8)\s?\(?\d{3}\)?\s?-?\d{3}-?\d{2}-?\d{2}$"
                   required
-                />
-                {values.tel && !errors.tel && (
+                /> */}
+                 <InputPhoneMask
+              extraClass={`personal-details__input-item ${
+                inputTelValue?.length < 11
+                  ? "personal-details__input-item-error"
+                  : ""
+              }`}
+            />
+                {/* {values.tel && !errors.tel && (
                   <img
                     className="personal-details__input-item-success-icon"
                     src={tick}
                     alt="Галочка успеха"
                   />
-                )}
-                <span className="personal-details__input-error">
-                  {errors.tel}
-                </span>
+                )} */}
+                {
+                  inputTelValue?.length < 11 &&
+                  <span className="personal-details__input-error">
+                    Некорректный номер телефона
+                  </span>
+
+                }
               </div>
             </form>
           </div>
           <div className="order-details">
             <h3 className="details__title">Данные заказа</h3>
-            <p className="order-details__name">Zivert</p>
+            <p className="order-details__name">{eventName}</p>
             <div className="order-details__tickets-info">
               <p className="order-details__tickets-info-result">
-                {totalOrder?.tickets?.length} билета на сумму
+                {tickets?.length} билета на сумму
               </p>
               <p className="order-details__tickets-info-result-price">
-                {totalOrder?.totalSum - 100} &#8381;
+                {totalSum - 100} &#8381;
               </p>
               <p className="order-details__tickets-info-result">
                 Сервисный сбор
@@ -195,7 +214,7 @@ function OrderForm({currentCity}) {
             <div className="order-details__order-sum">
               <p className="order-details__order-price">Сумма заказа</p>
               <p className="order-details__order-price">
-                {totalOrder?.totalSum} &#8381;
+                {totalSum} &#8381;
               </p>
             </div>
             <Button
@@ -221,7 +240,7 @@ function OrderForm({currentCity}) {
         email={values.email}
         isOpen={isOpen}
         onClose={closePopup}
-        totalOrder={totalOrder}
+        totalOrder={оrderNumber}
       />
     </>
   );
