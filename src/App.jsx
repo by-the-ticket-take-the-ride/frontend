@@ -15,6 +15,7 @@ import * as EventApi from "./utils/currentEventApi";
 import eventsJson from "./components/ChoiseThePlace/events.json";
 import { EventsContext } from "./constext/EventsContext";
 import { useState } from "react"
+import MyFavorites from "./components/PersonalAccount/MyFavorites/MyFavorites";
 
 function App() {
   const [isActivePopupCity, setIsActivePopupCity] = React.useState(false);
@@ -85,7 +86,7 @@ function App() {
                     />
                   }
                 >
-                  <Route path="favourites" element={<></>} />
+                  <Route path="favourites" element={<MyFavorites />} />
                   <Route path="my-data" element={<MyData />} />
                 </Route>
               </Routes>

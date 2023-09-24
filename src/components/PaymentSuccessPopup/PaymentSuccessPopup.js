@@ -8,7 +8,7 @@ function PaymentSuccessPopup({email, isOpen, onClose, totalOrder}) {
         <div className={`payment-success-popup ${isOpen ? 'payment-success-popup_is-opened' : ''}`}>
             <PaymentPopup
                 image={image}
-                title={`Ваш заказ №${totalOrder.оrderNumber} успешно оплачен`}
+                title={`Ваш заказ №${totalOrder} успешно оплачен`}
                 subtitle={'Проверьте билет по указанной почте'}
                 email={email}
                 name={'Оплачено успешно'}
