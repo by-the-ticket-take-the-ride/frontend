@@ -1,0 +1,20 @@
+.seat-icon {
+  transition: transform .1s ease;
+  cursor: pointer;
+}
+.seat-icon:hover {
+  transform: scale(1.3);
+}
+
+.seat-icon-small {
+  width: 16.426px;
+  height: 16.426px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.seat-icon-small:hover {
+  transform: scale(1.3);
+}

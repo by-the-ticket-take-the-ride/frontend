@@ -1,0 +1,36 @@
+/* .content {
+  width: 100%;
+  min-height: 2000px;
+}
+.cover-blackout {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  min-height: 100vh;
+  background-color: rgba(0, 0, 0, .3);
+} */
+
+/*
+.cover-blackout {
+  display: flex;
+  visibility: hidden;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, .5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transition: visibility .3s, opacity .3s ease-in;
+}
+
+.cover-blackout_visible {
+  opacity: 1;
+  visibility: visible;
+>>>>>>> develop
+}
+*/

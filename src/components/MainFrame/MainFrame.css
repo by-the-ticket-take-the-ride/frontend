@@ -1,0 +1,128 @@
+.main-frame {
+    width: calc((1440 / 1440) * 100%);
+    margin: 0 auto;
+    height: 560px;
+    color: black;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0px;
+    padding-top: 60px;
+}
+
+.main-frame__container {
+    position: absolute;
+    width: calc((1122 / 1440) * 100%);
+    height: 510px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.main-frame__img-wrapper {
+    width: 100%;
+    height: 560px;
+}
+
+.main-frame__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.main-frame__buttons {
+    width: 278px;
+    height: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-self: flex-end;
+}
+
+.main-frame__button-share {
+    width: 122px;
+    display: flex;
+    align-content: center;
+}
+
+.main-frame__button-title {
+    padding-left: 8px;
+    color: #FFFFFF;
+    font-size: 16px;
+    font-family:'Nunito Sans';
+    font-weight: 400px;
+}
+
+.main-frame__button-like {
+    width: 122px;
+    display: flex;
+    align-content: center;
+}
+
+.main-frame__info {
+    width: 400px;
+}
+
+.main-frame__tags-info {
+    width: 101px;
+    display: flex;
+    list-style-type: none;
+    margin: 0px;
+    padding: 0px;
+    justify-content: space-between;
+    color: #FFFFFF;
+    font-size: 14px;
+    font-family:'Nunito Sans';
+    font-weight: 400px;
+    letter-spacing: 0.28px;
+}
+
+.main-frame__title {
+    font-size: 50px;
+    font-family:'Unbounded';
+    font-weight: 600px;
+    color: #000000;
+    padding: 18px 0px 28px 0px;
+    margin: 0px;
+}
+
+.main-frame__event-info {
+    display: flex;
+    align-items: center;
+}
+
+.main-frame__date {
+    padding-bottom: 16px;
+}
+
+.main-frame__date-title {
+    color: #FFFFFF;
+    font-size: 16px;
+    font-family:'Nunito Sans';
+    font-weight: 400px;
+    padding-left: 8px;
+}
+
+.main-frame__location-title {
+    color: #FFFFFF;
+    font-size: 16px;
+    font-family:'Nunito Sans';
+    font-weight: 400px;
+    padding-left: 8px;
+}
+
+.main-frame__icon {
+    display: inline-block;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 24px;
+    height: 24px;
+}
+
+.main-frame__icon_date {
+    background-image: url('../../assets/images/time.svg');
+}
+
+.main-frame__icon-location {
+    background-image: url('../../assets/images/place.svg');
+}

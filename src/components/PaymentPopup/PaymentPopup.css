@@ -1,0 +1,65 @@
+.payment-popup {
+    width: 680px;
+    height: 380px;
+    background-color: #FFFFFF;
+    border-radius: 20px;
+    box-shadow: 2px 4px 20px 0 rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.payment-popup__img-wrapper {
+    width: 152px;
+    height: 152px;
+    padding-top: 60px;
+}
+
+.payment-popup__img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.payment-popup__text {
+    color: #4C4F52;
+    font-family:'Nunito Sans';
+    padding: 50px 0px 38px 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.payment-popup__title {
+    font-weight: 700;
+    font-size: 22px;
+    padding-bottom: 12px;
+    letter-spacing: -1px;
+}
+
+.payment-popup__subtitle {
+    font-weight: 400;
+    font-size: 16px;
+    padding-bottom: 10px;
+}
+
+.payment-popup__email {
+    font-weight: 400;
+    font-size: 16px;
+}
+
+.payment-popup__button-close {
+    width: 20px;
+    height: 20px;
+    background: url('../../assets/images/close.svg') no-repeat center/cover;
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    right: 28px;
+    top: 28px;
+    cursor: pointer;
+    border: none;
+    box-sizing: border-box;
+}

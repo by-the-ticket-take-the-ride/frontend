@@ -1,0 +1,26 @@
+.nav-tab {
+  text-decoration: none;
+  color: #9A9A9A;
+
+  /* background-color: rgba(154, 154, 154, 0.1); */
+  max-width: 137px;
+  min-height: 56px;
+  /* border-radius: 20px; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav-tab_active {
+  color: #191919;
+  border-bottom: 3px solid #8B52F6;
+}
+
+.nav-tab__text {
+  /* text-decoration: none; */
+  
+  font-family: 'Nunito Sans';
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 22px;
+}

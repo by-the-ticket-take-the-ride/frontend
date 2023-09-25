@@ -1,0 +1,4 @@
+[
+  {"name": "Главная" , "location": "/"},
+  {"name": "Личный кабинет" , "location": "/personal-account"}
+]
