@@ -38,7 +38,6 @@ function Main({
       </h1>
       <Calendar handleSelectedDateChange={handleSelectedDateChange} />
       {/* <EventsCardList /> */}
-      {/* стили в app.css */}
       <MainFrame eventData={eventTestData} />
       <EventCards />
       <Footer />

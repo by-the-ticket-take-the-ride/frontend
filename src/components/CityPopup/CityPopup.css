@@ -78,6 +78,19 @@
   gap: 36px;
 }
 
+.city-popup__column-title-city {
+  font-family: Nunito Sans;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 22px; /* 137.5% */
+  padding: 5px 50px;
+  cursor: pointer;
+}
+
+.city-popup__column-title-city:hover {
+  background-color: rgba(0, 0, 0, 0.07);
+}
 .city-popup__column-title {
   font-family: 'Nunito Sans', sans-serif;
   font-size: 18px;
