@@ -2,13 +2,15 @@ import React from "react";
 import CitySearch from "../CitySearch/CitySearch";
 import Button from "../Buttons/Button/Button";
 import CityList from "../CityList/CityList";
-import { getCities } from "../../utils/getCitiesApi";
+import { getCities, getCitiesById } from "../../utils/getCitiesApi";
 import { controller } from "../../utils/getCurrentCity";
+import usePopupContext from "../../hooks/usePopupContext";
 
 const CityPopup = ({ isActive, onClose, setCurrentCity, setIsActive }) => {
   const isCityDefinedCorrectly = localStorage.getItem("isCityDefinedCorrectly");
   const [data, setData] = React.useState([]);
   const cityDatasStorage = JSON.parse(localStorage.getItem("cityDatas"));
+  const {isInputCityNameEmpty} = usePopupContext();
   const setCities = (data) => {
     let cityDatas = data.reduce((acc, item) => {
       let letter = item.name[0];
@@ -37,6 +39,14 @@ const CityPopup = ({ isActive, onClose, setCurrentCity, setIsActive }) => {
     }
   }, [isCityDefinedCorrectly]);
 
+  const handleClickCity = async (id) => {
+    const city = await getCitiesById(id);
+    setCurrentCity(city.name);
+    setIsActive(false);
+    localStorage.setItem("currentCity", city.name);
+    localStorage.setItem("isCityDefinedCorrectly", true);
+  }
+
   return (
     <div className={`city-popup ${isActive ? "city-popup_opened" : ""}`}>
       <div className="city-popup__body">
@@ -48,11 +58,18 @@ const CityPopup = ({ isActive, onClose, setCurrentCity, setIsActive }) => {
               onClick={() => onClose(false)}
             ></Button>
           </div>
-          <CitySearch data={cityDatasStorage} setData={setData} />
+          <CitySearch cityData={cityDatasStorage} setData={setData} />
         </div>
         <div className="city-popup__block">
           {data.map((item, index) => (
             <div key={index} className="city-popup__column">
+              {
+                isInputCityNameEmpty &&
+                <>
+                  <span onClick={() => handleClickCity(521)} className="city-popup__column-title-city">Москва</span>
+                  <span onClick={() => handleClickCity(740)} className="city-popup__column-title-city">Санкт-Петербург</span>
+                </>
+              }
               <span className="city-popup__column-title">{item.letter}</span>
               <CityList
                 data={item}

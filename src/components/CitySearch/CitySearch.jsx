@@ -1,24 +1,41 @@
-import React from "react";
+import React, { useEffect } from "react";
+import useFormValid from "../../hooks/useFormValid";
+import usePopupContext from "../../hooks/usePopupContext";
 
-const CitySearch = ({ data, setData }) => {
-  const [value, setValue] = React.useState("");
-  const onChangeInput = (evt) => {
-    const { value } = evt.target;
-    setValue(value);
-    setData(
-      data.filter((item) =>
-        item.name.toLowerCase().startsWith(value.toLowerCase())
-      )
-    );
-  };
+const CitySearch = ({ cityData, setData }) => {
+  const { inputValues, handleInputChange } = useFormValid();
+  const { setIsInputCityNameEmpty } = usePopupContext();
+
+  useEffect(() => {
+    setData([
+      {
+        letter: cityData?.filter((item) => {
+          return item.name
+            .toLowerCase()
+            .startsWith(inputValues?.cityName?.toLowerCase());
+        })[0]?.name[0],
+        cities: cityData?.filter((item) => {
+          return item.name
+            .toLowerCase()
+            .startsWith(inputValues?.cityName?.toLowerCase());
+        }),
+      },
+    ]);
+    if (inputValues.cityName?.length > 0) {
+      setIsInputCityNameEmpty(false);
+    } else {
+      setIsInputCityNameEmpty(true);
+    }
+  }, [inputValues]);
 
   return (
     <form className="city-search">
       <input
         type="text"
+        name="cityName"
         className="city-search__input"
-        onChange={onChangeInput}
-        value={value}
+        onChange={handleInputChange}
+        value={inputValues.cityName || ""}
       />
     </form>
   );

@@ -8,6 +8,7 @@ function PopupProvider({ children }) {
     useState(false);
   const [isOpenPopupCheckEmail, setIsOpenPopupCheckEmail] = useState(false);
   const [isOpenPopupConfirmEmail, setIsOpenPopupConfirmEmail] = useState(false);
+  const [isInputCityNameEmpty, setIsInputCityNameEmpty] = useState(true);
 
   return (
     <PopupContext.Provider
@@ -22,6 +23,8 @@ function PopupProvider({ children }) {
         setIsOpenPopupCheckEmail,
         isOpenPopupConfirmEmail,
         setIsOpenPopupConfirmEmail,
+        isInputCityNameEmpty,
+        setIsInputCityNameEmpty
       }}
     >
       {children}

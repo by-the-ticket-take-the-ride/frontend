@@ -2,7 +2,7 @@ import { useCallback, useLayoutEffect, useRef, useState } from "react";
 import { validationConfig } from "../utils/validation";
 
 function useFormValid() {
-  const [inputValues, setInputValues] = useState({});
+  const [inputValues, setInputValues] = useState('');
   const [errorMessages, setErrorMessages] = useState({});
   const [formIsValid, setFormIsValid] = useState(false);
   const formRef = useRef(null);

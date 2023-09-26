@@ -14,33 +14,23 @@ import useUserContext from "../../hooks/useUserContext";
 function OrderForm({currentCity}) {
   const { values, errors, isValid, handleChange } = useFormWithValidation();
   const [isActivePopupCity, setIsActivePopupCity] = React.useState(false);
-  const [isHiddenLocation, setIsHiddenLocation] = React.useState(false);
-  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
   const [isOpen, setIsOpen] = React.useState(false);
-  const { totalOrder, setTotalOrder, setPaymentData, setIsOpenPopap } = useSeatContext();
   const navigate = useNavigate();
 
-  //!
   const [validate, setValidate] = React.useState(false);
   const { currentUser, inputTelValue } = useUserContext();
   const { eventName, totalSum, оrderNumber, tickets } = JSON.parse(sessionStorage.getItem('totalOrder'))
 
-  // console.log(totalOrder);
   const handleClick = () => {
     setIsOpen(true);
     setTimeout(function () {
       navigate("/", { replace: true });
-      setTotalOrder({});
-      setPaymentData([])
-      setIsOpenPopap(false);
-      // window.history.replaceState({}, document.title)
     }, 5000);
     
   };
 
   function closePopup() {
     setIsOpen(false);
-    console.log(isOpen);
     navigate("/", { replace: true });
   }
 
