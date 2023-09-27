@@ -3,11 +3,12 @@ import "./PopupAuth.css";
 import AuthTop from "../AuthTop/AuthTop";
 import AuthForm from "../AuthForm/AuthForm";
 import AuthBottom from "../AuthBottom/AuthBottom";
+import usePopupContext from '../../../hooks/usePopupContext';
 
       
 function PopupAuth(props) {
   const [emailSubmit, setEmailSubmit] = useState('email@yandex.ru');
-  const {type, setType} = props;
+  const {type, setType} = usePopupContext();
 
   function openPopupAuth(type) {
     setType(type);

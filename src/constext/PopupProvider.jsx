@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import { PopupContext } from "./PopupContext";
 
-function PopupProvider({ children }) {
-  const [type, setType] = useState('');
-
+function PopupProvider({ children, type, setType }) {
+  
   return (
     <PopupContext.Provider value={{ type, setType }}>
       {children}

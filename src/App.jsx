@@ -23,10 +23,11 @@ function App() {
   const [events, setEvents] = React.useState([]);
   const [currentEvent, setCurrentEvent] = React.useState({});
   const [isHiddenLocation, setIsHiddenLocation] = React.useState(false);
-  const {type, setType} = usePopupContext();
+  const [type, setType] = useState('');
+  // const {type, setType} = usePopupContext();
 
-  console.log(type);
-  console.log(usePopupContext());
+  // console.log(type);
+  // console.log(usePopupContext());
 
   useLayoutEffect(() => {
     EventApi.getAllEvents()
@@ -51,7 +52,7 @@ function App() {
         }}
       >
         <CurrentUserProvider>
-          <PopupProvider>
+          <PopupProvider type={type} setType={setType}>
             <SeatProvider>
               <Routes>
                 <Route
@@ -102,10 +103,7 @@ function App() {
               
               {type !== '' && (
                 <div className="cover-blackout">
-                  <Auth
-                    type={type}
-                    setType={setType}
-                  />;
+                  <Auth/>;
                 </div>
               )}
             </SeatProvider>
