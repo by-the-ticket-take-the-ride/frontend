@@ -26,6 +26,7 @@ function App() {
   const {type, setType} = usePopupContext();
 
   console.log(type);
+  console.log(usePopupContext());
 
   useLayoutEffect(() => {
     EventApi.getAllEvents()
