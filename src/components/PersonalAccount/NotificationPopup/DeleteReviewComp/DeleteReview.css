@@ -1,0 +1,58 @@
+.delete-review {
+  width: 680px;
+  height: 504px;
+  background-color: #fff;
+  border-radius: 20px;
+  padding: 60px 80px 58px;
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+  flex-direction: column;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.delete-review__cross-button {
+  width: 20px;
+  height: 20px;
+  right: 28px;
+  top: 28px;
+  position: absolute;
+}
+
+.delete-review__img {
+  width: 164px;
+  height: 152px;
+  margin-bottom: 52px;
+}
+
+.delete-review__title {
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-family: Nunito Sans;
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 22px; /* 100% */
+  letter-spacing: -1px;
+  color: #4C4F52;
+  margin: 0;
+}
+
+.delete-review__wrapper {
+  margin-top: 108px;
+  display: flex;
+  gap: 41px;
+}
+
+.delete-review__button {
+  padding: 12px 24px;
+  border-radius: 50px;
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-family: Nunito Sans;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 22px; /* 122.222% */
+  width: 249px;
+  background-color: #9A9A9A;
+}

@@ -1,0 +1,114 @@
+.modified-review {
+  background-color: #FFFFFF;
+  padding: 63px 36px 30px;
+  border-radius: 20px;
+  position: relative;
+  width: 100%;
+  max-width: 680px;
+  box-sizing: border-box;
+}
+
+.modified-review__cross-button {
+  width: 20px;
+  height: 20px;
+  right: 28px;
+  top: 28px;
+  position: absolute;
+}
+
+.modified-review__title {
+  font-family: Unbounded;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 106%;
+  /* 31.8px */
+  letter-spacing: 0.15px;
+  margin: 0 0 40px;
+}
+
+.modified-review__from {
+  display: flex;
+  flex-direction: column;
+  margin-top: 40px;
+}
+
+.modified-review__span-comment {
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-family: Nunito Sans;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 15.601px;
+  /* 130.009% */
+  color: #9A9A9A;
+}
+
+.modified-review__comment-input {
+  box-sizing: border-box;
+  padding: 15px 18px;
+  border-radius: 15px;
+  border: 2px solid #9A9A9A;
+  width: 100%;
+  max-width: 740px;
+  font-feature-settings: 'clig' off, 'liga' off;
+  /* web/P */
+  font-family: 'Nunito Sans';
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 22px;
+  /* 137.5% */
+  min-height: 158px;
+  color: #4C4F52;
+}
+
+.modified-review__comment-input:focus {
+  outline-style: none;
+  border: 2px solid #8B52F6;
+}
+
+.modified-review__info-span {
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-family: Nunito Sans;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 15.601px;
+  /* 104.007% */
+  color: #9A9A9A;
+  margin-top: 40px;
+}
+
+.modified-review__autograph-wrapper {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 14px;
+}
+
+.modified-review__autograph {
+  font-family: Unbounded;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 106%;
+  /* 25.44px */
+  letter-spacing: 0.12px;
+  color: #000000;
+  margin: 0;
+}
+
+.modified-review__submit-button {
+  align-self: start;
+  padding: 12px 24px;
+  min-width: 309px;
+  border-radius: 50px;
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-family: Nunito Sans;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 22px;
+  margin-top: 30px;
+  /* 122.222% */
+}
