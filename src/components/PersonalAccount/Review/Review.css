@@ -5,7 +5,8 @@
 }
 
 .review__info {
-
+  width: 100%;
+  max-width: 743px;
 }
 
 .review__ui-group {
