@@ -1,0 +1,56 @@
+.account {
+  background-color: #fff;
+}
+
+.account__wrapper {
+  padding-inline: 160px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.account__title-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 469px;
+  margin: 52px 0 36px;
+}
+
+.account__title {
+  font-family: 'Unbounded';
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 31.8px;
+  margin: 0;
+}
+
+.account__tabs {
+  border-bottom: 1px solid #DADADA;
+  max-width: 1120px;
+  min-height: 56px;
+}
+
+.account__tabs-list{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 60px;
+}
+
+.button-link {
+  color: #8B52F6;
+  min-width: 89px;
+  font-family: 'Nunito Sans';
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 22px;
+  display: flex;
+  gap: 8px;
+}
+
+.account__content {
+  max-width: 1120px;
+  min-height: 820px;
+}

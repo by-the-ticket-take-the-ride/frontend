@@ -1,0 +1,107 @@
+.auth-bottom {
+  margin-top: 44px;
+}
+
+.auth-bottom__border {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.auth-bottom__stroke-line {
+  width: 160px;
+  height: 1px;
+  background-color: #DADADA;
+}
+.auth-bottom__border-text {
+  font-family: "Nunito Sans";
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 22px;
+  color: #191919;
+
+  margin-left: 24px;
+  margin-right: 24px;
+}
+
+.auth-bottom__button-social-network {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  height: 50px;
+  margin-top: 44px;
+
+  box-sizing: border-box;
+  width: 100%;
+  height: 50px;
+  border: none;
+  border-radius: 20px;
+  background-color: rgba(154, 154, 154, 0.102);
+
+  font-family: "Nunito Sans";
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 22px;
+  text-align: center;
+  color: #fff;
+  
+  cursor: pointer;
+}
+.auth-bottom__button-social-network:last-child {
+  margin-top: 20px;
+}
+
+.auth-bottom__icon-yandex, .auth-bottom__icon-vk {
+
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-size: auto;
+  background-position: center;
+}
+.auth-bottom__icon-yandex {
+  width: 24px;
+  height: 24px;
+  background-image: url(../../../images/yandex-icon.svg);
+}
+.auth-bottom__icon-vk {
+  width: 26px;
+  height: 26px;
+  background-image: url(../../../images/vk-icon.svg);
+
+}
+.auth-bottom__text-cocial-network {
+  margin-left: 17px;
+
+  font-family: "Nunito Sans";
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 22px;
+  color: #191919;
+}
+
+.auth-bottom__to-login {
+  margin-top: 48px;
+
+  font-family: "Nunito Sans";
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 22px;
+  text-align: left;
+  color: #191919;
+}
+.auth-bottom__text_align {
+  text-align: center;
+}
+.auth-bottom__to-login-link {
+  font-family: "Nunito Sans";
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 22px;
+  color: #8B52F6;
+  text-decoration: underline;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background-color: transparent;
+}

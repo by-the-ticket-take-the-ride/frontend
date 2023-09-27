@@ -1,0 +1,7 @@
+.seat-icon {
+  transition: transform .1s ease;
+  cursor: pointer;
+}
+.seat-icon:hover {
+  transform: scale(1.3);
+}

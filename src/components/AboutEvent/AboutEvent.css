@@ -1,0 +1,28 @@
+.about-event {
+    max-width: calc((1119 / 1440) * 100%);
+    height: 370px;
+    color: #191919;
+    margin: 0px auto;
+    padding: 60px 0px 90px 0px;
+}
+
+.about-event__title {
+    font-size: 30px;
+    font-family:'Unbounded';
+    font-weight: 700px;
+    margin: 0px;
+    padding-bottom: 40px;
+    letter-spacing: calc(0.5% * 30px);
+}
+
+.about-event__description {
+    padding-bottom: 40px;
+}
+
+.about-event__text {
+    font-size: 16px;
+    font-family:'Nunito Sans';
+    font-weight: 400px;
+    margin: 0px;
+    padding-bottom: 16px;
+}

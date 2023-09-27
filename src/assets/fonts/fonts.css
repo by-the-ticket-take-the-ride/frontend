@@ -1,0 +1,34 @@
+@font-face {
+  font-family: 'Unbounded';
+  font-style:  normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(./Unbounded-Bold.woff2) format('woff2'),
+  url(./Unbounded-Bold.woff) format('woff');
+}
+
+@font-face {
+  font-family: 'Nunito Sans';
+  font-style:  normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(./NunitoSans-Regular.woff2) format('woff2'),
+  url(./NunitoSans-Regular.woff) format('woff');
+}
+
+@font-face {
+  font-family: 'Nunito Sans';
+  font-style:  normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(./NunitoSans-Bold.woff2) format('woff2'),
+  url(./NunitoSans-Bold.woff) format('woff');
+}
+@font-face {
+  font-family: 'Montserrat';
+  font-style:  normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(./Montserrat-Regular.woff2) format('woff2'),
+  url(./Montserrat-Regular.woff) format('woff');
+}
