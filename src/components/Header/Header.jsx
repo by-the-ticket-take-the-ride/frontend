@@ -11,14 +11,14 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import useUserContext from "../../hooks/useUserContext";
 
 const Header = ({ isActivePopupCity, setIsActivePopupCity, currentCity }) => {
-  const { isOpenPopupLogin, setIsOpenPopupLogin } = usePopupContext();
+  const {setType} = usePopupContext();
   const currentCityStorage = localStorage.getItem("currentCity");
   const {isLoggedIn} = useUserContext();
   const navigate = useNavigate();
   const { pathname } = useLocation(); 
 
   const handleClick = () => {
-    setIsOpenPopupLogin(!isOpenPopupLogin);
+    setType('login')
   };
   const handleHavigate = () => {
     navigate("/personal-account/favourites");

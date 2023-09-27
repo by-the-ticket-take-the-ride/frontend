@@ -14,8 +14,8 @@ import OrderForm from "./components/OrderForm/OrderForm";
 import * as EventApi from "./utils/currentEventApi";
 import eventsJson from "./components/ChoiseThePlace/events.json";
 import { EventsContext } from "./constext/EventsContext";
-import { useState } from "react"
-import MyFavorites from "./components/PersonalAccount/MyFavorites/MyFavorites";
+import { useState } from "react";
+import usePopupContext from "./hooks/usePopupContext";
 
 function App() {
   const [isActivePopupCity, setIsActivePopupCity] = React.useState(false);
@@ -48,7 +48,7 @@ function App() {
         }}
       >
         <CurrentUserProvider>
-          <PopupProvider>
+          <PopupProvider type={type} setType={setType}>
             <SeatProvider>
               <Routes>
                 <Route
@@ -86,7 +86,7 @@ function App() {
                     />
                   }
                 >
-                  <Route path="favourites" element={<MyFavorites />} />
+                  <Route path="favourites" element={<></>} />
                   <Route path="my-data" element={<MyData />} />
                 </Route>
               </Routes>
@@ -96,11 +96,10 @@ function App() {
                 setCurrentCity={setCurrentCity}
                 setIsActive={setIsActivePopupCity}
               />
+              
               {type !== '' && (
                 <div className="cover-blackout">
                   <Auth
-                    type={type}
-                    setType={setType}
                   />;
                 </div>
               )}
