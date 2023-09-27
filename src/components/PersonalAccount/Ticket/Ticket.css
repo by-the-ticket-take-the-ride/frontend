@@ -1,0 +1,60 @@
+.ticket {
+  position: relative;
+  width: 321px;
+  box-sizing: border-box;
+  height: 312px;
+  border-radius: 20px;
+  border: 1px solid rgba(0, 0, 0, 0.00);
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.50) 0%, rgba(0, 0, 0, 0.50) 100%), lightgray 50% / cover no-repeat;
+}
+
+.ticket__img {
+  width: 100%;
+  height: 100%;
+  max-height: 312px;
+  object-fit: cover;
+  border-radius: 20px;
+}
+
+.ticket__wrapper {
+  position: absolute;
+  top: 223px;
+  left: 11.29px;
+}
+
+.ticket__title {
+  margin: 0;
+  font-family: Unbounded;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 106%;
+  /* 31.8px */
+  letter-spacing: 0.15px;
+  color: #FFFFFF;
+}
+
+.ticket__date {
+  font-family: Nunito Sans;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 22px;
+  /* 137.5% */
+  color: #FFFFFF;
+}
+
+.ticket__time {
+  margin-top: 15px;
+  display: flex;
+  
+}
+
+.ticket__icon {
+  display: inline-block;
+  width: 21px;
+  height: 24px;
+  background: url('../../../assets/images/time.svg') no-repeat;
+  background-size: 15px 15px;
+  background-position: 0;
+}

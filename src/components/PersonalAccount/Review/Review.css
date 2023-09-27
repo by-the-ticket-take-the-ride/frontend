@@ -1,0 +1,66 @@
+.review {
+  display: flex;
+  flex-direction: row;
+  gap: 19px;
+}
+
+.review__info {
+
+}
+
+.review__ui-group {
+  display: flex;
+  justify-content: space-between;
+}
+
+.review__ui-group-wrapper {
+  display: flex;
+  flex-direction: column;
+  max-width: 440px;
+}
+
+.review__icon {
+  cursor: pointer;
+}
+
+.review__ui-group-rating {
+  display: flex;
+  gap: 39px;
+  margin-bottom: 13px;
+}
+
+.review__ui-group-status {
+  font-feature-settings: 'clig' off, 'liga' off;
+font-family: Nunito Sans;
+font-size: 12px;
+font-style: normal;
+font-weight: 400;
+line-height: 15.601px; /* 130.009% */
+color: #9A9A9A;
+}
+
+.review__date {
+  font-feature-settings: 'clig' off, 'liga' off;
+font-family: Nunito Sans;
+font-size: 12px;
+font-style: normal;
+font-weight: 400;
+line-height: 15.601px; /* 130.009% */
+margin-bottom: 8px;
+color: #9A9A9A;
+}
+
+.review__editing-wrapper {
+  display: flex;
+  gap: 19px;
+}
+
+.review__comment {
+  font-family: 'Nunito Sans';
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 22px; /* 137.5% */
+  color: #4C4F52;
+  max-width: 678px;
+}
