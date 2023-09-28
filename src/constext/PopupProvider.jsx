@@ -1,32 +1,19 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { PopupContext } from "./PopupContext";
 
-function PopupProvider({ children }) {
-  const [isOpenPopupRegister, setIsOpenPopupRegiste] = useState(false);
-  const [isOpenPopupLogin, setIsOpenPopupLogin] = useState(false);
-  const [isOpenPopupPasswordRecovery, setIsOpenPopupPasswordRecovery] =
-    useState(false);
-  const [isOpenPopupCheckEmail, setIsOpenPopupCheckEmail] = useState(false);
-  const [isOpenPopupConfirmEmail, setIsOpenPopupConfirmEmail] = useState(false);
+function PopupProvider({ children, type, setType }) {
   const [isInputCityNameEmpty, setIsInputCityNameEmpty] = useState(true);
-
+  const [isPopupNotificationOpen, setIsPopupNotificationOpen] = useState(false);
+  
   return (
-    <PopupContext.Provider
-      value={{
-        isOpenPopupRegister,
-        setIsOpenPopupRegiste,
-        isOpenPopupLogin,
-        setIsOpenPopupLogin,
-        isOpenPopupPasswordRecovery,
-        setIsOpenPopupPasswordRecovery,
-        isOpenPopupCheckEmail,
-        setIsOpenPopupCheckEmail,
-        isOpenPopupConfirmEmail,
-        setIsOpenPopupConfirmEmail,
-        isInputCityNameEmpty,
-        setIsInputCityNameEmpty
-      }}
-    >
+    <PopupContext.Provider value={{ 
+      type,
+      setType,
+      isInputCityNameEmpty,
+      setIsInputCityNameEmpty,
+      isPopupNotificationOpen,
+      setIsPopupNotificationOpen
+    }}>
       {children}
     </PopupContext.Provider>
   );

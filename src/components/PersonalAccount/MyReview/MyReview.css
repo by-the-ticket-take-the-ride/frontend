@@ -1,0 +1,9 @@
+.my-review {
+  padding: 77px 0 70px;
+}
+
+.my-review__wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}

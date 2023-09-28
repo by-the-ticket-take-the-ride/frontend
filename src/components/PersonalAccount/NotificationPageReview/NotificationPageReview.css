@@ -1,0 +1,45 @@
+.notification-page-review {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 41px;
+}
+
+.notification-page-review__title {
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-family: Nunito Sans;
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 22px;
+  /* 100% */
+  letter-spacing: -1px;
+  color: #4C4F52;
+  margin: 0 0 8px;
+}
+
+.notification-page-review__subtitle {
+  font-feature-settings: 'clig' off, 'liga' off;
+  /* web/P */
+  font-family: Nunito Sans;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 22px;
+  /* 137.5% */
+  color: #4C4F52;
+  margin-bottom: 28px;
+}
+
+.notification-page-review__button {
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-family: Nunito Sans;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 22px;
+  /* 122.222% */
+  padding: 12px 24px;
+  border-radius: 50px;
+}

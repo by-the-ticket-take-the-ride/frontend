@@ -8,13 +8,16 @@ import CurrentUserProvider from "./constext/CurrentUserProvider";
 import CityPopup from "./components/CityPopup/CityPopup";
 import Main from "./components/Main/Main";
 import EventPage from "./components/EventPage/EventPage";
-import Auth from "./components/Main/Auth/Auth"
+import Auth from "./components/Main/Auth/Auth";
 import PopupProvider from "./constext/PopupProvider";
 import OrderForm from "./components/OrderForm/OrderForm";
 import * as EventApi from "./utils/currentEventApi";
 import eventsJson from "./components/ChoiseThePlace/events.json";
 import { EventsContext } from "./constext/EventsContext";
-import { useState } from "react"
+import { useState } from "react";
+import usePopupContext from "./hooks/usePopupContext";
+import MyTickets from "./components/PersonalAccount/MyTickets/MyTickets";
+import MyReview from "./components/PersonalAccount/MyReview/MyReview";
 import MyFavorites from "./components/PersonalAccount/MyFavorites/MyFavorites";
 
 function App() {
@@ -23,7 +26,7 @@ function App() {
   const [events, setEvents] = React.useState([]);
   const [currentEvent, setCurrentEvent] = React.useState({});
   const [isHiddenLocation, setIsHiddenLocation] = React.useState(false);
-  const [type, setType] = useState('');
+  const [type, setType] = useState("");
 
   useLayoutEffect(() => {
     EventApi.getAllEvents()
@@ -48,7 +51,7 @@ function App() {
         }}
       >
         <CurrentUserProvider>
-          <PopupProvider>
+          <PopupProvider type={type} setType={setType}>
             <SeatProvider>
               <Routes>
                 <Route
@@ -75,7 +78,10 @@ function App() {
                     />
                   }
                 />
-                <Route path="/order" element={<OrderForm currentCity={currentCity} />} />
+                <Route
+                  path="/order"
+                  element={<OrderForm currentCity={currentCity} />}
+                />
                 <Route
                   path="/personal-account"
                   element={
@@ -86,8 +92,10 @@ function App() {
                     />
                   }
                 >
-                  <Route path="favourites" element={<MyFavorites />} />
+                  <Route path="my-tickets" element={<MyTickets />} />
+                  <Route path="favourites" element={<MyFavorites/>} />
                   <Route path="my-data" element={<MyData />} />
+                  <Route path="my-reviews" element={<MyReview/>} />
                 </Route>
               </Routes>
               <CityPopup
@@ -96,12 +104,10 @@ function App() {
                 setCurrentCity={setCurrentCity}
                 setIsActive={setIsActivePopupCity}
               />
-              {type !== '' && (
+
+              {type !== "" && (
                 <div className="cover-blackout">
-                  <Auth
-                    type={type}
-                    setType={setType}
-                  />;
+                  <Auth />;
                 </div>
               )}
             </SeatProvider>
