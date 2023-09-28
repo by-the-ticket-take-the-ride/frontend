@@ -31,6 +31,8 @@
 }
 
 .review__ui-group-status {
+  display: flex;
+  align-items: center;
   font-feature-settings: 'clig' off, 'liga' off;
   font-family: Nunito Sans;
   font-size: 12px;

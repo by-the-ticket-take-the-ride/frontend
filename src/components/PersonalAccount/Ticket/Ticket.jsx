@@ -1,7 +1,8 @@
 import image from '../../../images/хрюша.png'
+import StarRating from '../StarRating/StarRating';
 import './Ticket.css'
 
-function Ticket() {
+function Ticket({onClick,completed}) {
   return (
     <div className='ticket'>
       <img className='ticket__img' src={image} alt='Мероприятие' />
@@ -11,9 +12,10 @@ function Ticket() {
       <div className='ticket__time'>
 
       <i className="ticket__icon"></i>
-      <p className='ticket__date'>30 сентября</p>
+      <p className='ticket__date'>{completed ? 'ЗАВЕРШЕНО' : '30 сентября'}</p>
       </div>
       </div>
+      { completed && <StarRating/>}
     </div>
   );
 }

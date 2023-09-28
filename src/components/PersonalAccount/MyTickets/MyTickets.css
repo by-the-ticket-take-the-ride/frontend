@@ -28,3 +28,7 @@
 .my-tickets__wrapper_type_disabled {
   padding: 30px 0 132px;
 }
+
+.my-tickets__ticket {
+  cursor: pointer;
+}

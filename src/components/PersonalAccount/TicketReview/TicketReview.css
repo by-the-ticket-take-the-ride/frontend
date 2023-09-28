@@ -63,6 +63,10 @@
   color: #FFFFFF;
 }
 
+.ticket-review__date_type_modified {
+  font-size: 10px;
+}
+
 .ticket-review__time {
   margin-top: 7.8px;
   display: flex;

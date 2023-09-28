@@ -1,7 +1,7 @@
 import "./TicketReview.css";
 import image from "../../../images/хрюша.png";
 
-function TicketReview({ typeModified }) {
+function TicketReview({ typeModified, completed }) {
   return (
     <div className={`ticket-review ${typeModified && 'ticket-review_type_modified'}`}>
       <img className="ticket-review__img" src={image} alt="Мероприятие" />
@@ -9,7 +9,7 @@ function TicketReview({ typeModified }) {
         <h3 className={`ticket-review__title ${typeModified && 'ticket-review__title_type_modified'}`}>Хрюша</h3>
         <div className={`ticket-review__time ${typeModified && 'ticket-review__time_type_modified'}`}>
           <i className="ticket-review__icon"></i>
-          <p className={`ticket-review__date ${typeModified && 'ticket-review__date_type_modified'}`}>30 сентября</p>
+          <p className={`ticket-review__date ${typeModified && 'ticket-review__date_type_modified'}`}>{completed ? '30 сентября' : 'ЗАВЕРШЕНО'}</p>
         </div>
       </div>
     </div>

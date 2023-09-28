@@ -6,6 +6,8 @@ function MyReview() {
     <div className="my-review">
       <div className="my-review__wrapper">
         <Review/>
+        <Review/>
+        <Review/>
       </div>
     </div>
   );

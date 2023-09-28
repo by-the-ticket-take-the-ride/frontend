@@ -3,6 +3,7 @@ import { validationConfig } from "../utils/validation";
 
 function useFormValid() {
   const [inputValues, setInputValues] = useState('');
+  const [checkboxValues, setCheckboxValues] = useState({})
   const [errorMessages, setErrorMessages] = useState({});
   const [formIsValid, setFormIsValid] = useState(false);
   const formRef = useRef(null);
@@ -12,6 +13,14 @@ function useFormValid() {
         ...current,
         [name]: value,
     }))
+    setCheckboxValues(current => ({
+      ...current,
+      [name]: value,
+    }))
+  }
+  const handleToggleChange = (event) => {
+    const { name, checked } = event.target;
+    setCheckboxValues({...checkboxValues, [name]: checked})
   }
 
   const resetFormValues = useCallback((newValues = {}, newError = {}, newIsValid = false) => {
@@ -70,7 +79,9 @@ function useFormValid() {
   }, [inputValues, errorMessages])
 
   return { 
-    inputValues, 
+    inputValues,
+    checkboxValues,
+    handleToggleChange,
     handleInputChange,
     formIsValid, 
     errorMessages, 

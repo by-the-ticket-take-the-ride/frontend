@@ -11,24 +11,27 @@ function MyTickets() {
     setIsNotificationPopup(!isNotificationPopup)
   }
 
+  const handleClickTicket = () => {
+    setIsNotificationPopup(!isNotificationPopup)
+  }
+
   return (
     <section className="my-tickets">
       {
-        !isNotificationPopup &&
+        isNotificationPopup &&
           <NotificationPopup>
             <ModifiedReviewComp handleClose={handleClose}/>
           </NotificationPopup>
       }
       <div className="my-tickets__wrapper my-tickets__wrapper_type_active">
         <Ticket />
-        <Ticket />
-        <Ticket />
-        <Ticket />
       </div>
       <div>
         <h2 className="my-tickets__title">Завершенные</h2>
         <div className="my-tickets__wrapper my-tickets__wrapper_type_disabled">
-          <Ticket />
+          <div className="my-tickets__ticket" onClick={handleClickTicket}>
+            <Ticket completed={true}/>
+          </div>
         </div>
       </div>
     </section>
