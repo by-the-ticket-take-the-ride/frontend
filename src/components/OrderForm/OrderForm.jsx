@@ -10,24 +10,45 @@ import PaymentSuccessPopup from "../PaymentSuccessPopup/PaymentSuccessPopup";
 import ScrollToTop from "../../utils/ScrollToTop";
 import InputPhoneMask from "../PersonalAccount/MyData/InputPhoneMask/InputPhoneMask";
 import useUserContext from "../../hooks/useUserContext";
-import { addNewTicket } from "../../utils/currentEventApi";
+import { addNewTicket, addNewTicketAuthUser, addNewTicketWithEmail } from "../../utils/currentEventApi";
 
 function OrderForm({currentCity}) {
-  const { values, errors, isValid, handleChange } = useFormWithValidation();
+  const { values, errors, isValid, handleChange, resetForm } = useFormWithValidation();
   const [isActivePopupCity, setIsActivePopupCity] = React.useState(false);
   const [isOpen, setIsOpen] = React.useState(false);
   const navigate = useNavigate();
 
   const [validate, setValidate] = React.useState(false);
   const { currentUser, inputTelValue } = useUserContext();
+  const {isLoggedIn} = useUserContext();
+  const [isNewEmail, setIsNewEmail] = React.useState(true);
   const { eventName, totalSum, оrderNumber, tickets } = JSON.parse(sessionStorage.getItem('totalOrder'));
 
+  useEffect(() => {
+    console.log(currentUser);
+    // resetForm(currentUser);
+    resetForm({
+      email: currentUser.email,
+      name: currentUser.username,
+
+    });
+  },[currentUser])
+  useEffect(() => {
+    if (values.email === currentUser.email) {
+      setIsNewEmail(false);
+    } else {
+      setIsNewEmail(true);
+    }
+  }, [values.email]);
+
   const handleClick = () => {
+    const token = JSON.parse(localStorage.getItem('token'));
     tickets?.forEach(ticket => {
       console.log(ticket)
       const { eventId, seat, row, zone, zoneId} = ticket;
-      
-      addNewTicket(
+
+      if(isNewEmail) {
+        addNewTicketWithEmail(
           eventId,
           zoneId,
           row,
@@ -36,7 +57,8 @@ function OrderForm({currentCity}) {
             username: values.name,
             email: values.email,
             phone: inputTelValue,
-          }
+          },
+          token
         )
         .then(res => {
           if(res) {
@@ -53,6 +75,31 @@ function OrderForm({currentCity}) {
           console.log(res)
           alert('Ошибка при отправке данных на сервер')
         })
+      } else {
+        addNewTicket(
+            eventId,
+            zoneId,
+            row,
+            seat,
+            token
+          )
+          .then(res => {
+            if(res) {
+  
+              console.log(res)
+              setIsOpen(true);
+              setTimeout(function () {
+              navigate("/", { replace: true });
+    
+                }, 5000);
+            }
+          })
+          .catch(res => {
+            console.log(res)
+            alert('Ошибка при отправке данных на сервер')
+          })
+      }
+      
     });
     // setIsOpen(true);
     // setTimeout(function () {

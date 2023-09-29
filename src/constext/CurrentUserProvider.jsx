@@ -10,7 +10,8 @@ function CurrentUserProvider({ children, isLoggedIn, setIsLoggedIn}) {
   const [inputTelValue, setInputTelValue] = useState();
 
   useLayoutEffect(() => {
-    const token = localStorage.getItem('token')
+    const token = JSON.parse(localStorage.getItem('token'))
+    console.log(token);
     Auth
       .tockenCheck(token)
       .then(res => {

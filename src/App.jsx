@@ -27,14 +27,17 @@ function App() {
   const [currentEvent, setCurrentEvent] = React.useState({});
   const [isHiddenLocation, setIsHiddenLocation] = React.useState(false);
   const [type, setType] = useState("");
-  const [isLoggedIn, setIsLoggedIn] = useState(!false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [renderCard, setRenderCard] = useState(false)
 
   // Если пользователь авторизирован то загружаются мероприятия с лайками
-  useLayoutEffect(() => {
+  useEffect(() => {
+    const token = JSON.parse(localStorage.getItem('token'))
     if (isLoggedIn) {
-      EventApi.getAllEventsAuthUser()
+      EventApi.getAllEventsAuthUser(token)
         .then(events => {
           if (events) {
+            console.log(events);
             setEvents(() => events);
           } else {
             setEvents(() => eventsJson);
@@ -51,7 +54,7 @@ function App() {
         })
         .catch((err) => console.log(err));
     }
-    }, []);
+    }, [isLoggedIn, renderCard]);
     
   //   useEffect(() => {
       
@@ -64,6 +67,8 @@ function App() {
         value={{
           events,
           setEvents,
+          renderCard,
+          setRenderCard,
           currentEvent,
           setCurrentEvent,
         }}

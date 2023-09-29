@@ -18,7 +18,7 @@ export function register(username, email, password) {
 }
 
 export function signIn (email, password ) {
-  return fetch(`${BASE_URL}/auth/token/login`, {
+  return fetch(`${BASE_URL}/auth/token/login/`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -31,6 +31,7 @@ export function tockenCheck (token) {
   return fetch(`${BASE_URL}/users/me/`, {
     headers: {
       "Authorization": `Token ${token}`,
+      // "Authorization": `Token d4e15092fdeb862eba012f757c0c0497fbc3ccc5`,
       'Content-Type': 'application/json'
     }
   }).then(res => _getResponseData(res))

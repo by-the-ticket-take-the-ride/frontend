@@ -8,11 +8,13 @@ import { getAllEventsAuthUser } from '../../../utils/currentEventApi';
 function MyFavorites() {
   // const { events, } = useContext(EventsContext);
   const [eventsAuthUser, setEventsAuthUser] = useState([]);
+  const { renderCard } = useContext(EventsContext);
   useEffect(() => {
-    getAllEventsAuthUser()
+    const token = JSON.parse(localStorage.getItem('token'))
+    getAllEventsAuthUser(token)
       .then(events => setEventsAuthUser(events))
       .catch(err => console.log(err))
-  }, []);
+  }, [renderCard]);
   return (
     <section className='my-favorites'>
         { eventsAuthUser?.some(event => event.is_favorited === true) ?

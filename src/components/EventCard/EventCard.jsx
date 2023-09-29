@@ -5,17 +5,18 @@ import * as supportFunction from "../../utils/supportFunction";
 import { addEventToFavorites, deleteEventToFavorites } from "../../utils/currentEventApi";
 import useUserContext from "../../hooks/useUserContext";
 import usePopupContext from "../../hooks/usePopupContext";
+import { useContext } from "react";
+import { EventsContext } from "../../constext/EventsContext";
 
 function EventCard({ eventData }) {
-  const [isActive, setIsActive] = useState(false);
-  const { name, image, time_event, date_event, place, id } = eventData;
-  const isActiveLike = eventData.is_favorited;
+  const {renderCard,setRenderCard} = useContext(EventsContext)
   const {isLoggedIn} = useUserContext();
   const {setType} = usePopupContext();
-  // console.log('====================================');
+  const { name, image, time_event, date_event, place, id } = eventData;
+  const isActiveLike = eventData.is_favorited;
 
   const handleLike = () => {
-    const token = localStorage.getItem('token')
+    const token = JSON.parse(localStorage.getItem('token'))
     if (isLoggedIn) {
 
       if (!isActiveLike) {
@@ -24,11 +25,12 @@ function EventCard({ eventData }) {
             console.log(res);
           })
           .catch(err => console.log(err))
-        setIsActive(!isActive);
+        setRenderCard(!renderCard);
       } else {
         deleteEventToFavorites(id, token)
           .then(res => console.log(res))
-          .catch(err => console.log(err))
+          .catch(err => console.log(err));
+        setRenderCard(!renderCard);
       }
     } else {
       console.log('Вам надо авторизоваться');
