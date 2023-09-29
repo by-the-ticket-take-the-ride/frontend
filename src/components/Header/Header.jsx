@@ -53,8 +53,10 @@ const Header = ({ isActivePopupCity, setIsActivePopupCity, currentCity }) => {
           <input
             type="text"
             placeholder="Поиск площадки, события, исполнителя"
+            minLength={1}
+            maxLength={100}
           />
-          <img src={searchImg} alt="Лупа" />
+          <img src={searchImg} alt="Лупа"/>
         </div>
         {isLoggedIn ? (
           <img

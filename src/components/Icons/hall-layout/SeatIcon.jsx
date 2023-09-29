@@ -11,6 +11,7 @@ function SeatIcon({
   seat,
   row,
   zone,
+  zoneId,
   price,
   handleСhoicePlace,
   id,
@@ -36,7 +37,7 @@ function SeatIcon({
     if (handleIsActive()) {
       handleDel(seat, row, zone, price);
     } else if (!handleIsActive()) {
-      handleСhoicePlace(seat, row, zone, price, id);
+      handleСhoicePlace(seat, row, zone, zoneId, price, id);
     }
   };
 

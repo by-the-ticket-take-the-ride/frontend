@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Button from "../Buttons/Button/Button";
 import { useFormWithValidation } from "../../utils/useFormWithValidation";
 import tick from "../../assets/images/tick.svg";
@@ -10,6 +10,7 @@ import PaymentSuccessPopup from "../PaymentSuccessPopup/PaymentSuccessPopup";
 import ScrollToTop from "../../utils/ScrollToTop";
 import InputPhoneMask from "../PersonalAccount/MyData/InputPhoneMask/InputPhoneMask";
 import useUserContext from "../../hooks/useUserContext";
+import { addNewTicket } from "../../utils/currentEventApi";
 
 function OrderForm({currentCity}) {
   const { values, errors, isValid, handleChange } = useFormWithValidation();
@@ -19,13 +20,38 @@ function OrderForm({currentCity}) {
 
   const [validate, setValidate] = React.useState(false);
   const { currentUser, inputTelValue } = useUserContext();
-  const { eventName, totalSum, оrderNumber, tickets } = JSON.parse(sessionStorage.getItem('totalOrder'))
+  const { eventName, totalSum, оrderNumber, tickets } = JSON.parse(sessionStorage.getItem('totalOrder'));
 
   const handleClick = () => {
-    setIsOpen(true);
-    setTimeout(function () {
-      navigate("/", { replace: true });
+    tickets?.forEach(ticket => {
+      console.log(ticket)
+      const { eventId, seat, row, zone, zoneId} = ticket;
+      
+      addNewTicket(
+          eventId,
+          zoneId,
+          row,
+          seat,
+          {
+            username: values.name,
+            email: values.email,
+            phone: inputTelValue,
+          }
+        )
+        .then(res => {
+
+          console.log(res)
+          setIsOpen(true);
+          setTimeout(function () {
+            navigate("/", { replace: true });
     }, 5000);
+        })
+        .catch(res => console.log(res))
+    });
+    // setIsOpen(true);
+    // setTimeout(function () {
+    //   navigate("/", { replace: true });
+    // }, 5000);
     
   };
 
@@ -208,8 +234,8 @@ function OrderForm({currentCity}) {
               </p>
             </div>
             <Button
-              gradient={isValid}
-              disabled={!isValid}
+              gradient={isValid && inputTelValue?.length === 11}
+              disabled={!isValid || inputTelValue === undefined || inputTelValue?.length < 11}
               type="button"
               additionalClass="order-details__btn"
               onClick={handleClick}

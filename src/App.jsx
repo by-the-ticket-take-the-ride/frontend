@@ -1,5 +1,5 @@
 import "./App.css";
-import React, { useLayoutEffect } from "react";
+import React, { useEffect, useLayoutEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 import SeatProvider from "./constext/SeatProvider";
 import PersonalAccount from "./components/PersonalAccount/PersonalAccount";
@@ -27,18 +27,36 @@ function App() {
   const [currentEvent, setCurrentEvent] = React.useState({});
   const [isHiddenLocation, setIsHiddenLocation] = React.useState(false);
   const [type, setType] = useState("");
+  const [isLoggedIn, setIsLoggedIn] = useState(!false);
 
+  // Если пользователь авторизирован то загружаются мероприятия с лайками
   useLayoutEffect(() => {
-    EventApi.getAllEvents()
-      .then((events) => {
-        if (events) {
-          setEvents(() => events);
-        } else {
-          setEvents(() => eventsJson);
-        }
-      })
-      .catch((err) => console.log(err));
-  }, []);
+    if (isLoggedIn) {
+      EventApi.getAllEventsAuthUser()
+        .then(events => {
+          if (events) {
+            setEvents(() => events);
+          } else {
+            setEvents(() => eventsJson);
+          }
+        })
+    } else {
+      EventApi.getAllEvents()
+        .then((events) => {
+          if (events) {
+            setEvents(() => events);
+          } else {
+            setEvents(() => eventsJson);
+          }
+        })
+        .catch((err) => console.log(err));
+    }
+    }, []);
+    
+  //   useEffect(() => {
+      
+  //     // console.log(events);
+  // }, [events])
 
   return (
     <div className="App">
@@ -50,7 +68,7 @@ function App() {
           setCurrentEvent,
         }}
       >
-        <CurrentUserProvider>
+        <CurrentUserProvider isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}>
           <PopupProvider type={type} setType={setType}>
             <SeatProvider>
               <Routes>

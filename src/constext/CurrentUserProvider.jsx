@@ -2,11 +2,11 @@ import { useLayoutEffect, useState } from "react";
 import { CurrentUserContext } from "./CurrentUserContext";
 import * as Auth from '../utils/Auth'
 
-function CurrentUserProvider({ children }) {
+function CurrentUserProvider({ children, isLoggedIn, setIsLoggedIn}) {
   const [currentUser, setCurrentUser] = useState({});
   const [isSuccess, setIsSuccess] = useState(false);
   const [isOpenNotific, setIsOpenNotific] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  // const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [inputTelValue, setInputTelValue] = useState();
 
   useLayoutEffect(() => {
