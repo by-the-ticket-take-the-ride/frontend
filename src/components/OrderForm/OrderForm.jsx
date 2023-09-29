@@ -39,14 +39,20 @@ function OrderForm({currentCity}) {
           }
         )
         .then(res => {
+          if(res) {
 
-          console.log(res)
-          setIsOpen(true);
-          setTimeout(function () {
+            console.log(res)
+            setIsOpen(true);
+            setTimeout(function () {
             navigate("/", { replace: true });
-    }, 5000);
+  
+              }, 5000);
+          }
         })
-        .catch(res => console.log(res))
+        .catch(res => {
+          console.log(res)
+          alert('Ошибка при отправке данных на сервер')
+        })
     });
     // setIsOpen(true);
     // setTimeout(function () {

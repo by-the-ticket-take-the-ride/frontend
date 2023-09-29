@@ -1,39 +1,139 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ModifiedReviewComp from "../NotificationPopup/ModifiedReviewComp/ModifiedReviewComp";
 import NotificationPopup from "../NotificationPopup/NotificationPopup";
 import Ticket from "../Ticket/Ticket";
 import "./MyTickets.css";
+import useSeatContext from "../../../hooks/useSeatContext";
 
 function MyTickets() {
   const [isNotificationPopup, setIsNotificationPopup] = useState(false);
+  const { tickets } = useSeatContext();
 
   const handleClose = () => {
-    setIsNotificationPopup(!isNotificationPopup)
-  }
+    setIsNotificationPopup(!isNotificationPopup);
+  };
 
   const handleClickTicket = () => {
-    setIsNotificationPopup(!isNotificationPopup)
+    setIsNotificationPopup(!isNotificationPopup);
+  };
+
+  const ticketFilter = () => {
+    const counts = tickets.reduce((counts, ticketName, i) => {
+      counts[ticketName?.event?.name] = (counts[ticketName?.event?.name] || 0) + 1;
+      return counts;
+    }, {});
+
+    return uniqueElem(counts);
+  };
+
+  function uniqueElem(counts) {
+    let uniques = Object.keys(counts);
+    uniques.sort((a, b) =>
+      counts[a] === counts[b] ? a.localeCompare(b) : counts[b] - counts[a]
+    );
+    return uniques;
   }
+
+  function filterDate(date) {
+    const currentDate = new Date();
+    const currentYear = currentDate.getFullYear();
+    const currentDay = String(currentDate).split(" ")[2];
+    const currentMonth = currentDate.getMonth() + 1;
+    const dateArr = date?.split("-");
+    if (dateArr[0] < currentYear) {
+      return true;
+    }
+    if (dateArr[0] >= currentYear && Number(dateArr[1]) < currentMonth) {
+      return true;
+    }
+    if (dateArr[0] >= currentYear && Number(dateArr[1]) > currentMonth) {
+      return false;
+    }
+    if (dateArr[0] >= currentYear && dateArr[1] >= currentMonth) {
+       if(dateArr[0] >= currentYear && dateArr[1] >= currentMonth && Number(dateArr[2]) > currentDay) {
+        return false
+      }
+       if(dateArr[0] >= currentYear && dateArr[1] >= currentMonth && Number(dateArr[2]) < currentDay) {
+        return true
+      }
+      return false
+    }
+  }
+
 
   return (
     <section className="my-tickets">
-      {
-        isNotificationPopup &&
-          <NotificationPopup>
-            <ModifiedReviewComp handleClose={handleClose}/>
-          </NotificationPopup>
-      }
+      {isNotificationPopup && (
+        <NotificationPopup>
+          <ModifiedReviewComp handleClose={handleClose} />
+        </NotificationPopup>
+      )}
       <div className="my-tickets__wrapper my-tickets__wrapper_type_active">
-        <Ticket />
+        {ticketFilter()?.map((ticket, id) => {
+          const dateFilter = () => {
+            const counts = tickets.reduce((counts, ticketName, i) => {
+              counts[ticketName?.event?.date_event] =
+                (counts[ticketName?.event?.date_event] || 0) + 1;
+
+              return counts;
+            }, {});
+            return uniqueElem(counts);
+          };
+
+          const imgFilter = () => {
+            const counts = tickets.reduce((counts, ticketName, i) => {
+              counts[ticketName?.event?.image] =
+                (counts[ticketName?.event?.image] || 0) + 1;
+              return counts;
+            }, {});
+            return uniqueElem(counts);
+          };
+          return (
+            <Ticket
+              key={id}
+              ticketData={ticket}
+              date={dateFilter()[id]}
+              image={imgFilter()[id]}
+            />
+          );
+        })}
       </div>
       <div>
         <h2 className="my-tickets__title">Завершенные</h2>
         <div className="my-tickets__wrapper my-tickets__wrapper_type_disabled">
-          <div className="my-tickets__ticket" onClick={handleClickTicket}>
-            <Ticket completed={true}/>
+            {ticketFilter()?.map((ticket, id) => {
+              const dateFilter = () => {
+                const counts = tickets.reduce((counts, ticketName, i) => {
+                  counts[ticketName?.event?.date_event] =
+                    (counts[ticketName?.event?.date_event] || 0) + 1;
+
+                  return counts;
+                }, {});
+                return uniqueElem(counts);
+              };
+
+              const imgFilter = () => {
+                const counts = tickets.reduce((counts, ticketName, i) => {
+                  counts[ticketName?.event?.image] =
+                    (counts[ticketName?.event?.image] || 0) + 1;
+                  return counts;
+                }, {});
+                return uniqueElem(counts);
+              };
+              return (
+                filterDate(dateFilter()[id], ticket) && (
+                  <div key={id} className="my-tickets__ticket" onClick={handleClickTicket}>
+                    <Ticket
+                      ticketData={ticket}
+                      completed={true}
+                      image={imgFilter()[id]}
+                    />
+                  </div>
+                )
+              );
+            })}
           </div>
         </div>
-      </div>
     </section>
   );
 }
