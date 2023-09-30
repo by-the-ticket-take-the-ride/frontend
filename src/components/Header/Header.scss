@@ -68,10 +68,16 @@
         gap: 8px;
         flex-shrink: 0;
       }
+      input:focus {
+        border: 1px #8B52F680 solid;
+        outline: none;
+        box-shadow: 2px 2px 12px 1px #00000024;
+      }
       img {
         position: relative;
         top: 10px;
         right: 50px;
+        cursor: pointer;
       }
     }
   }
@@ -79,6 +85,10 @@
   &__button {
     &_logged {
       width: 40px;
+      cursor: pointer;
+      &:hover {
+        opacity: .7;
+      }
     }
     &_signin {
       // width: ;

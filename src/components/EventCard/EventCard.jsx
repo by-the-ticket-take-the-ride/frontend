@@ -1,23 +1,46 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import ButtonLike from "../Buttons/ButtonLike/ButtonLike";
 import * as supportFunction from "../../utils/supportFunction";
-import { addEventToFavorites } from "../../utils/currentEventApi";
+import { addEventToFavorites, deleteEventToFavorites } from "../../utils/currentEventApi";
+import useUserContext from "../../hooks/useUserContext";
+import usePopupContext from "../../hooks/usePopupContext";
+import { useContext } from "react";
+import { EventsContext } from "../../constext/EventsContext";
 
 function EventCard({ eventData }) {
-  const [isActive, setIsActive] = useState(false);
+  const {renderCard,setRenderCard} = useContext(EventsContext);
+  // const [isActiveLike, setIsActiveLike] = useState();
+  const isActiveLike = eventData.is_favorited;
+
+  const {isLoggedIn} = useUserContext();
+  const {setType} = usePopupContext();
   const { name, image, time_event, date_event, place, id } = eventData;
+  
+  useEffect(() => {
+  }, [renderCard]);
 
   const handleLike = () => {
-    const toket = localStorage.getItem('token')
-    if (!isActive) {
-      addEventToFavorites(id,toket)
-        .then(res => {
+    const token = JSON.parse(localStorage.getItem('token'))
+    if (isLoggedIn) {
 
-        })
-        .catch(err => console.log(err))
+      if (!isActiveLike) {
+        addEventToFavorites(id,token)
+          .then(res => {
+            // console.log(res);
+          })
+          .catch(err => console.log(err))
+        setRenderCard(!renderCard);
+      } else {
+        deleteEventToFavorites(id, token)
+          .then(res => console.log(res))
+          .catch(err => console.log(err));
+        setRenderCard(!renderCard);
+      }
+    } else {
+      console.log('Вам надо авторизоваться');
+      setType('login');
     }
-    setIsActive(!isActive);
   };
   return (
     <article className="event-card">
@@ -45,7 +68,7 @@ function EventCard({ eventData }) {
       <ButtonLike
         extraClass="event-card__button-like"
         handleLike={handleLike}
-        isActive={isActive}
+        isActive={isActiveLike}
       />
     </article>
   );

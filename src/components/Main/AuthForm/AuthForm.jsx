@@ -2,6 +2,8 @@ import "./AuthForm.css";
 import * as auth from "../../../utils/Auth";
 import { useState, useEffect } from "react";
 import {useInput, displayError} from '../../../utils/ValidationForm';
+import usePopupContext from "../../../hooks/usePopupContext";
+import useUserContext from "../../../hooks/useUserContext";
 
 function AuthForm(props) {
   const [dataForm, setDataForm] = useState({});
@@ -12,6 +14,8 @@ function AuthForm(props) {
   const [isValid_RePassword, setIsValid_RePassword] = useState(false);
   const [typePassword, setTypePassword] = useState('password');
   const [typeRe_password, setTypeRe_password] = useState('password');
+  const {setType} = usePopupContext();
+  const {setCurrentUser, setIsLoggedIn} = useUserContext();
   
 
   const {openPopupAuth, closePopupAuth, handleClickGoForm, setEmailSubmit, type} = props;
@@ -66,6 +70,11 @@ function AuthForm(props) {
       auth.signIn(email, password)
         .then((res) => {
           console.log('Вы авторизовались');
+          if(res) {
+            localStorage.setItem('token', JSON.stringify(res.auth_token))
+            setIsLoggedIn(true);
+            setType('')
+          }
         })
         .catch(() => {
           console.log('произошла ошибка');

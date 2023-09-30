@@ -26,8 +26,11 @@ function ChoiseThePlace() {
   const [counterPrice, setCounterPrice] = useState(0);
   const [isSizeHallLayoutSmall, setIsSizeHallLayoutSmall] = useState(false);
   const navigate = useNavigate();
+  useEffect(() => {
+    console.log(eventForChoisePlace);
+  },[eventForChoisePlace])
 
-  const handleСhoicePlace = (numSeat, numRow, nameZone, numPrice, idSeat) => {
+  const handleСhoicePlace = (numSeat, numRow, nameZone, zoneId, numPrice, idSeat) => {
     if (isPaid(numSeat, numRow, nameZone)) {
       return;
     } else {
@@ -36,9 +39,11 @@ function ChoiseThePlace() {
         return [
           ...paymentData,
           {
+            eventId: eventForChoisePlace.id,
             seat: numSeat,
             row: numRow,
             zone: nameZone,
+            zoneId: zoneId,
             price: numPrice,
             id: idSeat,
           },
@@ -88,6 +93,7 @@ function ChoiseThePlace() {
             seat={seat}
             row={row}
             zone={zone}
+            zoneId={zoneId}
             handleDel={handleDel}
             handleСhoicePlace={handleСhoicePlace}
             blue={true}
@@ -102,6 +108,7 @@ function ChoiseThePlace() {
             seat={seat}
             row={row}
             zone={zone}
+            zoneId={zoneId}
             handleDel={handleDel}
             handleСhoicePlace={handleСhoicePlace}
             violet={true}
@@ -116,6 +123,7 @@ function ChoiseThePlace() {
             seat={seat}
             row={row}
             zone={zone}
+            zoneId={zoneId}
             handleDel={handleDel}
             handleСhoicePlace={handleСhoicePlace}
             red={true}
@@ -130,6 +138,7 @@ function ChoiseThePlace() {
             seat={seat}
             row={row}
             zone={zone}
+            zoneId={zoneId}
             handleDel={handleDel}
             handleСhoicePlace={handleСhoicePlace}
             red={true}

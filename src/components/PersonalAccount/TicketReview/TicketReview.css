@@ -42,6 +42,10 @@
   /* 22.551px */
   letter-spacing: 0.106px;
   color: #FFFFFF;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 348px;
 }
 
 .ticket-review__title_type_modified {
@@ -50,6 +54,11 @@
   font-weight: 700;
   line-height: 106%; /* 31.8px */
   letter-spacing: 0.15px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 140px;
+  
 }
 
 .ticket-review__date {

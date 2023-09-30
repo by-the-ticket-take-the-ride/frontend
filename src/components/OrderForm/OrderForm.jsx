@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Button from "../Buttons/Button/Button";
 import { useFormWithValidation } from "../../utils/useFormWithValidation";
 import tick from "../../assets/images/tick.svg";
@@ -10,22 +10,99 @@ import PaymentSuccessPopup from "../PaymentSuccessPopup/PaymentSuccessPopup";
 import ScrollToTop from "../../utils/ScrollToTop";
 import InputPhoneMask from "../PersonalAccount/MyData/InputPhoneMask/InputPhoneMask";
 import useUserContext from "../../hooks/useUserContext";
+import { addNewTicket, addNewTicketAuthUser, addNewTicketWithEmail } from "../../utils/currentEventApi";
 
 function OrderForm({currentCity}) {
-  const { values, errors, isValid, handleChange } = useFormWithValidation();
+  const { values, errors, isValid, handleChange, resetForm } = useFormWithValidation();
   const [isActivePopupCity, setIsActivePopupCity] = React.useState(false);
   const [isOpen, setIsOpen] = React.useState(false);
   const navigate = useNavigate();
 
   const [validate, setValidate] = React.useState(false);
   const { currentUser, inputTelValue } = useUserContext();
-  const { eventName, totalSum, оrderNumber, tickets } = JSON.parse(sessionStorage.getItem('totalOrder'))
+  const {isLoggedIn} = useUserContext();
+  const [isNewEmail, setIsNewEmail] = React.useState(true);
+  const { eventName, totalSum, оrderNumber, tickets } = JSON.parse(sessionStorage.getItem('totalOrder'));
+
+  useEffect(() => {
+    resetForm({
+      email: currentUser.email,
+      name: currentUser.username,
+
+    });
+  },[currentUser])
+  useEffect(() => {
+    if (values.email === currentUser.email) {
+      setIsNewEmail(false);
+    } else {
+      setIsNewEmail(true);
+    }
+  }, [values.email]);
 
   const handleClick = () => {
-    setIsOpen(true);
-    setTimeout(function () {
-      navigate("/", { replace: true });
-    }, 5000);
+    const token = JSON.parse(localStorage.getItem('token'));
+    tickets?.forEach(ticket => {
+      console.log(ticket)
+      const { eventId, seat, row, zone, zoneId} = ticket;
+
+      if(isNewEmail) {
+        addNewTicketWithEmail(
+          eventId,
+          zoneId,
+          row,
+          seat,
+          {
+            username: values.name,
+            email: values.email,
+            phone: inputTelValue,
+          },
+          token
+        )
+        .then(res => {
+          if(res) {
+
+            console.log(res)
+            setIsOpen(true);
+            setTimeout(function () {
+            navigate("/", { replace: true });
+  
+              }, 5000);
+          }
+        })
+        .catch(res => {
+          console.log(res)
+          alert('Ошибка при отправке данных на сервер')
+        })
+      } else {
+        addNewTicket(
+            eventId,
+            zoneId,
+            row,
+            seat,
+            token
+          )
+          .then(res => {
+            if(res) {
+  
+              console.log(res)
+              setIsOpen(true);
+              setTimeout(function () {
+              navigate("/", { replace: true });
+    
+                }, 5000);
+            }
+          })
+          .catch(res => {
+            console.log(res)
+            alert('Ошибка при отправке данных на сервер')
+          })
+      }
+      
+    });
+    // setIsOpen(true);
+    // setTimeout(function () {
+    //   navigate("/", { replace: true });
+    // }, 5000);
     
   };
 
@@ -208,8 +285,8 @@ function OrderForm({currentCity}) {
               </p>
             </div>
             <Button
-              gradient={isValid}
-              disabled={!isValid}
+              gradient={isValid && inputTelValue?.length === 11}
+              disabled={!isValid || inputTelValue === undefined || inputTelValue?.length < 11}
               type="button"
               additionalClass="order-details__btn"
               onClick={handleClick}

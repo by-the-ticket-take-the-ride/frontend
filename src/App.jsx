@@ -1,5 +1,5 @@
 import "./App.css";
-import React, { useLayoutEffect } from "react";
+import React, { useEffect, useLayoutEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 import SeatProvider from "./constext/SeatProvider";
 import PersonalAccount from "./components/PersonalAccount/PersonalAccount";
@@ -27,18 +27,39 @@ function App() {
   const [currentEvent, setCurrentEvent] = React.useState({});
   const [isHiddenLocation, setIsHiddenLocation] = React.useState(false);
   const [type, setType] = useState("");
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [renderCard, setRenderCard] = useState(false);
+  const [currentReviewData, setCurrentReviewData] = useState({});
+  const [reviewData, setReviewData] = useState(() => {
+    const review = JSON.parse(localStorage.getItem('reviewData'));
+    return review ? review : [];
+  });
+  // const [reviewData, setReviewData] = useState([]);
 
-  useLayoutEffect(() => {
-    EventApi.getAllEvents()
-      .then((events) => {
-        if (events) {
-          setEvents(() => events);
-        } else {
-          setEvents(() => eventsJson);
-        }
-      })
-      .catch((err) => console.log(err));
-  }, []);
+  // Если пользователь авторизирован то загружаются мероприятия с лайками
+  useEffect(() => {
+    const token = JSON.parse(localStorage.getItem('token'))
+    if (isLoggedIn) {
+      EventApi.getAllEventsAuthUser(token)
+        .then(events => {
+          if (events) {
+            setEvents(() => events);
+          } else {
+            setEvents(() => eventsJson);
+          }
+        })
+    } else {
+      EventApi.getAllEvents()
+        .then((events) => {
+          if (events) {
+            setEvents(() => events);
+          } else {
+            setEvents(() => eventsJson);
+          }
+        })
+        .catch((err) => console.log(err));
+    }
+    }, [isLoggedIn, renderCard]);
 
   return (
     <div className="App">
@@ -46,11 +67,17 @@ function App() {
         value={{
           events,
           setEvents,
+          renderCard,
+          setRenderCard,
           currentEvent,
           setCurrentEvent,
+          currentReviewData,
+          setCurrentReviewData,
+          reviewData,
+          setReviewData
         }}
       >
-        <CurrentUserProvider>
+        <CurrentUserProvider isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}>
           <PopupProvider type={type} setType={setType}>
             <SeatProvider>
               <Routes>

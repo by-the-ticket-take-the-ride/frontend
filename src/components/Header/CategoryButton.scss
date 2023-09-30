@@ -3,6 +3,10 @@
   width: auto;
   display: flex;
   gap: 8px;
+  cursor: pointer;
+  &:hover {
+    opacity: .5;
+  }
   &__image {
     width: 36px;
     height: 36px;

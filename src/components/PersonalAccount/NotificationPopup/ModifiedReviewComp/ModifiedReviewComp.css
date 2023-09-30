@@ -27,6 +27,23 @@
   letter-spacing: 0.15px;
   margin: 0 0 40px;
 }
+
+.modified-review__wrapper {
+  display: flex;
+  gap: 24px;
+}
+
+.modified-review__rating-title {
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-family: Nunito Sans;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 15.601px;
+  color: #9A9A9A;
+  margin-bottom: 12px;
+}
+
 .modified-review__title_type_notification {
   font-family: Nunito Sans;
   font-size: 22px;

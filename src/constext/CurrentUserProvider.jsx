@@ -2,15 +2,14 @@ import { useLayoutEffect, useState } from "react";
 import { CurrentUserContext } from "./CurrentUserContext";
 import * as Auth from '../utils/Auth'
 
-function CurrentUserProvider({ children }) {
+function CurrentUserProvider({ children, isLoggedIn, setIsLoggedIn}) {
   const [currentUser, setCurrentUser] = useState({});
   const [isSuccess, setIsSuccess] = useState(false);
   const [isOpenNotific, setIsOpenNotific] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [inputTelValue, setInputTelValue] = useState();
 
   useLayoutEffect(() => {
-    const token = localStorage.getItem('token')
+    const token = JSON.parse(localStorage.getItem('token'))
     Auth
       .tockenCheck(token)
       .then(res => {
@@ -25,7 +24,7 @@ function CurrentUserProvider({ children }) {
 const handleSetUserInfo = (userData) => {
   setIsOpenNotific(false)
   setIsSuccess(false)
-  const token = localStorage.getItem('token')
+  const token = JSON.parse(localStorage.getItem('token'))
     return Auth
       .setUserInfo(userData, token)
       .then((currentUser) => {

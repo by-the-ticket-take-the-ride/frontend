@@ -3,8 +3,8 @@ import { EventsContext } from "../constext/EventsContext";
 
 
 function useEventsContext() {
-  const popupContextValue = useContext(EventsContext)
-  return { ...popupContextValue}
+  const eventContextValue = useContext(EventsContext)
+  return { ...eventContextValue}
 }
 
 export default useEventsContext;

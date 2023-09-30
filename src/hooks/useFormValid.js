@@ -2,7 +2,7 @@ import { useCallback, useLayoutEffect, useRef, useState } from "react";
 import { validationConfig } from "../utils/validation";
 
 function useFormValid() {
-  const [inputValues, setInputValues] = useState('');
+  const [inputValues, setInputValues] = useState({});
   const [checkboxValues, setCheckboxValues] = useState({})
   const [errorMessages, setErrorMessages] = useState({});
   const [formIsValid, setFormIsValid] = useState(false);
@@ -22,6 +22,11 @@ function useFormValid() {
     const { name, checked } = event.target;
     setCheckboxValues({...checkboxValues, [name]: checked})
   }
+
+  const handleRating = (rating) => {
+    const name = 'rating';
+    handleStoreValues(name, rating);
+  };
 
   const resetFormValues = useCallback((newValues = {}, newError = {}, newIsValid = false) => {
     setInputValues(newValues);
@@ -86,6 +91,7 @@ function useFormValid() {
     formIsValid, 
     errorMessages, 
     resetFormValues,
+    handleRating
   }
 }
 
