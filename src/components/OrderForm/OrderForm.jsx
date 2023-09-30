@@ -25,8 +25,6 @@ function OrderForm({currentCity}) {
   const { eventName, totalSum, оrderNumber, tickets } = JSON.parse(sessionStorage.getItem('totalOrder'));
 
   useEffect(() => {
-    console.log(currentUser);
-    // resetForm(currentUser);
     resetForm({
       email: currentUser.email,
       name: currentUser.username,

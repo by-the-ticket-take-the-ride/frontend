@@ -6,12 +6,10 @@ function CurrentUserProvider({ children, isLoggedIn, setIsLoggedIn}) {
   const [currentUser, setCurrentUser] = useState({});
   const [isSuccess, setIsSuccess] = useState(false);
   const [isOpenNotific, setIsOpenNotific] = useState(false);
-  // const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [inputTelValue, setInputTelValue] = useState();
 
   useLayoutEffect(() => {
     const token = JSON.parse(localStorage.getItem('token'))
-    console.log(token);
     Auth
       .tockenCheck(token)
       .then(res => {
@@ -26,7 +24,7 @@ function CurrentUserProvider({ children, isLoggedIn, setIsLoggedIn}) {
 const handleSetUserInfo = (userData) => {
   setIsOpenNotific(false)
   setIsSuccess(false)
-  const token = localStorage.getItem('token')
+  const token = JSON.parse(localStorage.getItem('token'))
     return Auth
       .setUserInfo(userData, token)
       .then((currentUser) => {

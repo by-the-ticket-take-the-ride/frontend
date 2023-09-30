@@ -1,30 +1,15 @@
 import { useEffect, useState } from 'react';
 import './StarRating.css';
 
-import starOff from '../../../assets/images/Star.svg';
-import starOn from '../../../assets/images/Star.svg';
+import starOff from '../../../assets/images/rating-star-disabled.svg';
+import starOn from '../../../assets/images/rating-star-active.svg';
 
-function StarRating() {
+function StarRating({ handleRating }) {
 
   const [rating, setRating ] = useState(0);
   const [hover, setHover ] = useState(0);
-  const [inputValues, setInputValues] = useState(null);
-  const handleStoreValue = (name, value) => {
-    setInputValues((current) => ({
-      ...current,
-      [name]: value,
-    }));
-  };
-
-// рейтинг вина
-const handleReiting = (rating) => {
-  const name = 'rating';
-  handleStoreValue(name, rating);
-};
-
   useEffect(() => {
-    console.log(rating);
-    handleReiting(rating)
+    handleRating(rating)
   }, [rating])
   
 

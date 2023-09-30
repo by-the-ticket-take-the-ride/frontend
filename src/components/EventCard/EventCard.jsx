@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import ButtonLike from "../Buttons/ButtonLike/ButtonLike";
 import * as supportFunction from "../../utils/supportFunction";
@@ -9,11 +9,16 @@ import { useContext } from "react";
 import { EventsContext } from "../../constext/EventsContext";
 
 function EventCard({ eventData }) {
-  const {renderCard,setRenderCard} = useContext(EventsContext)
+  const {renderCard,setRenderCard} = useContext(EventsContext);
+  // const [isActiveLike, setIsActiveLike] = useState();
+  const isActiveLike = eventData.is_favorited;
+
   const {isLoggedIn} = useUserContext();
   const {setType} = usePopupContext();
   const { name, image, time_event, date_event, place, id } = eventData;
-  const isActiveLike = eventData.is_favorited;
+  
+  useEffect(() => {
+  }, [renderCard]);
 
   const handleLike = () => {
     const token = JSON.parse(localStorage.getItem('token'))
@@ -22,7 +27,7 @@ function EventCard({ eventData }) {
       if (!isActiveLike) {
         addEventToFavorites(id,token)
           .then(res => {
-            console.log(res);
+            // console.log(res);
           })
           .catch(err => console.log(err))
         setRenderCard(!renderCard);

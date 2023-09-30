@@ -21,6 +21,7 @@
 }
 
 .review__icon {
+  max-height: 37px;
   cursor: pointer;
 }
 

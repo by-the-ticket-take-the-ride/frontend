@@ -6,7 +6,6 @@ import NotificationPage from '../NotificationPage/NotificationPage';
 import { getAllEventsAuthUser } from '../../../utils/currentEventApi';
 
 function MyFavorites() {
-  // const { events, } = useContext(EventsContext);
   const [eventsAuthUser, setEventsAuthUser] = useState([]);
   const { renderCard } = useContext(EventsContext);
   useEffect(() => {
@@ -20,13 +19,8 @@ function MyFavorites() {
         { eventsAuthUser?.some(event => event.is_favorited === true) ?
           <div className='my-favorites__list'>
             {eventsAuthUser?.map( (event) => {
-              // console.log(events.some(event => event.is_favorited === true));
-              console.log(eventsAuthUser);
               return (
-                
                   event.is_favorited === true && <EventCard key={event.id} eventData={event}  />
-                
-                // <EventCard key={event.id} eventData={event}  />
               )
             }
             )}

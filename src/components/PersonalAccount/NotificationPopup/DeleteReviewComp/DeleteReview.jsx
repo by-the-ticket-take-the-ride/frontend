@@ -3,7 +3,8 @@ import image from '../../../../assets/images/attention.svg';
 import ButtonCross from "../../../Buttons/ButtonCross/ButtonCross";
 import Button from "../../../Buttons/Button/Button";
 
-function DeleteReview({handleClose}) {
+function DeleteReview({handleClose , handleDelete}) {
+  
   return (
     <div className="delete-review">
       <ButtonCross
@@ -20,6 +21,9 @@ function DeleteReview({handleClose}) {
           additionalClass={"delete-review__button"}
           type={"button"}
           gradient={true}
+          onClick={() => {
+            handleDelete()
+          }}
         >
           Удалить
         </Button>

@@ -28,7 +28,13 @@ function App() {
   const [isHiddenLocation, setIsHiddenLocation] = React.useState(false);
   const [type, setType] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [renderCard, setRenderCard] = useState(false)
+  const [renderCard, setRenderCard] = useState(false);
+  const [currentReviewData, setCurrentReviewData] = useState({});
+  const [reviewData, setReviewData] = useState(() => {
+    const review = JSON.parse(localStorage.getItem('reviewData'));
+    return review ? review : [];
+  });
+  // const [reviewData, setReviewData] = useState([]);
 
   // Если пользователь авторизирован то загружаются мероприятия с лайками
   useEffect(() => {
@@ -37,7 +43,6 @@ function App() {
       EventApi.getAllEventsAuthUser(token)
         .then(events => {
           if (events) {
-            console.log(events);
             setEvents(() => events);
           } else {
             setEvents(() => eventsJson);
@@ -55,11 +60,6 @@ function App() {
         .catch((err) => console.log(err));
     }
     }, [isLoggedIn, renderCard]);
-    
-  //   useEffect(() => {
-      
-  //     // console.log(events);
-  // }, [events])
 
   return (
     <div className="App">
@@ -71,6 +71,10 @@ function App() {
           setRenderCard,
           currentEvent,
           setCurrentEvent,
+          currentReviewData,
+          setCurrentReviewData,
+          reviewData,
+          setReviewData
         }}
       >
         <CurrentUserProvider isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}>

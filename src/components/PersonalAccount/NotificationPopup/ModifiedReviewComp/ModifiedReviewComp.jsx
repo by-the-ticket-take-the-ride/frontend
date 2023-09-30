@@ -1,26 +1,47 @@
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import useFormValid from "../../../../hooks/useFormValid";
 import Button from "../../../Buttons/Button/Button";
 import ButtonCross from "../../../Buttons/ButtonCross/ButtonCross";
 import FilterCheckbox from "../../../FilterCheckbox/FilterCheckbox";
 import TicketReview from "../../TicketReview/TicketReview";
 import "./ModifiedReviewComp.css";
+import { EventsContext } from "../../../../constext/EventsContext";
+import useUserContext from "../../../../hooks/useUserContext";
+import StarRating from "../../StarRating/StarRating";
+import { useFormWithValidation } from "../../../../utils/useFormWithValidation";
 
 function ModifiedReviewComp({ handleClose }) {
-  const { checkboxValues, handleToggleChange } = useFormValid();
+  const { checkboxValues, handleToggleChange, inputValues, handleInputChange, handleRating } = useFormValid();
   const [isSubmitSuccess, setIsSubmitSuccess] = useState(false);
+  const {currentReviewData, setCurrentReviewData, reviewData, setReviewData} = useContext(EventsContext);
+  const {currentUser} = useUserContext();
   const handleCheckbox = (evt) => {
     handleToggleChange(evt);
     console.log("click");
     const { name, checked } = evt.target;
-    // handleCheckboxShortmovies(checked);
-    // handleValuesCache({ [name] : checked});
+
   };
 
   const handleSubmit = (evt) => {
-    evt.preventDefault()
+    evt.preventDefault();
+    setReviewData(() => [
+      ...reviewData,
+      {
+        id: Date.now(),
+        nameEvent: currentReviewData.nameEvent,
+        dateEvent: currentReviewData.dateEvent,
+        image: currentReviewData.image,
+        rating: inputValues.rating,
+        comment: inputValues.commentReview
+      }
+    ])
     setIsSubmitSuccess(true);
   };
+
+  useEffect(() => {
+    localStorage.setItem('reviewData', JSON.stringify(reviewData));
+  },[reviewData]);
+
   return (
     <div className="modified-review">
       <ButtonCross
@@ -31,13 +52,21 @@ function ModifiedReviewComp({ handleClose }) {
       {!isSubmitSuccess ? (
         <>
           <h3 className="modified-review__title">Отзыв о мероприятии</h3>
-          <TicketReview typeModified={true} />
+          <div className="modified-review__wrapper">
+            <TicketReview typeModified={true} ticketData={currentReviewData}/>
+              <div>
+                <p className="modified-review__rating-title">Ваша оценка</p>
+                <StarRating handleRating={handleRating}/>
+              </div>
+          </div>
           <form onSubmit={handleSubmit} className="modified-review__from">
             <span className="modified-review__span-comment">Комментарий</span>
             <textarea
               className="modified-review__comment-input"
-              name=""
-              id=""
+              name="commentReview"
+              id="commentReview"
+              value={inputValues.commentReview}
+              onChange={handleInputChange}
             ></textarea>
 
             <span className="modified-review__info-span">
@@ -45,7 +74,7 @@ function ModifiedReviewComp({ handleClose }) {
             </span>
 
             <div className="modified-review__autograph-wrapper">
-              <h4 className="modified-review__autograph">Иван И.</h4>
+              <h4 className="modified-review__autograph">{currentUser?.username}</h4>
               <FilterCheckbox
                 handleChange={handleCheckbox}
                 checked={checkboxValues.autograph}

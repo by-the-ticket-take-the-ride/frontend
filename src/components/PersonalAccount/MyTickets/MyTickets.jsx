@@ -1,20 +1,32 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import ModifiedReviewComp from "../NotificationPopup/ModifiedReviewComp/ModifiedReviewComp";
 import NotificationPopup from "../NotificationPopup/NotificationPopup";
 import Ticket from "../Ticket/Ticket";
 import "./MyTickets.css";
 import useSeatContext from "../../../hooks/useSeatContext";
+import useEventsContext from "../../../hooks/useEventsContext";
+import { EventsContext } from "../../../constext/EventsContext";
 
 function MyTickets() {
   const [isNotificationPopup, setIsNotificationPopup] = useState(false);
+  const { setCurrentReviewData } = useContext(EventsContext);
   const { tickets } = useSeatContext();
 
   const handleClose = () => {
     setIsNotificationPopup(!isNotificationPopup);
   };
 
-  const handleClickTicket = () => {
+  const handleClickTicket = (image, date, ticketName) => {
     setIsNotificationPopup(!isNotificationPopup);
+
+    setCurrentReviewData({
+      id: Date.now(),
+      nameEvent: ticketName,
+      dateEvent: date,
+      image: image,
+      rating: null,
+      comment: ''
+    })
   };
 
   const ticketFilter = () => {
@@ -122,9 +134,9 @@ function MyTickets() {
               };
               return (
                 filterDate(dateFilter()[id], ticket) && (
-                  <div key={id} className="my-tickets__ticket" onClick={handleClickTicket}>
+                  <div key={id} className="my-tickets__ticket" onClick={() => handleClickTicket(imgFilter()[id],dateFilter()[id], ticket)}>
                     <Ticket
-                      ticketData={ticket}
+                      ticketName={ticket}
                       completed={true}
                       image={imgFilter()[id]}
                     />
