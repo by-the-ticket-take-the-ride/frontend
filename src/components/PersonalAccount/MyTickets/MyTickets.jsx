@@ -1,10 +1,9 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import ModifiedReviewComp from "../NotificationPopup/ModifiedReviewComp/ModifiedReviewComp";
 import NotificationPopup from "../NotificationPopup/NotificationPopup";
 import Ticket from "../Ticket/Ticket";
 import "./MyTickets.css";
 import useSeatContext from "../../../hooks/useSeatContext";
-import useEventsContext from "../../../hooks/useEventsContext";
 import { EventsContext } from "../../../constext/EventsContext";
 
 function MyTickets() {
@@ -103,7 +102,7 @@ function MyTickets() {
           return (
             <Ticket
               key={id}
-              ticketData={ticket}
+              ticketName={ticket}
               date={dateFilter()[id]}
               image={imgFilter()[id]}
             />

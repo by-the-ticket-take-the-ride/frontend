@@ -26,9 +26,6 @@ function ChoiseThePlace() {
   const [counterPrice, setCounterPrice] = useState(0);
   const [isSizeHallLayoutSmall, setIsSizeHallLayoutSmall] = useState(false);
   const navigate = useNavigate();
-  useEffect(() => {
-    console.log(eventForChoisePlace);
-  },[eventForChoisePlace])
 
   const handleСhoicePlace = (numSeat, numRow, nameZone, zoneId, numPrice, idSeat) => {
     if (isPaid(numSeat, numRow, nameZone)) {

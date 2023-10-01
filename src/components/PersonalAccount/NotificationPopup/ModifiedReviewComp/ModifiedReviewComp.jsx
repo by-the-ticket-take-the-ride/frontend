@@ -8,18 +8,14 @@ import "./ModifiedReviewComp.css";
 import { EventsContext } from "../../../../constext/EventsContext";
 import useUserContext from "../../../../hooks/useUserContext";
 import StarRating from "../../StarRating/StarRating";
-import { useFormWithValidation } from "../../../../utils/useFormWithValidation";
 
 function ModifiedReviewComp({ handleClose }) {
   const { checkboxValues, handleToggleChange, inputValues, handleInputChange, handleRating } = useFormValid();
   const [isSubmitSuccess, setIsSubmitSuccess] = useState(false);
-  const {currentReviewData, setCurrentReviewData, reviewData, setReviewData} = useContext(EventsContext);
+  const {currentReviewData, reviewData, setReviewData} = useContext(EventsContext);
   const {currentUser} = useUserContext();
   const handleCheckbox = (evt) => {
     handleToggleChange(evt);
-    console.log("click");
-    const { name, checked } = evt.target;
-
   };
 
   const handleSubmit = (evt) => {
