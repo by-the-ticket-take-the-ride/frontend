@@ -1,5 +1,4 @@
 import { renderDate } from "../../../utils/supportFunction";
-import StarRating from "../StarRating/StarRating";
 import StarRatingDisabled from "../StarRatingDisabled/StarRatingDisabled";
 import "./Ticket.css";
 

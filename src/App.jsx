@@ -1,5 +1,5 @@
 import "./App.css";
-import React, { useEffect, useLayoutEffect } from "react";
+import React, { useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 import SeatProvider from "./constext/SeatProvider";
 import PersonalAccount from "./components/PersonalAccount/PersonalAccount";
@@ -15,7 +15,6 @@ import * as EventApi from "./utils/currentEventApi";
 import eventsJson from "./components/ChoiseThePlace/events.json";
 import { EventsContext } from "./constext/EventsContext";
 import { useState } from "react";
-import usePopupContext from "./hooks/usePopupContext";
 import MyTickets from "./components/PersonalAccount/MyTickets/MyTickets";
 import MyReview from "./components/PersonalAccount/MyReview/MyReview";
 import MyFavorites from "./components/PersonalAccount/MyFavorites/MyFavorites";
@@ -34,7 +33,6 @@ function App() {
     const review = JSON.parse(localStorage.getItem('reviewData'));
     return review ? review : [];
   });
-  // const [reviewData, setReviewData] = useState([]);
 
   // Если пользователь авторизирован то загружаются мероприятия с лайками
   useEffect(() => {
