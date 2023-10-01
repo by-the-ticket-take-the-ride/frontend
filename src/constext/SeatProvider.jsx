@@ -14,7 +14,8 @@ function SeatProvider({ children }) {
   const [paymentData, setPaymentData] = useState([]);
 
   useLayoutEffect(() => {
-    EventApi.getTickets().then((tickets) => {
+    const token = JSON.parse(localStorage.getItem('token'))
+    EventApi.getTickets(token).then((tickets) => {
       if (tickets) {
         setTickets(tickets);
       } else {

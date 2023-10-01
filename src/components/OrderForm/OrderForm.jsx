@@ -28,7 +28,7 @@ function OrderForm({currentCity}) {
     resetForm({
       email: currentUser.email,
       name: currentUser.username,
-
+      last_name: currentUser.last_name,
     });
   },[currentUser])
   useEffect(() => {
@@ -106,6 +106,11 @@ function OrderForm({currentCity}) {
     
   };
 
+    useEffect(() => {
+      console.log(isValid);
+      console.log(inputTelValue?.length);
+    }, [inputTelValue])
+
   function closePopup() {
     setIsOpen(false);
     navigate("/", { replace: true });
@@ -160,21 +165,21 @@ function OrderForm({currentCity}) {
               <div className="personal-details__input">
                 <input
                   className={`personal-details__input-item ${
-                    errors.surname
+                    errors.last_name
                       ? "personal-details__input-item-error"
-                      : values.surname
+                      : values.last_name
                       ? "personal-details__input-item-success"
                       : ""
                   }`}
                   type="text"
-                  name="surname"
-                  id="surname"
+                  name="last_name"
+                  id="last_name"
                   placeholder="Фамилия"
                   minLength="2"
                   maxLength="25"
                   pattern="^[a-zA-Zа-яА-Я\\s]*$"
                   onChange={handleChange}
-                  value={values.surname || ""}
+                  value={values.last_name || ""}
                   required
                 />
                 {/* {values.surname && !errors.surname && (
@@ -185,7 +190,7 @@ function OrderForm({currentCity}) {
                   />
                 )} */}
                 <span className="personal-details__input-error">
-                  {errors.surname}
+                  {errors.last_name}
                 </span>
               </div>
               <div className="personal-details__input">

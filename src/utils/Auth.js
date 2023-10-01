@@ -38,7 +38,7 @@ export function tockenCheck (token) {
 }
 
 export function setUserInfo (userData, token) {
-  const { username } = userData;
+  const { username, last_name, phone, birthday } = userData;
   return fetch(`${BASE_URL}/users/me/`, {
     method: 'PATCH',
     headers: {
@@ -46,7 +46,10 @@ export function setUserInfo (userData, token) {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-      username
+      username,
+      last_name,
+      phone: `+${phone}`,
+      birthday
     })
   }).then(res => _getResponseData(res))
 }

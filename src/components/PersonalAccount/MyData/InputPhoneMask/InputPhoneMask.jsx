@@ -6,9 +6,8 @@ function InputPhoneMask ({extraClass}) {
   const { currentUser } = useUserContext();
   const { setInputTelValue} = useUserContext()
 
-
   const handleTelRender = (val) => {
-    let numPhone = `+${val?.substring(0, 1)} (${val?.substring(1, 4)}) ${val?.substring(4, 7)}-${val?.substring(7, 9)}-${val?.substring(9, 11)}`;
+    let numPhone = `+${val?.substring(1, 2)} (${val?.substring(2, 5)}) ${val?.substring(5, 8)}-${val?.substring(8, 10)}-${val?.substring(10, 12)}`;
   
     numPhone = numPhone.trim();
     return numPhone
@@ -26,7 +25,7 @@ function InputPhoneMask ({extraClass}) {
   };
   return (
     <>
-      <input defaultValue={currentUser.telephone ? handleTelRender(currentUser.telephone) : ''} name="telephone" ref={inputCard} className={extraClass} type="tel" onChange={handleChange} placeholder='+7 (000) 000-00-00'/>
+      <input defaultValue={currentUser.phone ? handleTelRender(currentUser.phone) : ''} name="phone" ref={inputCard} className={extraClass} type="tel" onChange={handleChange} placeholder='+7 (000) 000-00-00'/>
     </>
   );
 };

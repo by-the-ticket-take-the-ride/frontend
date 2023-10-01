@@ -27,7 +27,7 @@ export function useFormWithValidation() {
       if (!/^[a-zA-Zа-яА-Я\\s]{2,64}$/.test(value) || value.length < 2) {
         return 'Некорректное имя';
       }
-    } else if (name === 'surname') {
+    } else if (name === 'last_name') {
         if (!value) {
           return 'Заполните это поле';
         }
@@ -41,7 +41,7 @@ export function useFormWithValidation() {
         if (!/^[a-zA-Z0-9._\-]+@([a-zA-Z0-9\-]+\.)+[a-zA-Z]{2,}$/.test(value)) {
           return 'Некорректная электронная почта';
       }
-    } else if (name === 'tel') {
+    } else if (name === 'phone') {
         if (!value) {
           return 'Заполните это поле';
         }

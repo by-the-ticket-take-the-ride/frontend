@@ -1,5 +1,5 @@
 const validationConfig = {
-  surname: {
+  last_name: {
       pattern: /^[A-я-\\s]{2,25}$/,
       validationError: 'Некорректная фамилия',
       // emptyError: 'Заполните это поле.',

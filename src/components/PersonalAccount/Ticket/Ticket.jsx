@@ -3,6 +3,7 @@ import StarRatingDisabled from "../StarRatingDisabled/StarRatingDisabled";
 import "./Ticket.css";
 
 function Ticket({ completed, ticketName, date, image }) {
+  console.log( completed, ticketName, date, image);
   return (
     <div className="ticket">
       <img className="ticket__img" src={image} alt="Мероприятие" />
