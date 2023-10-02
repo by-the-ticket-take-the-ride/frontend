@@ -1,6 +1,6 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
-import activateEmail from "../../utils/Auth";
+import * as auth from "../../utils/Auth";
 
 function Activate() {
   const path = useLocation();
@@ -8,10 +8,12 @@ function Activate() {
   const uid = uidAndToken[2];
   const token = uidAndToken[3];
 
- return (
-  <>
-  </>
- );
+  auth.activateEmail(uid, token);
+
+  return (
+    <>
+    </>
+  );
 }
 
 export default Activate;
