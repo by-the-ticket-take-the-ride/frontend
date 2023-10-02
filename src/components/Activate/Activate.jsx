@@ -1,5 +1,6 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
+import activateEmail from "../../utils/Auth";
 
 function Activate() {
   const path = useLocation();

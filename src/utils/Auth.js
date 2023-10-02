@@ -37,6 +37,15 @@ export function tockenCheck (token) {
   }).then(res => _getResponseData(res))
 }
 
+export function activateEmail (uid, token) {
+  return fetch(`${BASE_URL}/activate/${uid}/${token}`, {
+    header: {
+      'Content-Type': 'application/json'
+    },
+    
+  }).then(res => _getResponseData(res))
+}
+
 export function setUserInfo (userData, token) {
   const { username } = userData;
   return fetch(`${BASE_URL}/users/me/`, {
