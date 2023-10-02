@@ -48,7 +48,7 @@ export function setUserInfo (userData, token) {
     body: JSON.stringify({
       username,
       last_name,
-      phone: `+${phone}`,
+      phone,
       birthday
     })
   }).then(res => _getResponseData(res))

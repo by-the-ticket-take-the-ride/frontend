@@ -19,30 +19,26 @@ function MyData() {
     resetFormValues(currentUser);
   }, [currentUser, resetFormValues]);
 
-  
   const isFormValid = () => {
-    if (errorMessages.last_name || errorMessages.username || !(validateDate(renderBithday(inputValues.birthday)))) {
+    if (errorMessages.last_name || 
+        errorMessages.username || 
+        (inputTelValue === '' ? (currentUser?.phone?.length < 12)  : inputTelValue?.length < 11) ||
+        (inputValues.birthday === null ? false : (inputValues?.birthday?.length !== 10 ? true : !validateDate(renderBithday(inputValues.birthday)))) 
+      ) {
       return false
     }
     return true
   }
   
-  useEffect(() => {
-    console.log(isFormValid());
-  }, [inputTelValue]);
-  
-  useEffect(() => {
-    console.log(validateDate(inputValues.birthday));
-  }, [inputValues]);
   const handleSubmit = (evt) => {
     evt.preventDefault();
     setValidate(true);
     if (isFormValid()) {  
       handleSetUserInfo({
         last_name: inputValues?.last_name,
-        username: inputValues?.username,
+        username: inputValues?.username === '' ? currentUser?.username : inputValues?.username,
         birthday: renderBithdayFromFetch(inputValues?.birthday),
-        phone: inputTelValue.length === 11 ? inputTelValue : currentUser?.phone
+        phone: inputTelValue.length === 11 ? `+${inputTelValue}`: (currentUser?.phone === null ? null : currentUser?.phone)
       })
     }
   };
@@ -52,7 +48,7 @@ function MyData() {
       inputValues?.last_name === currentUser?.last_name &&
       inputValues?.username === currentUser?.username &&
       inputValues?.birthday === currentUser?.birthday &&
-      inputTelValue === currentUser?.phone 
+      (inputTelValue === '' ? currentUser?.phone : inputTelValue) === currentUser?.phone 
     ) {
       return true;
     } else {
@@ -106,7 +102,7 @@ function MyData() {
                 handleInputChange(evt, { customValidation: true })
               }
               className={`my-data__input ${
-                validate && errorMessages.last_name ? "my-data__input_error" : ""
+                errorMessages.last_name ? "my-data__input_error" : ""
               }`}
               type=""
               name="last_name"
@@ -129,20 +125,20 @@ function MyData() {
               onChange={(evt) =>
                 handleInputChange(evt, { customValidation: true })
               }
-              className={`my-data__input ${(validate && errorMessages.username) ? 'my-data__input_error' : ''}`}
+              className={`my-data__input ${(errorMessages.username) ? 'my-data__input_error' : ''}`}
               type="text"
               name="username"
               id="name"
               placeholder="Имя"
             />
-            {validate && <span className={`my-data__error ${errorMessages.username ? 'my-data__error_active' : ''} `}>{errorMessages.username}</span>}
+             <span className={`my-data__error ${errorMessages.username ? 'my-data__error_active' : ''} `}>{errorMessages.username}</span>
           </div>
           <div className="my-data__input-data">
             <input
               value={renderBithday(inputValues.birthday )|| ""}
               onChange={(evt) => handleInputChange(evt)}
               className={`my-data__input ${
-                (!isDataMatch() && !validateDate(renderBithday(inputValues.birthday)))
+                ((!isDataMatch() && inputValues.birthday ) && !validateDate(renderBithday(inputValues.birthday)))
                   ? "my-data__input_error"
                   : ""
               }`}
@@ -151,57 +147,31 @@ function MyData() {
               id="date-of-birth"
               placeholder="ДД.ММ.ГГГГ"
             />
-            {!isDataMatch() && (
+            {(!isDataMatch() && inputValues.birthday ) && (
               <span
                 className={`my-data__error ${
-                  !validateDate(renderBithday(inputValues.birthday)) ? "my-data__error_active" : ""
+                  !validateDate(renderBithday(inputValues.birthday)) || inputValues?.birthday?.length < 10 ? "my-data__error_active" : ""
                 } `}
               >
                 Некорректная дата
               </span>
              )} 
           </div>
-          {/* <div className="my-data__input-data">
-            <input
-              value={inputValues.city || ""}
-              onChange={(evt) =>
-                handleInputChange(evt, { customValidation: true })
-              }
-              className={`my-data__input ${
-                validate && errorMessages.city ? "my-data__input_error" : ""
-              }`}
-              type="text"
-              name="city"
-              id="city"
-              placeholder="Город"
-            />
-            {validate && (
-              <span
-                className={`my-data__error ${
-                  errorMessages.city ? "my-data__error_active" : ""
-                } `}
-              >
-                {errorMessages.city}
-              </span>
-            )}
-          </div> */}
           <div className="my-data__input-data">
             <InputPhoneMask
               extraClass={`my-data__input ${
-                validate && inputTelValue?.length < 11
+                (inputTelValue === '' ? (currentUser?.phone?.length < 12)  : inputTelValue?.length < 11)
                   ? "my-data__input_error"
                   : ""
               }`}
             />
-            {!isDataMatch() && (
               <span
                 className={`my-data__error ${
-                  (inputTelValue?.length < 11 && currentUser?.phone < 11) ? "my-data__error_active" : ""
+                  (inputTelValue === '' ? (currentUser?.phone?.length < 12)  : inputTelValue?.length < 11) ? "my-data__error_active" : ""
                 } `}
               >
                 Некорректный номер
               </span>
-             )} 
           </div>
           <div className="my-data__input-data">
             <input
@@ -216,16 +186,11 @@ function MyData() {
             />
           </div>
           <Button
-            // additionalClass={`my-data__save-button ${(validate || isDataMatch()) && (isDataMatch() || !isFormValid()) ? 'my-data__save-button_disabled' : ''}`}
-            additionalClass={`my-data__save-button ${(isDataMatch() || !isFormValid() || inputTelValue.length < 11) ? 'my-data__save-button_disabled' : ''}`}
+            additionalClass={`my-data__save-button ${isDataMatch() || !isFormValid() ||  (inputTelValue === '' ? (currentUser?.phone?.length < 12)  : inputTelValue?.length < 11) ? 'my-data__save-button_disabled' : ''}`}
             children="Сохранить изменения"
             type="submit"
             gradient={true}
-            // onClick={() => {
-            //   setValidate(true);
-            // }}
-            // disabled={(validate || isDataMatch()) && (isDataMatch() || !isFormValid())}
-            disabled={isDataMatch() || !isFormValid() || inputTelValue.length < 11}
+            disabled={isDataMatch() || !isFormValid() || (inputTelValue === '' ? (currentUser?.phone?.length < 12)  : inputTelValue?.length < 11)}
           />
           {isOpenNotific && (
             <div
