@@ -42,7 +42,6 @@ function OrderForm({currentCity}) {
   const handleClick = () => {
     const token = JSON.parse(localStorage.getItem('token'));
     tickets?.forEach(ticket => {
-      console.log(ticket)
       const { eventId, seat, row, zone, zoneId} = ticket;
 
       if(isNewEmail) {
@@ -60,8 +59,6 @@ function OrderForm({currentCity}) {
         )
         .then(res => {
           if(res) {
-
-            console.log(res)
             setIsOpen(true);
             setTimeout(function () {
             navigate("/", { replace: true });
@@ -106,15 +103,22 @@ function OrderForm({currentCity}) {
     
   };
 
-    useEffect(() => {
-      console.log(isValid);
-      console.log(inputTelValue?.length);
-    }, [inputTelValue])
-
   function closePopup() {
     setIsOpen(false);
     navigate("/", { replace: true });
   }
+
+  const isFormValid = () => {
+    if ((errors.last_name || values.last_name === '') || 
+        (errors.name || values.name === '')|| 
+        ((inputTelValue === '' ? (currentUser?.phone?.length < 12)  : inputTelValue?.length < 11) || inputTelValue === '') ||
+        (errors.email || values.email === '')
+      ) {
+      return false
+    }
+    return true
+  }
+
 
   return (
     <>
@@ -243,9 +247,9 @@ function OrderForm({currentCity}) {
                   required
                 /> */}
                  <InputPhoneMask
-              extraClass={`personal-details__input-item ${
-                inputTelValue?.length < 11
-                  ? "personal-details__input-item-error"
+              extraClass={`personal-details__input-item ${((currentUser?.phone?.length > 0) || inputTelValue?.length > 0) ? 'personal-details__input-item_type_valid' : ''} ${
+                (inputTelValue === '' ? (currentUser?.phone?.length < 12) : inputTelValue?.length < 11)
+                  ?  "personal-details__input-item-error"
                   : ""
               }`}
             />
@@ -257,7 +261,7 @@ function OrderForm({currentCity}) {
                   />
                 )} */}
                 {
-                  inputTelValue?.length < 11 &&
+                  (inputTelValue === '' ? (currentUser?.phone?.length < 12)  : inputTelValue?.length < 11) &&
                   <span className="personal-details__input-error">
                     Некорректный номер телефона
                   </span>
@@ -290,8 +294,8 @@ function OrderForm({currentCity}) {
               </p>
             </div>
             <Button
-              gradient={isValid && inputTelValue?.length === 11}
-              disabled={!isValid || inputTelValue === undefined || inputTelValue?.length < 11}
+              gradient={isFormValid() && !(inputTelValue === '' ? (currentUser?.phone?.length < 12)  : inputTelValue?.length < 11)}
+              disabled={(!isFormValid() || (inputTelValue === '' ? (currentUser?.phone?.length < 12)  : inputTelValue?.length < 11))}
               type="button"
               additionalClass="order-details__btn"
               onClick={handleClick}

@@ -59,8 +59,14 @@
 .personal-details__input-item-error:invalid  {
   border: 1px #EA3057 solid;
 }
+.personal-details__input-item-error {
+  border: 1px #EA3057 solid;
+}
 
 .personal-details__input-item-success:valid {
+  border: 1px #8B52F6 solid;
+}
+.personal-details__input-item_type_valid {
   border: 1px #8B52F6 solid;
 }
 

@@ -64,7 +64,6 @@ function useFormValid() {
 
   const handleInputChange =(evt, config = { customValidation: false }) => {
     const { name, value, validationMessage } = evt.target;
-    console.log(name, value);
 
     handleStoreValues(name, value);
     handleSaveFormRef(evt);
