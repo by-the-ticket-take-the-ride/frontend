@@ -18,6 +18,7 @@ import { useState } from "react";
 import MyTickets from "./components/PersonalAccount/MyTickets/MyTickets";
 import MyReview from "./components/PersonalAccount/MyReview/MyReview";
 import MyFavorites from "./components/PersonalAccount/MyFavorites/MyFavorites";
+import Activate from  "./components/Activate/Activate";
 
 function App() {
   const [isActivePopupCity, setIsActivePopupCity] = React.useState(false);
@@ -122,6 +123,12 @@ function App() {
                   <Route path="my-data" element={<MyData />} />
                   <Route path="my-reviews" element={<MyReview/>} />
                 </Route>
+                <Route
+                  path="/activate/:uid/:token"
+                  element={
+                    <Activate/>
+                  }
+                />
               </Routes>
               <CityPopup
                 isActive={isActivePopupCity}
