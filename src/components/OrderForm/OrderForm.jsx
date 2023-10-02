@@ -28,7 +28,7 @@ function OrderForm({currentCity}) {
     resetForm({
       email: currentUser.email,
       name: currentUser.username,
-
+      last_name: currentUser.last_name,
     });
   },[currentUser])
   useEffect(() => {
@@ -42,7 +42,6 @@ function OrderForm({currentCity}) {
   const handleClick = () => {
     const token = JSON.parse(localStorage.getItem('token'));
     tickets?.forEach(ticket => {
-      console.log(ticket)
       const { eventId, seat, row, zone, zoneId} = ticket;
 
       if(isNewEmail) {
@@ -60,8 +59,6 @@ function OrderForm({currentCity}) {
         )
         .then(res => {
           if(res) {
-
-            console.log(res)
             setIsOpen(true);
             setTimeout(function () {
             navigate("/", { replace: true });
@@ -110,6 +107,18 @@ function OrderForm({currentCity}) {
     setIsOpen(false);
     navigate("/", { replace: true });
   }
+
+  const isFormValid = () => {
+    if ((errors.last_name || values.last_name === '') || 
+        (errors.name || values.name === '')|| 
+        ((inputTelValue === '' ? (currentUser?.phone?.length < 12)  : inputTelValue?.length < 11) || inputTelValue === '') ||
+        (errors.email || values.email === '')
+      ) {
+      return false
+    }
+    return true
+  }
+
 
   return (
     <>
@@ -160,21 +169,21 @@ function OrderForm({currentCity}) {
               <div className="personal-details__input">
                 <input
                   className={`personal-details__input-item ${
-                    errors.surname
+                    errors.last_name
                       ? "personal-details__input-item-error"
-                      : values.surname
+                      : values.last_name
                       ? "personal-details__input-item-success"
                       : ""
                   }`}
                   type="text"
-                  name="surname"
-                  id="surname"
+                  name="last_name"
+                  id="last_name"
                   placeholder="Фамилия"
                   minLength="2"
                   maxLength="25"
                   pattern="^[a-zA-Zа-яА-Я\\s]*$"
                   onChange={handleChange}
-                  value={values.surname || ""}
+                  value={values.last_name || ""}
                   required
                 />
                 {/* {values.surname && !errors.surname && (
@@ -185,7 +194,7 @@ function OrderForm({currentCity}) {
                   />
                 )} */}
                 <span className="personal-details__input-error">
-                  {errors.surname}
+                  {errors.last_name}
                 </span>
               </div>
               <div className="personal-details__input">
@@ -238,9 +247,9 @@ function OrderForm({currentCity}) {
                   required
                 /> */}
                  <InputPhoneMask
-              extraClass={`personal-details__input-item ${
-                inputTelValue?.length < 11
-                  ? "personal-details__input-item-error"
+              extraClass={`personal-details__input-item ${((currentUser?.phone?.length > 0) || inputTelValue?.length > 0) ? 'personal-details__input-item_type_valid' : ''} ${
+                (inputTelValue === '' ? (currentUser?.phone?.length < 12) : inputTelValue?.length < 11)
+                  ?  "personal-details__input-item-error"
                   : ""
               }`}
             />
@@ -252,7 +261,7 @@ function OrderForm({currentCity}) {
                   />
                 )} */}
                 {
-                  inputTelValue?.length < 11 &&
+                  (inputTelValue === '' ? (currentUser?.phone?.length < 12)  : inputTelValue?.length < 11) &&
                   <span className="personal-details__input-error">
                     Некорректный номер телефона
                   </span>
@@ -285,8 +294,8 @@ function OrderForm({currentCity}) {
               </p>
             </div>
             <Button
-              gradient={isValid && inputTelValue?.length === 11}
-              disabled={!isValid || inputTelValue === undefined || inputTelValue?.length < 11}
+              gradient={isFormValid() && !(inputTelValue === '' ? (currentUser?.phone?.length < 12)  : inputTelValue?.length < 11)}
+              disabled={(!isFormValid() || (inputTelValue === '' ? (currentUser?.phone?.length < 12)  : inputTelValue?.length < 11))}
               type="button"
               additionalClass="order-details__btn"
               onClick={handleClick}

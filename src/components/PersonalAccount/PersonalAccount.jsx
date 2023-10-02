@@ -24,7 +24,10 @@ function PersonalAccount({
   }
 
   const handleClickLogout = () => {
-    localStorage.removeItem('token')
+    localStorage.removeItem('token');
+    localStorage.removeItem('isCityDefinedCorrectly');
+    localStorage.removeItem('currentCity');
+    
     setIsLoggedIn(false);
     handleLogout();
     setCurrentUser({});

@@ -6,6 +6,7 @@ import useUserContext from "../../../hooks/useUserContext";
 import ErrorIcon from "../../Icons/ErrorIcon";
 import Button from "../../Buttons/Button/Button";
 import InputPhoneMask from "./InputPhoneMask/InputPhoneMask";
+import { renderBithday, renderBithdayFromFetch } from "../../../utils/supportFunction";
 
 function MyData() {
   const { inputValues, handleInputChange, resetFormValues, errorMessages } =
@@ -19,35 +20,35 @@ function MyData() {
   }, [currentUser, resetFormValues]);
 
   const isFormValid = () => {
-    if (errorMessages.surname || errorMessages.username || !validateDate(inputValues.date) || errorMessages.city ) {
+    if (errorMessages.last_name || 
+        errorMessages.username || 
+        (inputTelValue === '' ? (currentUser?.phone?.length < 12)  : inputTelValue?.length < 11) ||
+        (inputValues.birthday === null ? false : (inputValues?.birthday?.length !== 10 ? true : !validateDate(renderBithday(inputValues.birthday)))) 
+      ) {
       return false
     }
     return true
   }
-
+  
   const handleSubmit = (evt) => {
     evt.preventDefault();
     setValidate(true);
     if (isFormValid()) {  
       handleSetUserInfo({
-        surname: inputValues?.surname,
-        username: inputValues?.username,
-        date: inputValues?.date,
-        city: inputValues?.city,
-        telephone: inputTelValue,
-        email: inputValues?.email
+        last_name: inputValues?.last_name,
+        username: inputValues?.username === '' ? currentUser?.username : inputValues?.username,
+        birthday: renderBithdayFromFetch(inputValues?.birthday),
+        phone: inputTelValue.length === 11 ? `+${inputTelValue}`: (currentUser?.phone === null ? null : currentUser?.phone)
       })
     }
   };
 
   const isDataMatch = () => {
     if (
-      inputValues?.surname === currentUser?.surname &&
+      inputValues?.last_name === currentUser?.last_name &&
       inputValues?.username === currentUser?.username &&
-      inputValues?.date === currentUser?.date &&
-      inputValues?.city === currentUser?.city &&
-      inputTelValue === currentUser?.telephone &&
-      inputValues?.email === currentUser?.email
+      inputValues?.birthday === currentUser?.birthday &&
+      (inputTelValue === '' ? currentUser?.phone : inputTelValue) === currentUser?.phone 
     ) {
       return true;
     } else {
@@ -56,30 +57,33 @@ function MyData() {
   };
 
   const validateDate = function (dateTime = "22.03.2000") {
-    const f_date = dateTime.split(" ")[0].split(".").reverse().join(".");
-    const date = dateTime
-      .split(" ")[0]
-      .split(".")
-      .map(function (c, i, a) {
-        return parseInt(c);
-      });
-    const daysInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-    if (date[2] % 4 === 0 && date[2] % 100 === 0 && date[2] % 400 === 0) {
-      if (date[1] >= 29) {
+    if (dateTime) {
+      
+      const f_date = dateTime.split(" ")[0].split(".").reverse().join(".");
+      const date = dateTime
+        .split(" ")[0]
+        .split(".")
+        .map(function (c, i, a) {
+          return parseInt(c);
+        });
+      const daysInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+      if (date[2] % 4 === 0 && date[2] % 100 === 0 && date[2] % 400 === 0) {
+        if (date[1] >= 29) {
+          return false;
+        }
+      } else if (date[1] > 12) {
+        return false;
+      } else if (date[2] > new Date().getFullYear() - 18 || date[2] < 1900) {
         return false;
       }
-    } else if (date[1] > 12) {
-      return false;
-    } else if (date[2] > new Date().getFullYear() - 18 || date[2] < 1900) {
-      return false;
-    }
-    if (
-      date[0] > 0 &&
-      date[0] <= daysInMonth[date[1] - 1] &&
-      date[1] > 0 &&
-      date[1] <= 12
-    ) {
-      return new Date(f_date + " ") !== "Invalid Date";
+      if (
+        date[0] > 0 &&
+        date[0] <= daysInMonth[date[1] - 1] &&
+        date[1] > 0 &&
+        date[1] <= 12
+      ) {
+        return new Date(f_date + " ") !== "Invalid Date";
+      }
     }
   }
 
@@ -93,27 +97,27 @@ function MyData() {
         >
           <div className="my-data__input-data">
             <input
-              value={inputValues?.surname || ""}
+              value={inputValues?.last_name || ""}
               onChange={(evt) =>
                 handleInputChange(evt, { customValidation: true })
               }
               className={`my-data__input ${
-                validate && errorMessages.surname ? "my-data__input_error" : ""
+                errorMessages.last_name ? "my-data__input_error" : ""
               }`}
               type=""
-              name="surname"
-              id="surname"
+              name="last_name"
+              id="last_name"
               placeholder="Фамилия"
             />
-            {validate && (
+            {/* {validate && ( */}
               <span
                 className={`my-data__error ${
-                  errorMessages.surname ? "my-data__error_active" : ""
+                  errorMessages.last_name ? "my-data__error_active" : ""
                 } `}
               >
-                {errorMessages.surname}
+                {errorMessages.last_name}
               </span>
-            )}
+            {/* )} */}
           </div>
           <div className="my-data__input-data">
             <input
@@ -121,79 +125,53 @@ function MyData() {
               onChange={(evt) =>
                 handleInputChange(evt, { customValidation: true })
               }
-              className={`my-data__input ${(validate && errorMessages.username) ? 'my-data__input_error' : ''}`}
+              className={`my-data__input ${(errorMessages.username) ? 'my-data__input_error' : ''}`}
               type="text"
               name="username"
               id="name"
               placeholder="Имя"
             />
-            {validate && <span className={`my-data__error ${errorMessages.username ? 'my-data__error_active' : ''} `}>{errorMessages.username}</span>}
+             <span className={`my-data__error ${errorMessages.username ? 'my-data__error_active' : ''} `}>{errorMessages.username}</span>
           </div>
           <div className="my-data__input-data">
             <input
-              value={inputValues.date || ""}
+              value={renderBithday(inputValues.birthday )|| ""}
               onChange={(evt) => handleInputChange(evt)}
               className={`my-data__input ${
-                validate && !validateDate(inputValues.date)
+                ((!isDataMatch() && inputValues.birthday ) && !validateDate(renderBithday(inputValues.birthday)))
                   ? "my-data__input_error"
                   : ""
               }`}
               type="text"
-              name="date"
+              name="birthday"
               id="date-of-birth"
               placeholder="ДД.ММ.ГГГГ"
             />
-            {validate && (
+            {(!isDataMatch() && inputValues.birthday ) && (
               <span
                 className={`my-data__error ${
-                  !validateDate(inputValues.date) ? "my-data__error_active" : ""
+                  !validateDate(renderBithday(inputValues.birthday)) || inputValues?.birthday?.length < 10 ? "my-data__error_active" : ""
                 } `}
               >
                 Некорректная дата
               </span>
-            )}
+             )} 
           </div>
-          {/* <div className="my-data__input-data">
-            <input
-              value={inputValues.city || ""}
-              onChange={(evt) =>
-                handleInputChange(evt, { customValidation: true })
-              }
-              className={`my-data__input ${
-                validate && errorMessages.city ? "my-data__input_error" : ""
-              }`}
-              type="text"
-              name="city"
-              id="city"
-              placeholder="Город"
-            />
-            {validate && (
-              <span
-                className={`my-data__error ${
-                  errorMessages.city ? "my-data__error_active" : ""
-                } `}
-              >
-                {errorMessages.city}
-              </span>
-            )}
-          </div> */}
           <div className="my-data__input-data">
             <InputPhoneMask
               extraClass={`my-data__input ${
-                validate && inputTelValue?.length < 11
+                (inputTelValue === '' ? (currentUser?.phone?.length < 12)  : inputTelValue?.length < 11)
                   ? "my-data__input_error"
                   : ""
               }`}
             />
-            {validate && (
               <span
                 className={`my-data__error ${
-                  inputTelValue?.length < 11 ? "my-data__error_active" : ""
+                  (inputTelValue === '' ? (currentUser?.phone?.length < 12)  : inputTelValue?.length < 11) ? "my-data__error_active" : ""
                 } `}
               >
                 Некорректный номер
               </span>
-            )}
           </div>
           <div className="my-data__input-data">
             <input
@@ -208,14 +186,11 @@ function MyData() {
             />
           </div>
           <Button
-            additionalClass={`my-data__save-button ${(validate || isDataMatch()) && (isDataMatch() || !isFormValid()) ? 'my-data__save-button_disabled' : ''}`}
+            additionalClass={`my-data__save-button ${isDataMatch() || !isFormValid() ||  (inputTelValue === '' ? (currentUser?.phone?.length < 12)  : inputTelValue?.length < 11) ? 'my-data__save-button_disabled' : ''}`}
             children="Сохранить изменения"
             type="submit"
             gradient={true}
-            onClick={() => {
-              setValidate(true);
-            }}
-            disabled={(validate || isDataMatch()) && (isDataMatch() || !isFormValid())}
+            disabled={isDataMatch() || !isFormValid() || (inputTelValue === '' ? (currentUser?.phone?.length < 12)  : inputTelValue?.length < 11)}
           />
           {isOpenNotific && (
             <div

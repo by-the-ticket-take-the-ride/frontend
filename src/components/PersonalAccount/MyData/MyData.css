@@ -48,6 +48,12 @@
   color: #191919;
 }
 
+.my-data__input:focus {
+  border: 1px #8B52F680 solid;
+  outline: none;
+  box-shadow: 2px 2px 12px 1px #00000024;
+}
+
 .my-data__input_type_gray {
   background-color: rgba(154, 154, 154, 0.1);
   border: none;

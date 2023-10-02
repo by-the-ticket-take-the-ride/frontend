@@ -26,3 +26,18 @@ export const renderTime = (time) => {
 export const validCity = (city) => {
   return city.replace('г ', '')
 }
+
+export const renderBithday = (date) => {
+  if (date?.length === 10 && date.includes('-')) {
+    const dateArr = date.split('-')
+    return `${dateArr[1]}.${dateArr[1]}.${dateArr[0]}`
+  }
+  return date
+}
+export const renderBithdayFromFetch = (date) => {
+  if (date?.length === 10 && date.includes('.')) {
+    const dateArr = date.split('.')
+    return `${dateArr[2]}-${dateArr[1]}-${dateArr[0]}`
+  }
+  return date
+}

@@ -38,11 +38,12 @@ export const getCurrentEvent = (id) => {
     console.log(err);
   })
 }
-export const getTickets = () => {
+export const getTickets = (token) => {
   return fetch(`${MAIN_API_URL}/tickets`, {
     // credentials: 'include',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      "Authorization": `Token ${token}`
     }
   }).then(res => {
     return res.ok ? res.json() : Promise.reject(res.status)

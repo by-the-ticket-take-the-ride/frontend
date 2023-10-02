@@ -5,6 +5,7 @@ import Ticket from "../Ticket/Ticket";
 import "./MyTickets.css";
 import useSeatContext from "../../../hooks/useSeatContext";
 import { EventsContext } from "../../../constext/EventsContext";
+import NotificationPageTicket from "../NotificationPageTicket/NotificationPageTicket";
 
 function MyTickets() {
   const [isNotificationPopup, setIsNotificationPopup] = useState(false);
@@ -29,6 +30,7 @@ function MyTickets() {
   };
 
   const ticketFilter = () => {
+    console.log(tickets);
     const counts = tickets.reduce((counts, ticketName, i) => {
       counts[ticketName?.event?.name] = (counts[ticketName?.event?.name] || 0) + 1;
       return counts;
@@ -74,6 +76,10 @@ function MyTickets() {
 
   return (
     <section className="my-tickets">
+      {
+        tickets?.length === 0 ? <NotificationPageTicket/> :
+        <>
+
       {isNotificationPopup && (
         <NotificationPopup>
           <ModifiedReviewComp handleClose={handleClose} />
@@ -82,6 +88,7 @@ function MyTickets() {
       <div className="my-tickets__wrapper my-tickets__wrapper_type_active">
         {ticketFilter()?.map((ticket, id) => {
           const dateFilter = () => {
+            console.log(ticket);
             const counts = tickets.reduce((counts, ticketName, i) => {
               counts[ticketName?.event?.date_event] =
                 (counts[ticketName?.event?.date_event] || 0) + 1;
@@ -145,6 +152,8 @@ function MyTickets() {
             })}
           </div>
         </div>
+        </>
+      }
     </section>
   );
 }
